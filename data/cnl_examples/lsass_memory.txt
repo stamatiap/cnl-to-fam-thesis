@@ -1,0 +1,28 @@
+Tactic: TA0006 "Credential Access"
+Technique: T1003.001 "OS Credential Dumping: LSASS Memory"
+
+Background
+Given "user" as "U" And "process" as "P"  And "system" as "Windows"
+
+Event 1
+Given "P is running"
+When "P creates user with administrative access"
+Or "P creates user with system access"
+Then "user U is created"
+And "U has access to lsass.exe file"
+And "U has access to registry keys"
+
+Event 2
+Given "Event 1"
+When "U requests a memory dump of lsass.exe file"
+Then "a lsass.exe memory dump file is created by user U"
+And "U has access to lsass.exe memory dump file"
+
+Event 3
+Given "Event 1"
+When "U modifies the registry keys"
+Then "registry keys are modified by user U"
+
+Event 4
+Given "Event 2" Or "Event 3"
+Then "possible attack"

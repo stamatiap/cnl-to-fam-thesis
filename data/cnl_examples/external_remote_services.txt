@@ -1,0 +1,34 @@
+Tactic: TA0001 "Initial Access"
+Technique: T1133 "External Remote Services"
+
+Background
+Given "external remote service" as "ERS"
+And "authentication credentials" as "Credentials"
+And "user" as "U"
+And "time" as "T"
+And "MITRE tactic" as "Lateral Movement"
+And "MITRE tactic" as "Exfiltration"
+
+Event 1
+Given "ERS is active" And ("U located in uncommon geolocations" Or "T is outside business")
+When "ERS receives incorrect Credentials by U multiple times"
+Then "ERS authentication failed for U multiple times"
+
+Event 2
+Given "Event 1"
+When "ERS receives correct Credentials by U"
+Then "ERS authentication success for U"
+
+Event 3
+Given "Event 1" And "Event 2"
+When "U performs internal Lateral Movement"
+Then "internal Lateral Movement detected"
+
+Event 4
+Given "Event 1" And "Event 2"
+When "U performs Exfiltration"
+Then "Exfiltration detected"
+
+Event 5
+Given "Event 3" Or "Event 4"
+Then "possible attack"
