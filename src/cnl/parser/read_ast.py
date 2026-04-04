@@ -2,6 +2,8 @@ from antlr4 import CommonTokenStream, FileStream
 from antlr4.tree.Tree import TerminalNodeImpl
 from pprint import pprint
 import sys
+import json
+import os
 
 from src.cnl.grammar.CNLLexer import CNLLexer
 from src.cnl.grammar.CNLParser import CNLParser
@@ -290,13 +292,25 @@ def create_attack_dict(tree):
 
     return attack_info
 
+def save_attack_data(attack_data, input_filename):
+    output_dir = "data/parsed_attacks"
+    os.makedirs(output_dir, exist_ok=True)
+
+    input_stem = os.path.splitext(os.path.basename(input_filename))[0]
+    output_path = os.path.join(output_dir, f"{input_stem}.json")
+
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(attack_data, f, indent=2, ensure_ascii=False)
+
+    print(f"Saved JSON to: {output_path}")
 
 def main():
     if len(sys.argv) < 2:
         print("Usage: python read_ast.py <input_file>")
         sys.exit(1)
 
-    input_path = "data/cnl_examples/" + sys.argv[1]
+    input_file = sys.argv[1]
+    input_path = "data/cnl_examples/" + input_file
 
     input_attack = FileStream(input_path, encoding="utf-8")
 
@@ -310,6 +324,7 @@ def main():
 
     attack_data = create_attack_dict(tree)
     pprint(attack_data, sort_dicts=False, width=100)
+    save_attack_data(attack_data, input_file)
 
 
 if __name__ == "__main__":
