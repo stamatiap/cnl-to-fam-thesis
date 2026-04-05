@@ -1,28 +1,52 @@
-Tactic: TA0006 "Credential Access"
-Technique: T1003.001 "OS Credential Dumping: LSASS Memory"
+Tactic: TA0006 Credential_Access
+Technique: T1003.001 OS_Credential_Dumping_LSASS
 
 Background
-Given "user" as "U" And "process" as "P"  And "system" as "Windows"
+Given process as P
+And account as U
+And file as lsass_exe
+And file as lsass_dump
+And registry as registry_keys
 
 Event 1
-Given "P is running"
-When "P creates user with administrative access"
-Or "P creates user with system access"
-Then "user U is created"
-And "U has access to lsass.exe file"
-And "U has access to registry keys"
+Given P is active
+When P creates administrative U
+Then U is created by P
 
 Event 2
-Given "Event 1"
-When "U requests a memory dump of lsass.exe file"
-Then "a lsass.exe memory dump file is created by user U"
-And "U has access to lsass.exe memory dump file"
+Given P is active
+When P creates system U
+Then U is created by P
 
 Event 3
-Given "Event 1"
-When "U modifies the registry keys"
-Then "registry keys are modified by user U"
+Given Event 1
+When U loads lsass_exe
+Then lsass_exe is loaded by U
 
 Event 4
-Given "Event 2" Or "Event 3"
-Then "possible attack"
+Given Event 2
+When U loads lsass_exe
+Then lsass_exe is loaded by U
+
+Event 5
+Given Event 3
+When U requests lsass_dump from lsass_exe
+Then lsass_dump is created by U
+
+Event 6
+Given Event 4
+When U requests lsass_dump from lsass_exe
+Then lsass_dump is created by U
+
+Event 7
+Given Event 3
+When U modifies registry_keys
+Then registry_keys is modified by U
+
+Event 8
+Given Event 4
+When U modifies registry_keys
+Then registry_keys is modified by U
+
+Detection
+Event 5 Or Event 6 Or Event 7 Or Event 8

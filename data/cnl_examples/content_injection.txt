@@ -1,36 +1,38 @@
-Tactic: TA0001 "Initial Access"
-Technique: T1659 "Content Injection"
+Tactic: TA0001 Initial_Access
+Technique: T1659 Content_Injection
 
 Background
-Given "browser" as "B" 
-And "folder" as "AppData" 
-And "folder" as "Temp"
+Given browser as B
+And folder as AppData
+And folder as Temp
+And process as P
+And file as F1
+And file as F2
 
 Event 1
-Given "B is running"
-When "B spawns a new process P"
-Then "P is running"
+Given B is active
+When B spawns new P
+Then P is spawned
 
 Event 2
-Given "Event 1"
-When "P creates a new file F1 in AppData"
-Then "F1 is created in AppData"
+Given Event 1
+When P creates new F1 in AppData
+Then F1 is created in AppData
 
 Event 3
-Given "Event 1"
-When "P creates a new file F2 in Temp"
-Then "F2 is created in Temp"
+Given Event 1
+When P creates new F2 in Temp
+Then F2 is created in Temp
 
 Event 4
-Given "Event 2"
-When "P executes F1"
-Then "F1 executed by P"
+Given Event 2
+When P executes F1
+Then F1 is executed by P
 
 Event 5
-Given "Event 3"
-When "P executes F2"
-Then "F2 executed by P"
+Given Event 3
+When P executes F2
+Then F2 is executed by P
 
-Event 6
-Given "Event 4" Or "Event 5"
-Then "possible attack"
+Detection
+Event 4 Or Event 5

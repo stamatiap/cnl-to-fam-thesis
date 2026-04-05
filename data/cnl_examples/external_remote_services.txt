@@ -1,34 +1,34 @@
-Tactic: TA0001 "Initial Access"
-Technique: T1133 "External Remote Services"
+Tactic: TA0001 Initial_Access
+Technique: T1133 External_Remote_Services
 
 Background
-Given "external remote service" as "ERS"
-And "authentication credentials" as "Credentials"
-And "user" as "U"
-And "time" as "T"
-And "MITRE tactic" as "Lateral Movement"
-And "MITRE tactic" as "Exfiltration"
+Given service as ERS
+And credentials as Credentials
+And user as U
+And tactic as Lateral_Movement
+And tactic as Exfiltration
 
 Event 1
-Given "ERS is active" And ("U located in uncommon geolocations" Or "T is outside business")
-When "ERS receives incorrect Credentials by U multiple times"
-Then "ERS authentication failed for U multiple times"
+Given ERS is active
+And U is located in uncommon_geolocations
+When ERS rejects Credentials by U
+Then Credentials is rejected by ERS
 
 Event 2
-Given "Event 1"
-When "ERS receives correct Credentials by U"
-Then "ERS authentication success for U"
+Given ERS is active
+And U is located in uncommon_geolocations
+When ERS accepts Credentials by U
+Then Credentials is accepted by ERS
 
 Event 3
-Given "Event 1" And "Event 2"
-When "U performs internal Lateral Movement"
-Then "internal Lateral Movement detected"
+Given Event 1 And Event 2
+When U performs internal Lateral_Movement
+Then Lateral_Movement is performed by U
 
 Event 4
-Given "Event 1" And "Event 2"
-When "U performs Exfiltration"
-Then "Exfiltration detected"
+Given Event 1 And Event 2
+When U performs external Exfiltration
+Then Exfiltration is performed by U
 
-Event 5
-Given "Event 3" Or "Event 4"
-Then "possible attack"
+Detection
+Event 3 Or Event 4
