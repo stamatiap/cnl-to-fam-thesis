@@ -1,0 +1,64 @@
+Tactic: TA0001 Initial_Access
+Technique: T1200 Hardware_Additions
+
+Background
+Given operating_system as Windows
+And device as USB_device
+And device as Thunderbolt_device
+And device as PCIe_device
+And device as BD
+And process as P
+And process as P1
+And volume as V
+And input as HID_keystroke
+And driver as DMA_driver
+And server as DHCP
+And interface as MAC
+
+Event 1
+Given Windows is active
+When Windows recognizes external USB_device
+Then USB_device is recognized by Windows
+
+Event 2
+Given Windows is active
+When Windows recognizes external Thunderbolt_device
+Then Thunderbolt_device is recognized by Windows
+
+Event 3
+Given Windows is active
+When Windows recognizes external PCIe_device
+Then PCIe_device is recognized by Windows
+
+Event 4
+Given Windows is active
+When Windows recognizes new BD
+Then BD is recognized by Windows
+
+Event 5
+Given Event 1 Or Event 2 Or Event 3 Or Event 4
+When P spawns new P1
+Then P1 is spawned by P
+
+Event 6
+Given Event 1 Or Event 2 Or Event 3 Or Event 4
+When Windows mounts new V
+Then V is mounted by Windows
+
+Event 7
+Given Event 5 Or Event 6
+When Windows records HID_keystroke
+Then HID_keystroke is recorded by Windows
+
+Event 8
+Given Event 5 Or Event 6
+When Windows loads DMA_driver
+Then DMA_driver is loaded by Windows
+
+Event 9
+Given Event 5 Or Event 6
+When DHCP receives new MAC
+Then MAC is received by DHCP
+
+Detection
+Event 7 Or Event 8 Or Event 9

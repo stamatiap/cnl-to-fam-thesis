@@ -1,0 +1,438 @@
+{
+  "header": {
+    "tactic_id": "TA0001",
+    "tactic_name": "Initial_Access",
+    "technique_id": "T1200",
+    "technique_name": "Hardware_Additions"
+  },
+  "background": {
+    "assets": [
+      {
+        "type": "operating_system",
+        "name": "Windows"
+      },
+      {
+        "type": "device",
+        "name": "USB_device"
+      },
+      {
+        "type": "device",
+        "name": "Thunderbolt_device"
+      },
+      {
+        "type": "device",
+        "name": "PCIe_device"
+      },
+      {
+        "type": "device",
+        "name": "BD"
+      },
+      {
+        "type": "process",
+        "name": "P"
+      },
+      {
+        "type": "process",
+        "name": "P1"
+      },
+      {
+        "type": "volume",
+        "name": "V"
+      },
+      {
+        "type": "input",
+        "name": "HID_keystroke"
+      },
+      {
+        "type": "driver",
+        "name": "DMA_driver"
+      },
+      {
+        "type": "server",
+        "name": "DHCP"
+      },
+      {
+        "type": "interface",
+        "name": "MAC"
+      }
+    ]
+  },
+  "events": [
+    {
+      "event_id": "1",
+      "statement": {
+        "given": [
+          {
+            "subject": "Windows",
+            "verb": "active",
+            "modifiers": [],
+            "type": "state_condition",
+            "connector": "Given"
+          }
+        ],
+        "when": [
+          {
+            "actor_adjective": null,
+            "actor": "Windows",
+            "verb": "recognizes",
+            "adjective": "external",
+            "object": "USB_device",
+            "modifiers": []
+          }
+        ],
+        "then": [
+          {
+            "subject": "USB_device",
+            "verb": "recognized",
+            "modifiers": [
+              {
+                "type": "source",
+                "keyword": "by",
+                "value": "Windows"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "2",
+      "statement": {
+        "given": [
+          {
+            "subject": "Windows",
+            "verb": "active",
+            "modifiers": [],
+            "type": "state_condition",
+            "connector": "Given"
+          }
+        ],
+        "when": [
+          {
+            "actor_adjective": null,
+            "actor": "Windows",
+            "verb": "recognizes",
+            "adjective": "external",
+            "object": "Thunderbolt_device",
+            "modifiers": []
+          }
+        ],
+        "then": [
+          {
+            "subject": "Thunderbolt_device",
+            "verb": "recognized",
+            "modifiers": [
+              {
+                "type": "source",
+                "keyword": "by",
+                "value": "Windows"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "3",
+      "statement": {
+        "given": [
+          {
+            "subject": "Windows",
+            "verb": "active",
+            "modifiers": [],
+            "type": "state_condition",
+            "connector": "Given"
+          }
+        ],
+        "when": [
+          {
+            "actor_adjective": null,
+            "actor": "Windows",
+            "verb": "recognizes",
+            "adjective": "external",
+            "object": "PCIe_device",
+            "modifiers": []
+          }
+        ],
+        "then": [
+          {
+            "subject": "PCIe_device",
+            "verb": "recognized",
+            "modifiers": [
+              {
+                "type": "source",
+                "keyword": "by",
+                "value": "Windows"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "4",
+      "statement": {
+        "given": [
+          {
+            "subject": "Windows",
+            "verb": "active",
+            "modifiers": [],
+            "type": "state_condition",
+            "connector": "Given"
+          }
+        ],
+        "when": [
+          {
+            "actor_adjective": null,
+            "actor": "Windows",
+            "verb": "recognizes",
+            "adjective": "new",
+            "object": "BD",
+            "modifiers": []
+          }
+        ],
+        "then": [
+          {
+            "subject": "BD",
+            "verb": "recognized",
+            "modifiers": [
+              {
+                "type": "source",
+                "keyword": "by",
+                "value": "Windows"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "5",
+      "statement": {
+        "given": [
+          {
+            "type": "event_ref",
+            "event_id": "1",
+            "connector": "Given"
+          },
+          {
+            "type": "event_ref",
+            "event_id": "2",
+            "connector": "Or"
+          },
+          {
+            "type": "event_ref",
+            "event_id": "3",
+            "connector": "Or"
+          },
+          {
+            "type": "event_ref",
+            "event_id": "4",
+            "connector": "Or"
+          }
+        ],
+        "when": [
+          {
+            "actor_adjective": null,
+            "actor": "P",
+            "verb": "spawns",
+            "adjective": "new",
+            "object": "P1",
+            "modifiers": []
+          }
+        ],
+        "then": [
+          {
+            "subject": "P1",
+            "verb": "spawned",
+            "modifiers": [
+              {
+                "type": "source",
+                "keyword": "by",
+                "value": "P"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "6",
+      "statement": {
+        "given": [
+          {
+            "type": "event_ref",
+            "event_id": "1",
+            "connector": "Given"
+          },
+          {
+            "type": "event_ref",
+            "event_id": "2",
+            "connector": "Or"
+          },
+          {
+            "type": "event_ref",
+            "event_id": "3",
+            "connector": "Or"
+          },
+          {
+            "type": "event_ref",
+            "event_id": "4",
+            "connector": "Or"
+          }
+        ],
+        "when": [
+          {
+            "actor_adjective": null,
+            "actor": "Windows",
+            "verb": "mounts",
+            "adjective": "new",
+            "object": "V",
+            "modifiers": []
+          }
+        ],
+        "then": [
+          {
+            "subject": "V",
+            "verb": "mounted",
+            "modifiers": [
+              {
+                "type": "source",
+                "keyword": "by",
+                "value": "Windows"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "7",
+      "statement": {
+        "given": [
+          {
+            "type": "event_ref",
+            "event_id": "5",
+            "connector": "Given"
+          },
+          {
+            "type": "event_ref",
+            "event_id": "6",
+            "connector": "Or"
+          }
+        ],
+        "when": [
+          {
+            "actor_adjective": null,
+            "actor": "Windows",
+            "verb": "records",
+            "adjective": null,
+            "object": "HID_keystroke",
+            "modifiers": []
+          }
+        ],
+        "then": [
+          {
+            "subject": "HID_keystroke",
+            "verb": "recorded",
+            "modifiers": [
+              {
+                "type": "source",
+                "keyword": "by",
+                "value": "Windows"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "8",
+      "statement": {
+        "given": [
+          {
+            "type": "event_ref",
+            "event_id": "5",
+            "connector": "Given"
+          },
+          {
+            "type": "event_ref",
+            "event_id": "6",
+            "connector": "Or"
+          }
+        ],
+        "when": [
+          {
+            "actor_adjective": null,
+            "actor": "Windows",
+            "verb": "loads",
+            "adjective": null,
+            "object": "DMA_driver",
+            "modifiers": []
+          }
+        ],
+        "then": [
+          {
+            "subject": "DMA_driver",
+            "verb": "loaded",
+            "modifiers": [
+              {
+                "type": "source",
+                "keyword": "by",
+                "value": "Windows"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "9",
+      "statement": {
+        "given": [
+          {
+            "type": "event_ref",
+            "event_id": "5",
+            "connector": "Given"
+          },
+          {
+            "type": "event_ref",
+            "event_id": "6",
+            "connector": "Or"
+          }
+        ],
+        "when": [
+          {
+            "actor_adjective": null,
+            "actor": "DHCP",
+            "verb": "receives",
+            "adjective": "new",
+            "object": "MAC",
+            "modifiers": []
+          }
+        ],
+        "then": [
+          {
+            "subject": "MAC",
+            "verb": "received",
+            "modifiers": [
+              {
+                "type": "source",
+                "keyword": "by",
+                "value": "DHCP"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "detection": {
+    "operator": "Or",
+    "event_ids": [
+      "7",
+      "8",
+      "9"
+    ]
+  }
+}

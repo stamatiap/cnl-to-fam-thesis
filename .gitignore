@@ -1,0 +1,10 @@
+#ANTLR
+.antlr/
+*.interp
+*.tokens
+antlr-*.jar
+*.jar
+
+#Python
+__pycache__/
+*.pyc
