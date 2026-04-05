@@ -1,0 +1,201 @@
+{
+  "header": {
+    "tactic_id": "TA0001",
+    "tactic_name": "Initial Access",
+    "technique_id": "T1189",
+    "technique_name": "Drive-by Compromise"
+  },
+  "background": {
+    "assets": [
+      {
+        "asset": "browser",
+        "name": "B"
+      },
+      {
+        "asset": "registry",
+        "name": "R"
+      }
+    ]
+  },
+  "events": {
+    "Event 1": {
+      "event": "Event 1",
+      "given": [
+        {
+          "connector": "Given",
+          "type": "text",
+          "value": "B is running"
+        }
+      ],
+      "when": [
+        {
+          "connector": "When",
+          "text": "B spawns a new process P"
+        }
+      ],
+      "then": [
+        {
+          "connector": "Then",
+          "text": "P is running"
+        }
+      ],
+      "repeated": null,
+      "within": null
+    },
+    "Event 2": {
+      "event": "Event 2",
+      "given": [
+        {
+          "connector": "Given",
+          "type": "text",
+          "value": "B is running"
+        }
+      ],
+      "when": [
+        {
+          "connector": "When",
+          "text": "B loads unsigned module M"
+        }
+      ],
+      "then": [
+        {
+          "connector": "Then",
+          "text": "M is loaded"
+        }
+      ],
+      "repeated": null,
+      "within": null
+    },
+    "Event 3": {
+      "event": "Event 3",
+      "given": [
+        {
+          "connector": "Given",
+          "type": "text",
+          "value": "B is running"
+        }
+      ],
+      "when": [
+        {
+          "connector": "When",
+          "text": "B requests enumeration of plugins"
+        }
+      ],
+      "then": [
+        {
+          "connector": "Then",
+          "text": "enumeration of plugins are shown"
+        }
+      ],
+      "repeated": null,
+      "within": null
+    },
+    "Event 4": {
+      "event": "Event 4",
+      "given": [
+        {
+          "connector": "Given",
+          "type": "text",
+          "value": "B is running"
+        }
+      ],
+      "when": [
+        {
+          "connector": "When",
+          "text": "B requests connections to suspicious domain"
+        }
+      ],
+      "then": [
+        {
+          "connector": "Then",
+          "text": "B connected to suspicious domain"
+        }
+      ],
+      "repeated": null,
+      "within": null
+    },
+    "Event 5": {
+      "event": "Event 5",
+      "given": [
+        {
+          "connector": "Given",
+          "type": "text",
+          "value": "Event 1"
+        },
+        {
+          "connector": "And",
+          "type": "text",
+          "value": "Event 4"
+        }
+      ],
+      "when": [
+        {
+          "connector": "When",
+          "text": "P creates new file F"
+        }
+      ],
+      "then": [
+        {
+          "connector": "Then",
+          "text": "F is created by P"
+        }
+      ],
+      "repeated": null,
+      "within": null
+    },
+    "Event 6": {
+      "event": "Event 6",
+      "given": [
+        {
+          "connector": "Given",
+          "type": "text",
+          "value": "Event 2"
+        },
+        {
+          "connector": "And",
+          "type": "text",
+          "value": "Event 4"
+        }
+      ],
+      "when": [
+        {
+          "connector": "When",
+          "text": "M creates new file F"
+        }
+      ],
+      "then": [
+        {
+          "connector": "Then",
+          "text": "F is created by M"
+        }
+      ],
+      "repeated": null,
+      "within": null
+    },
+    "Event 7": {
+      "event": "Event 7",
+      "given": [
+        {
+          "connector": "Given",
+          "type": "text",
+          "value": "Event 5"
+        },
+        {
+          "connector": "Or",
+          "type": "text",
+          "value": "Event 6"
+        }
+      ],
+      "when": [],
+      "then": [
+        {
+          "connector": "Then",
+          "text": "possible attack"
+        }
+      ],
+      "repeated": null,
+      "within": null
+    }
+  },
+  "detection": null
+}

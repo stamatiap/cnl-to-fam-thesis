@@ -1,0 +1,224 @@
+{
+  "header": {
+    "tactic_id": "TA0001",
+    "tactic_name": "Initial_Access",
+    "technique_id": "T1659",
+    "technique_name": "Content_Injection"
+  },
+  "background": {
+    "assets": [
+      {
+        "type": "browser",
+        "name": "B"
+      },
+      {
+        "type": "folder",
+        "name": "AppData"
+      },
+      {
+        "type": "folder",
+        "name": "Temp"
+      },
+      {
+        "type": "process",
+        "name": "P"
+      },
+      {
+        "type": "file",
+        "name": "F1"
+      },
+      {
+        "type": "file",
+        "name": "F2"
+      }
+    ]
+  },
+  "events": [
+    {
+      "event_id": "1",
+      "statement": {
+        "given": [
+          {
+            "subject": "B",
+            "verb": "active",
+            "modifiers": [],
+            "type": "state_condition",
+            "connector": "Given"
+          }
+        ],
+        "when": [
+          {
+            "actor_adjective": null,
+            "actor": "B",
+            "verb": "spawns",
+            "adjective": "new",
+            "object": "P",
+            "modifiers": []
+          }
+        ],
+        "then": [
+          {
+            "subject": "P",
+            "verb": "spawned",
+            "modifiers": []
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "2",
+      "statement": {
+        "given": [
+          {
+            "type": "event_ref",
+            "event_id": "1",
+            "connector": "Given"
+          }
+        ],
+        "when": [
+          {
+            "actor_adjective": null,
+            "actor": "P",
+            "verb": "creates",
+            "adjective": "new",
+            "object": "F1",
+            "modifiers": [
+              {
+                "type": "location",
+                "value": "AppData"
+              }
+            ]
+          }
+        ],
+        "then": [
+          {
+            "subject": "F1",
+            "verb": "created",
+            "modifiers": [
+              {
+                "type": "location",
+                "value": "AppData"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "3",
+      "statement": {
+        "given": [
+          {
+            "type": "event_ref",
+            "event_id": "1",
+            "connector": "Given"
+          }
+        ],
+        "when": [
+          {
+            "actor_adjective": null,
+            "actor": "P",
+            "verb": "creates",
+            "adjective": "new",
+            "object": "F2",
+            "modifiers": [
+              {
+                "type": "location",
+                "value": "Temp"
+              }
+            ]
+          }
+        ],
+        "then": [
+          {
+            "subject": "F2",
+            "verb": "created",
+            "modifiers": [
+              {
+                "type": "location",
+                "value": "Temp"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "4",
+      "statement": {
+        "given": [
+          {
+            "type": "event_ref",
+            "event_id": "2",
+            "connector": "Given"
+          }
+        ],
+        "when": [
+          {
+            "actor_adjective": null,
+            "actor": "P",
+            "verb": "executes",
+            "adjective": null,
+            "object": "F1",
+            "modifiers": []
+          }
+        ],
+        "then": [
+          {
+            "subject": "F1",
+            "verb": "executed",
+            "modifiers": [
+              {
+                "type": "source",
+                "keyword": "by",
+                "value": "P"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "5",
+      "statement": {
+        "given": [
+          {
+            "type": "event_ref",
+            "event_id": "3",
+            "connector": "Given"
+          }
+        ],
+        "when": [
+          {
+            "actor_adjective": null,
+            "actor": "P",
+            "verb": "executes",
+            "adjective": null,
+            "object": "F2",
+            "modifiers": []
+          }
+        ],
+        "then": [
+          {
+            "subject": "F2",
+            "verb": "executed",
+            "modifiers": [
+              {
+                "type": "source",
+                "keyword": "by",
+                "value": "P"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "detection": {
+    "operator": "Or",
+    "event_ids": [
+      "4",
+      "5"
+    ]
+  }
+}

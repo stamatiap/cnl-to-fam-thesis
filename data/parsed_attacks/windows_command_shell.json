@@ -1,0 +1,264 @@
+{
+  "header": {
+    "tactic_id": "TA0002",
+    "tactic_name": "Execution",
+    "technique_id": "T1059.003",
+    "technique_name": "Windows_Command_Shell"
+  },
+  "background": {
+    "assets": [
+      {
+        "type": "process",
+        "name": "P"
+      },
+      {
+        "type": "process",
+        "name": "cmd_exe"
+      },
+      {
+        "type": "script",
+        "name": "batch_script"
+      },
+      {
+        "type": "file",
+        "name": "remote_file"
+      },
+      {
+        "type": "file",
+        "name": "local_file"
+      },
+      {
+        "type": "network_connection",
+        "name": "connection"
+      }
+    ]
+  },
+  "events": [
+    {
+      "event_id": "1",
+      "statement": {
+        "given": [
+          {
+            "subject": "P",
+            "verb": "active",
+            "modifiers": [],
+            "type": "state_condition",
+            "connector": "Given"
+          }
+        ],
+        "when": [
+          {
+            "actor_adjective": null,
+            "actor": "P",
+            "verb": "spawns",
+            "adjective": "new",
+            "object": "cmd_exe",
+            "modifiers": []
+          }
+        ],
+        "then": [
+          {
+            "subject": "cmd_exe",
+            "verb": "spawned",
+            "modifiers": [
+              {
+                "type": "source",
+                "keyword": "by",
+                "value": "P"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "2",
+      "statement": {
+        "given": [
+          {
+            "type": "event_ref",
+            "event_id": "1",
+            "connector": "Given"
+          }
+        ],
+        "when": [
+          {
+            "actor_adjective": null,
+            "actor": "cmd_exe",
+            "verb": "executes",
+            "adjective": null,
+            "object": "batch_script",
+            "modifiers": []
+          }
+        ],
+        "then": [
+          {
+            "subject": "batch_script",
+            "verb": "executed",
+            "modifiers": [
+              {
+                "type": "source",
+                "keyword": "by",
+                "value": "cmd_exe"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "3",
+      "statement": {
+        "given": [
+          {
+            "type": "event_ref",
+            "event_id": "1",
+            "connector": "Given"
+          }
+        ],
+        "when": [
+          {
+            "actor_adjective": null,
+            "actor": "cmd_exe",
+            "verb": "requests",
+            "adjective": null,
+            "object": "remote_file",
+            "modifiers": [
+              {
+                "type": "source",
+                "keyword": "from",
+                "value": "connection"
+              }
+            ]
+          }
+        ],
+        "then": [
+          {
+            "subject": "remote_file",
+            "verb": "requested",
+            "modifiers": [
+              {
+                "type": "source",
+                "keyword": "by",
+                "value": "cmd_exe"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "4",
+      "statement": {
+        "given": [
+          {
+            "type": "event_ref",
+            "event_id": "3",
+            "connector": "Given"
+          }
+        ],
+        "when": [
+          {
+            "actor_adjective": null,
+            "actor": "cmd_exe",
+            "verb": "executes",
+            "adjective": null,
+            "object": "remote_file",
+            "modifiers": []
+          }
+        ],
+        "then": [
+          {
+            "subject": "remote_file",
+            "verb": "executed",
+            "modifiers": [
+              {
+                "type": "source",
+                "keyword": "by",
+                "value": "cmd_exe"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "5",
+      "statement": {
+        "given": [
+          {
+            "type": "event_ref",
+            "event_id": "1",
+            "connector": "Given"
+          }
+        ],
+        "when": [
+          {
+            "actor_adjective": null,
+            "actor": "cmd_exe",
+            "verb": "creates",
+            "adjective": "new",
+            "object": "local_file",
+            "modifiers": []
+          }
+        ],
+        "then": [
+          {
+            "subject": "local_file",
+            "verb": "created",
+            "modifiers": [
+              {
+                "type": "source",
+                "keyword": "by",
+                "value": "cmd_exe"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "6",
+      "statement": {
+        "given": [
+          {
+            "type": "event_ref",
+            "event_id": "5",
+            "connector": "Given"
+          }
+        ],
+        "when": [
+          {
+            "actor_adjective": null,
+            "actor": "cmd_exe",
+            "verb": "executes",
+            "adjective": null,
+            "object": "local_file",
+            "modifiers": []
+          }
+        ],
+        "then": [
+          {
+            "subject": "local_file",
+            "verb": "executed",
+            "modifiers": [
+              {
+                "type": "source",
+                "keyword": "by",
+                "value": "cmd_exe"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "detection": {
+    "operator": "Or",
+    "event_ids": [
+      "2",
+      "4",
+      "6"
+    ]
+  }
+}
