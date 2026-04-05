@@ -287,14 +287,5 @@ class CNLListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by CNLParser#lineText.
-    def enterLineText(self, ctx:CNLParser.LineTextContext):
-        pass
-
-    # Exit a parse tree produced by CNLParser#lineText.
-    def exitLineText(self, ctx:CNLParser.LineTextContext):
-        pass
-
-
 
 del CNLParser

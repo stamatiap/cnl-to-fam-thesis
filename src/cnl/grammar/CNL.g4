@@ -40,7 +40,6 @@ eventStatement
     : givenClause
       whenClause
       thenClause
-      (REPEATED lineText)? (WITHIN lineText)?
     ;
 
 givenClause
@@ -94,7 +93,7 @@ conditionObject
 
 stateVerb
     : IS IDENTIFIER
-    | IS pastParticiple modifier*
+    | IS pastParticiple
     ;
 
 pastParticiple
@@ -114,14 +113,6 @@ detectionBlock
 
 detectionExpr
     : eventRef ((AND | OR) eventRef)*
-    ;
-
-lineText
-    : STRING
-    ;
-
-STRING
-    : '"' (ESC | '.' | ~["\\])* '"'
     ;
 
 ESC

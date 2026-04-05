@@ -164,10 +164,5 @@ class CNLVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by CNLParser#lineText.
-    def visitLineText(self, ctx:CNLParser.LineTextContext):
-        return self.visitChildren(ctx)
-
-
 
 del CNLParser
