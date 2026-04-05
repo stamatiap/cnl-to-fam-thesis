@@ -242,7 +242,7 @@ def create_attack_dict(tree):
     }
 
 def save_attack_data(attack_data, input_filename):
-    output_dir = "data/parsed_attacks"
+    output_dir = "data/parsed_descriptions"
     os.makedirs(output_dir, exist_ok=True)
 
     input_stem = os.path.splitext(os.path.basename(input_filename))[0]
@@ -260,7 +260,7 @@ def main():
         sys.exit(1)
 
     input_file = sys.argv[1]
-    input_path = "data/cnl_examples/" + input_file
+    input_path = "data/example_descriptions/" + input_file
 
     input_attack = FileStream(input_path, encoding="utf-8")
     lexer        = CNLLexer(input_attack)
