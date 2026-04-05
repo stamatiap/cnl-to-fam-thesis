@@ -53,12 +53,12 @@ class CNLListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by CNLParser#asset.
-    def enterAsset(self, ctx:CNLParser.AssetContext):
+    # Enter a parse tree produced by CNLParser#assetType.
+    def enterAssetType(self, ctx:CNLParser.AssetTypeContext):
         pass
 
-    # Exit a parse tree produced by CNLParser#asset.
-    def exitAsset(self, ctx:CNLParser.AssetContext):
+    # Exit a parse tree produced by CNLParser#assetType.
+    def exitAssetType(self, ctx:CNLParser.AssetTypeContext):
         pass
 
 
@@ -143,12 +143,129 @@ class CNLListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by CNLParser#action.
+    def enterAction(self, ctx:CNLParser.ActionContext):
+        pass
+
+    # Exit a parse tree produced by CNLParser#action.
+    def exitAction(self, ctx:CNLParser.ActionContext):
+        pass
+
+
+    # Enter a parse tree produced by CNLParser#actor.
+    def enterActor(self, ctx:CNLParser.ActorContext):
+        pass
+
+    # Exit a parse tree produced by CNLParser#actor.
+    def exitActor(self, ctx:CNLParser.ActorContext):
+        pass
+
+
+    # Enter a parse tree produced by CNLParser#adjective.
+    def enterAdjective(self, ctx:CNLParser.AdjectiveContext):
+        pass
+
+    # Exit a parse tree produced by CNLParser#adjective.
+    def exitAdjective(self, ctx:CNLParser.AdjectiveContext):
+        pass
+
+
+    # Enter a parse tree produced by CNLParser#actionObject.
+    def enterActionObject(self, ctx:CNLParser.ActionObjectContext):
+        pass
+
+    # Exit a parse tree produced by CNLParser#actionObject.
+    def exitActionObject(self, ctx:CNLParser.ActionObjectContext):
+        pass
+
+
+    # Enter a parse tree produced by CNLParser#actionVerb.
+    def enterActionVerb(self, ctx:CNLParser.ActionVerbContext):
+        pass
+
+    # Exit a parse tree produced by CNLParser#actionVerb.
+    def exitActionVerb(self, ctx:CNLParser.ActionVerbContext):
+        pass
+
+
+    # Enter a parse tree produced by CNLParser#modifier.
+    def enterModifier(self, ctx:CNLParser.ModifierContext):
+        pass
+
+    # Exit a parse tree produced by CNLParser#modifier.
+    def exitModifier(self, ctx:CNLParser.ModifierContext):
+        pass
+
+
     # Enter a parse tree produced by CNLParser#thenClause.
     def enterThenClause(self, ctx:CNLParser.ThenClauseContext):
         pass
 
     # Exit a parse tree produced by CNLParser#thenClause.
     def exitThenClause(self, ctx:CNLParser.ThenClauseContext):
+        pass
+
+
+    # Enter a parse tree produced by CNLParser#stateCondition.
+    def enterStateCondition(self, ctx:CNLParser.StateConditionContext):
+        pass
+
+    # Exit a parse tree produced by CNLParser#stateCondition.
+    def exitStateCondition(self, ctx:CNLParser.StateConditionContext):
+        pass
+
+
+    # Enter a parse tree produced by CNLParser#conditionObject.
+    def enterConditionObject(self, ctx:CNLParser.ConditionObjectContext):
+        pass
+
+    # Exit a parse tree produced by CNLParser#conditionObject.
+    def exitConditionObject(self, ctx:CNLParser.ConditionObjectContext):
+        pass
+
+
+    # Enter a parse tree produced by CNLParser#stateVerb.
+    def enterStateVerb(self, ctx:CNLParser.StateVerbContext):
+        pass
+
+    # Exit a parse tree produced by CNLParser#stateVerb.
+    def exitStateVerb(self, ctx:CNLParser.StateVerbContext):
+        pass
+
+
+    # Enter a parse tree produced by CNLParser#pastParticiple.
+    def enterPastParticiple(self, ctx:CNLParser.PastParticipleContext):
+        pass
+
+    # Exit a parse tree produced by CNLParser#pastParticiple.
+    def exitPastParticiple(self, ctx:CNLParser.PastParticipleContext):
+        pass
+
+
+    # Enter a parse tree produced by CNLParser#location.
+    def enterLocation(self, ctx:CNLParser.LocationContext):
+        pass
+
+    # Exit a parse tree produced by CNLParser#location.
+    def exitLocation(self, ctx:CNLParser.LocationContext):
+        pass
+
+
+    # Enter a parse tree produced by CNLParser#destination.
+    def enterDestination(self, ctx:CNLParser.DestinationContext):
+        pass
+
+    # Exit a parse tree produced by CNLParser#destination.
+    def exitDestination(self, ctx:CNLParser.DestinationContext):
+        pass
+
+
+    # Enter a parse tree produced by CNLParser#source.
+    def enterSource(self, ctx:CNLParser.SourceContext):
+        pass
+
+    # Exit a parse tree produced by CNLParser#source.
+    def exitSource(self, ctx:CNLParser.SourceContext):
         pass
 
 

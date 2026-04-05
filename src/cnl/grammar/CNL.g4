@@ -17,18 +17,18 @@ assets
     ;
 
 assetDefinition
-    : asset AS assetName
+    : assetType AS assetName
     ;
 
-asset: lineText;
-assetName: lineText;
+assetType: IDENTIFIER ;
+assetName: IDENTIFIER ;
 
 tactic
-    : TACTIC COLON TACTIC_ID lineText 
+    : TACTIC COLON TACTIC_ID IDENTIFIER  
     ;
 
 technique
-    : TECHNIQUE COLON TECHNIQUE_ID lineText 
+    : TECHNIQUE COLON TECHNIQUE_ID IDENTIFIER  
     ;
 
 eventBlock
@@ -38,7 +38,7 @@ eventBlock
 
 eventStatement
     : givenClause
-      whenClause?
+      whenClause
       thenClause
       (REPEATED lineText)? (WITHIN lineText)?
     ;
@@ -49,22 +49,64 @@ givenClause
 
 givenItem
     : eventRef
-    | lineText
+    | stateCondition
     ;
 
 eventRef
     : EVENT DIGIT
     ;
 
-
 whenClause
-    : WHEN lineText ((AND lineText)* | (OR lineText)*)
+    : WHEN action ((AND action)* )
     ;
 
+action
+    : actor actionVerb adjective? actionObject modifier*
+    ;
+
+actor : assetName ;
+adjective   : IDENTIFIER ;
+actionObject: IDENTIFIER ;
+
+actionVerb
+    : SPAWNS | CREATES | EXECUTES | LOADS | REQUESTS | RECEIVES
+    | SENDS | MOUNTS | MODIFIES | RECORDS | RAISES | PERFORMS
+    | RECOGNIZES
+    ;
+
+modifier
+    : location
+    | destination
+    | source
+    ;
 
 thenClause
-    : THEN lineText ((AND lineText)* )
+    : THEN stateCondition (AND stateCondition)*
     ;
+
+stateCondition
+    : conditionObject stateVerb modifier*
+    ;
+
+conditionObject
+    : IDENTIFIER
+    ;
+
+stateVerb
+    : IS IDENTIFIER
+    | IS pastParticiple modifier*
+    ;
+
+pastParticiple
+    : SPAWNED | CREATED | EXECUTED | LOADED | REQUESTED | RECEIVED
+    | SENT | MOUNTED | MODIFIED | RECORDED | RAISED | PERFORMED
+    | RECOGNIZED
+    ;
+
+location : IN assetName;
+destination : TO assetName;
+source : BY assetName | FROM assetName;
+
 
 detectionBlock
     : DETECTION detectionExpr
@@ -85,6 +127,7 @@ STRING
 ESC
     : '\\' ["\\/bfnrt] ;
 
+// Keywords
 TACTIC      : 'Tactic';
 TECHNIQUE   : 'Technique';
 EVENT       : 'Event';
@@ -100,6 +143,41 @@ WITHIN      : 'Within';
 AS          : 'as';
 BACKGROUND  : 'Background';
 DETECTION   : 'Detection';
+IS          : 'is';
+IN          : 'in';
+TO          : 'to';
+BY          : 'by';
+FROM        : 'from';
+
+// Action Verbs
+SPAWNS      : 'spawns' ;
+CREATES     : 'creates' ;
+EXECUTES    : 'executes' ;
+LOADS       : 'loads' ;
+REQUESTS    : 'requests' ;
+RECEIVES    : 'receives' ;
+SENDS       : 'sends' ;
+MOUNTS      : 'mounts' ;
+MODIFIES    : 'modifies' ;
+RECORDS     : 'records' ;
+RAISES      : 'raises' ;
+PERFORMS    : 'performs' ;
+RECOGNIZES  : 'recognizes' ;
+
+// Past participles for state verbs
+SPAWNED     : 'spawned' ;
+CREATED     : 'created' ;
+EXECUTED    : 'executed' ;
+LOADED      : 'loaded' ;
+REQUESTED   : 'requested' ;
+RECEIVED    : 'received' ;
+SENT        : 'sent' ;
+MOUNTED     : 'mounted' ;
+MODIFIED    : 'modified' ;
+RECORDED    : 'recorded' ;
+RAISED      : 'raised' ;
+PERFORMED   : 'performed' ;
+RECOGNIZED  : 'recognized' ;
 
 TACTIC_ID
     : 'TA' DIGIT DIGIT DIGIT DIGIT
@@ -109,6 +187,7 @@ TECHNIQUE_ID
     : 'T' DIGIT DIGIT DIGIT DIGIT ('.' DIGIT DIGIT DIGIT)*
     ;
 
+IDENTIFIER : [A-Za-z][A-Za-z0-9_]* ;
 
 WS
     : [ \t\r\n]+ -> skip

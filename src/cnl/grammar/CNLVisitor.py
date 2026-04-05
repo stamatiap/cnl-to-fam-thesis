@@ -34,8 +34,8 @@ class CNLVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by CNLParser#asset.
-    def visitAsset(self, ctx:CNLParser.AssetContext):
+    # Visit a parse tree produced by CNLParser#assetType.
+    def visitAssetType(self, ctx:CNLParser.AssetTypeContext):
         return self.visitChildren(ctx)
 
 
@@ -84,8 +84,73 @@ class CNLVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by CNLParser#action.
+    def visitAction(self, ctx:CNLParser.ActionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#actor.
+    def visitActor(self, ctx:CNLParser.ActorContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#adjective.
+    def visitAdjective(self, ctx:CNLParser.AdjectiveContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#actionObject.
+    def visitActionObject(self, ctx:CNLParser.ActionObjectContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#actionVerb.
+    def visitActionVerb(self, ctx:CNLParser.ActionVerbContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#modifier.
+    def visitModifier(self, ctx:CNLParser.ModifierContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by CNLParser#thenClause.
     def visitThenClause(self, ctx:CNLParser.ThenClauseContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#stateCondition.
+    def visitStateCondition(self, ctx:CNLParser.StateConditionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#conditionObject.
+    def visitConditionObject(self, ctx:CNLParser.ConditionObjectContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#stateVerb.
+    def visitStateVerb(self, ctx:CNLParser.StateVerbContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#pastParticiple.
+    def visitPastParticiple(self, ctx:CNLParser.PastParticipleContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#location.
+    def visitLocation(self, ctx:CNLParser.LocationContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#destination.
+    def visitDestination(self, ctx:CNLParser.DestinationContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#source.
+    def visitSource(self, ctx:CNLParser.SourceContext):
         return self.visitChildren(ctx)
 
 
