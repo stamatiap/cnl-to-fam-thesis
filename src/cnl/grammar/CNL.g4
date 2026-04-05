@@ -60,9 +60,10 @@ whenClause
     ;
 
 action
-    : actor actionVerb adjective? actionObject modifier*
+    : actorAdjective? actor actionVerb adjective? actionObject modifier*
     ;
 
+actorAdjective: IDENTIFIER ;
 actor : assetName ;
 adjective   : IDENTIFIER ;
 actionObject: IDENTIFIER ;
@@ -70,7 +71,7 @@ actionObject: IDENTIFIER ;
 actionVerb
     : SPAWNS | CREATES | EXECUTES | LOADS | REQUESTS | RECEIVES
     | SENDS | MOUNTS | MODIFIES | RECORDS | RAISES | PERFORMS
-    | RECOGNIZES
+    | RECOGNIZES | ACCEPTS | REJECTS | LOCATES
     ;
 
 modifier
@@ -99,7 +100,7 @@ stateVerb
 pastParticiple
     : SPAWNED | CREATED | EXECUTED | LOADED | REQUESTED | RECEIVED
     | SENT | MOUNTED | MODIFIED | RECORDED | RAISED | PERFORMED
-    | RECOGNIZED
+    | RECOGNIZED | ACCEPTED | REJECTED | LOCATED
     ;
 
 location : IN assetName;
@@ -154,6 +155,9 @@ RECORDS     : 'records' ;
 RAISES      : 'raises' ;
 PERFORMS    : 'performs' ;
 RECOGNIZES  : 'recognizes' ;
+ACCEPTS     : 'accepts' ;
+REJECTS     : 'rejects' ;
+LOCATES     : 'locates' ;
 
 // Past participles for state verbs
 SPAWNED     : 'spawned' ;
@@ -169,6 +173,9 @@ RECORDED    : 'recorded' ;
 RAISED      : 'raised' ;
 PERFORMED   : 'performed' ;
 RECOGNIZED  : 'recognized' ;
+ACCEPTED    : 'accepted' ;
+REJECTED    : 'rejected' ;
+LOCATED     : 'located' ;
 
 TACTIC_ID
     : 'TA' DIGIT DIGIT DIGIT DIGIT

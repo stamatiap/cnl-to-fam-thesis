@@ -89,6 +89,11 @@ class CNLVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by CNLParser#actorAdjective.
+    def visitActorAdjective(self, ctx:CNLParser.ActorAdjectiveContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by CNLParser#actor.
     def visitActor(self, ctx:CNLParser.ActorContext):
         return self.visitChildren(ctx)
