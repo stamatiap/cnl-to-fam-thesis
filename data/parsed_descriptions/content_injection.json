@@ -46,16 +46,14 @@
             "connector": "Given"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "B",
-            "verb": "spawns",
-            "adjective": "new",
-            "object": "P",
-            "modifiers": []
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "B",
+          "verb": "spawns",
+          "adjective": "new",
+          "object": "P",
+          "modifiers": []
+        },
         "then": [
           {
             "subject": "P",
@@ -75,21 +73,19 @@
             "connector": "Given"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "P",
-            "verb": "creates",
-            "adjective": "new",
-            "object": "F1",
-            "modifiers": [
-              {
-                "type": "location",
-                "value": "AppData"
-              }
-            ]
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "P",
+          "verb": "creates",
+          "adjective": "new",
+          "object": "F1",
+          "modifiers": [
+            {
+              "type": "location",
+              "value": "AppData"
+            }
+          ]
+        },
         "then": [
           {
             "subject": "F1",
@@ -114,21 +110,19 @@
             "connector": "Given"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "P",
-            "verb": "creates",
-            "adjective": "new",
-            "object": "F2",
-            "modifiers": [
-              {
-                "type": "location",
-                "value": "Temp"
-              }
-            ]
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "P",
+          "verb": "creates",
+          "adjective": "new",
+          "object": "F2",
+          "modifiers": [
+            {
+              "type": "location",
+              "value": "Temp"
+            }
+          ]
+        },
         "then": [
           {
             "subject": "F2",
@@ -153,16 +147,14 @@
             "connector": "Given"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "P",
-            "verb": "executes",
-            "adjective": null,
-            "object": "F1",
-            "modifiers": []
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "P",
+          "verb": "executes",
+          "adjective": null,
+          "object": "F1",
+          "modifiers": []
+        },
         "then": [
           {
             "subject": "F1",
@@ -188,16 +180,14 @@
             "connector": "Given"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "P",
-            "verb": "executes",
-            "adjective": null,
-            "object": "F2",
-            "modifiers": []
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "P",
+          "verb": "executes",
+          "adjective": null,
+          "object": "F2",
+          "modifiers": []
+        },
         "then": [
           {
             "subject": "F2",

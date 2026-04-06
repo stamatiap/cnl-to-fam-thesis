@@ -42,16 +42,14 @@
             "connector": "Given"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "P",
-            "verb": "creates",
-            "adjective": "administrative",
-            "object": "U",
-            "modifiers": []
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "P",
+          "verb": "creates",
+          "adjective": "administrative",
+          "object": "U",
+          "modifiers": []
+        },
         "then": [
           {
             "subject": "U",
@@ -79,16 +77,14 @@
             "connector": "Given"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "P",
-            "verb": "creates",
-            "adjective": "system",
-            "object": "U",
-            "modifiers": []
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "P",
+          "verb": "creates",
+          "adjective": "system",
+          "object": "U",
+          "modifiers": []
+        },
         "then": [
           {
             "subject": "U",
@@ -114,16 +110,14 @@
             "connector": "Given"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "U",
-            "verb": "loads",
-            "adjective": null,
-            "object": "lsass_exe",
-            "modifiers": []
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "U",
+          "verb": "loads",
+          "adjective": null,
+          "object": "lsass_exe",
+          "modifiers": []
+        },
         "then": [
           {
             "subject": "lsass_exe",
@@ -149,16 +143,14 @@
             "connector": "Given"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "U",
-            "verb": "loads",
-            "adjective": null,
-            "object": "lsass_exe",
-            "modifiers": []
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "U",
+          "verb": "loads",
+          "adjective": null,
+          "object": "lsass_exe",
+          "modifiers": []
+        },
         "then": [
           {
             "subject": "lsass_exe",
@@ -184,22 +176,20 @@
             "connector": "Given"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "U",
-            "verb": "requests",
-            "adjective": null,
-            "object": "lsass_dump",
-            "modifiers": [
-              {
-                "type": "source",
-                "keyword": "from",
-                "value": "lsass_exe"
-              }
-            ]
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "U",
+          "verb": "requests",
+          "adjective": null,
+          "object": "lsass_dump",
+          "modifiers": [
+            {
+              "type": "source",
+              "keyword": "from",
+              "value": "lsass_exe"
+            }
+          ]
+        },
         "then": [
           {
             "subject": "lsass_dump",
@@ -225,22 +215,20 @@
             "connector": "Given"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "U",
-            "verb": "requests",
-            "adjective": null,
-            "object": "lsass_dump",
-            "modifiers": [
-              {
-                "type": "source",
-                "keyword": "from",
-                "value": "lsass_exe"
-              }
-            ]
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "U",
+          "verb": "requests",
+          "adjective": null,
+          "object": "lsass_dump",
+          "modifiers": [
+            {
+              "type": "source",
+              "keyword": "from",
+              "value": "lsass_exe"
+            }
+          ]
+        },
         "then": [
           {
             "subject": "lsass_dump",
@@ -266,16 +254,14 @@
             "connector": "Given"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "U",
-            "verb": "modifies",
-            "adjective": null,
-            "object": "registry_keys",
-            "modifiers": []
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "U",
+          "verb": "modifies",
+          "adjective": null,
+          "object": "registry_keys",
+          "modifiers": []
+        },
         "then": [
           {
             "subject": "registry_keys",
@@ -301,16 +287,14 @@
             "connector": "Given"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "U",
-            "verb": "modifies",
-            "adjective": null,
-            "object": "registry_keys",
-            "modifiers": []
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "U",
+          "verb": "modifies",
+          "adjective": null,
+          "object": "registry_keys",
+          "modifiers": []
+        },
         "then": [
           {
             "subject": "registry_keys",

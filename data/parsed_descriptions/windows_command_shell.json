@@ -46,16 +46,14 @@
             "connector": "Given"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "P",
-            "verb": "spawns",
-            "adjective": "new",
-            "object": "cmd_exe",
-            "modifiers": []
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "P",
+          "verb": "spawns",
+          "adjective": "new",
+          "object": "cmd_exe",
+          "modifiers": []
+        },
         "then": [
           {
             "subject": "cmd_exe",
@@ -81,16 +79,14 @@
             "connector": "Given"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "cmd_exe",
-            "verb": "executes",
-            "adjective": null,
-            "object": "batch_script",
-            "modifiers": []
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "cmd_exe",
+          "verb": "executes",
+          "adjective": null,
+          "object": "batch_script",
+          "modifiers": []
+        },
         "then": [
           {
             "subject": "batch_script",
@@ -116,22 +112,20 @@
             "connector": "Given"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "cmd_exe",
-            "verb": "requests",
-            "adjective": null,
-            "object": "remote_file",
-            "modifiers": [
-              {
-                "type": "source",
-                "keyword": "from",
-                "value": "connection"
-              }
-            ]
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "cmd_exe",
+          "verb": "requests",
+          "adjective": null,
+          "object": "remote_file",
+          "modifiers": [
+            {
+              "type": "source",
+              "keyword": "from",
+              "value": "connection"
+            }
+          ]
+        },
         "then": [
           {
             "subject": "remote_file",
@@ -157,16 +151,14 @@
             "connector": "Given"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "cmd_exe",
-            "verb": "executes",
-            "adjective": null,
-            "object": "remote_file",
-            "modifiers": []
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "cmd_exe",
+          "verb": "executes",
+          "adjective": null,
+          "object": "remote_file",
+          "modifiers": []
+        },
         "then": [
           {
             "subject": "remote_file",
@@ -192,16 +184,14 @@
             "connector": "Given"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "cmd_exe",
-            "verb": "creates",
-            "adjective": "new",
-            "object": "local_file",
-            "modifiers": []
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "cmd_exe",
+          "verb": "creates",
+          "adjective": "new",
+          "object": "local_file",
+          "modifiers": []
+        },
         "then": [
           {
             "subject": "local_file",
@@ -227,16 +217,14 @@
             "connector": "Given"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "cmd_exe",
-            "verb": "executes",
-            "adjective": null,
-            "object": "local_file",
-            "modifiers": []
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "cmd_exe",
+          "verb": "executes",
+          "adjective": null,
+          "object": "local_file",
+          "modifiers": []
+        },
         "then": [
           {
             "subject": "local_file",

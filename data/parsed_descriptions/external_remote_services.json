@@ -54,22 +54,20 @@
             "connector": "And"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "ERS",
-            "verb": "rejects",
-            "adjective": null,
-            "object": "Credentials",
-            "modifiers": [
-              {
-                "type": "source",
-                "keyword": "by",
-                "value": "U"
-              }
-            ]
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "ERS",
+          "verb": "rejects",
+          "adjective": null,
+          "object": "Credentials",
+          "modifiers": [
+            {
+              "type": "source",
+              "keyword": "by",
+              "value": "U"
+            }
+          ]
+        },
         "then": [
           {
             "subject": "Credentials",
@@ -109,22 +107,20 @@
             "connector": "And"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "ERS",
-            "verb": "accepts",
-            "adjective": null,
-            "object": "Credentials",
-            "modifiers": [
-              {
-                "type": "source",
-                "keyword": "by",
-                "value": "U"
-              }
-            ]
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "ERS",
+          "verb": "accepts",
+          "adjective": null,
+          "object": "Credentials",
+          "modifiers": [
+            {
+              "type": "source",
+              "keyword": "by",
+              "value": "U"
+            }
+          ]
+        },
         "then": [
           {
             "subject": "Credentials",
@@ -155,16 +151,14 @@
             "connector": "And"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "U",
-            "verb": "performs",
-            "adjective": "internal",
-            "object": "Lateral_Movement",
-            "modifiers": []
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "U",
+          "verb": "performs",
+          "adjective": "internal",
+          "object": "Lateral_Movement",
+          "modifiers": []
+        },
         "then": [
           {
             "subject": "Lateral_Movement",
@@ -195,16 +189,14 @@
             "connector": "And"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "U",
-            "verb": "performs",
-            "adjective": "external",
-            "object": "Exfiltration",
-            "modifiers": []
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "U",
+          "verb": "performs",
+          "adjective": "external",
+          "object": "Exfiltration",
+          "modifiers": []
+        },
         "then": [
           {
             "subject": "Exfiltration",
