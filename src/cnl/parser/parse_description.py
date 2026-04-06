@@ -108,7 +108,7 @@ def parse_state_condition(ctx):
     if ctx is None:
         return None
     return {
-        "subject":   get_text(ctx.conditionObject()),
+        "subject":   get_text(ctx.conditionObject().assetName()),
         "verb":      parse_state_verb(ctx.stateVerb()),
         "modifiers": [parse_modifier(m) for m in ctx.modifier()]
     }
@@ -167,7 +167,7 @@ def parse_action(ctx):
         "actor":           get_text(ctx.actor()),
         "verb":            get_text(ctx.actionVerb()),
         "adjective":       get_text(ctx.adjective()) if ctx.adjective() else None,
-        "object":          get_text(ctx.actionObject()),
+        "object":          get_text(ctx.actionObject().assetName()),
         "modifiers":       [parse_modifier(m) for m in ctx.modifier()]
     }
 
