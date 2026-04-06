@@ -67,14 +67,14 @@ def serializedATN():
         160,1,0,0,0,162,165,1,0,0,0,163,161,1,0,0,0,163,164,1,0,0,0,164,
         31,1,0,0,0,165,163,1,0,0,0,166,167,5,56,0,0,167,33,1,0,0,0,168,169,
         3,12,6,0,169,35,1,0,0,0,170,171,5,56,0,0,171,37,1,0,0,0,172,173,
-        5,56,0,0,173,39,1,0,0,0,174,175,7,0,0,0,175,41,1,0,0,0,176,180,3,
+        3,12,6,0,173,39,1,0,0,0,174,175,7,0,0,0,175,41,1,0,0,0,176,180,3,
         54,27,0,177,180,3,56,28,0,178,180,3,58,29,0,179,176,1,0,0,0,179,
         177,1,0,0,0,179,178,1,0,0,0,180,43,1,0,0,0,181,182,5,7,0,0,182,187,
         3,46,23,0,183,184,5,9,0,0,184,186,3,46,23,0,185,183,1,0,0,0,186,
         189,1,0,0,0,187,185,1,0,0,0,187,188,1,0,0,0,188,45,1,0,0,0,189,187,
         1,0,0,0,190,191,3,48,24,0,191,195,3,50,25,0,192,194,3,42,21,0,193,
         192,1,0,0,0,194,197,1,0,0,0,195,193,1,0,0,0,195,196,1,0,0,0,196,
-        47,1,0,0,0,197,195,1,0,0,0,198,199,5,56,0,0,199,49,1,0,0,0,200,201,
+        47,1,0,0,0,197,195,1,0,0,0,198,199,3,12,6,0,199,49,1,0,0,0,200,201,
         5,17,0,0,201,205,5,56,0,0,202,203,5,17,0,0,203,205,3,52,26,0,204,
         200,1,0,0,0,204,202,1,0,0,0,205,51,1,0,0,0,206,207,7,1,0,0,207,53,
         1,0,0,0,208,209,5,18,0,0,209,210,3,12,6,0,210,55,1,0,0,0,211,212,
@@ -1335,8 +1335,9 @@ class CNLParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def IDENTIFIER(self):
-            return self.getToken(CNLParser.IDENTIFIER, 0)
+        def assetName(self):
+            return self.getTypedRuleContext(CNLParser.AssetNameContext,0)
+
 
         def getRuleIndex(self):
             return CNLParser.RULE_actionObject
@@ -1359,7 +1360,7 @@ class CNLParser ( Parser ):
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 172
-            self.match(CNLParser.IDENTIFIER)
+            self.assetName()
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -1671,8 +1672,9 @@ class CNLParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def IDENTIFIER(self):
-            return self.getToken(CNLParser.IDENTIFIER, 0)
+        def assetName(self):
+            return self.getTypedRuleContext(CNLParser.AssetNameContext,0)
+
 
         def getRuleIndex(self):
             return CNLParser.RULE_conditionObject
@@ -1695,7 +1697,7 @@ class CNLParser ( Parser ):
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 198
-            self.match(CNLParser.IDENTIFIER)
+            self.assetName()
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)

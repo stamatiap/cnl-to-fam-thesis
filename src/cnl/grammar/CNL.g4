@@ -66,7 +66,7 @@ action
 actorAdjective: IDENTIFIER ;
 actor : assetName ;
 adjective   : IDENTIFIER ;
-actionObject: IDENTIFIER ;
+actionObject: assetName ;
 
 actionVerb
     : SPAWNS | CREATES | EXECUTES | LOADS | REQUESTS | RECEIVES
@@ -88,9 +88,7 @@ stateCondition
     : conditionObject stateVerb modifier*
     ;
 
-conditionObject
-    : IDENTIFIER
-    ;
+conditionObject : assetName ;
 
 stateVerb
     : IS IDENTIFIER
