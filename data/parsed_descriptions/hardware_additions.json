@@ -70,16 +70,14 @@
             "connector": "Given"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "Windows",
-            "verb": "recognizes",
-            "adjective": "external",
-            "object": "USB_device",
-            "modifiers": []
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "Windows",
+          "verb": "recognizes",
+          "adjective": "external",
+          "object": "USB_device",
+          "modifiers": []
+        },
         "then": [
           {
             "subject": "USB_device",
@@ -107,16 +105,14 @@
             "connector": "Given"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "Windows",
-            "verb": "recognizes",
-            "adjective": "external",
-            "object": "Thunderbolt_device",
-            "modifiers": []
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "Windows",
+          "verb": "recognizes",
+          "adjective": "external",
+          "object": "Thunderbolt_device",
+          "modifiers": []
+        },
         "then": [
           {
             "subject": "Thunderbolt_device",
@@ -144,16 +140,14 @@
             "connector": "Given"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "Windows",
-            "verb": "recognizes",
-            "adjective": "external",
-            "object": "PCIe_device",
-            "modifiers": []
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "Windows",
+          "verb": "recognizes",
+          "adjective": "external",
+          "object": "PCIe_device",
+          "modifiers": []
+        },
         "then": [
           {
             "subject": "PCIe_device",
@@ -181,16 +175,14 @@
             "connector": "Given"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "Windows",
-            "verb": "recognizes",
-            "adjective": "new",
-            "object": "BD",
-            "modifiers": []
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "Windows",
+          "verb": "recognizes",
+          "adjective": "new",
+          "object": "BD",
+          "modifiers": []
+        },
         "then": [
           {
             "subject": "BD",
@@ -231,16 +223,14 @@
             "connector": "Or"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "P",
-            "verb": "spawns",
-            "adjective": "new",
-            "object": "P1",
-            "modifiers": []
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "P",
+          "verb": "spawns",
+          "adjective": "new",
+          "object": "P1",
+          "modifiers": []
+        },
         "then": [
           {
             "subject": "P1",
@@ -281,16 +271,14 @@
             "connector": "Or"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "Windows",
-            "verb": "mounts",
-            "adjective": "new",
-            "object": "V",
-            "modifiers": []
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "Windows",
+          "verb": "mounts",
+          "adjective": "new",
+          "object": "V",
+          "modifiers": []
+        },
         "then": [
           {
             "subject": "V",
@@ -321,16 +309,14 @@
             "connector": "Or"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "Windows",
-            "verb": "records",
-            "adjective": null,
-            "object": "HID_keystroke",
-            "modifiers": []
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "Windows",
+          "verb": "records",
+          "adjective": null,
+          "object": "HID_keystroke",
+          "modifiers": []
+        },
         "then": [
           {
             "subject": "HID_keystroke",
@@ -361,16 +347,14 @@
             "connector": "Or"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "Windows",
-            "verb": "loads",
-            "adjective": null,
-            "object": "DMA_driver",
-            "modifiers": []
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "Windows",
+          "verb": "loads",
+          "adjective": null,
+          "object": "DMA_driver",
+          "modifiers": []
+        },
         "then": [
           {
             "subject": "DMA_driver",
@@ -401,16 +385,14 @@
             "connector": "Or"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "DHCP",
-            "verb": "receives",
-            "adjective": "new",
-            "object": "MAC",
-            "modifiers": []
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "DHCP",
+          "verb": "receives",
+          "adjective": "new",
+          "object": "MAC",
+          "modifiers": []
+        },
         "then": [
           {
             "subject": "MAC",

@@ -42,16 +42,14 @@
             "connector": "Given"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "target_app",
-            "verb": "receives",
-            "adjective": null,
-            "object": "HID_keystroke",
-            "modifiers": []
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "target_app",
+          "verb": "receives",
+          "adjective": null,
+          "object": "HID_keystroke",
+          "modifiers": []
+        },
         "then": [
           {
             "subject": "HID_keystroke",
@@ -77,21 +75,19 @@
             "connector": "Given"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "P",
-            "verb": "sends",
-            "adjective": null,
-            "object": "JS_payload",
-            "modifiers": [
-              {
-                "type": "destination",
-                "value": "Clipboard"
-              }
-            ]
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "P",
+          "verb": "sends",
+          "adjective": null,
+          "object": "JS_payload",
+          "modifiers": [
+            {
+              "type": "destination",
+              "value": "Clipboard"
+            }
+          ]
+        },
         "then": [
           {
             "subject": "JS_payload",
@@ -116,22 +112,20 @@
             "connector": "Given"
           }
         ],
-        "when": [
-          {
-            "actor_adjective": null,
-            "actor": "target_app",
-            "verb": "executes",
-            "adjective": null,
-            "object": "JS_payload",
-            "modifiers": [
-              {
-                "type": "source",
-                "keyword": "from",
-                "value": "Clipboard"
-              }
-            ]
-          }
-        ],
+        "when": {
+          "actor_adjective": null,
+          "actor": "target_app",
+          "verb": "executes",
+          "adjective": null,
+          "object": "JS_payload",
+          "modifiers": [
+            {
+              "type": "source",
+              "keyword": "from",
+              "value": "Clipboard"
+            }
+          ]
+        },
         "then": [
           {
             "subject": "JS_payload",

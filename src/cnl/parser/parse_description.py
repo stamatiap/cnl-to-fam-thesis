@@ -173,8 +173,8 @@ def parse_action(ctx):
 
 def parse_when_clause(ctx):
     if ctx is None:
-        return []
-    return [parse_action(a) for a in ctx.action()]
+        return None
+    return parse_action(ctx.action())
 
 
 # Then Clause

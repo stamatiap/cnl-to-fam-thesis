@@ -56,7 +56,7 @@ eventRef
     ;
 
 whenClause
-    : WHEN action ((AND action)* )
+    : WHEN action
     ;
 
 action
