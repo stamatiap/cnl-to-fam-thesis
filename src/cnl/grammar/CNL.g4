@@ -60,12 +60,10 @@ whenClause
     ;
 
 action
-    : actorAdjective? actor actionVerb adjective? actionObject modifier*
+    : actor actionVerb actionObject modifier*
     ;
 
-actorAdjective: IDENTIFIER ;
 actor : assetName ;
-adjective   : IDENTIFIER ;
 actionObject: assetName ;
 
 actionVerb
@@ -89,8 +87,8 @@ stateCondition
 conditionObject : assetName ;
 
 stateVerb
-    : IDENTIFIER
-    | IS IDENTIFIER
+    : IS IDENTIFIER
+    | IDENTIFIER
     ;
 
 pastParticiple
