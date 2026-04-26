@@ -152,30 +152,12 @@ class CNLListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by CNLParser#actorAdjective.
-    def enterActorAdjective(self, ctx:CNLParser.ActorAdjectiveContext):
-        pass
-
-    # Exit a parse tree produced by CNLParser#actorAdjective.
-    def exitActorAdjective(self, ctx:CNLParser.ActorAdjectiveContext):
-        pass
-
-
     # Enter a parse tree produced by CNLParser#actor.
     def enterActor(self, ctx:CNLParser.ActorContext):
         pass
 
     # Exit a parse tree produced by CNLParser#actor.
     def exitActor(self, ctx:CNLParser.ActorContext):
-        pass
-
-
-    # Enter a parse tree produced by CNLParser#adjective.
-    def enterAdjective(self, ctx:CNLParser.AdjectiveContext):
-        pass
-
-    # Exit a parse tree produced by CNLParser#adjective.
-    def exitAdjective(self, ctx:CNLParser.AdjectiveContext):
         pass
 
 

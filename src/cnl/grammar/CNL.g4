@@ -60,18 +60,14 @@ whenClause
     ;
 
 action
-    : actorAdjective? actor actionVerb adjective? actionObject modifier*
+    : actor actionVerb actionObject modifier*
     ;
 
-actorAdjective: IDENTIFIER ;
 actor : assetName ;
-adjective   : IDENTIFIER ;
 actionObject: assetName ;
 
 actionVerb
-    : SPAWNS | CREATES | EXECUTES | LOADS | REQUESTS | RECEIVES
-    | SENDS | MOUNTS | MODIFIES | RECORDS | RAISES | PERFORMS
-    | RECOGNIZES | ACCEPTS | REJECTS | LOCATES
+    : IDENTIFIER
     ;
 
 modifier
@@ -92,13 +88,11 @@ conditionObject : assetName ;
 
 stateVerb
     : IS IDENTIFIER
-    | IS pastParticiple
+    | IDENTIFIER
     ;
 
 pastParticiple
-    : SPAWNED | CREATED | EXECUTED | LOADED | REQUESTED | RECEIVED
-    | SENT | MOUNTED | MODIFIED | RECORDED | RAISED | PERFORMED
-    | RECOGNIZED | ACCEPTED | REJECTED | LOCATED
+    : IDENTIFIER
     ;
 
 location : IN assetName;
@@ -124,12 +118,9 @@ EVENT       : 'Event';
 GIVEN       : 'Given';
 WHEN        : 'When';
 THEN        : 'Then';
-IF          : 'If';
 AND         : 'And';
 OR          : 'Or';
 COLON       : ':';
-REPEATED    : 'Repeated';
-WITHIN      : 'Within';
 AS          : 'as';
 BACKGROUND  : 'Background';
 DETECTION   : 'Detection';
@@ -139,41 +130,6 @@ TO          : 'to';
 BY          : 'by';
 FROM        : 'from';
 
-// Action Verbs
-SPAWNS      : 'spawns' ;
-CREATES     : 'creates' ;
-EXECUTES    : 'executes' ;
-LOADS       : 'loads' ;
-REQUESTS    : 'requests' ;
-RECEIVES    : 'receives' ;
-SENDS       : 'sends' ;
-MOUNTS      : 'mounts' ;
-MODIFIES    : 'modifies' ;
-RECORDS     : 'records' ;
-RAISES      : 'raises' ;
-PERFORMS    : 'performs' ;
-RECOGNIZES  : 'recognizes' ;
-ACCEPTS     : 'accepts' ;
-REJECTS     : 'rejects' ;
-LOCATES     : 'locates' ;
-
-// Past participles for state verbs
-SPAWNED     : 'spawned' ;
-CREATED     : 'created' ;
-EXECUTED    : 'executed' ;
-LOADED      : 'loaded' ;
-REQUESTED   : 'requested' ;
-RECEIVED    : 'received' ;
-SENT        : 'sent' ;
-MOUNTED     : 'mounted' ;
-MODIFIED    : 'modified' ;
-RECORDED    : 'recorded' ;
-RAISED      : 'raised' ;
-PERFORMED   : 'performed' ;
-RECOGNIZED  : 'recognized' ;
-ACCEPTED    : 'accepted' ;
-REJECTED    : 'rejected' ;
-LOCATED     : 'located' ;
 
 TACTIC_ID
     : 'TA' DIGIT DIGIT DIGIT DIGIT
