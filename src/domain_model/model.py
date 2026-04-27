@@ -3,7 +3,7 @@ from src.domain_model.enums import ModifierType, LogicalOperatorType
 
 @dataclass
 class Asset:
-    type:str
+    type: str
     name: str
 
 @dataclass
@@ -47,51 +47,55 @@ class TechniqueModel:
 
 @dataclass
 class Process(Asset):
-    process_id: str
-    parent_process: str
-    started_at: str
-    status: str
+    process_id: str = None
+    parent_process: str = None
+    started_at: str = None
+    status: str = None
 
 @dataclass
 class File(Asset):
-    path: str
-    size: int
+    path: str = None
+    size: int = None
 
 @dataclass
 class Message(Asset):
-    data: str
+    data: str = None
 
 @dataclass
 class Account(Asset):
-    username: str
-    password: str
-    access_level: str
+    username: str = None
+    password: str = None
+    access_level: str = None
 
 @dataclass
 class Device(Asset):
-    device_type: str
-    ip_address: str
+    device_type: str = None
+    ip_address: str = None
 
 @dataclass
 class Session(Asset):
-    session_id: str
-    start_time: str
-    end_time: str
-    duration: int
+    session_id: str = None
+    start_time: str = None
+    end_time: str = None
+    duration: int = None
 
 @dataclass
 class Endpoint(Asset):
-    protocol: str
-    port: str
-    ip_address: str
-    identifier_path: str
+    protocol: str = None
+    port: str = None
+    ip_address: str = None
+    identifier_path: str = None
 
 @dataclass
 class NetworkConnection(Asset):
-    source: Process 
-    destination: Endpoint
-    source_ip: str
-    destination_ip: str
-    transport_protocol: str
-    started_at: str
-    status: str
+    source: Process = None
+    destination: Endpoint = None
+    source_ip: str = None
+    destination_ip: str = None
+    transport_protocol: str = None
+    started_at: str = None
+    status: str = None
+
+@dataclass
+class Directory(Asset):
+    path: str = None

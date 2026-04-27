@@ -1,19 +1,11 @@
 from enum import Enum, auto
 
 class ModifierType(Enum):
-    LOCATION = auto()
-    DESTINATION = auto()
-
-class StateVerbType(Enum):
-    PLAIN = auto()
-    IS_PASSIVE = auto()
-    
-class ActionVerbType(Enum):
-    ACTIVE = auto()
+    LOCATION = "in"
+    DESTINATION = "to"
+    SOURCE_BY = "by"
+    SOURCE_FROM = "from"
 
 class LogicalOperatorType(Enum):
     AND = "AND"
     OR = "OR"
-
-class GivenItemType(Enum): 
-    STATE_CONDITION = auto()
