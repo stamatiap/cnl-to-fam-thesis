@@ -21,7 +21,7 @@ class StateCondition:
 class Action:
     action_verb: str
     actor: Asset
-    target: Asset
+    object: Asset
     modifiers: list[Modifier]
 
 

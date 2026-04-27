@@ -54,12 +54,12 @@ class Translator:
 
     def create_action(self, action) -> Action:
         actor = self.create_asset(action.get('actor', None))
-        target = self.create_asset(action.get('object', None))
+        object = self.create_asset(action.get('object', None))
         modifiers = [self.create_modifier(m) for m in action.get('modifiers', [])]
         return Action(
             action_verb = action.get('action_verb', None),
             actor = actor,
-            target = target,
+            object = object,
             modifiers= modifiers
         )
 
