@@ -118,13 +118,32 @@ class Visitor(CNLVisitor):
 
     def visitEventRef(self, ctx: CNLParser.EventRefContext):
         return ctx.DIGIT().getText()
+    
+    def visitHeader(self, ctx: CNLParser.HeaderContext):
+        tactic = self.visitTactic(ctx.tactic())
+        technique = self.visitTechnique(ctx.technique())
+        return {**tactic, **technique}
+
+    def visitTactic(self, ctx: CNLParser.TacticContext):
+        return {
+            "tactic_id": ctx.TACTIC_ID().getText(),
+            "tactic_name": ctx.IDENTIFIER().getText()
+        }
+
+    def visitTechnique(self, ctx: CNLParser.TechniqueContext):
+        return {
+            "technique_id": ctx.TECHNIQUE_ID().getText(),
+            "technique_name": ctx.IDENTIFIER().getText()
+        }
 
     def visitAttack(self, ctx:CNLParser.AttackContext):
+        header = self.visitHeader(ctx.header())
         background = self.visitBackground(ctx.background())
         events = [self.visitEventBlock(e) for e in ctx.eventBlock()]
         detection = self.visitDetectionBlock(ctx.detectionBlock()) if ctx.detectionBlock() else None
         attack =  {
-            "background": background,
+            **header,
+            **background,
             "events": events,
             "detection": detection
         }
