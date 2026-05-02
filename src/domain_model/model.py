@@ -21,7 +21,7 @@ class StateCondition:
 class Action:
     action_verb: str
     actor: Asset
-    target: Asset
+    object: Asset
     modifiers: list[Modifier]
 
 
@@ -31,8 +31,14 @@ class Event:
     name: str
     action: Action
     preconditions: list[StateCondition]
-    operator: list[LogicalOperatorType]
+    precondition_operators: list[LogicalOperatorType]
     postconditions: list[StateCondition]
+    postcondition_operators: list[LogicalOperatorType]
+
+@dataclass
+class Detection:
+    event_refs: list[Event]
+    operators: list[LogicalOperatorType]
 
 @dataclass
 class TechniqueModel:
@@ -41,6 +47,7 @@ class TechniqueModel:
     tactic: str
     tactic_id: str
     events: list[Event]
+    detection: Detection
 
 
 # --------------------------
