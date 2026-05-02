@@ -62,30 +62,59 @@ class Translator:
             object = object,
             modifiers= modifiers
         )
+    
+    def get_logical_operators(self, clause: dict) -> list:
+        op_refs = clause.get('operators', [])
+        operators = []
+        for op in op_refs:
+            if op == LogicalOperatorType.AND.value:
+                operators.append(LogicalOperatorType.AND)
+            elif op == LogicalOperatorType.OR.value:
+                operators.append(LogicalOperatorType.OR)
+            else:
+                operators.append(None)
+
+        return operators
+
 
     def create_event(self, event) -> Event:
         action = self.create_action(event.get('when', {}))
-        preconditions = self.create_state_conditions(event.get('given', []))
-        postconditions = self.create_state_conditions(event.get('then', []))
+        preconditions = self.create_state_conditions(event.get('given', {}).get('preconditions', []))
+        precondition_operators = self.get_logical_operators(event.get('given', {}))
+        postconditions = self.create_state_conditions(event.get('then', {}).get('postconditions', []))
+        postcondition_operators = self.get_logical_operators(event.get('then', {}))
+
         return Event(
             id = event.get('event_number', None),
             name = "Event" + event.get('event_number', None),
             action = action,
             preconditions = preconditions,
-            operator = LogicalOperatorType.AND,
-            postconditions = postconditions
+            precondition_operators = precondition_operators,
+            postconditions = postconditions,
+            postcondition_operators = postcondition_operators,
+
         )
+    
+    def create_detection(self, detection, events) -> Detection:
+        event_id_refs = detection.get('events', [])
+        event_refs = [event for event in events if event.id in event_id_refs]
+        operators = self.get_logical_operators(detection)
+
+        return{'event_refs': event_refs,
+               'operators': operators}
 
     def create_technique_model(self, parsed_data) -> TechniqueModel:
         # background + detection
         self.assets = parsed_data.get('assets', {})
         event_objects = [self.create_event(event) for event in parsed_data.get('events', [])]
+        detection = self.create_detection(parsed_data.get('detection', []), event_objects)
         return TechniqueModel(
             id=parsed_data.get("technique_id", ""),
             name=parsed_data.get("technique_name", ""),
             tactic=parsed_data.get("tactic_name", ""),
             tactic_id=parsed_data.get("tactic_id", ""),
-            events= event_objects
+            events= event_objects,
+            detection=detection
         )
     
     def translate(self, cnl_input_path: str) -> TechniqueModel:

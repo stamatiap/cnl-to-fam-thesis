@@ -72,13 +72,32 @@ class Visitor(CNLVisitor):
         return self.visitStateCondition(ctx.stateCondition())
 
     def visitGivenClause(self, ctx: CNLParser.GivenClauseContext):
-        given_items = [self.visitGivenItem(item) for item in ctx.givenItem()]
-        return given_items
+        items = ctx.givenItem()
+        operators = []
+        
+        # get operators between items
+        for i in range(len(items) - 1):
+            if ctx.AND(i):
+                operators.append("AND")
+            elif ctx.OR(i):
+                operators.append("OR")
+        
+        given_items = [self.visitGivenItem(item) for item in items]
+        
+        return {
+            "preconditions": given_items,
+            "operators": operators
+        }
     
     def visitThenClause(self, ctx: CNLParser.ThenClauseContext):
         then_items = [self.visitStateCondition(item) for item in ctx.stateCondition()]
-        return then_items
+        operators = ["AND"] * (len(then_items) - 1) # then clause supports only AND
     
+        return {
+            "postconditions": then_items,
+            "operators": operators
+        }
+        
     def visitEventBlock(self, ctx: CNLParser.EventBlockContext):
         event_number = ctx.DIGIT().getText()
         statement = self.visitEventStatement(ctx.eventStatement())
@@ -104,16 +123,16 @@ class Visitor(CNLVisitor):
         event_refs = [self.visitEventRef(e) for e in ctx.eventRef()]
         
         # figure out the operator between them
-        if ctx.AND():
-            operator = "AND"
-        elif ctx.OR():
-            operator = "OR"
-        else:
-            operator = None
-        
+        operators = []
+        for i in range(len(event_refs) - 1):
+            if ctx.AND(i):
+                operators.append("AND")
+            elif ctx.OR(i):
+                operators.append("OR")
+            
         return {
-            "operator": operator,
-            "events": event_refs
+            "events": event_refs,
+            "operators": operators
         }
 
     def visitEventRef(self, ctx: CNLParser.EventRefContext):
