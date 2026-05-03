@@ -16,5 +16,10 @@ def main():
     model = translator.translate(input_path)
     pprint(model)
 
+    validator = Validator()
+    is_valid = validator.validate_model(model)
+    print(is_valid)
+
+
 if __name__ == "__main__":
     main()
