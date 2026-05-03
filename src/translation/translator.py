@@ -5,8 +5,6 @@ from src.translation.visitor import Visitor
 from src.domain_model.model import *
 from src.domain_model.enums import *
 from src.domain_model.asset_registry import ASSET_TYPE_MAP
-import sys
-from pprint import pprint
 
 
 class Translator:
@@ -17,7 +15,6 @@ class Translator:
         stream       = CommonTokenStream(lexer)
         parser       = CNLParser(stream)
         tree         = parser.attack()
-        print(tree.toStringTree(recog=parser))
         return tree
 
     def create_modifier(self, modifier) -> Modifier:
@@ -100,8 +97,8 @@ class Translator:
         event_refs = [event for event in events if event.id in event_id_refs]
         operators = self.get_logical_operators(detection)
 
-        return{'event_refs': event_refs,
-               'operators': operators}
+        return Detection(event_refs= event_refs,
+               operators= operators)
 
     def create_technique_model(self, parsed_data) -> TechniqueModel:
         # background + detection
@@ -122,22 +119,7 @@ class Translator:
         parsed_data = self.parse_input(cnl_input_path)
         visitor = Visitor()
         raw_strings = visitor.visitAttack(parsed_data)
-        pprint(raw_strings)
-
+        
         # Convert the parsed data into a TechniqueModel
         technique_model = self.create_technique_model(raw_strings)
         return technique_model
-    
-def main():
-    if len(sys.argv) < 2:
-        print("Usage: python parse_description.py <input_file>")
-        sys.exit(1)
-
-    input_file = sys.argv[1]
-    input_path = "data/example_descriptions/" + input_file
-    translator = Translator()
-    model = translator.translate(input_path)
-    pprint(model)
-
-if __name__ == "__main__":
-    main()
