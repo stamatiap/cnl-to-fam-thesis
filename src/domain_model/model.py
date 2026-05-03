@@ -49,6 +49,36 @@ class TechniqueModel:
     events: list[Event]
     detection: Detection
 
+    def get_all_assets(self) -> dict[str, list[Asset]]:
+        assets: dict[str, list[Asset]] = {}
+        seen_names = set()
+        
+        for event in self.events:
+            for asset in self._extract_assets_from_event(event):
+                if asset.name not in seen_names:
+                    seen_names.add(asset.name)
+                    asset_type = type(asset).__name__
+                    if asset_type not in assets:
+                        assets[asset_type] = []
+                    assets[asset_type].append(asset)
+        
+        return assets
+    
+    def _extract_assets_from_event(self, event: Event) -> list[Asset]:
+        assets = []
+        assets.append(event.action.actor)
+        assets.append(event.action.object)
+        for modifier in event.action.modifiers or []:
+            assets.append(modifier.value)
+        for condition in event.preconditions or []:
+            assets.append(condition.subject)
+            for modifier in condition.modifiers or []:
+                assets.append(modifier.value)
+        for condition in event.postconditions or []:
+            assets.append(condition.subject)
+            for modifier in condition.modifiers or []:
+                assets.append(modifier.value)
+        return assets
 
 # --------------------------
 
