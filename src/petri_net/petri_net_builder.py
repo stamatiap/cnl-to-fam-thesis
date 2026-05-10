@@ -56,7 +56,7 @@ class PetriNetBuilder:
                 transition_name += f"_in_{modifier.value.name}"
         transition = self._get_or_create_transition(transition_name)
 
-        if event.precondition_operators and all(op == LogicalOperatorType.OR for op in event.precondition_operators):
+        if event.precondition_operators and all(op == LogicalOperatorType.XOR for op in event.precondition_operators):
             # OR — create silent transitions and shared or_place
             or_key = "or_" + "_".join(sorted(self._get_place_name(c) for c in event.preconditions))
             or_place = self._get_or_create_place(or_key)
