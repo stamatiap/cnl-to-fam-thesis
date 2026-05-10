@@ -7,7 +7,7 @@ And device as USB_device
 And device as Thunderbolt_device
 And device as PCIe_device
 And device as BD
-And process as P
+And user as User
 And process as P1
 And volume as V
 And input as HID_keystroke
@@ -16,49 +16,49 @@ And server as DHCP
 And interface as MAC
 
 Event 1
-Given Windows is active
-When Windows recognizes external USB_device
-Then USB_device is recognized by Windows
+Given Windows is active And User is active
+When Windows recognizes USB_device
+Then USB_device is active
 
 Event 2
-Given Windows is active
-When Windows recognizes external Thunderbolt_device
-Then Thunderbolt_device is recognized by Windows
+Given Windows is active And User is active
+When Windows recognizes Thunderbolt_device
+Then Thunderbolt_device is active
 
 Event 3
-Given Windows is active
-When Windows recognizes external PCIe_device
-Then PCIe_device is recognized by Windows
+Given Windows is active And User is active
+When Windows recognizes PCIe_device
+Then PCIe_device is active
 
 Event 4
 Given Windows is active
-When Windows recognizes new BD
-Then BD is recognized by Windows
+When Windows recognizes BD
+Then BD is active
 
 Event 5
-Given Event 1 Or Event 2 Or Event 3 Or Event 4
-When P spawns new P1
-Then P1 is spawned by P
+Given USB_device is active Or Thunderbolt_device is active Or PCIe_device is active Or BD is active
+When User spawns P1
+Then P1 is active
 
 Event 6
-Given Event 1 Or Event 2 Or Event 3 Or Event 4
-When Windows mounts new V
-Then V is mounted by Windows
+Given USB_device is active Or Thunderbolt_device is active Or PCIe_device is active Or BD is active
+When Windows mounts V
+Then V is mounted
 
 Event 7
-Given Event 5 Or Event 6
-When Windows records HID_keystroke
-Then HID_keystroke is recorded by Windows
+Given P1 is active Or V is mounted
+When Windows receives HID_keystroke
+Then HID_keystroke is received
 
 Event 8
-Given Event 5 Or Event 6
+Given P1 is active Or V is mounted
 When Windows loads DMA_driver
-Then DMA_driver is loaded by Windows
+Then DMA_driver is loaded
 
 Event 9
-Given Event 5 Or Event 6
-When DHCP receives new MAC
-Then MAC is received by DHCP
+Given P1 is active Or V is mounted
+When DHCP receives MAC
+Then MAC is received
 
 Detection
 Event 7 Or Event 8 Or Event 9

@@ -3,50 +3,31 @@ Technique: T1003.001 OS_Credential_Dumping_LSASS
 
 Background
 Given process as P
-And account as U
+And operating_system as OS
 And file as lsass_exe
 And file as lsass_dump
 And registry as registry_keys
+And handle as handle_request
 
 Event 1
 Given P is active
-When P creates administrative U
-Then U is created by P
+When P requests handle_request to lsass_exe from OS
+Then P has_access to lsass_exe 
 
 Event 2
-Given P is active
-When P creates system U
-Then U is created by P
+Given P has_access to lsass_exe 
+When P loads lsass_exe
+Then lsass_exe is active
 
 Event 3
-Given Event 1
-When U loads lsass_exe
-Then lsass_exe is loaded by U
+Given lsass_exe is active
+When P requests lsass_dump from lsass_exe
+Then lsass_dump exists
 
 Event 4
-Given Event 2
-When U loads lsass_exe
-Then lsass_exe is loaded by U
-
-Event 5
-Given Event 3
-When U requests lsass_dump from lsass_exe
-Then lsass_dump is created by U
-
-Event 6
-Given Event 4
-When U requests lsass_dump from lsass_exe
-Then lsass_dump is created by U
-
-Event 7
-Given Event 3
-When U modifies registry_keys
-Then registry_keys is modified by U
-
-Event 8
-Given Event 4
-When U modifies registry_keys
-Then registry_keys is modified by U
+Given lsass_dump exists
+When P modifies registry_keys
+Then registry_keys is modified
 
 Detection
-Event 5 Or Event 6 Or Event 7 Or Event 8
+Event 3 Or Event 4

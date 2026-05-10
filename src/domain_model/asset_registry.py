@@ -14,6 +14,15 @@ ASSET_TYPE_MAP = {
     "credentials": Message,
     "user": Process,
     "registry": File,
-    "network_connection": NetworkConnection
+    "network_connection": NetworkConnection,
+    "operating_system": Process,
+    "volume": Device,
+    "input": Message,
+    "driver": Device,
+    "server": Endpoint,
+    "interface": Device,
+    "administrative_account": Account,
+    "system_account": Account
+
 
 }
