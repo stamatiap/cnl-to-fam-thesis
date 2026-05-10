@@ -22,7 +22,7 @@ ASSET_TYPE_MAP = {
     "server": Endpoint,
     "interface": Device,
     "administrative_account": Account,
-    "system_account": Account
-
+    "system_account": Account,
+    "authentication_service": Process
 
 }
