@@ -10,7 +10,7 @@ else:
 
 def serializedATN():
     return [
-        4,1,23,211,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        4,1,24,218,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
         6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,
         2,14,7,14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,20,
         7,20,2,21,7,21,2,22,7,22,2,23,7,23,2,24,7,24,2,25,7,25,2,26,7,26,
@@ -19,64 +19,67 @@ def serializedATN():
         3,83,8,3,10,3,12,3,86,9,3,1,4,1,4,1,4,1,4,1,5,1,5,1,6,1,6,1,7,1,
         7,1,7,1,7,1,7,1,8,1,8,1,8,1,8,1,8,1,9,1,9,1,9,1,9,1,10,1,10,1,10,
         1,10,1,11,1,11,1,11,1,11,5,11,118,8,11,10,11,12,11,121,9,11,1,11,
-        1,11,5,11,125,8,11,10,11,12,11,128,9,11,3,11,130,8,11,1,12,1,12,
-        3,12,134,8,12,1,13,1,13,1,13,1,14,1,14,1,14,1,15,1,15,1,15,1,15,
-        5,15,146,8,15,10,15,12,15,149,9,15,1,16,1,16,1,17,1,17,1,18,1,18,
-        1,19,1,19,1,19,3,19,160,8,19,1,20,1,20,1,20,1,20,5,20,166,8,20,10,
-        20,12,20,169,9,20,1,21,1,21,1,21,5,21,174,8,21,10,21,12,21,177,9,
-        21,1,22,1,22,1,23,1,23,1,23,3,23,184,8,23,1,24,1,24,1,25,1,25,1,
-        25,1,26,1,26,1,26,1,27,1,27,1,27,1,27,3,27,198,8,27,1,28,1,28,1,
-        28,1,29,1,29,1,29,5,29,206,8,29,10,29,12,29,209,9,29,1,29,0,0,30,
-        0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,
-        46,48,50,52,54,56,58,0,1,1,0,8,9,195,0,60,1,0,0,0,2,72,1,0,0,0,4,
-        75,1,0,0,0,6,79,1,0,0,0,8,87,1,0,0,0,10,91,1,0,0,0,12,93,1,0,0,0,
-        14,95,1,0,0,0,16,100,1,0,0,0,18,105,1,0,0,0,20,109,1,0,0,0,22,113,
-        1,0,0,0,24,133,1,0,0,0,26,135,1,0,0,0,28,138,1,0,0,0,30,141,1,0,
-        0,0,32,150,1,0,0,0,34,152,1,0,0,0,36,154,1,0,0,0,38,159,1,0,0,0,
-        40,161,1,0,0,0,42,170,1,0,0,0,44,178,1,0,0,0,46,183,1,0,0,0,48,185,
-        1,0,0,0,50,187,1,0,0,0,52,190,1,0,0,0,54,197,1,0,0,0,56,199,1,0,
-        0,0,58,202,1,0,0,0,60,61,3,2,1,0,61,63,3,4,2,0,62,64,3,18,9,0,63,
-        62,1,0,0,0,64,65,1,0,0,0,65,63,1,0,0,0,65,66,1,0,0,0,66,68,1,0,0,
-        0,67,69,3,56,28,0,68,67,1,0,0,0,68,69,1,0,0,0,69,70,1,0,0,0,70,71,
-        5,0,0,1,71,1,1,0,0,0,72,73,3,14,7,0,73,74,3,16,8,0,74,3,1,0,0,0,
-        75,76,5,12,0,0,76,77,5,5,0,0,77,78,3,6,3,0,78,5,1,0,0,0,79,84,3,
-        8,4,0,80,81,5,8,0,0,81,83,3,8,4,0,82,80,1,0,0,0,83,86,1,0,0,0,84,
-        82,1,0,0,0,84,85,1,0,0,0,85,7,1,0,0,0,86,84,1,0,0,0,87,88,3,10,5,
-        0,88,89,5,11,0,0,89,90,3,12,6,0,90,9,1,0,0,0,91,92,5,21,0,0,92,11,
-        1,0,0,0,93,94,5,21,0,0,94,13,1,0,0,0,95,96,5,2,0,0,96,97,5,10,0,
-        0,97,98,5,19,0,0,98,99,5,21,0,0,99,15,1,0,0,0,100,101,5,3,0,0,101,
-        102,5,10,0,0,102,103,5,20,0,0,103,104,5,21,0,0,104,17,1,0,0,0,105,
-        106,5,4,0,0,106,107,5,23,0,0,107,108,3,20,10,0,108,19,1,0,0,0,109,
-        110,3,22,11,0,110,111,3,28,14,0,111,112,3,40,20,0,112,21,1,0,0,0,
-        113,114,5,5,0,0,114,129,3,24,12,0,115,116,5,8,0,0,116,118,3,24,12,
-        0,117,115,1,0,0,0,118,121,1,0,0,0,119,117,1,0,0,0,119,120,1,0,0,
-        0,120,130,1,0,0,0,121,119,1,0,0,0,122,123,5,9,0,0,123,125,3,24,12,
-        0,124,122,1,0,0,0,125,128,1,0,0,0,126,124,1,0,0,0,126,127,1,0,0,
-        0,127,130,1,0,0,0,128,126,1,0,0,0,129,119,1,0,0,0,129,126,1,0,0,
-        0,130,23,1,0,0,0,131,134,3,26,13,0,132,134,3,42,21,0,133,131,1,0,
-        0,0,133,132,1,0,0,0,134,25,1,0,0,0,135,136,5,4,0,0,136,137,5,23,
-        0,0,137,27,1,0,0,0,138,139,5,6,0,0,139,140,3,30,15,0,140,29,1,0,
-        0,0,141,142,3,32,16,0,142,143,3,36,18,0,143,147,3,34,17,0,144,146,
-        3,38,19,0,145,144,1,0,0,0,146,149,1,0,0,0,147,145,1,0,0,0,147,148,
-        1,0,0,0,148,31,1,0,0,0,149,147,1,0,0,0,150,151,3,12,6,0,151,33,1,
-        0,0,0,152,153,3,12,6,0,153,35,1,0,0,0,154,155,5,21,0,0,155,37,1,
-        0,0,0,156,160,3,50,25,0,157,160,3,52,26,0,158,160,3,54,27,0,159,
-        156,1,0,0,0,159,157,1,0,0,0,159,158,1,0,0,0,160,39,1,0,0,0,161,162,
-        5,7,0,0,162,167,3,42,21,0,163,164,5,8,0,0,164,166,3,42,21,0,165,
-        163,1,0,0,0,166,169,1,0,0,0,167,165,1,0,0,0,167,168,1,0,0,0,168,
-        41,1,0,0,0,169,167,1,0,0,0,170,171,3,44,22,0,171,175,3,46,23,0,172,
-        174,3,38,19,0,173,172,1,0,0,0,174,177,1,0,0,0,175,173,1,0,0,0,175,
-        176,1,0,0,0,176,43,1,0,0,0,177,175,1,0,0,0,178,179,3,12,6,0,179,
-        45,1,0,0,0,180,181,5,14,0,0,181,184,5,21,0,0,182,184,5,21,0,0,183,
-        180,1,0,0,0,183,182,1,0,0,0,184,47,1,0,0,0,185,186,5,21,0,0,186,
-        49,1,0,0,0,187,188,5,15,0,0,188,189,3,12,6,0,189,51,1,0,0,0,190,
-        191,5,16,0,0,191,192,3,12,6,0,192,53,1,0,0,0,193,194,5,17,0,0,194,
-        198,3,12,6,0,195,196,5,18,0,0,196,198,3,12,6,0,197,193,1,0,0,0,197,
-        195,1,0,0,0,198,55,1,0,0,0,199,200,5,13,0,0,200,201,3,58,29,0,201,
-        57,1,0,0,0,202,207,3,26,13,0,203,204,7,0,0,0,204,206,3,26,13,0,205,
-        203,1,0,0,0,206,209,1,0,0,0,207,205,1,0,0,0,207,208,1,0,0,0,208,
-        59,1,0,0,0,209,207,1,0,0,0,14,65,68,84,119,126,129,133,147,159,167,
-        175,183,197,207
+        1,11,5,11,125,8,11,10,11,12,11,128,9,11,1,11,1,11,5,11,132,8,11,
+        10,11,12,11,135,9,11,3,11,137,8,11,1,12,1,12,3,12,141,8,12,1,13,
+        1,13,1,13,1,14,1,14,1,14,1,15,1,15,1,15,1,15,5,15,153,8,15,10,15,
+        12,15,156,9,15,1,16,1,16,1,17,1,17,1,18,1,18,1,19,1,19,1,19,3,19,
+        167,8,19,1,20,1,20,1,20,1,20,5,20,173,8,20,10,20,12,20,176,9,20,
+        1,21,1,21,1,21,5,21,181,8,21,10,21,12,21,184,9,21,1,22,1,22,1,23,
+        1,23,1,23,3,23,191,8,23,1,24,1,24,1,25,1,25,1,25,1,26,1,26,1,26,
+        1,27,1,27,1,27,1,27,3,27,205,8,27,1,28,1,28,1,28,1,29,1,29,1,29,
+        5,29,213,8,29,10,29,12,29,216,9,29,1,29,0,0,30,0,2,4,6,8,10,12,14,
+        16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,
+        0,1,1,0,8,10,204,0,60,1,0,0,0,2,72,1,0,0,0,4,75,1,0,0,0,6,79,1,0,
+        0,0,8,87,1,0,0,0,10,91,1,0,0,0,12,93,1,0,0,0,14,95,1,0,0,0,16,100,
+        1,0,0,0,18,105,1,0,0,0,20,109,1,0,0,0,22,113,1,0,0,0,24,140,1,0,
+        0,0,26,142,1,0,0,0,28,145,1,0,0,0,30,148,1,0,0,0,32,157,1,0,0,0,
+        34,159,1,0,0,0,36,161,1,0,0,0,38,166,1,0,0,0,40,168,1,0,0,0,42,177,
+        1,0,0,0,44,185,1,0,0,0,46,190,1,0,0,0,48,192,1,0,0,0,50,194,1,0,
+        0,0,52,197,1,0,0,0,54,204,1,0,0,0,56,206,1,0,0,0,58,209,1,0,0,0,
+        60,61,3,2,1,0,61,63,3,4,2,0,62,64,3,18,9,0,63,62,1,0,0,0,64,65,1,
+        0,0,0,65,63,1,0,0,0,65,66,1,0,0,0,66,68,1,0,0,0,67,69,3,56,28,0,
+        68,67,1,0,0,0,68,69,1,0,0,0,69,70,1,0,0,0,70,71,5,0,0,1,71,1,1,0,
+        0,0,72,73,3,14,7,0,73,74,3,16,8,0,74,3,1,0,0,0,75,76,5,13,0,0,76,
+        77,5,5,0,0,77,78,3,6,3,0,78,5,1,0,0,0,79,84,3,8,4,0,80,81,5,8,0,
+        0,81,83,3,8,4,0,82,80,1,0,0,0,83,86,1,0,0,0,84,82,1,0,0,0,84,85,
+        1,0,0,0,85,7,1,0,0,0,86,84,1,0,0,0,87,88,3,10,5,0,88,89,5,12,0,0,
+        89,90,3,12,6,0,90,9,1,0,0,0,91,92,5,22,0,0,92,11,1,0,0,0,93,94,5,
+        22,0,0,94,13,1,0,0,0,95,96,5,2,0,0,96,97,5,11,0,0,97,98,5,20,0,0,
+        98,99,5,22,0,0,99,15,1,0,0,0,100,101,5,3,0,0,101,102,5,11,0,0,102,
+        103,5,21,0,0,103,104,5,22,0,0,104,17,1,0,0,0,105,106,5,4,0,0,106,
+        107,5,24,0,0,107,108,3,20,10,0,108,19,1,0,0,0,109,110,3,22,11,0,
+        110,111,3,28,14,0,111,112,3,40,20,0,112,21,1,0,0,0,113,114,5,5,0,
+        0,114,136,3,24,12,0,115,116,5,8,0,0,116,118,3,24,12,0,117,115,1,
+        0,0,0,118,121,1,0,0,0,119,117,1,0,0,0,119,120,1,0,0,0,120,137,1,
+        0,0,0,121,119,1,0,0,0,122,123,5,9,0,0,123,125,3,24,12,0,124,122,
+        1,0,0,0,125,128,1,0,0,0,126,124,1,0,0,0,126,127,1,0,0,0,127,137,
+        1,0,0,0,128,126,1,0,0,0,129,130,5,10,0,0,130,132,3,24,12,0,131,129,
+        1,0,0,0,132,135,1,0,0,0,133,131,1,0,0,0,133,134,1,0,0,0,134,137,
+        1,0,0,0,135,133,1,0,0,0,136,119,1,0,0,0,136,126,1,0,0,0,136,133,
+        1,0,0,0,137,23,1,0,0,0,138,141,3,26,13,0,139,141,3,42,21,0,140,138,
+        1,0,0,0,140,139,1,0,0,0,141,25,1,0,0,0,142,143,5,4,0,0,143,144,5,
+        24,0,0,144,27,1,0,0,0,145,146,5,6,0,0,146,147,3,30,15,0,147,29,1,
+        0,0,0,148,149,3,32,16,0,149,150,3,36,18,0,150,154,3,34,17,0,151,
+        153,3,38,19,0,152,151,1,0,0,0,153,156,1,0,0,0,154,152,1,0,0,0,154,
+        155,1,0,0,0,155,31,1,0,0,0,156,154,1,0,0,0,157,158,3,12,6,0,158,
+        33,1,0,0,0,159,160,3,12,6,0,160,35,1,0,0,0,161,162,5,22,0,0,162,
+        37,1,0,0,0,163,167,3,50,25,0,164,167,3,52,26,0,165,167,3,54,27,0,
+        166,163,1,0,0,0,166,164,1,0,0,0,166,165,1,0,0,0,167,39,1,0,0,0,168,
+        169,5,7,0,0,169,174,3,42,21,0,170,171,5,8,0,0,171,173,3,42,21,0,
+        172,170,1,0,0,0,173,176,1,0,0,0,174,172,1,0,0,0,174,175,1,0,0,0,
+        175,41,1,0,0,0,176,174,1,0,0,0,177,178,3,44,22,0,178,182,3,46,23,
+        0,179,181,3,38,19,0,180,179,1,0,0,0,181,184,1,0,0,0,182,180,1,0,
+        0,0,182,183,1,0,0,0,183,43,1,0,0,0,184,182,1,0,0,0,185,186,3,12,
+        6,0,186,45,1,0,0,0,187,188,5,15,0,0,188,191,5,22,0,0,189,191,5,22,
+        0,0,190,187,1,0,0,0,190,189,1,0,0,0,191,47,1,0,0,0,192,193,5,22,
+        0,0,193,49,1,0,0,0,194,195,5,16,0,0,195,196,3,12,6,0,196,51,1,0,
+        0,0,197,198,5,17,0,0,198,199,3,12,6,0,199,53,1,0,0,0,200,201,5,18,
+        0,0,201,205,3,12,6,0,202,203,5,19,0,0,203,205,3,12,6,0,204,200,1,
+        0,0,0,204,202,1,0,0,0,205,55,1,0,0,0,206,207,5,14,0,0,207,208,3,
+        58,29,0,208,57,1,0,0,0,209,214,3,26,13,0,210,211,7,0,0,0,211,213,
+        3,26,13,0,212,210,1,0,0,0,213,216,1,0,0,0,214,212,1,0,0,0,214,215,
+        1,0,0,0,215,59,1,0,0,0,216,214,1,0,0,0,15,65,68,84,119,126,133,136,
+        140,154,166,174,182,190,204,214
     ]
 
 class CNLParser ( Parser ):
@@ -91,13 +94,13 @@ class CNLParser ( Parser ):
 
     literalNames = [ "<INVALID>", "<INVALID>", "'Tactic'", "'Technique'", 
                      "'Event'", "'Given'", "'When'", "'Then'", "'And'", 
-                     "'Or'", "':'", "'as'", "'Background'", "'Detection'", 
+                     "'Or'", "'Xor'", "':'", "'as'", "'Background'", "'Detection'", 
                      "'is'", "'in'", "'to'", "'by'", "'from'" ]
 
     symbolicNames = [ "<INVALID>", "ESC", "TACTIC", "TECHNIQUE", "EVENT", 
-                      "GIVEN", "WHEN", "THEN", "AND", "OR", "COLON", "AS", 
-                      "BACKGROUND", "DETECTION", "IS", "IN", "TO", "BY", 
-                      "FROM", "TACTIC_ID", "TECHNIQUE_ID", "IDENTIFIER", 
+                      "GIVEN", "WHEN", "THEN", "AND", "OR", "XOR", "COLON", 
+                      "AS", "BACKGROUND", "DETECTION", "IS", "IN", "TO", 
+                      "BY", "FROM", "TACTIC_ID", "TECHNIQUE_ID", "IDENTIFIER", 
                       "WS", "DIGIT" ]
 
     RULE_attack = 0
@@ -149,20 +152,21 @@ class CNLParser ( Parser ):
     THEN=7
     AND=8
     OR=9
-    COLON=10
-    AS=11
-    BACKGROUND=12
-    DETECTION=13
-    IS=14
-    IN=15
-    TO=16
-    BY=17
-    FROM=18
-    TACTIC_ID=19
-    TECHNIQUE_ID=20
-    IDENTIFIER=21
-    WS=22
-    DIGIT=23
+    XOR=10
+    COLON=11
+    AS=12
+    BACKGROUND=13
+    DETECTION=14
+    IS=15
+    IN=16
+    TO=17
+    BY=18
+    FROM=19
+    TACTIC_ID=20
+    TECHNIQUE_ID=21
+    IDENTIFIER=22
+    WS=23
+    DIGIT=24
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -248,7 +252,7 @@ class CNLParser ( Parser ):
             self.state = 68
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==13:
+            if _la==14:
                 self.state = 67
                 self.detectionBlock()
 
@@ -870,6 +874,12 @@ class CNLParser ( Parser ):
             else:
                 return self.getToken(CNLParser.OR, i)
 
+        def XOR(self, i:int=None):
+            if i is None:
+                return self.getTokens(CNLParser.XOR)
+            else:
+                return self.getToken(CNLParser.XOR, i)
+
         def getRuleIndex(self):
             return CNLParser.RULE_givenClause
 
@@ -901,9 +911,9 @@ class CNLParser ( Parser ):
             self.match(CNLParser.GIVEN)
             self.state = 114
             self.givenItem()
-            self.state = 129
+            self.state = 136
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,5,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,6,self._ctx)
             if la_ == 1:
                 self.state = 119
                 self._errHandler.sync(self)
@@ -929,6 +939,21 @@ class CNLParser ( Parser ):
                     self.state = 123
                     self.givenItem()
                     self.state = 128
+                    self._errHandler.sync(self)
+                    _la = self._input.LA(1)
+
+                pass
+
+            elif la_ == 3:
+                self.state = 133
+                self._errHandler.sync(self)
+                _la = self._input.LA(1)
+                while _la==10:
+                    self.state = 129
+                    self.match(CNLParser.XOR)
+                    self.state = 130
+                    self.givenItem()
+                    self.state = 135
                     self._errHandler.sync(self)
                     _la = self._input.LA(1)
 
@@ -984,17 +1009,17 @@ class CNLParser ( Parser ):
         localctx = CNLParser.GivenItemContext(self, self._ctx, self.state)
         self.enterRule(localctx, 24, self.RULE_givenItem)
         try:
-            self.state = 133
+            self.state = 140
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [4]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 131
+                self.state = 138
                 self.eventRef()
                 pass
-            elif token in [21]:
+            elif token in [22]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 132
+                self.state = 139
                 self.stateCondition()
                 pass
             else:
@@ -1048,9 +1073,9 @@ class CNLParser ( Parser ):
         self.enterRule(localctx, 26, self.RULE_eventRef)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 135
+            self.state = 142
             self.match(CNLParser.EVENT)
-            self.state = 136
+            self.state = 143
             self.match(CNLParser.DIGIT)
         except RecognitionException as re:
             localctx.exception = re
@@ -1101,9 +1126,9 @@ class CNLParser ( Parser ):
         self.enterRule(localctx, 28, self.RULE_whenClause)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 138
+            self.state = 145
             self.match(CNLParser.WHEN)
-            self.state = 139
+            self.state = 146
             self.action()
         except RecognitionException as re:
             localctx.exception = re
@@ -1167,19 +1192,19 @@ class CNLParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 141
+            self.state = 148
             self.actor()
-            self.state = 142
+            self.state = 149
             self.actionVerb()
-            self.state = 143
+            self.state = 150
             self.actionObject()
-            self.state = 147
+            self.state = 154
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 491520) != 0):
-                self.state = 144
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 983040) != 0):
+                self.state = 151
                 self.modifier()
-                self.state = 149
+                self.state = 156
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -1229,7 +1254,7 @@ class CNLParser ( Parser ):
         self.enterRule(localctx, 32, self.RULE_actor)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 150
+            self.state = 157
             self.assetName()
         except RecognitionException as re:
             localctx.exception = re
@@ -1277,7 +1302,7 @@ class CNLParser ( Parser ):
         self.enterRule(localctx, 34, self.RULE_actionObject)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 152
+            self.state = 159
             self.assetName()
         except RecognitionException as re:
             localctx.exception = re
@@ -1324,7 +1349,7 @@ class CNLParser ( Parser ):
         self.enterRule(localctx, 36, self.RULE_actionVerb)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 154
+            self.state = 161
             self.match(CNLParser.IDENTIFIER)
         except RecognitionException as re:
             localctx.exception = re
@@ -1379,22 +1404,22 @@ class CNLParser ( Parser ):
         localctx = CNLParser.ModifierContext(self, self._ctx, self.state)
         self.enterRule(localctx, 38, self.RULE_modifier)
         try:
-            self.state = 159
+            self.state = 166
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [15]:
+            if token in [16]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 156
+                self.state = 163
                 self.location()
                 pass
-            elif token in [16]:
+            elif token in [17]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 157
+                self.state = 164
                 self.destination()
                 pass
-            elif token in [17, 18]:
+            elif token in [18, 19]:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 158
+                self.state = 165
                 self.source()
                 pass
             else:
@@ -1459,19 +1484,19 @@ class CNLParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 161
+            self.state = 168
             self.match(CNLParser.THEN)
-            self.state = 162
+            self.state = 169
             self.stateCondition()
-            self.state = 167
+            self.state = 174
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==8:
-                self.state = 163
+                self.state = 170
                 self.match(CNLParser.AND)
-                self.state = 164
+                self.state = 171
                 self.stateCondition()
-                self.state = 169
+                self.state = 176
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -1533,17 +1558,17 @@ class CNLParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 170
+            self.state = 177
             self.conditionObject()
-            self.state = 171
+            self.state = 178
             self.stateVerb()
-            self.state = 175
+            self.state = 182
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 491520) != 0):
-                self.state = 172
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 983040) != 0):
+                self.state = 179
                 self.modifier()
-                self.state = 177
+                self.state = 184
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -1593,7 +1618,7 @@ class CNLParser ( Parser ):
         self.enterRule(localctx, 44, self.RULE_conditionObject)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 178
+            self.state = 185
             self.assetName()
         except RecognitionException as re:
             localctx.exception = re
@@ -1642,19 +1667,19 @@ class CNLParser ( Parser ):
         localctx = CNLParser.StateVerbContext(self, self._ctx, self.state)
         self.enterRule(localctx, 46, self.RULE_stateVerb)
         try:
-            self.state = 183
+            self.state = 190
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [14]:
+            if token in [15]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 180
+                self.state = 187
                 self.match(CNLParser.IS)
-                self.state = 181
+                self.state = 188
                 self.match(CNLParser.IDENTIFIER)
                 pass
-            elif token in [21]:
+            elif token in [22]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 182
+                self.state = 189
                 self.match(CNLParser.IDENTIFIER)
                 pass
             else:
@@ -1705,7 +1730,7 @@ class CNLParser ( Parser ):
         self.enterRule(localctx, 48, self.RULE_pastParticiple)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 185
+            self.state = 192
             self.match(CNLParser.IDENTIFIER)
         except RecognitionException as re:
             localctx.exception = re
@@ -1756,9 +1781,9 @@ class CNLParser ( Parser ):
         self.enterRule(localctx, 50, self.RULE_location)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 187
+            self.state = 194
             self.match(CNLParser.IN)
-            self.state = 188
+            self.state = 195
             self.assetName()
         except RecognitionException as re:
             localctx.exception = re
@@ -1809,9 +1834,9 @@ class CNLParser ( Parser ):
         self.enterRule(localctx, 52, self.RULE_destination)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 190
+            self.state = 197
             self.match(CNLParser.TO)
-            self.state = 191
+            self.state = 198
             self.assetName()
         except RecognitionException as re:
             localctx.exception = re
@@ -1864,21 +1889,21 @@ class CNLParser ( Parser ):
         localctx = CNLParser.SourceContext(self, self._ctx, self.state)
         self.enterRule(localctx, 54, self.RULE_source)
         try:
-            self.state = 197
+            self.state = 204
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [17]:
+            if token in [18]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 193
+                self.state = 200
                 self.match(CNLParser.BY)
-                self.state = 194
+                self.state = 201
                 self.assetName()
                 pass
-            elif token in [18]:
+            elif token in [19]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 195
+                self.state = 202
                 self.match(CNLParser.FROM)
-                self.state = 196
+                self.state = 203
                 self.assetName()
                 pass
             else:
@@ -1933,9 +1958,9 @@ class CNLParser ( Parser ):
         self.enterRule(localctx, 56, self.RULE_detectionBlock)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 199
+            self.state = 206
             self.match(CNLParser.DETECTION)
-            self.state = 200
+            self.state = 207
             self.detectionExpr()
         except RecognitionException as re:
             localctx.exception = re
@@ -1972,6 +1997,12 @@ class CNLParser ( Parser ):
             else:
                 return self.getToken(CNLParser.OR, i)
 
+        def XOR(self, i:int=None):
+            if i is None:
+                return self.getTokens(CNLParser.XOR)
+            else:
+                return self.getToken(CNLParser.XOR, i)
+
         def getRuleIndex(self):
             return CNLParser.RULE_detectionExpr
 
@@ -1999,22 +2030,22 @@ class CNLParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 202
+            self.state = 209
             self.eventRef()
-            self.state = 207
+            self.state = 214
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==8 or _la==9:
-                self.state = 203
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 1792) != 0):
+                self.state = 210
                 _la = self._input.LA(1)
-                if not(_la==8 or _la==9):
+                if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 1792) != 0)):
                     self._errHandler.recoverInline(self)
                 else:
                     self._errHandler.reportMatch(self)
                     self.consume()
-                self.state = 204
+                self.state = 211
                 self.eventRef()
-                self.state = 209
+                self.state = 216
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 

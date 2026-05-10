@@ -43,7 +43,7 @@ eventStatement
     ;
 
 givenClause
-    : GIVEN givenItem ((AND givenItem)* | (OR givenItem)*)
+    : GIVEN givenItem ((AND givenItem)* | (OR givenItem)* | (XOR givenItem)* )
     ;
 
 givenItem
@@ -105,7 +105,7 @@ detectionBlock
     ;
 
 detectionExpr
-    : eventRef ((AND | OR) eventRef)*
+    : eventRef ((AND | OR | XOR) eventRef)*
     ;
 
 ESC
@@ -120,6 +120,7 @@ WHEN        : 'When';
 THEN        : 'Then';
 AND         : 'And';
 OR          : 'Or';
+XOR         : 'Xor';
 COLON       : ':';
 AS          : 'as';
 BACKGROUND  : 'Background';
