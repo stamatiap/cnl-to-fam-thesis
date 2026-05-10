@@ -68,6 +68,8 @@ class Translator:
                 operators.append(LogicalOperatorType.AND)
             elif op == LogicalOperatorType.OR.value:
                 operators.append(LogicalOperatorType.OR)
+            elif op == LogicalOperatorType.XOR.value:
+                operators.append(LogicalOperatorType.XOR)
             else:
                 operators.append(None)
 
