@@ -81,6 +81,8 @@ class Visitor(CNLVisitor):
                 operators.append("AND")
             elif ctx.OR(i):
                 operators.append("OR")
+            elif ctx.XOR(i):
+                operators.append("XOR")
         
         given_items = [self.visitGivenItem(item) for item in items]
         
@@ -129,6 +131,8 @@ class Visitor(CNLVisitor):
                 operators.append("AND")
             elif ctx.OR(i):
                 operators.append("OR")
+            elif ctx.XOR(i):
+                operators.append("XOR")
             
         return {
             "events": event_refs,

@@ -9,3 +9,4 @@ class ModifierType(Enum):
 class LogicalOperatorType(Enum):
     AND = "AND"
     OR = "OR"
+    XOR = "XOR"
