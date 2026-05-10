@@ -6,33 +6,34 @@ Given browser as B
 And folder as AppData
 And folder as Temp
 And process as P
-And file as F1
-And file as F2
+And file as F
 
 Event 1
 Given B is active
-When B spawns new P
-Then P is spawned
+When B spawns P
+Then P is active
 
 Event 2
-Given Event 1
-When P creates new F1 in AppData
-Then F1 is created in AppData
+Given P is active
+When P creates F in AppData
+Then F exists in AppData And P is active
 
 Event 3
-Given Event 1
-When P creates new F2 in Temp
-Then F2 is created in Temp
+Given P is active
+When P creates F in Temp
+Then F exists in Temp And P is active
 
 Event 4
-Given Event 2
-When P executes F1
-Then F1 is executed by P
-
+Given F exists in AppData
+And P is active
+When P executes F in AppData
+Then F is active
+ 
 Event 5
-Given Event 3
-When P executes F2
-Then F2 is executed by P
+Given F exists in Temp
+And P is active
+When P executes F in Temp
+Then F is active
 
 Detection
 Event 4 Or Event 5
