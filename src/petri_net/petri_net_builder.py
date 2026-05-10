@@ -36,14 +36,18 @@ class PetriNetBuilder:
         for condition in first_event.preconditions:
             place_name = self._get_place_name(condition)
             place = self.places.get(place_name)
-            if place:
-                initial_marking[place] = 1
 
         # final marking
         final_marking = Marking()
         #final_marking[final_place] = 1
 
         return self.net, initial_marking, final_marking
+    
+    def _arc_exists(self, source, target) -> bool:
+        for arc in self.net.arcs:
+            if arc.source == source and arc.target == target:
+                return True
+        return False
 
     def _add_event(self, event: Event) -> None:
         transition_name = f"{event.action.actor.name}_{event.action.action_verb}_{event.action.object.name}"
@@ -54,16 +58,20 @@ class PetriNetBuilder:
 
         if event.precondition_operators and all(op == LogicalOperatorType.OR for op in event.precondition_operators):
             # OR — create silent transitions and shared or_place
-            or_place = self._get_or_create_place(f"or_input_{transition_name}")
+            or_key = "or_" + "_".join(sorted(self._get_place_name(c) for c in event.preconditions))
+            or_place = self._get_or_create_place(or_key)
+            # or_place = self._get_or_create_place(f"or_input_{transition_name}")
             petri_utils.add_arc_from_to(or_place, transition, self.net)
-
-            for i, condition in enumerate(event.preconditions):
+            
+            for condition in event.preconditions:
                 place_name = self._get_place_name(condition)
                 place = self._get_or_create_place(place_name)
-                # fix: unique silent transition name per event and condition
-                silent = self._get_or_create_transition(f"τ_{transition_name}_{i}", label=None)
-                petri_utils.add_arc_from_to(place, silent, self.net)
-                petri_utils.add_arc_from_to(silent, or_place, self.net)
+                silent = self._get_or_create_transition(f"τ_{place_name}", label=None)
+                
+                if not self._arc_exists(place, silent):
+                    petri_utils.add_arc_from_to(place, silent, self.net)
+                if not self._arc_exists(silent, or_place):
+                    petri_utils.add_arc_from_to(silent, or_place, self.net)
         else:
             # AND — connect all places directly to transition
             for condition in event.preconditions:
@@ -83,19 +91,25 @@ class PetriNetBuilder:
 
     def _add_detection(self, detection: Detection, final_place: PetriNet.Place) -> None:
         if detection.operators and all(op == LogicalOperatorType.OR for op in detection.operators):
-            # OR — each final event connects via silent transition to final place
+            # OR — each postcondition place gets its own silent transition to final place
             for event_ref in detection.event_refs:
                 post_places = self._get_postcondition_place(event_ref.id)
                 for post_place in post_places:
-                    silent = self._get_or_create_transition(f"τ_end_{event_ref.id}", label=None)
-                    petri_utils.add_arc_from_to(post_place, silent, self.net)
-                    petri_utils.add_arc_from_to(silent, final_place, self.net)
+                    silent = self._get_or_create_transition(f"τ_detect_{post_place.name}", label=None)
+                    if not self._arc_exists(post_place, silent):
+                        petri_utils.add_arc_from_to(post_place, silent, self.net)
+                    if not self._arc_exists(silent, final_place):
+                        petri_utils.add_arc_from_to(silent, final_place, self.net)
         else:
-            # AND — all final event postcondition places connect directly to final place
+            # AND (or single event) — all postcondition places feed into one shared silent transition
+            silent = self._get_or_create_transition("τ_detect_and", label=None)
             for event_ref in detection.event_refs:
                 post_places = self._get_postcondition_place(event_ref.id)
                 for post_place in post_places:
-                    petri_utils.add_arc_from_to(post_place, final_place, self.net)
+                    if not self._arc_exists(post_place, silent):
+                        petri_utils.add_arc_from_to(post_place, silent, self.net)
+            if not self._arc_exists(silent, final_place):
+                petri_utils.add_arc_from_to(silent, final_place, self.net)
 
     def _get_postcondition_place(self, event_id: str) -> list[PetriNet.Place]:
         return self.event_postcondition_places.get(event_id, [])
