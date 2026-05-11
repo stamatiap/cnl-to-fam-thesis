@@ -57,11 +57,11 @@ class PetriNetBuilder:
         transition = self._get_or_create_transition(transition_name)
 
         if event.precondition_operators and all(op == LogicalOperatorType.XOR for op in event.precondition_operators):
-            # OR — create silent transitions and shared or_place
-            or_key = "or_" + "_".join(sorted(self._get_place_name(c) for c in event.preconditions))
-            or_place = self._get_or_create_place(or_key)
-            # or_place = self._get_or_create_place(f"or_input_{transition_name}")
-            petri_utils.add_arc_from_to(or_place, transition, self.net)
+            # XOR — create silent transitions and shared xor_place
+            xor_key = "xor_" + "_".join(sorted(self._get_place_name(c) for c in event.preconditions))
+            xor_place = self._get_or_create_place(xor_key)
+            # xor_place = self._get_or_create_place(f"xor_input_{transition_name}")
+            petri_utils.add_arc_from_to(xor_place, transition, self.net)
             
             for condition in event.preconditions:
                 place_name = self._get_place_name(condition)
@@ -70,8 +70,8 @@ class PetriNetBuilder:
                 
                 if not self._arc_exists(place, silent):
                     petri_utils.add_arc_from_to(place, silent, self.net)
-                if not self._arc_exists(silent, or_place):
-                    petri_utils.add_arc_from_to(silent, or_place, self.net)
+                if not self._arc_exists(silent, xor_place):
+                    petri_utils.add_arc_from_to(silent, xor_place, self.net)
         else:
             # AND — connect all places directly to transition
             for condition in event.preconditions:
@@ -90,8 +90,8 @@ class PetriNetBuilder:
         self.event_postcondition_places[event.id] = post_places
 
     def _add_detection(self, detection: Detection, final_place: PetriNet.Place) -> None:
-        if detection.operators and all(op == LogicalOperatorType.OR for op in detection.operators):
-            # OR — each postcondition place gets its own silent transition to final place
+        if detection.operators and all(op == LogicalOperatorType.XOR for op in detection.operators):
+            # XOR — each postcondition place gets its own silent transition to final place
             for event_ref in detection.event_refs:
                 post_places = self._get_postcondition_place(event_ref.id)
                 for post_place in post_places:
