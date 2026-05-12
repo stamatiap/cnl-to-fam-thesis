@@ -1,43 +1,33 @@
 Tactic: TA0002 Execution
-Technique: T1059.003 Windows_Command_Shell
+Technique: T1059.003 Command_and_Scripting_Interpreter_Windows_Command_Shell
 
 Background
-Given process as P
+Given process as unusual_process
 And process as cmd_exe
-And script as batch_script
-And file as remote_file
-And file as local_file
-And network_connection as connection
+And file as batch_file
+And process as shell
+And message as cmd_parameters
+And user as User
 
 Event 1
-Given P is active
-When P spawns new cmd_exe
-Then cmd_exe is spawned by P
+Given unusual_process is active
+When unusual_process spawns cmd_exe
+Then cmd_exe is active
 
 Event 2
-Given Event 1
-When cmd_exe executes batch_script
-Then batch_script is executed by cmd_exe
+Given cmd_exe is active And batch_file exists
+When cmd_exe executes batch_file
+Then batch_file is executed
 
 Event 3
-Given Event 1
-When cmd_exe requests remote_file from connection
-Then remote_file is requested by cmd_exe
+Given unusual_process is active
+When unusual_process spawns shell
+Then shell is active
 
 Event 4
-Given Event 3
-When cmd_exe executes remote_file
-Then remote_file is executed by cmd_exe
-
-Event 5
-Given Event 1
-When cmd_exe creates new local_file
-Then local_file is created by cmd_exe
-
-Event 6
-Given Event 5
-When cmd_exe executes local_file
-Then local_file is executed by cmd_exe
+Given shell is active And batch_file exists
+When shell executes batch_file
+Then batch_file is executed
 
 Detection
-Event 2 Or Event 4 Or Event 6
+Event 2 Xor Event 4

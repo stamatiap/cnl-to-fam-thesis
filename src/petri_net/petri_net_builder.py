@@ -119,6 +119,12 @@ class PetriNetBuilder:
         for modifier in condition.modifiers or []:
             if modifier.type == ModifierType.LOCATION:
                 name += f"_in_{modifier.value.name}"
+            elif modifier.type == ModifierType.DESTINATION:
+                name += f"_to_{modifier.value.name}"
+            elif modifier.type == ModifierType.SOURCE_BY:
+                name += f"_by_{modifier.value.name}"
+            elif modifier.type == ModifierType.SOURCE_FROM:
+                name += f"_from_{modifier.value.name}"
         return name
 
     def _get_or_create_place(self, name: str) -> PetriNet.Place:

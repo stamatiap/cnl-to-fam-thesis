@@ -30,4 +30,4 @@ When P modifies registry_keys
 Then registry_keys is modified
 
 Detection
-Event 3 Or Event 4
+Event 3 Xor Event 4
