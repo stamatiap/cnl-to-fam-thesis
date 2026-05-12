@@ -5,7 +5,7 @@ attack
     ;
 
 header
-    : tactic technique
+    : tactics technique
     ;
 
 background
@@ -23,8 +23,12 @@ assetDefinition
 assetType: IDENTIFIER ;
 assetName: IDENTIFIER ;
 
+tactics
+    :  TACTICS COLON tactic (COMMA tactic)*
+    ;
+
 tactic
-    : TACTIC COLON TACTIC_ID IDENTIFIER  
+    : TACTIC_ID IDENTIFIER  
     ;
 
 technique
@@ -124,7 +128,7 @@ ESC
     : '\\' ["\\/bfnrt] ;
 
 // Keywords
-TACTIC      : 'Tactic';
+TACTICS     : 'Tactics';
 TECHNIQUE   : 'Technique';
 EVENT       : 'Event';
 GIVEN       : 'Given';
@@ -144,6 +148,7 @@ BY          : 'by';
 FROM        : 'from';
 LOCATED_AT  : 'located_at';
 DURING      : 'during';
+COMMA       : ',';
 
 
 TACTIC_ID

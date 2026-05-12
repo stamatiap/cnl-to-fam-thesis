@@ -147,9 +147,13 @@ class Visitor(CNLVisitor):
         return ctx.DIGIT().getText()
     
     def visitHeader(self, ctx: CNLParser.HeaderContext):
-        tactic = self.visitTactic(ctx.tactic())
+        tactics = self.visitTactics(ctx.tactics())
         technique = self.visitTechnique(ctx.technique())
-        return {**tactic, **technique}
+        return {**tactics, **technique}
+
+    def visitTactics(self, ctx: CNLParser.TacticsContext):
+        entries = [self.visitTactic(e) for e in ctx.tactic()]
+        return {"tactics": entries}
 
     def visitTactic(self, ctx: CNLParser.TacticContext):
         return {

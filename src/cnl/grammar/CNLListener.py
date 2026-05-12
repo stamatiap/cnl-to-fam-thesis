@@ -71,6 +71,15 @@ class CNLListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by CNLParser#tactics.
+    def enterTactics(self, ctx:CNLParser.TacticsContext):
+        pass
+
+    # Exit a parse tree produced by CNLParser#tactics.
+    def exitTactics(self, ctx:CNLParser.TacticsContext):
+        pass
+
+
     # Enter a parse tree produced by CNLParser#tactic.
     def enterTactic(self, ctx:CNLParser.TacticContext):
         pass
