@@ -31,6 +31,10 @@ class Visitor(CNLVisitor):
                 return ("source_by", source.assetName().getText())
             elif source.FROM():
                 return ("source_from", source.assetName().getText())
+        elif ctx.timing():
+            return ("timing", ctx.timing().timeWindow().getText())
+        elif ctx.geolocation():
+            return ("geolocation", ctx.geolocation().geo_location().getText())
 
     def visitAction(self, ctx: CNLParser.ActionContext):
         action_verb = ctx.actionVerb().getText()

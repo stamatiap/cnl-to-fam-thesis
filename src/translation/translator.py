@@ -26,11 +26,21 @@ class Translator:
             mod_type = ModifierType.SOURCE_BY
         elif modifier[0] == 'source_from':
             mod_type = ModifierType.SOURCE_FROM
+        elif modifier[0] == 'timing':
+            mod_type = ModifierType.TIMING
+        elif modifier[0] == 'geolocation':
+            mod_type = ModifierType.GEOLOCATION
         
-        return Modifier(
-            type = mod_type,
-            value = self.create_asset(modifier[1])
-        )
+        if modifier[0] in ['location', 'destination', 'source_by', 'source_from']:
+            return Modifier(
+                type = mod_type,
+                value = self.create_asset(modifier[1])
+            )
+        else:
+            return Modifier(
+                type = mod_type,
+                value = modifier[1]
+            )
 
     def create_asset(self, asset_name: str) -> Asset:
         asset_type_str = self.assets.get(asset_name, None)

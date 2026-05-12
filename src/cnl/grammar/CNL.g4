@@ -74,6 +74,8 @@ modifier
     : location
     | destination
     | source
+    | timing
+    | geolocation
     ;
 
 thenClause
@@ -98,6 +100,16 @@ pastParticiple
 location : IN assetName;
 destination : TO assetName;
 source : BY assetName | FROM assetName;
+timing: DURING timeWindow;
+geolocation: LOCATED_AT geo_location;
+
+timeWindow
+    : IDENTIFIER
+    ;
+
+geo_location
+    : IDENTIFIER
+    ;
 
 
 detectionBlock
@@ -130,6 +142,8 @@ IN          : 'in';
 TO          : 'to';
 BY          : 'by';
 FROM        : 'from';
+LOCATED_AT  : 'located_at';
+DURING      : 'during';
 
 
 TACTIC_ID

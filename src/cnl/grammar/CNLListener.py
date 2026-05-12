@@ -260,6 +260,42 @@ class CNLListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by CNLParser#timing.
+    def enterTiming(self, ctx:CNLParser.TimingContext):
+        pass
+
+    # Exit a parse tree produced by CNLParser#timing.
+    def exitTiming(self, ctx:CNLParser.TimingContext):
+        pass
+
+
+    # Enter a parse tree produced by CNLParser#geolocation.
+    def enterGeolocation(self, ctx:CNLParser.GeolocationContext):
+        pass
+
+    # Exit a parse tree produced by CNLParser#geolocation.
+    def exitGeolocation(self, ctx:CNLParser.GeolocationContext):
+        pass
+
+
+    # Enter a parse tree produced by CNLParser#timeWindow.
+    def enterTimeWindow(self, ctx:CNLParser.TimeWindowContext):
+        pass
+
+    # Exit a parse tree produced by CNLParser#timeWindow.
+    def exitTimeWindow(self, ctx:CNLParser.TimeWindowContext):
+        pass
+
+
+    # Enter a parse tree produced by CNLParser#geo_location.
+    def enterGeo_location(self, ctx:CNLParser.Geo_locationContext):
+        pass
+
+    # Exit a parse tree produced by CNLParser#geo_location.
+    def exitGeo_location(self, ctx:CNLParser.Geo_locationContext):
+        pass
+
+
     # Enter a parse tree produced by CNLParser#detectionBlock.
     def enterDetectionBlock(self, ctx:CNLParser.DetectionBlockContext):
         pass
