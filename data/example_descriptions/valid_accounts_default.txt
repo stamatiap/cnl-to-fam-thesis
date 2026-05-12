@@ -1,0 +1,33 @@
+Tactic: TA0001 Initial_Access
+Technique: T1078.001 Valid_Accounts_Default_Accounts
+
+Background
+Given account as Guest_account
+And account as Administrator_account
+And user as Remote_user
+And user as Local_user
+And operating_system as System
+
+Event 1
+Given System is active
+When Remote_user log_ons Guest_account
+Then Guest_account is active
+
+Event 2
+Given System is active
+When Remote_user log_ons Administrator_account
+Then Administrator_account is active
+
+Event 3
+Given System is active
+When Local_user log_ons Guest_account
+Then Guest_account is active
+
+Event 4
+Given System is active
+When Local_user log_ons Administrator_account
+Then Administrator_account is active
+
+
+Detection
+Event 1 Xor Event 2 Xor Event 3 Xor Event 4
