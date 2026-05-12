@@ -36,29 +36,29 @@ When Windows recognizes BD
 Then BD is active
 
 Event 5
-Given USB_device is active Or Thunderbolt_device is active Or PCIe_device is active Or BD is active
+Given USB_device is active Xor Thunderbolt_device is active Xor PCIe_device is active Xor BD is active
 When User spawns P1
 Then P1 is active
 
 Event 6
-Given USB_device is active Or Thunderbolt_device is active Or PCIe_device is active Or BD is active
+Given USB_device is active Xor Thunderbolt_device is active Xor PCIe_device is active Xor BD is active
 When Windows mounts V
 Then V is mounted
 
 Event 7
-Given P1 is active Or V is mounted
+Given P1 is active Xor V is mounted
 When Windows receives HID_keystroke
 Then HID_keystroke is received
 
 Event 8
-Given P1 is active Or V is mounted
+Given P1 is active Xor V is mounted
 When Windows loads DMA_driver
 Then DMA_driver is loaded
 
 Event 9
-Given P1 is active Or V is mounted
+Given P1 is active Xor V is mounted
 When DHCP receives MAC
 Then MAC is received
 
 Detection
-Event 7 Or Event 8 Or Event 9
+Event 7 Xor Event 8 Xor Event 9

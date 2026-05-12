@@ -36,4 +36,4 @@ When P executes F in Temp
 Then F is active
 
 Detection
-Event 4 Or Event 5
+Event 4 Xor Event 5
