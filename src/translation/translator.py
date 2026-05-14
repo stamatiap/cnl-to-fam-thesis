@@ -26,8 +26,6 @@ class Translator:
             mod_type = ModifierType.SOURCE_BY
         elif modifier[0] == 'source_from':
             mod_type = ModifierType.SOURCE_FROM
-        elif modifier[0] == 'timing':
-            mod_type = ModifierType.TIMING
         elif modifier[0] == 'geolocation':
             mod_type = ModifierType.GEOLOCATION
         
@@ -101,6 +99,7 @@ class Translator:
             precondition_operators = precondition_operators,
             postconditions = postconditions,
             postcondition_operators = postcondition_operators,
+            timing = event.get('timing', None)
 
         )
     

@@ -37,7 +37,7 @@ technique
 
 eventBlock
     : EVENT DIGIT 
-      eventStatement
+      eventStatement timing?
     ;
 
 eventStatement
@@ -78,7 +78,6 @@ modifier
     : location
     | destination
     | source
-    | timing
     | geolocation
     ;
 
@@ -147,7 +146,7 @@ TO          : 'to';
 BY          : 'by';
 FROM        : 'from';
 LOCATED_AT  : 'located_at';
-DURING      : 'during';
+DURING      : 'During';
 COMMA       : ',';
 
 

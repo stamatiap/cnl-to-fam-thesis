@@ -31,10 +31,13 @@ class Visitor(CNLVisitor):
                 return ("source_by", source.assetName().getText())
             elif source.FROM():
                 return ("source_from", source.assetName().getText())
-        elif ctx.timing():
-            return ("timing", ctx.timing().timeWindow().getText())
         elif ctx.geolocation():
             return ("geolocation", ctx.geolocation().geo_location().getText())
+
+    def visitTiming(self, ctx: CNLParser.TimingContext):
+        if ctx is None:
+            return None
+        return ctx.timeWindow().getText()
 
     def visitAction(self, ctx: CNLParser.ActionContext):
         action_verb = ctx.actionVerb().getText()
@@ -107,9 +110,11 @@ class Visitor(CNLVisitor):
     def visitEventBlock(self, ctx: CNLParser.EventBlockContext):
         event_number = ctx.DIGIT().getText()
         statement = self.visitEventStatement(ctx.eventStatement())
+        timing = self.visitTiming(ctx.timing())
         return {
             "event_number": event_number,
-            **statement
+            **statement,
+            "timing": timing,
         }
 
     def visitEventStatement(self, ctx: CNLParser.EventStatementContext):

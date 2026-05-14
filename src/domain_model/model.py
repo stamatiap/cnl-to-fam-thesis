@@ -34,6 +34,7 @@ class Event:
     precondition_operators: list[LogicalOperatorType]
     postconditions: list[StateCondition]
     postcondition_operators: list[LogicalOperatorType]
+    timing: str = None
 
 @dataclass
 class Detection:
