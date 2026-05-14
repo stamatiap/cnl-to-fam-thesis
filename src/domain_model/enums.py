@@ -5,6 +5,8 @@ class ModifierType(Enum):
     DESTINATION = "to"
     SOURCE_BY = "by"
     SOURCE_FROM = "from"
+    TIMING = "during"
+    GEOLOCATION = "located_at"
 
 class LogicalOperatorType(Enum):
     AND = "AND"

@@ -34,6 +34,7 @@ class Event:
     precondition_operators: list[LogicalOperatorType]
     postconditions: list[StateCondition]
     postcondition_operators: list[LogicalOperatorType]
+    timing: str = None
 
 @dataclass
 class Detection:
@@ -41,11 +42,15 @@ class Detection:
     operators: list[LogicalOperatorType]
 
 @dataclass
+class Tactic:
+    id: str
+    name: str
+
+@dataclass
 class TechniqueModel:
     id: str
     name: str
-    tactic: str
-    tactic_id: str
+    tactics: list[Tactic]
     events: list[Event]
     detection: Detection
 

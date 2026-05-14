@@ -44,6 +44,11 @@ class CNLVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by CNLParser#tactics.
+    def visitTactics(self, ctx:CNLParser.TacticsContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by CNLParser#tactic.
     def visitTactic(self, ctx:CNLParser.TacticContext):
         return self.visitChildren(ctx)
@@ -146,6 +151,26 @@ class CNLVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by CNLParser#source.
     def visitSource(self, ctx:CNLParser.SourceContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#timing.
+    def visitTiming(self, ctx:CNLParser.TimingContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#geolocation.
+    def visitGeolocation(self, ctx:CNLParser.GeolocationContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#timeWindow.
+    def visitTimeWindow(self, ctx:CNLParser.TimeWindowContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#geo_location.
+    def visitGeo_location(self, ctx:CNLParser.Geo_locationContext):
         return self.visitChildren(ctx)
 
 

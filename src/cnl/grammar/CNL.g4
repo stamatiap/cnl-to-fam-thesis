@@ -5,7 +5,7 @@ attack
     ;
 
 header
-    : tactic technique
+    : tactics technique
     ;
 
 background
@@ -23,8 +23,12 @@ assetDefinition
 assetType: IDENTIFIER ;
 assetName: IDENTIFIER ;
 
+tactics
+    :  TACTICS COLON tactic (COMMA tactic)*
+    ;
+
 tactic
-    : TACTIC COLON TACTIC_ID IDENTIFIER  
+    : TACTIC_ID IDENTIFIER  
     ;
 
 technique
@@ -33,7 +37,7 @@ technique
 
 eventBlock
     : EVENT DIGIT 
-      eventStatement
+      eventStatement timing?
     ;
 
 eventStatement
@@ -74,6 +78,7 @@ modifier
     : location
     | destination
     | source
+    | geolocation
     ;
 
 thenClause
@@ -98,6 +103,16 @@ pastParticiple
 location : IN assetName;
 destination : TO assetName;
 source : BY assetName | FROM assetName;
+timing: DURING timeWindow;
+geolocation: LOCATED_AT geo_location;
+
+timeWindow
+    : IDENTIFIER
+    ;
+
+geo_location
+    : IDENTIFIER
+    ;
 
 
 detectionBlock
@@ -112,7 +127,7 @@ ESC
     : '\\' ["\\/bfnrt] ;
 
 // Keywords
-TACTIC      : 'Tactic';
+TACTICS     : 'Tactics';
 TECHNIQUE   : 'Technique';
 EVENT       : 'Event';
 GIVEN       : 'Given';
@@ -130,6 +145,9 @@ IN          : 'in';
 TO          : 'to';
 BY          : 'by';
 FROM        : 'from';
+LOCATED_AT  : 'located_at';
+DURING      : 'During';
+COMMA       : ',';
 
 
 TACTIC_ID

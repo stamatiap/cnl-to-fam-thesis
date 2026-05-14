@@ -31,6 +31,13 @@ class Visitor(CNLVisitor):
                 return ("source_by", source.assetName().getText())
             elif source.FROM():
                 return ("source_from", source.assetName().getText())
+        elif ctx.geolocation():
+            return ("geolocation", ctx.geolocation().geo_location().getText())
+
+    def visitTiming(self, ctx: CNLParser.TimingContext):
+        if ctx is None:
+            return None
+        return ctx.timeWindow().getText()
 
     def visitAction(self, ctx: CNLParser.ActionContext):
         action_verb = ctx.actionVerb().getText()
@@ -103,9 +110,11 @@ class Visitor(CNLVisitor):
     def visitEventBlock(self, ctx: CNLParser.EventBlockContext):
         event_number = ctx.DIGIT().getText()
         statement = self.visitEventStatement(ctx.eventStatement())
+        timing = self.visitTiming(ctx.timing())
         return {
             "event_number": event_number,
-            **statement
+            **statement,
+            "timing": timing,
         }
 
     def visitEventStatement(self, ctx: CNLParser.EventStatementContext):
@@ -143,9 +152,13 @@ class Visitor(CNLVisitor):
         return ctx.DIGIT().getText()
     
     def visitHeader(self, ctx: CNLParser.HeaderContext):
-        tactic = self.visitTactic(ctx.tactic())
+        tactics = self.visitTactics(ctx.tactics())
         technique = self.visitTechnique(ctx.technique())
-        return {**tactic, **technique}
+        return {**tactics, **technique}
+
+    def visitTactics(self, ctx: CNLParser.TacticsContext):
+        entries = [self.visitTactic(e) for e in ctx.tactic()]
+        return {"tactics": entries}
 
     def visitTactic(self, ctx: CNLParser.TacticContext):
         return {

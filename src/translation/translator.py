@@ -26,11 +26,19 @@ class Translator:
             mod_type = ModifierType.SOURCE_BY
         elif modifier[0] == 'source_from':
             mod_type = ModifierType.SOURCE_FROM
+        elif modifier[0] == 'geolocation':
+            mod_type = ModifierType.GEOLOCATION
         
-        return Modifier(
-            type = mod_type,
-            value = self.create_asset(modifier[1])
-        )
+        if modifier[0] in ['location', 'destination', 'source_by', 'source_from']:
+            return Modifier(
+                type = mod_type,
+                value = self.create_asset(modifier[1])
+            )
+        else:
+            return Modifier(
+                type = mod_type,
+                value = modifier[1]
+            )
 
     def create_asset(self, asset_name: str) -> Asset:
         asset_type_str = self.assets.get(asset_name, None)
@@ -91,6 +99,7 @@ class Translator:
             precondition_operators = precondition_operators,
             postconditions = postconditions,
             postcondition_operators = postcondition_operators,
+            timing = event.get('timing', None)
 
         )
     
@@ -107,12 +116,13 @@ class Translator:
         self.assets = parsed_data.get('assets', {})
         event_objects = [self.create_event(event) for event in parsed_data.get('events', [])]
         detection = self.create_detection(parsed_data.get('detection', []), event_objects)
+        tactics = [Tactic(id=t["tactic_id"], name=t["tactic_name"]) for t in parsed_data.get("tactics", [])]
+
         return TechniqueModel(
             id=parsed_data.get("technique_id", ""),
             name=parsed_data.get("technique_name", ""),
-            tactic=parsed_data.get("tactic_name", ""),
-            tactic_id=parsed_data.get("tactic_id", ""),
-            events= event_objects,
+            tactics=tactics,
+            events=event_objects,
             detection=detection
         )
     
