@@ -1,0 +1,28 @@
+Tactic: TA0002 Execution
+Technique: T1053 Scheduled_Task_Job
+
+Background
+Given process as at_exe
+And process as ScheduledTask
+And user as User
+And process as svchost_exe
+And process as taskeng_exe
+And process as AnomalousProcess
+
+Event 1
+Given at_exe is active
+When User creates ScheduledTask
+Then ScheduledTask is created
+
+Event 2
+Given ScheduledTask is created And svchost_exe is active
+When svchost_exe executes ScheduledTask
+Then ScheduledTask is active
+
+Event 3
+Given ScheduledTask is created And taskeng_exe is active
+When taskeng_exe executes ScheduledTask
+Then ScheduledTask is active
+
+Detection
+Event 2 Xor Event 3
