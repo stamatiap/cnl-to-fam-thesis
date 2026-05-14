@@ -7,12 +7,11 @@ And process as cmd_exe
 And file as batch_file
 And process as shell
 And message as cmd_parameters
-And user as User
 
 Event 1
 Given unusual_process is active
 When unusual_process spawns cmd_exe
-Then cmd_exe is active
+Then cmd_exe is active And unusual_process is active
 
 Event 2
 Given cmd_exe is active And batch_file exists
@@ -22,7 +21,7 @@ Then batch_file is executed
 Event 3
 Given unusual_process is active
 When unusual_process spawns shell
-Then shell is active
+Then shell is active And unusual_process is active
 
 Event 4
 Given shell is active And batch_file exists

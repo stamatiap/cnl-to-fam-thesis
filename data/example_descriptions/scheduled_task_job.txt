@@ -1,5 +1,5 @@
 Tactic: TA0002 Execution
-Technique: T1078.002 Scheduled_Task_Job
+Technique: T1053 Scheduled_Task_Job
 
 Background
 Given process as schtasks_exe

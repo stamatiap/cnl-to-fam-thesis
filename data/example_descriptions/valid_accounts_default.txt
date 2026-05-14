@@ -12,21 +12,25 @@ Event 1
 Given System is active
 When Remote_user log_ons Guest_account
 Then Guest_account is active
+During outside_installation_or_maintenance_window
 
 Event 2
 Given System is active
 When Remote_user log_ons Administrator_account
 Then Administrator_account is active
+During outside_installation_or_maintenance_window
 
 Event 3
 Given System is active
 When Local_user log_ons Guest_account
 Then Guest_account is active
+During outside_installation_or_maintenance_window
 
 Event 4
 Given System is active
 When Local_user log_ons Administrator_account
 Then Administrator_account is active
+During outside_installation_or_maintenance_window
 
 
 Detection
