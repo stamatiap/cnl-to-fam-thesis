@@ -5,7 +5,6 @@ from pm4py.visualization.petri_net.variants import wo_decoration
 from src.domain_model.model import TechniqueModel, Event, StateCondition, Modifier, Detection
 from src.domain_model.enums import ModifierType, LogicalOperatorType
 
-
 class PetriNetBuilder:
 
     def __init__(self):
@@ -49,11 +48,25 @@ class PetriNetBuilder:
                 return True
         return False
 
+    def _add_modifier_to_name(self, name: str, modifier: Modifier) -> str:
+        if modifier.type == ModifierType.LOCATION:
+            return f"{name}_in_{modifier.value.name}"
+        elif modifier.type == ModifierType.DESTINATION:
+            return f"{name}_to_{modifier.value.name}"
+        elif modifier.type == ModifierType.SOURCE_BY:
+            return f"{name}_by_{modifier.value.name}"
+        elif modifier.type == ModifierType.SOURCE_FROM:
+            return f"{name}_from_{modifier.value.name}"
+        elif modifier.type == ModifierType.GEOLOCATION:
+            return f"{name}_at_{modifier.value}"
+        else:
+            return name
+
     def _add_event(self, event: Event) -> None:
         transition_name = f"{event.action.actor.name}_{event.action.action_verb}_{event.action.object.name}"
         for modifier in event.action.modifiers or []:
-            if modifier.type == ModifierType.LOCATION:
-                transition_name += f"_in_{modifier.value.name}"
+            transition_name = self._add_modifier_to_name(transition_name, modifier)
+        
         transition = self._get_or_create_transition(transition_name)
 
         if event.precondition_operators and all(op == LogicalOperatorType.XOR for op in event.precondition_operators):
@@ -72,7 +85,7 @@ class PetriNetBuilder:
                     petri_utils.add_arc_from_to(place, silent, self.net)
                 if not self._arc_exists(silent, xor_place):
                     petri_utils.add_arc_from_to(silent, xor_place, self.net)
-        else:
+        elif event.precondition_operators and all(op == LogicalOperatorType.AND for op in event.precondition_operators):
             # AND — connect all places directly to transition
             for condition in event.preconditions:
                 place_name = self._get_place_name(condition)
@@ -100,7 +113,7 @@ class PetriNetBuilder:
                         petri_utils.add_arc_from_to(post_place, silent, self.net)
                     if not self._arc_exists(silent, final_place):
                         petri_utils.add_arc_from_to(silent, final_place, self.net)
-        else:
+        elif detection.operators and all(op == LogicalOperatorType.AND for op in detection.operators):
             # AND (or single event) — all postcondition places feed into one shared silent transition
             silent = self._get_or_create_transition("τ_detect_and", label=None)
             for event_ref in detection.event_refs:
@@ -117,14 +130,7 @@ class PetriNetBuilder:
     def _get_place_name(self, condition: StateCondition) -> str:
         name = f"{condition.subject.name}_{condition.subject_state}"
         for modifier in condition.modifiers or []:
-            if modifier.type == ModifierType.LOCATION:
-                name += f"_in_{modifier.value.name}"
-            elif modifier.type == ModifierType.DESTINATION:
-                name += f"_to_{modifier.value.name}"
-            elif modifier.type == ModifierType.SOURCE_BY:
-                name += f"_by_{modifier.value.name}"
-            elif modifier.type == ModifierType.SOURCE_FROM:
-                name += f"_from_{modifier.value.name}"
+            name = self._add_modifier_to_name(name, modifier)
         return name
 
     def _get_or_create_place(self, name: str) -> PetriNet.Place:
