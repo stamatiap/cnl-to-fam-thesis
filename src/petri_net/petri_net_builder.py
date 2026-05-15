@@ -5,7 +5,6 @@ from pm4py.visualization.petri_net.variants import wo_decoration
 from src.domain_model.model import TechniqueModel, Event, StateCondition, Modifier, Detection
 from src.domain_model.enums import ModifierType, LogicalOperatorType
 
-
 class PetriNetBuilder:
 
     def __init__(self):
@@ -114,7 +113,7 @@ class PetriNetBuilder:
                         petri_utils.add_arc_from_to(post_place, silent, self.net)
                     if not self._arc_exists(silent, final_place):
                         petri_utils.add_arc_from_to(silent, final_place, self.net)
-        else:
+        elif detection.operators and all(op == LogicalOperatorType.AND for op in detection.operators):
             # AND (or single event) — all postcondition places feed into one shared silent transition
             silent = self._get_or_create_transition("τ_detect_and", label=None)
             for event_ref in detection.event_refs:
