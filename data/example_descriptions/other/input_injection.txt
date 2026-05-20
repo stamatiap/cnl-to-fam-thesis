@@ -1,0 +1,30 @@
+Tactic: TA0002 Execution
+Technique: T1674 Input_Injection
+
+
+---------------- REWRITING NEEDED -------------------
+
+Background
+Given process as P
+And application as target_app
+And input as HID_keystroke
+And script as JS_payload
+And clipboard as Clipboard
+
+Event 1
+Given target_app is active
+When target_app receives HID_keystroke
+Then HID_keystroke is received
+
+Event 2
+Given Event 1
+When P sends JS_payload to Clipboard
+Then JS_payload is sent to Clipboard
+
+Event 3
+Given Event 2
+When target_app executes JS_payload from Clipboard
+Then JS_payload is executed by target_app
+
+Detection
+Event 2 Or Event 3

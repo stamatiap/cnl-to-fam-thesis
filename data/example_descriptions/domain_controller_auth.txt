@@ -1,4 +1,4 @@
-Tactic: TA0003 Persistence
+Tactics: TA0003 Persistence
 Technique: T1556.001 Modify_Authentication_Process_Domain_Controller_Authentication 
 
 Background

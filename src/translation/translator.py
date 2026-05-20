@@ -30,17 +30,20 @@ class Translator:
             mod_type = ModifierType.GEOLOCATION
         
         if modifier[0] in ['location', 'destination', 'source_by', 'source_from']:
+            # modifier references an Asset
             return Modifier(
                 type = mod_type,
                 value = self.create_asset(modifier[1])
             )
         else:
+            # modifier does not reference an Asset
             return Modifier(
                 type = mod_type,
                 value = modifier[1]
             )
 
     def create_asset(self, asset_name: str) -> Asset:
+        # get asset from declared assets and create appropriate Asset object
         asset_type_str = self.assets.get(asset_name, None)
         cls = ASSET_TYPE_MAP.get(asset_type_str.lower(), Asset)
         return cls(type=asset_type_str, name=asset_name)
@@ -86,7 +89,7 @@ class Translator:
 
     def create_event(self, event) -> Event:
         action = self.create_action(event.get('when', {}))
-        preconditions = self.create_state_conditions(event.get('given', {}).get('preconditions', []))
+        preconditions = self.create_state_conditions(event.get('given', {}).get('preconditions', []))  # currently expecting only state conditions as preconditions
         precondition_operators = self.get_logical_operators(event.get('given', {}))
         postconditions = self.create_state_conditions(event.get('then', {}).get('postconditions', []))
         postcondition_operators = self.get_logical_operators(event.get('then', {}))

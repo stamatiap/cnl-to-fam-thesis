@@ -134,11 +134,6 @@ class CNLVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by CNLParser#pastParticiple.
-    def visitPastParticiple(self, ctx:CNLParser.PastParticipleContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by CNLParser#location.
     def visitLocation(self, ctx:CNLParser.LocationContext):
         return self.visitChildren(ctx)
