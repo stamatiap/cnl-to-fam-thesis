@@ -1,0 +1,42 @@
+Tactic: TA0001 "Initial Access"
+Technique: T1189 "Drive-by Compromise"
+
+Background
+Given "browser" as "B" And "registry" as "R"
+
+Event 1
+Given "B is running"
+When "B spawns a new process P"
+Then "P is running"
+
+Event 2
+Given "B is running"
+When "B loads unsigned module M"
+Then "M is loaded"
+
+Event 3  ----------------------------------------------- (IS THIS OBSERVABLE?)
+Given "B is running"
+When "B requests enumeration of plugins"
+Then "enumeration of plugins are shown"
+
+Event 4  ---------------------------------------------- (IS THIS OBSERVABLE?)
+Given "B is running"
+When "B requests connections to suspicious domain"
+Then "B connected to suspicious domain"
+
+Event 5
+Given "Event 1" And "Event 4"
+When "P creates new file F"
+Then "F is created by P"
+Within "t time"
+
+Event 6
+Given "Event 2" And "Event 4"
+When "M creates new file F"
+Then "F is created by M"
+Within "t time"
+
+
+Event 7
+Given "Event 5" Or "Event 6"
+Then "possible attack"

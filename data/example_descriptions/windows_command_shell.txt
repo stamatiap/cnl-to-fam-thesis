@@ -1,4 +1,4 @@
-Tactic: TA0002 Execution
+Tactics: TA0002 Execution
 Technique: T1059.003 Command_and_Scripting_Interpreter_Windows_Command_Shell
 
 Background

@@ -1,4 +1,4 @@
-Tactic: TA0006 Credential_Access
+Tactics: TA0006 Credential_Access
 Technique: T1003.001 OS_Credential_Dumping_LSASS
 
 Background

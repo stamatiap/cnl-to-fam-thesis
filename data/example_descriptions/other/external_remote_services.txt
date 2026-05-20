@@ -1,0 +1,36 @@
+Tactic: TA0001 Initial_Access
+Technique: T1133 External_Remote_Services
+
+------------- REWRITING NEEDED --------------
+
+Background
+Given service as ERS
+And credentials as Credentials
+And user as U
+And tactic as Lateral_Movement
+And tactic as Exfiltration
+
+Event 1
+Given ERS is active
+And U is located in uncommon_geolocations
+When ERS rejects Credentials by U
+Then Credentials is rejected by ERS
+
+Event 2
+Given ERS is active
+And U is located in uncommon_geolocations
+When ERS accepts Credentials by U
+Then Credentials is accepted by ERS
+
+Event 3
+Given Event 1 And Event 2
+When U performs internal Lateral_Movement
+Then Lateral_Movement is performed by U
+
+Event 4
+Given Event 1 And Event 2
+When U performs external Exfiltration
+Then Exfiltration is performed by U
+
+Detection
+Event 3 Or Event 4

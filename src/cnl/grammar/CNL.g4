@@ -76,8 +76,6 @@ actionVerb
 
 modifier
     : location
-    | destination
-    | source
     | geolocation
     ;
 
@@ -96,9 +94,6 @@ stateVerb
     | IDENTIFIER
     ;
 
-pastParticiple
-    : IDENTIFIER
-    ;
 
 location : IN assetName;
 destination : TO assetName;
@@ -114,7 +109,6 @@ geo_location
     : IDENTIFIER
     ;
 
-
 detectionBlock
     : DETECTION detectionExpr
     ;
@@ -122,9 +116,6 @@ detectionBlock
 detectionExpr
     : eventRef ((AND | OR | XOR) eventRef)*
     ;
-
-ESC
-    : '\\' ["\\/bfnrt] ;
 
 // Keywords
 TACTICS     : 'Tactics';

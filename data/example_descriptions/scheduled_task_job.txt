@@ -1,4 +1,4 @@
-Tactic: TA0002 Execution
+Tactics: TA0002 Execution
 Technique: T1053 Scheduled_Task_Job
 
 Background

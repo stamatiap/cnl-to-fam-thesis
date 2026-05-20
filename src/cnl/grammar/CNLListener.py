@@ -233,15 +233,6 @@ class CNLListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by CNLParser#pastParticiple.
-    def enterPastParticiple(self, ctx:CNLParser.PastParticipleContext):
-        pass
-
-    # Exit a parse tree produced by CNLParser#pastParticiple.
-    def exitPastParticiple(self, ctx:CNLParser.PastParticipleContext):
-        pass
-
-
     # Enter a parse tree produced by CNLParser#location.
     def enterLocation(self, ctx:CNLParser.LocationContext):
         pass

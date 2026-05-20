@@ -1,4 +1,4 @@
-Tactic: TA0001 Initial_Access
+Tactics: TA0001 Initial_Access
 Technique: T1659 Content_Injection
 
 Background
