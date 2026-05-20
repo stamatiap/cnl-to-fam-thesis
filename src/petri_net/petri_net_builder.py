@@ -4,6 +4,7 @@ from pm4py.visualization.petri_net import visualizer as pn_visualizer
 from pm4py.visualization.petri_net.variants import wo_decoration
 from src.domain_model.model import TechniqueModel, Event, StateCondition, Modifier, Detection
 from src.domain_model.enums import ModifierType, LogicalOperatorType
+from itertools import permutations
 
 class PetriNetBuilder:
 
@@ -69,7 +70,115 @@ class PetriNetBuilder:
         
         transition = self._get_or_create_transition(transition_name)
 
-        if event.precondition_operators and all(op == LogicalOperatorType.XOR for op in event.precondition_operators):
+        if event.precondition_operators  and all(op == LogicalOperatorType.OR for op in event.precondition_operators):
+            #OR - get all transitions that produce the precondition places
+            previous_transitions = []
+            for condition in event.preconditions:
+                place_name = self._get_place_name(condition)
+                place = self._get_or_create_place(place_name)
+                if not self._arc_exists(place, transition):
+                    petri_utils.add_arc_from_to(place, transition, self.net)
+                
+                incoming_transitions = [arc.source for arc in place.in_arcs]
+                for t in incoming_transitions:
+                    previous_transitions.append(t)
+
+            # permutations of all transitions included in the OR
+            transition_permutations = permutations(previous_transitions)
+
+            # keep original transitions and clone them as many times as the permutations
+            all_transitions = []
+            for k, perm in enumerate(transition_permutations):
+                if k>0:
+                    perm_transitions = []
+                    for t in perm:
+                        new_transition = self._get_or_create_transition(t.name+f"_{k}")
+                        for out in t.out_arcs:
+                            if not self._arc_exists(new_transition, out.target):
+                                            petri_utils.add_arc_from_to(new_transition, out.target, self.net)
+                        perm_transitions.append(new_transition)
+                else: 
+                    perm_transitions = list(perm)
+                all_transitions.append(perm_transitions)
+                # create final OR place that connects all final OR transitions
+                final_or_place = self._get_or_create_place(f"final_or_place")
+            
+            for k, perm in enumerate(all_transitions):
+                for j, t in enumerate(perm):
+                    # if first transition, find incoming arcs and add them to it
+                    if j == 0:
+                        if not t.in_arcs:
+                            # find cloned transition and connect arcs
+                            for trans in self.transitions.values():
+                                if trans.in_arcs and trans.name == "_".join(t.name.split("_")[:-1]):
+                                    for arc in trans.in_arcs:
+                                        if not self._arc_exists(arc.source, t) and "intermediate" not in arc.source.name.split("_"):
+                                            petri_utils.add_arc_from_to(arc.source, t, self.net)
+
+                    # if last transition, find outgoing arcs and add them to it
+                    if j==len(perm)-1:
+                        if not t.out_arcs:
+                            # find original transition and connect outgoing arcs to this one
+                            for trans in self.transitions.values():
+                                if trans.out_arcs and trans.name == "_".join(t.name.split("_")[:-1]):
+                                    for arc in trans.out_arcs:
+                                        if not self._arc_exists(t, arc.target) and "intermediate" not in arc.target.name.split("_"):
+                                            petri_utils.add_arc_from_to(t, arc.target, self.net)
+
+                        # add silent transition between found outgoing places and final OR place
+                        for out_arc in t.out_arcs:
+                            out_place = out_arc.target
+                            silent = self._get_or_create_transition(f"τ_{out_place.name}", label=None)
+                            if not self._arc_exists(out_place,silent):
+                                petri_utils.add_arc_from_to(out_place, silent, self.net)
+                            if not self._arc_exists(silent, out_place):
+                                petri_utils.add_arc_from_to(silent, final_or_place, self.net)
+
+                            # their old outgoing arcs get deleted and the or_final_place gets connected to outgoing transitions
+                            arcs_to_be_deleted = []
+                            for place_out_arc in out_place.out_arcs:
+                                out_transition = place_out_arc.target
+            
+                                if not self._arc_exists(final_or_place, out_transition) and "τ" not in out_transition.name.split("_"):
+                                    petri_utils.add_arc_from_to(final_or_place, out_transition, self.net)
+                                print(place_out_arc)
+                                if "τ" not in out_transition.name.split("_"):
+                                    print("GOT IN", place_out_arc)
+                                    arcs_to_be_deleted.append(place_out_arc)
+                            
+                            for arc in arcs_to_be_deleted:
+                                petri_utils.remove_arc(self.net, arc)
+
+                    # if not at last transition of the permutation
+                    else:
+                        # create intermediate place and connect to final or place
+                        inter_place = self._get_or_create_place(f"intermediate_place_{k}{j}")
+                        if not self._arc_exists(t,inter_place):
+                            petri_utils.add_arc_from_to(t, inter_place, self.net)
+                        silent = self._get_or_create_transition(f"τ_{inter_place.name}", label=None)
+                        if not self._arc_exists(inter_place,silent):
+                            petri_utils.add_arc_from_to(inter_place, silent, self.net)
+                        if not self._arc_exists(silent,final_or_place):
+                            petri_utils.add_arc_from_to(silent, final_or_place, self.net)
+                        # add arc to next transition in the permutation
+                        if not self._arc_exists(inter_place,perm[j+1]):
+                            petri_utils.add_arc_from_to(inter_place, perm[j+1], self.net)
+            
+            #print(all_transitions[0])
+            # arcs_to_be_deleted = []
+            # places_to_be_deleted = []
+            # for t in all_transitions[0]:
+            #     for out in t.out_arcs:
+            #         if "intermediate" not in out.target.name.split("_"):
+            #             arcs_to_be_deleted.append(out)
+            #             places_to_be_deleted.append(out.target)
+            # for arc in arcs_to_be_deleted:
+            #     petri_utils.remove_arc(self.net, arc)
+            # for place in places_to_be_deleted:
+            #     petri_utils.remove_place(self.net, place)
+                    
+           
+        elif event.precondition_operators and all(op == LogicalOperatorType.XOR for op in event.precondition_operators):
             # XOR — create silent transitions and shared xor_place
             xor_key = "xor_" + "_".join(sorted(self._get_place_name(c) for c in event.preconditions))
             xor_place = self._get_or_create_place(xor_key)
@@ -85,7 +194,7 @@ class PetriNetBuilder:
                     petri_utils.add_arc_from_to(place, silent, self.net)
                 if not self._arc_exists(silent, xor_place):
                     petri_utils.add_arc_from_to(silent, xor_place, self.net)
-        elif event.precondition_operators and all(op == LogicalOperatorType.AND for op in event.precondition_operators):
+        else:
             # AND — connect all places directly to transition
             for condition in event.preconditions:
                 place_name = self._get_place_name(condition)
@@ -113,7 +222,7 @@ class PetriNetBuilder:
                         petri_utils.add_arc_from_to(post_place, silent, self.net)
                     if not self._arc_exists(silent, final_place):
                         petri_utils.add_arc_from_to(silent, final_place, self.net)
-        elif detection.operators and all(op == LogicalOperatorType.AND for op in detection.operators):
+        else:
             # AND (or single event) — all postcondition places feed into one shared silent transition
             silent = self._get_or_create_transition("τ_detect_and", label=None)
             for event_ref in detection.event_refs:
