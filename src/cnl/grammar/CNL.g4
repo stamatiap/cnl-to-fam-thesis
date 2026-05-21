@@ -36,8 +36,8 @@ technique
     ;
 
 eventBlock
-    : EVENT DIGIT 
-      eventStatement timing?
+    : EVENT DIGIT+
+      eventStatement repetition? timing?
     ;
 
 eventStatement
@@ -56,7 +56,7 @@ givenItem
     ;
 
 eventRef
-    : EVENT DIGIT
+    : EVENT DIGIT+
     ;
 
 whenClause
@@ -76,6 +76,8 @@ actionVerb
 
 modifier
     : location
+    | destination
+    | source
     | geolocation
     ;
 
@@ -98,11 +100,31 @@ stateVerb
 location : IN assetName;
 destination : TO assetName;
 source : BY assetName | FROM assetName;
-timing: DURING timeWindow;
+timing: timePreposition timePeriod;
 geolocation: LOCATED_AT geo_location;
 
-timeWindow
-    : IDENTIFIER
+timePreposition: 
+    DURING | OUTSIDE
+    ;
+
+repetition:
+    repeat timeWindow?
+    ;
+
+repeat:
+    REPEATED (DIGIT+ | IDENTIFIER) TIMES
+    ;
+
+timePeriod:
+    IDENTIFIER
+    ;
+
+timeWindow:
+    WITHIN DIGIT+ time
+    ;
+
+time:
+    MILLISECONDS | SECONDS | MINUTES | HOURS
     ;
 
 geo_location
@@ -139,6 +161,14 @@ FROM        : 'from';
 LOCATED_AT  : 'located_at';
 DURING      : 'During';
 COMMA       : ',';
+OUTSIDE     : 'Outside';
+REPEATED    : 'Repeated';
+TIMES       : 'times';
+WITHIN      : 'within';
+MILLISECONDS: 'milliseconds' | 'ms';
+SECONDS     : 'seconds' | 'sec';
+MINUTES     : 'minutes' | 'min';
+HOURS       : 'hours';
 
 
 TACTIC_ID
@@ -156,6 +186,6 @@ WS
     ;
 
 DIGIT
-    : [0-9]+
+    : [0-9]
     ;
 

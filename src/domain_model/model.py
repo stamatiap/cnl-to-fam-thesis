@@ -34,7 +34,8 @@ class Event:
     precondition_operators: list[LogicalOperatorType]
     postconditions: list[StateCondition]
     postcondition_operators: list[LogicalOperatorType]
-    timing: str = None
+    repetition: dict[str, str] = None
+    time_period: dict[str, str] = None
 
 @dataclass
 class Detection:

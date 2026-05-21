@@ -159,8 +159,33 @@ class CNLVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by CNLParser#timePreposition.
+    def visitTimePreposition(self, ctx:CNLParser.TimePrepositionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#repetition.
+    def visitRepetition(self, ctx:CNLParser.RepetitionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#repeat.
+    def visitRepeat(self, ctx:CNLParser.RepeatContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#timePeriod.
+    def visitTimePeriod(self, ctx:CNLParser.TimePeriodContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by CNLParser#timeWindow.
     def visitTimeWindow(self, ctx:CNLParser.TimeWindowContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#time.
+    def visitTime(self, ctx:CNLParser.TimeContext):
         return self.visitChildren(ctx)
 
 
