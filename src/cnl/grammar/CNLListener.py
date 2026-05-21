@@ -278,12 +278,57 @@ class CNLListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by CNLParser#timePreposition.
+    def enterTimePreposition(self, ctx:CNLParser.TimePrepositionContext):
+        pass
+
+    # Exit a parse tree produced by CNLParser#timePreposition.
+    def exitTimePreposition(self, ctx:CNLParser.TimePrepositionContext):
+        pass
+
+
+    # Enter a parse tree produced by CNLParser#repetition.
+    def enterRepetition(self, ctx:CNLParser.RepetitionContext):
+        pass
+
+    # Exit a parse tree produced by CNLParser#repetition.
+    def exitRepetition(self, ctx:CNLParser.RepetitionContext):
+        pass
+
+
+    # Enter a parse tree produced by CNLParser#repeat.
+    def enterRepeat(self, ctx:CNLParser.RepeatContext):
+        pass
+
+    # Exit a parse tree produced by CNLParser#repeat.
+    def exitRepeat(self, ctx:CNLParser.RepeatContext):
+        pass
+
+
+    # Enter a parse tree produced by CNLParser#timePeriod.
+    def enterTimePeriod(self, ctx:CNLParser.TimePeriodContext):
+        pass
+
+    # Exit a parse tree produced by CNLParser#timePeriod.
+    def exitTimePeriod(self, ctx:CNLParser.TimePeriodContext):
+        pass
+
+
     # Enter a parse tree produced by CNLParser#timeWindow.
     def enterTimeWindow(self, ctx:CNLParser.TimeWindowContext):
         pass
 
     # Exit a parse tree produced by CNLParser#timeWindow.
     def exitTimeWindow(self, ctx:CNLParser.TimeWindowContext):
+        pass
+
+
+    # Enter a parse tree produced by CNLParser#time.
+    def enterTime(self, ctx:CNLParser.TimeContext):
+        pass
+
+    # Exit a parse tree produced by CNLParser#time.
+    def exitTime(self, ctx:CNLParser.TimeContext):
         pass
 
 
