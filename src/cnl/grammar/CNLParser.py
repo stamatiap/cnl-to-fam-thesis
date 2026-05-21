@@ -10,84 +10,103 @@ else:
 
 def serializedATN():
     return [
-        4,1,26,243,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        4,1,34,292,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
         6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,
         2,14,7,14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,20,
         7,20,2,21,7,21,2,22,7,22,2,23,7,23,2,24,7,24,2,25,7,25,2,26,7,26,
         2,27,7,27,2,28,7,28,2,29,7,29,2,30,7,30,2,31,7,31,2,32,7,32,2,33,
-        7,33,1,0,1,0,1,0,4,0,72,8,0,11,0,12,0,73,1,0,3,0,77,8,0,1,0,1,0,
-        1,1,1,1,1,1,1,2,1,2,1,2,1,2,1,3,1,3,1,3,5,3,91,8,3,10,3,12,3,94,
-        9,3,1,4,1,4,1,4,1,4,1,5,1,5,1,6,1,6,1,7,1,7,1,7,1,7,1,7,5,7,109,
-        8,7,10,7,12,7,112,9,7,1,8,1,8,1,8,1,9,1,9,1,9,1,9,1,9,1,10,1,10,
-        1,10,1,10,3,10,126,8,10,1,11,1,11,1,11,1,11,1,12,1,12,1,12,1,12,
-        5,12,136,8,12,10,12,12,12,139,9,12,1,12,1,12,5,12,143,8,12,10,12,
-        12,12,146,9,12,1,12,1,12,5,12,150,8,12,10,12,12,12,153,9,12,3,12,
-        155,8,12,1,13,1,13,3,13,159,8,13,1,14,1,14,1,14,1,15,1,15,1,15,1,
-        16,1,16,1,16,1,16,5,16,171,8,16,10,16,12,16,174,9,16,1,17,1,17,1,
-        18,1,18,1,19,1,19,1,20,1,20,3,20,184,8,20,1,21,1,21,1,21,1,21,5,
-        21,190,8,21,10,21,12,21,193,9,21,1,22,1,22,1,22,5,22,198,8,22,10,
-        22,12,22,201,9,22,1,23,1,23,1,24,1,24,1,24,3,24,208,8,24,1,25,1,
-        25,1,25,1,26,1,26,1,26,1,27,1,27,1,27,1,27,3,27,220,8,27,1,28,1,
-        28,1,28,1,29,1,29,1,29,1,30,1,30,1,31,1,31,1,32,1,32,1,32,1,33,1,
-        33,1,33,5,33,238,8,33,10,33,12,33,241,9,33,1,33,0,0,34,0,2,4,6,8,
-        10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,
-        54,56,58,60,62,64,66,0,1,1,0,7,9,226,0,68,1,0,0,0,2,80,1,0,0,0,4,
-        83,1,0,0,0,6,87,1,0,0,0,8,95,1,0,0,0,10,99,1,0,0,0,12,101,1,0,0,
-        0,14,103,1,0,0,0,16,113,1,0,0,0,18,116,1,0,0,0,20,121,1,0,0,0,22,
-        127,1,0,0,0,24,131,1,0,0,0,26,158,1,0,0,0,28,160,1,0,0,0,30,163,
-        1,0,0,0,32,166,1,0,0,0,34,175,1,0,0,0,36,177,1,0,0,0,38,179,1,0,
-        0,0,40,183,1,0,0,0,42,185,1,0,0,0,44,194,1,0,0,0,46,202,1,0,0,0,
-        48,207,1,0,0,0,50,209,1,0,0,0,52,212,1,0,0,0,54,219,1,0,0,0,56,221,
-        1,0,0,0,58,224,1,0,0,0,60,227,1,0,0,0,62,229,1,0,0,0,64,231,1,0,
-        0,0,66,234,1,0,0,0,68,69,3,2,1,0,69,71,3,4,2,0,70,72,3,20,10,0,71,
-        70,1,0,0,0,72,73,1,0,0,0,73,71,1,0,0,0,73,74,1,0,0,0,74,76,1,0,0,
-        0,75,77,3,64,32,0,76,75,1,0,0,0,76,77,1,0,0,0,77,78,1,0,0,0,78,79,
-        5,0,0,1,79,1,1,0,0,0,80,81,3,14,7,0,81,82,3,18,9,0,82,3,1,0,0,0,
-        83,84,5,12,0,0,84,85,5,4,0,0,85,86,3,6,3,0,86,5,1,0,0,0,87,92,3,
-        8,4,0,88,89,5,7,0,0,89,91,3,8,4,0,90,88,1,0,0,0,91,94,1,0,0,0,92,
-        90,1,0,0,0,92,93,1,0,0,0,93,7,1,0,0,0,94,92,1,0,0,0,95,96,3,10,5,
-        0,96,97,5,11,0,0,97,98,3,12,6,0,98,9,1,0,0,0,99,100,5,24,0,0,100,
-        11,1,0,0,0,101,102,5,24,0,0,102,13,1,0,0,0,103,104,5,1,0,0,104,105,
-        5,10,0,0,105,110,3,16,8,0,106,107,5,21,0,0,107,109,3,16,8,0,108,
-        106,1,0,0,0,109,112,1,0,0,0,110,108,1,0,0,0,110,111,1,0,0,0,111,
-        15,1,0,0,0,112,110,1,0,0,0,113,114,5,22,0,0,114,115,5,24,0,0,115,
-        17,1,0,0,0,116,117,5,2,0,0,117,118,5,10,0,0,118,119,5,23,0,0,119,
-        120,5,24,0,0,120,19,1,0,0,0,121,122,5,3,0,0,122,123,5,26,0,0,123,
-        125,3,22,11,0,124,126,3,56,28,0,125,124,1,0,0,0,125,126,1,0,0,0,
-        126,21,1,0,0,0,127,128,3,24,12,0,128,129,3,30,15,0,129,130,3,42,
-        21,0,130,23,1,0,0,0,131,132,5,4,0,0,132,154,3,26,13,0,133,134,5,
-        7,0,0,134,136,3,26,13,0,135,133,1,0,0,0,136,139,1,0,0,0,137,135,
-        1,0,0,0,137,138,1,0,0,0,138,155,1,0,0,0,139,137,1,0,0,0,140,141,
-        5,8,0,0,141,143,3,26,13,0,142,140,1,0,0,0,143,146,1,0,0,0,144,142,
-        1,0,0,0,144,145,1,0,0,0,145,155,1,0,0,0,146,144,1,0,0,0,147,148,
-        5,9,0,0,148,150,3,26,13,0,149,147,1,0,0,0,150,153,1,0,0,0,151,149,
-        1,0,0,0,151,152,1,0,0,0,152,155,1,0,0,0,153,151,1,0,0,0,154,137,
-        1,0,0,0,154,144,1,0,0,0,154,151,1,0,0,0,155,25,1,0,0,0,156,159,3,
-        28,14,0,157,159,3,44,22,0,158,156,1,0,0,0,158,157,1,0,0,0,159,27,
-        1,0,0,0,160,161,5,3,0,0,161,162,5,26,0,0,162,29,1,0,0,0,163,164,
-        5,5,0,0,164,165,3,32,16,0,165,31,1,0,0,0,166,167,3,34,17,0,167,168,
-        3,38,19,0,168,172,3,36,18,0,169,171,3,40,20,0,170,169,1,0,0,0,171,
-        174,1,0,0,0,172,170,1,0,0,0,172,173,1,0,0,0,173,33,1,0,0,0,174,172,
-        1,0,0,0,175,176,3,12,6,0,176,35,1,0,0,0,177,178,3,12,6,0,178,37,
-        1,0,0,0,179,180,5,24,0,0,180,39,1,0,0,0,181,184,3,50,25,0,182,184,
-        3,58,29,0,183,181,1,0,0,0,183,182,1,0,0,0,184,41,1,0,0,0,185,186,
-        5,6,0,0,186,191,3,44,22,0,187,188,5,7,0,0,188,190,3,44,22,0,189,
-        187,1,0,0,0,190,193,1,0,0,0,191,189,1,0,0,0,191,192,1,0,0,0,192,
-        43,1,0,0,0,193,191,1,0,0,0,194,195,3,46,23,0,195,199,3,48,24,0,196,
-        198,3,40,20,0,197,196,1,0,0,0,198,201,1,0,0,0,199,197,1,0,0,0,199,
-        200,1,0,0,0,200,45,1,0,0,0,201,199,1,0,0,0,202,203,3,12,6,0,203,
-        47,1,0,0,0,204,205,5,14,0,0,205,208,5,24,0,0,206,208,5,24,0,0,207,
-        204,1,0,0,0,207,206,1,0,0,0,208,49,1,0,0,0,209,210,5,15,0,0,210,
-        211,3,12,6,0,211,51,1,0,0,0,212,213,5,16,0,0,213,214,3,12,6,0,214,
-        53,1,0,0,0,215,216,5,17,0,0,216,220,3,12,6,0,217,218,5,18,0,0,218,
-        220,3,12,6,0,219,215,1,0,0,0,219,217,1,0,0,0,220,55,1,0,0,0,221,
-        222,5,20,0,0,222,223,3,60,30,0,223,57,1,0,0,0,224,225,5,19,0,0,225,
-        226,3,62,31,0,226,59,1,0,0,0,227,228,5,24,0,0,228,61,1,0,0,0,229,
-        230,5,24,0,0,230,63,1,0,0,0,231,232,5,13,0,0,232,233,3,66,33,0,233,
-        65,1,0,0,0,234,239,3,28,14,0,235,236,7,0,0,0,236,238,3,28,14,0,237,
-        235,1,0,0,0,238,241,1,0,0,0,239,237,1,0,0,0,239,240,1,0,0,0,240,
-        67,1,0,0,0,241,239,1,0,0,0,17,73,76,92,110,125,137,144,151,154,158,
-        172,183,191,199,207,219,239
+        7,33,2,34,7,34,2,35,7,35,2,36,7,36,2,37,7,37,2,38,7,38,1,0,1,0,1,
+        0,4,0,82,8,0,11,0,12,0,83,1,0,3,0,87,8,0,1,0,1,0,1,1,1,1,1,1,1,2,
+        1,2,1,2,1,2,1,3,1,3,1,3,5,3,101,8,3,10,3,12,3,104,9,3,1,4,1,4,1,
+        4,1,4,1,5,1,5,1,6,1,6,1,7,1,7,1,7,1,7,1,7,5,7,119,8,7,10,7,12,7,
+        122,9,7,1,8,1,8,1,8,1,9,1,9,1,9,1,9,1,9,1,10,1,10,4,10,134,8,10,
+        11,10,12,10,135,1,10,1,10,3,10,140,8,10,1,10,3,10,143,8,10,1,11,
+        1,11,1,11,1,11,1,12,1,12,1,12,1,12,5,12,153,8,12,10,12,12,12,156,
+        9,12,1,12,1,12,5,12,160,8,12,10,12,12,12,163,9,12,1,12,1,12,5,12,
+        167,8,12,10,12,12,12,170,9,12,3,12,172,8,12,1,13,1,13,3,13,176,8,
+        13,1,14,1,14,4,14,180,8,14,11,14,12,14,181,1,15,1,15,1,15,1,16,1,
+        16,1,16,1,16,5,16,191,8,16,10,16,12,16,194,9,16,1,17,1,17,1,18,1,
+        18,1,19,1,19,1,20,1,20,1,20,1,20,3,20,206,8,20,1,21,1,21,1,21,1,
+        21,5,21,212,8,21,10,21,12,21,215,9,21,1,22,1,22,1,22,5,22,220,8,
+        22,10,22,12,22,223,9,22,1,23,1,23,1,24,1,24,1,24,3,24,230,8,24,1,
+        25,1,25,1,25,1,26,1,26,1,26,1,27,1,27,1,27,1,27,3,27,242,8,27,1,
+        28,1,28,1,28,1,29,1,29,1,29,1,30,1,30,1,31,1,31,3,31,254,8,31,1,
+        32,1,32,4,32,258,8,32,11,32,12,32,259,1,32,3,32,263,8,32,1,32,1,
+        32,1,33,1,33,1,34,1,34,4,34,271,8,34,11,34,12,34,272,1,34,1,34,1,
+        35,1,35,1,36,1,36,1,37,1,37,1,37,1,38,1,38,1,38,5,38,287,8,38,10,
+        38,12,38,290,9,38,1,38,0,0,39,0,2,4,6,8,10,12,14,16,18,20,22,24,
+        26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,
+        70,72,74,76,0,3,2,0,20,20,22,22,1,0,26,29,1,0,7,9,279,0,78,1,0,0,
+        0,2,90,1,0,0,0,4,93,1,0,0,0,6,97,1,0,0,0,8,105,1,0,0,0,10,109,1,
+        0,0,0,12,111,1,0,0,0,14,113,1,0,0,0,16,123,1,0,0,0,18,126,1,0,0,
+        0,20,131,1,0,0,0,22,144,1,0,0,0,24,148,1,0,0,0,26,175,1,0,0,0,28,
+        177,1,0,0,0,30,183,1,0,0,0,32,186,1,0,0,0,34,195,1,0,0,0,36,197,
+        1,0,0,0,38,199,1,0,0,0,40,205,1,0,0,0,42,207,1,0,0,0,44,216,1,0,
+        0,0,46,224,1,0,0,0,48,229,1,0,0,0,50,231,1,0,0,0,52,234,1,0,0,0,
+        54,241,1,0,0,0,56,243,1,0,0,0,58,246,1,0,0,0,60,249,1,0,0,0,62,251,
+        1,0,0,0,64,255,1,0,0,0,66,266,1,0,0,0,68,268,1,0,0,0,70,276,1,0,
+        0,0,72,278,1,0,0,0,74,280,1,0,0,0,76,283,1,0,0,0,78,79,3,2,1,0,79,
+        81,3,4,2,0,80,82,3,20,10,0,81,80,1,0,0,0,82,83,1,0,0,0,83,81,1,0,
+        0,0,83,84,1,0,0,0,84,86,1,0,0,0,85,87,3,74,37,0,86,85,1,0,0,0,86,
+        87,1,0,0,0,87,88,1,0,0,0,88,89,5,0,0,1,89,1,1,0,0,0,90,91,3,14,7,
+        0,91,92,3,18,9,0,92,3,1,0,0,0,93,94,5,12,0,0,94,95,5,4,0,0,95,96,
+        3,6,3,0,96,5,1,0,0,0,97,102,3,8,4,0,98,99,5,7,0,0,99,101,3,8,4,0,
+        100,98,1,0,0,0,101,104,1,0,0,0,102,100,1,0,0,0,102,103,1,0,0,0,103,
+        7,1,0,0,0,104,102,1,0,0,0,105,106,3,10,5,0,106,107,5,11,0,0,107,
+        108,3,12,6,0,108,9,1,0,0,0,109,110,5,32,0,0,110,11,1,0,0,0,111,112,
+        5,32,0,0,112,13,1,0,0,0,113,114,5,1,0,0,114,115,5,10,0,0,115,120,
+        3,16,8,0,116,117,5,21,0,0,117,119,3,16,8,0,118,116,1,0,0,0,119,122,
+        1,0,0,0,120,118,1,0,0,0,120,121,1,0,0,0,121,15,1,0,0,0,122,120,1,
+        0,0,0,123,124,5,30,0,0,124,125,5,32,0,0,125,17,1,0,0,0,126,127,5,
+        2,0,0,127,128,5,10,0,0,128,129,5,31,0,0,129,130,5,32,0,0,130,19,
+        1,0,0,0,131,133,5,3,0,0,132,134,5,34,0,0,133,132,1,0,0,0,134,135,
+        1,0,0,0,135,133,1,0,0,0,135,136,1,0,0,0,136,137,1,0,0,0,137,139,
+        3,22,11,0,138,140,3,62,31,0,139,138,1,0,0,0,139,140,1,0,0,0,140,
+        142,1,0,0,0,141,143,3,56,28,0,142,141,1,0,0,0,142,143,1,0,0,0,143,
+        21,1,0,0,0,144,145,3,24,12,0,145,146,3,30,15,0,146,147,3,42,21,0,
+        147,23,1,0,0,0,148,149,5,4,0,0,149,171,3,26,13,0,150,151,5,7,0,0,
+        151,153,3,26,13,0,152,150,1,0,0,0,153,156,1,0,0,0,154,152,1,0,0,
+        0,154,155,1,0,0,0,155,172,1,0,0,0,156,154,1,0,0,0,157,158,5,8,0,
+        0,158,160,3,26,13,0,159,157,1,0,0,0,160,163,1,0,0,0,161,159,1,0,
+        0,0,161,162,1,0,0,0,162,172,1,0,0,0,163,161,1,0,0,0,164,165,5,9,
+        0,0,165,167,3,26,13,0,166,164,1,0,0,0,167,170,1,0,0,0,168,166,1,
+        0,0,0,168,169,1,0,0,0,169,172,1,0,0,0,170,168,1,0,0,0,171,154,1,
+        0,0,0,171,161,1,0,0,0,171,168,1,0,0,0,172,25,1,0,0,0,173,176,3,28,
+        14,0,174,176,3,44,22,0,175,173,1,0,0,0,175,174,1,0,0,0,176,27,1,
+        0,0,0,177,179,5,3,0,0,178,180,5,34,0,0,179,178,1,0,0,0,180,181,1,
+        0,0,0,181,179,1,0,0,0,181,182,1,0,0,0,182,29,1,0,0,0,183,184,5,5,
+        0,0,184,185,3,32,16,0,185,31,1,0,0,0,186,187,3,34,17,0,187,188,3,
+        38,19,0,188,192,3,36,18,0,189,191,3,40,20,0,190,189,1,0,0,0,191,
+        194,1,0,0,0,192,190,1,0,0,0,192,193,1,0,0,0,193,33,1,0,0,0,194,192,
+        1,0,0,0,195,196,3,12,6,0,196,35,1,0,0,0,197,198,3,12,6,0,198,37,
+        1,0,0,0,199,200,5,32,0,0,200,39,1,0,0,0,201,206,3,50,25,0,202,206,
+        3,52,26,0,203,206,3,54,27,0,204,206,3,58,29,0,205,201,1,0,0,0,205,
+        202,1,0,0,0,205,203,1,0,0,0,205,204,1,0,0,0,206,41,1,0,0,0,207,208,
+        5,6,0,0,208,213,3,44,22,0,209,210,5,7,0,0,210,212,3,44,22,0,211,
+        209,1,0,0,0,212,215,1,0,0,0,213,211,1,0,0,0,213,214,1,0,0,0,214,
+        43,1,0,0,0,215,213,1,0,0,0,216,217,3,46,23,0,217,221,3,48,24,0,218,
+        220,3,40,20,0,219,218,1,0,0,0,220,223,1,0,0,0,221,219,1,0,0,0,221,
+        222,1,0,0,0,222,45,1,0,0,0,223,221,1,0,0,0,224,225,3,12,6,0,225,
+        47,1,0,0,0,226,227,5,14,0,0,227,230,5,32,0,0,228,230,5,32,0,0,229,
+        226,1,0,0,0,229,228,1,0,0,0,230,49,1,0,0,0,231,232,5,15,0,0,232,
+        233,3,12,6,0,233,51,1,0,0,0,234,235,5,16,0,0,235,236,3,12,6,0,236,
+        53,1,0,0,0,237,238,5,17,0,0,238,242,3,12,6,0,239,240,5,18,0,0,240,
+        242,3,12,6,0,241,237,1,0,0,0,241,239,1,0,0,0,242,55,1,0,0,0,243,
+        244,3,60,30,0,244,245,3,66,33,0,245,57,1,0,0,0,246,247,5,19,0,0,
+        247,248,3,72,36,0,248,59,1,0,0,0,249,250,7,0,0,0,250,61,1,0,0,0,
+        251,253,3,64,32,0,252,254,3,68,34,0,253,252,1,0,0,0,253,254,1,0,
+        0,0,254,63,1,0,0,0,255,262,5,23,0,0,256,258,5,34,0,0,257,256,1,0,
+        0,0,258,259,1,0,0,0,259,257,1,0,0,0,259,260,1,0,0,0,260,263,1,0,
+        0,0,261,263,5,32,0,0,262,257,1,0,0,0,262,261,1,0,0,0,263,264,1,0,
+        0,0,264,265,5,24,0,0,265,65,1,0,0,0,266,267,5,32,0,0,267,67,1,0,
+        0,0,268,270,5,25,0,0,269,271,5,34,0,0,270,269,1,0,0,0,271,272,1,
+        0,0,0,272,270,1,0,0,0,272,273,1,0,0,0,273,274,1,0,0,0,274,275,3,
+        70,35,0,275,69,1,0,0,0,276,277,7,1,0,0,277,71,1,0,0,0,278,279,5,
+        32,0,0,279,73,1,0,0,0,280,281,5,13,0,0,281,282,3,76,38,0,282,75,
+        1,0,0,0,283,288,3,28,14,0,284,285,7,2,0,0,285,287,3,28,14,0,286,
+        284,1,0,0,0,287,290,1,0,0,0,288,286,1,0,0,0,288,289,1,0,0,0,289,
+        77,1,0,0,0,290,288,1,0,0,0,24,83,86,102,120,135,139,142,154,161,
+        168,171,175,181,192,205,213,221,229,241,253,259,262,272,288
     ]
 
 class CNLParser ( Parser ):
@@ -104,13 +123,16 @@ class CNLParser ( Parser ):
                      "'Given'", "'When'", "'Then'", "'And'", "'Or'", "'Xor'", 
                      "':'", "'as'", "'Background'", "'Detection'", "'is'", 
                      "'in'", "'to'", "'by'", "'from'", "'located_at'", "'During'", 
-                     "','" ]
+                     "','", "'Outside'", "'Repeated'", "'times'", "'within'", 
+                     "<INVALID>", "<INVALID>", "<INVALID>", "'hours'" ]
 
     symbolicNames = [ "<INVALID>", "TACTICS", "TECHNIQUE", "EVENT", "GIVEN", 
                       "WHEN", "THEN", "AND", "OR", "XOR", "COLON", "AS", 
                       "BACKGROUND", "DETECTION", "IS", "IN", "TO", "BY", 
-                      "FROM", "LOCATED_AT", "DURING", "COMMA", "TACTIC_ID", 
-                      "TECHNIQUE_ID", "IDENTIFIER", "WS", "DIGIT" ]
+                      "FROM", "LOCATED_AT", "DURING", "COMMA", "OUTSIDE", 
+                      "REPEATED", "TIMES", "WITHIN", "MILLISECONDS", "SECONDS", 
+                      "MINUTES", "HOURS", "TACTIC_ID", "TECHNIQUE_ID", "IDENTIFIER", 
+                      "WS", "DIGIT" ]
 
     RULE_attack = 0
     RULE_header = 1
@@ -142,10 +164,15 @@ class CNLParser ( Parser ):
     RULE_source = 27
     RULE_timing = 28
     RULE_geolocation = 29
-    RULE_timeWindow = 30
-    RULE_geo_location = 31
-    RULE_detectionBlock = 32
-    RULE_detectionExpr = 33
+    RULE_timePreposition = 30
+    RULE_repetition = 31
+    RULE_repeat = 32
+    RULE_timePeriod = 33
+    RULE_timeWindow = 34
+    RULE_time = 35
+    RULE_geo_location = 36
+    RULE_detectionBlock = 37
+    RULE_detectionExpr = 38
 
     ruleNames =  [ "attack", "header", "background", "assets", "assetDefinition", 
                    "assetType", "assetName", "tactics", "tactic", "technique", 
@@ -153,8 +180,9 @@ class CNLParser ( Parser ):
                    "eventRef", "whenClause", "action", "actor", "actionObject", 
                    "actionVerb", "modifier", "thenClause", "stateCondition", 
                    "conditionObject", "stateVerb", "location", "destination", 
-                   "source", "timing", "geolocation", "timeWindow", "geo_location", 
-                   "detectionBlock", "detectionExpr" ]
+                   "source", "timing", "geolocation", "timePreposition", 
+                   "repetition", "repeat", "timePeriod", "timeWindow", "time", 
+                   "geo_location", "detectionBlock", "detectionExpr" ]
 
     EOF = Token.EOF
     TACTICS=1
@@ -178,11 +206,19 @@ class CNLParser ( Parser ):
     LOCATED_AT=19
     DURING=20
     COMMA=21
-    TACTIC_ID=22
-    TECHNIQUE_ID=23
-    IDENTIFIER=24
-    WS=25
-    DIGIT=26
+    OUTSIDE=22
+    REPEATED=23
+    TIMES=24
+    WITHIN=25
+    MILLISECONDS=26
+    SECONDS=27
+    MINUTES=28
+    HOURS=29
+    TACTIC_ID=30
+    TECHNIQUE_ID=31
+    IDENTIFIER=32
+    WS=33
+    DIGIT=34
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -233,12 +269,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitAttack" ):
                 listener.exitAttack(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitAttack" ):
-                return visitor.visitAttack(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -249,31 +279,31 @@ class CNLParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 68
+            self.state = 78
             self.header()
-            self.state = 69
+            self.state = 79
             self.background()
-            self.state = 71 
+            self.state = 81 
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
-                self.state = 70
+                self.state = 80
                 self.eventBlock()
-                self.state = 73 
+                self.state = 83 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 if not (_la==3):
                     break
 
-            self.state = 76
+            self.state = 86
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if _la==13:
-                self.state = 75
+                self.state = 85
                 self.detectionBlock()
 
 
-            self.state = 78
+            self.state = 88
             self.match(CNLParser.EOF)
         except RecognitionException as re:
             localctx.exception = re
@@ -310,12 +340,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitHeader" ):
                 listener.exitHeader(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitHeader" ):
-                return visitor.visitHeader(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -325,9 +349,9 @@ class CNLParser ( Parser ):
         self.enterRule(localctx, 2, self.RULE_header)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 80
+            self.state = 90
             self.tactics()
-            self.state = 81
+            self.state = 91
             self.technique()
         except RecognitionException as re:
             localctx.exception = re
@@ -366,12 +390,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitBackground" ):
                 listener.exitBackground(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitBackground" ):
-                return visitor.visitBackground(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -381,11 +399,11 @@ class CNLParser ( Parser ):
         self.enterRule(localctx, 4, self.RULE_background)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 83
+            self.state = 93
             self.match(CNLParser.BACKGROUND)
-            self.state = 84
+            self.state = 94
             self.match(CNLParser.GIVEN)
-            self.state = 85
+            self.state = 95
             self.assets()
         except RecognitionException as re:
             localctx.exception = re
@@ -427,12 +445,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitAssets" ):
                 listener.exitAssets(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitAssets" ):
-                return visitor.visitAssets(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -443,17 +455,17 @@ class CNLParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 87
+            self.state = 97
             self.assetDefinition()
-            self.state = 92
+            self.state = 102
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==7:
-                self.state = 88
+                self.state = 98
                 self.match(CNLParser.AND)
-                self.state = 89
+                self.state = 99
                 self.assetDefinition()
-                self.state = 94
+                self.state = 104
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -495,12 +507,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitAssetDefinition" ):
                 listener.exitAssetDefinition(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitAssetDefinition" ):
-                return visitor.visitAssetDefinition(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -510,11 +516,11 @@ class CNLParser ( Parser ):
         self.enterRule(localctx, 8, self.RULE_assetDefinition)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 95
+            self.state = 105
             self.assetType()
-            self.state = 96
+            self.state = 106
             self.match(CNLParser.AS)
-            self.state = 97
+            self.state = 107
             self.assetName()
         except RecognitionException as re:
             localctx.exception = re
@@ -546,12 +552,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitAssetType" ):
                 listener.exitAssetType(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitAssetType" ):
-                return visitor.visitAssetType(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -561,7 +561,7 @@ class CNLParser ( Parser ):
         self.enterRule(localctx, 10, self.RULE_assetType)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 99
+            self.state = 109
             self.match(CNLParser.IDENTIFIER)
         except RecognitionException as re:
             localctx.exception = re
@@ -593,12 +593,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitAssetName" ):
                 listener.exitAssetName(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitAssetName" ):
-                return visitor.visitAssetName(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -608,7 +602,7 @@ class CNLParser ( Parser ):
         self.enterRule(localctx, 12, self.RULE_assetName)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 101
+            self.state = 111
             self.match(CNLParser.IDENTIFIER)
         except RecognitionException as re:
             localctx.exception = re
@@ -656,12 +650,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitTactics" ):
                 listener.exitTactics(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitTactics" ):
-                return visitor.visitTactics(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -672,21 +660,21 @@ class CNLParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 103
+            self.state = 113
             self.match(CNLParser.TACTICS)
-            self.state = 104
+            self.state = 114
             self.match(CNLParser.COLON)
-            self.state = 105
+            self.state = 115
             self.tactic()
-            self.state = 110
+            self.state = 120
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==21:
-                self.state = 106
+                self.state = 116
                 self.match(CNLParser.COMMA)
-                self.state = 107
+                self.state = 117
                 self.tactic()
-                self.state = 112
+                self.state = 122
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -723,12 +711,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitTactic" ):
                 listener.exitTactic(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitTactic" ):
-                return visitor.visitTactic(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -738,9 +720,9 @@ class CNLParser ( Parser ):
         self.enterRule(localctx, 16, self.RULE_tactic)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 113
+            self.state = 123
             self.match(CNLParser.TACTIC_ID)
-            self.state = 114
+            self.state = 124
             self.match(CNLParser.IDENTIFIER)
         except RecognitionException as re:
             localctx.exception = re
@@ -781,12 +763,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitTechnique" ):
                 listener.exitTechnique(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitTechnique" ):
-                return visitor.visitTechnique(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -796,13 +772,13 @@ class CNLParser ( Parser ):
         self.enterRule(localctx, 18, self.RULE_technique)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 116
+            self.state = 126
             self.match(CNLParser.TECHNIQUE)
-            self.state = 117
+            self.state = 127
             self.match(CNLParser.COLON)
-            self.state = 118
+            self.state = 128
             self.match(CNLParser.TECHNIQUE_ID)
-            self.state = 119
+            self.state = 129
             self.match(CNLParser.IDENTIFIER)
         except RecognitionException as re:
             localctx.exception = re
@@ -823,11 +799,18 @@ class CNLParser ( Parser ):
         def EVENT(self):
             return self.getToken(CNLParser.EVENT, 0)
 
-        def DIGIT(self):
-            return self.getToken(CNLParser.DIGIT, 0)
-
         def eventStatement(self):
             return self.getTypedRuleContext(CNLParser.EventStatementContext,0)
+
+
+        def DIGIT(self, i:int=None):
+            if i is None:
+                return self.getTokens(CNLParser.DIGIT)
+            else:
+                return self.getToken(CNLParser.DIGIT, i)
+
+        def repetition(self):
+            return self.getTypedRuleContext(CNLParser.RepetitionContext,0)
 
 
         def timing(self):
@@ -845,12 +828,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitEventBlock" ):
                 listener.exitEventBlock(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitEventBlock" ):
-                return visitor.visitEventBlock(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -861,17 +838,35 @@ class CNLParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 121
+            self.state = 131
             self.match(CNLParser.EVENT)
-            self.state = 122
-            self.match(CNLParser.DIGIT)
-            self.state = 123
-            self.eventStatement()
-            self.state = 125
+            self.state = 133 
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==20:
-                self.state = 124
+            while True:
+                self.state = 132
+                self.match(CNLParser.DIGIT)
+                self.state = 135 
+                self._errHandler.sync(self)
+                _la = self._input.LA(1)
+                if not (_la==34):
+                    break
+
+            self.state = 137
+            self.eventStatement()
+            self.state = 139
+            self._errHandler.sync(self)
+            _la = self._input.LA(1)
+            if _la==23:
+                self.state = 138
+                self.repetition()
+
+
+            self.state = 142
+            self._errHandler.sync(self)
+            _la = self._input.LA(1)
+            if _la==20 or _la==22:
+                self.state = 141
                 self.timing()
 
 
@@ -914,12 +909,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitEventStatement" ):
                 listener.exitEventStatement(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitEventStatement" ):
-                return visitor.visitEventStatement(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -929,11 +918,11 @@ class CNLParser ( Parser ):
         self.enterRule(localctx, 22, self.RULE_eventStatement)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 127
+            self.state = 144
             self.givenClause()
-            self.state = 128
+            self.state = 145
             self.whenClause()
-            self.state = 129
+            self.state = 146
             self.thenClause()
         except RecognitionException as re:
             localctx.exception = re
@@ -990,12 +979,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitGivenClause" ):
                 listener.exitGivenClause(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitGivenClause" ):
-                return visitor.visitGivenClause(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1006,53 +989,53 @@ class CNLParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 131
+            self.state = 148
             self.match(CNLParser.GIVEN)
-            self.state = 132
+            self.state = 149
             self.givenItem()
-            self.state = 154
+            self.state = 171
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,8,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,10,self._ctx)
             if la_ == 1:
-                self.state = 137
+                self.state = 154
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 while _la==7:
-                    self.state = 133
+                    self.state = 150
                     self.match(CNLParser.AND)
-                    self.state = 134
+                    self.state = 151
                     self.givenItem()
-                    self.state = 139
+                    self.state = 156
                     self._errHandler.sync(self)
                     _la = self._input.LA(1)
 
                 pass
 
             elif la_ == 2:
-                self.state = 144
+                self.state = 161
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 while _la==8:
-                    self.state = 140
+                    self.state = 157
                     self.match(CNLParser.OR)
-                    self.state = 141
+                    self.state = 158
                     self.givenItem()
-                    self.state = 146
+                    self.state = 163
                     self._errHandler.sync(self)
                     _la = self._input.LA(1)
 
                 pass
 
             elif la_ == 3:
-                self.state = 151
+                self.state = 168
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 while _la==9:
-                    self.state = 147
+                    self.state = 164
                     self.match(CNLParser.XOR)
-                    self.state = 148
+                    self.state = 165
                     self.givenItem()
-                    self.state = 153
+                    self.state = 170
                     self._errHandler.sync(self)
                     _la = self._input.LA(1)
 
@@ -1094,12 +1077,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitGivenItem" ):
                 listener.exitGivenItem(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitGivenItem" ):
-                return visitor.visitGivenItem(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1108,17 +1085,17 @@ class CNLParser ( Parser ):
         localctx = CNLParser.GivenItemContext(self, self._ctx, self.state)
         self.enterRule(localctx, 26, self.RULE_givenItem)
         try:
-            self.state = 158
+            self.state = 175
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [3]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 156
+                self.state = 173
                 self.eventRef()
                 pass
-            elif token in [24]:
+            elif token in [32]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 157
+                self.state = 174
                 self.stateCondition()
                 pass
             else:
@@ -1143,8 +1120,11 @@ class CNLParser ( Parser ):
         def EVENT(self):
             return self.getToken(CNLParser.EVENT, 0)
 
-        def DIGIT(self):
-            return self.getToken(CNLParser.DIGIT, 0)
+        def DIGIT(self, i:int=None):
+            if i is None:
+                return self.getTokens(CNLParser.DIGIT)
+            else:
+                return self.getToken(CNLParser.DIGIT, i)
 
         def getRuleIndex(self):
             return CNLParser.RULE_eventRef
@@ -1157,12 +1137,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitEventRef" ):
                 listener.exitEventRef(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitEventRef" ):
-                return visitor.visitEventRef(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1170,12 +1144,23 @@ class CNLParser ( Parser ):
 
         localctx = CNLParser.EventRefContext(self, self._ctx, self.state)
         self.enterRule(localctx, 28, self.RULE_eventRef)
+        self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 160
+            self.state = 177
             self.match(CNLParser.EVENT)
-            self.state = 161
-            self.match(CNLParser.DIGIT)
+            self.state = 179 
+            self._errHandler.sync(self)
+            _la = self._input.LA(1)
+            while True:
+                self.state = 178
+                self.match(CNLParser.DIGIT)
+                self.state = 181 
+                self._errHandler.sync(self)
+                _la = self._input.LA(1)
+                if not (_la==34):
+                    break
+
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -1210,12 +1195,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitWhenClause" ):
                 listener.exitWhenClause(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitWhenClause" ):
-                return visitor.visitWhenClause(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1225,9 +1204,9 @@ class CNLParser ( Parser ):
         self.enterRule(localctx, 30, self.RULE_whenClause)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 163
+            self.state = 183
             self.match(CNLParser.WHEN)
-            self.state = 164
+            self.state = 184
             self.action()
         except RecognitionException as re:
             localctx.exception = re
@@ -1275,12 +1254,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitAction" ):
                 listener.exitAction(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitAction" ):
-                return visitor.visitAction(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1291,19 +1264,19 @@ class CNLParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 166
+            self.state = 186
             self.actor()
-            self.state = 167
+            self.state = 187
             self.actionVerb()
-            self.state = 168
+            self.state = 188
             self.actionObject()
-            self.state = 172
+            self.state = 192
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==15 or _la==19:
-                self.state = 169
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 1015808) != 0):
+                self.state = 189
                 self.modifier()
-                self.state = 174
+                self.state = 194
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -1338,12 +1311,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitActor" ):
                 listener.exitActor(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitActor" ):
-                return visitor.visitActor(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1353,7 +1320,7 @@ class CNLParser ( Parser ):
         self.enterRule(localctx, 34, self.RULE_actor)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 175
+            self.state = 195
             self.assetName()
         except RecognitionException as re:
             localctx.exception = re
@@ -1386,12 +1353,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitActionObject" ):
                 listener.exitActionObject(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitActionObject" ):
-                return visitor.visitActionObject(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1401,7 +1362,7 @@ class CNLParser ( Parser ):
         self.enterRule(localctx, 36, self.RULE_actionObject)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 177
+            self.state = 197
             self.assetName()
         except RecognitionException as re:
             localctx.exception = re
@@ -1433,12 +1394,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitActionVerb" ):
                 listener.exitActionVerb(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitActionVerb" ):
-                return visitor.visitActionVerb(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1448,7 +1403,7 @@ class CNLParser ( Parser ):
         self.enterRule(localctx, 38, self.RULE_actionVerb)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 179
+            self.state = 199
             self.match(CNLParser.IDENTIFIER)
         except RecognitionException as re:
             localctx.exception = re
@@ -1470,6 +1425,14 @@ class CNLParser ( Parser ):
             return self.getTypedRuleContext(CNLParser.LocationContext,0)
 
 
+        def destination(self):
+            return self.getTypedRuleContext(CNLParser.DestinationContext,0)
+
+
+        def source(self):
+            return self.getTypedRuleContext(CNLParser.SourceContext,0)
+
+
         def geolocation(self):
             return self.getTypedRuleContext(CNLParser.GeolocationContext,0)
 
@@ -1485,12 +1448,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitModifier" ):
                 listener.exitModifier(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitModifier" ):
-                return visitor.visitModifier(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1499,17 +1456,27 @@ class CNLParser ( Parser ):
         localctx = CNLParser.ModifierContext(self, self._ctx, self.state)
         self.enterRule(localctx, 40, self.RULE_modifier)
         try:
-            self.state = 183
+            self.state = 205
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [15]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 181
+                self.state = 201
                 self.location()
                 pass
-            elif token in [19]:
+            elif token in [16]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 182
+                self.state = 202
+                self.destination()
+                pass
+            elif token in [17, 18]:
+                self.enterOuterAlt(localctx, 3)
+                self.state = 203
+                self.source()
+                pass
+            elif token in [19]:
+                self.enterOuterAlt(localctx, 4)
+                self.state = 204
                 self.geolocation()
                 pass
             else:
@@ -1558,12 +1525,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitThenClause" ):
                 listener.exitThenClause(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitThenClause" ):
-                return visitor.visitThenClause(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1574,19 +1535,19 @@ class CNLParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 185
+            self.state = 207
             self.match(CNLParser.THEN)
-            self.state = 186
+            self.state = 208
             self.stateCondition()
-            self.state = 191
+            self.state = 213
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==7:
-                self.state = 187
+                self.state = 209
                 self.match(CNLParser.AND)
-                self.state = 188
+                self.state = 210
                 self.stateCondition()
-                self.state = 193
+                self.state = 215
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -1632,12 +1593,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitStateCondition" ):
                 listener.exitStateCondition(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitStateCondition" ):
-                return visitor.visitStateCondition(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1648,17 +1603,17 @@ class CNLParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 194
+            self.state = 216
             self.conditionObject()
-            self.state = 195
+            self.state = 217
             self.stateVerb()
-            self.state = 199
+            self.state = 221
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==15 or _la==19:
-                self.state = 196
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & 1015808) != 0):
+                self.state = 218
                 self.modifier()
-                self.state = 201
+                self.state = 223
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -1693,12 +1648,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitConditionObject" ):
                 listener.exitConditionObject(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitConditionObject" ):
-                return visitor.visitConditionObject(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1708,7 +1657,7 @@ class CNLParser ( Parser ):
         self.enterRule(localctx, 46, self.RULE_conditionObject)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 202
+            self.state = 224
             self.assetName()
         except RecognitionException as re:
             localctx.exception = re
@@ -1743,12 +1692,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitStateVerb" ):
                 listener.exitStateVerb(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitStateVerb" ):
-                return visitor.visitStateVerb(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1757,19 +1700,19 @@ class CNLParser ( Parser ):
         localctx = CNLParser.StateVerbContext(self, self._ctx, self.state)
         self.enterRule(localctx, 48, self.RULE_stateVerb)
         try:
-            self.state = 207
+            self.state = 229
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [14]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 204
+                self.state = 226
                 self.match(CNLParser.IS)
-                self.state = 205
+                self.state = 227
                 self.match(CNLParser.IDENTIFIER)
                 pass
-            elif token in [24]:
+            elif token in [32]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 206
+                self.state = 228
                 self.match(CNLParser.IDENTIFIER)
                 pass
             else:
@@ -1809,12 +1752,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitLocation" ):
                 listener.exitLocation(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitLocation" ):
-                return visitor.visitLocation(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1824,9 +1761,9 @@ class CNLParser ( Parser ):
         self.enterRule(localctx, 50, self.RULE_location)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 209
+            self.state = 231
             self.match(CNLParser.IN)
-            self.state = 210
+            self.state = 232
             self.assetName()
         except RecognitionException as re:
             localctx.exception = re
@@ -1862,12 +1799,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitDestination" ):
                 listener.exitDestination(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitDestination" ):
-                return visitor.visitDestination(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1877,9 +1808,9 @@ class CNLParser ( Parser ):
         self.enterRule(localctx, 52, self.RULE_destination)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 212
+            self.state = 234
             self.match(CNLParser.TO)
-            self.state = 213
+            self.state = 235
             self.assetName()
         except RecognitionException as re:
             localctx.exception = re
@@ -1918,12 +1849,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitSource" ):
                 listener.exitSource(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitSource" ):
-                return visitor.visitSource(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1932,21 +1857,21 @@ class CNLParser ( Parser ):
         localctx = CNLParser.SourceContext(self, self._ctx, self.state)
         self.enterRule(localctx, 54, self.RULE_source)
         try:
-            self.state = 219
+            self.state = 241
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [17]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 215
+                self.state = 237
                 self.match(CNLParser.BY)
-                self.state = 216
+                self.state = 238
                 self.assetName()
                 pass
             elif token in [18]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 217
+                self.state = 239
                 self.match(CNLParser.FROM)
-                self.state = 218
+                self.state = 240
                 self.assetName()
                 pass
             else:
@@ -1968,11 +1893,12 @@ class CNLParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def DURING(self):
-            return self.getToken(CNLParser.DURING, 0)
+        def timePreposition(self):
+            return self.getTypedRuleContext(CNLParser.TimePrepositionContext,0)
 
-        def timeWindow(self):
-            return self.getTypedRuleContext(CNLParser.TimeWindowContext,0)
+
+        def timePeriod(self):
+            return self.getTypedRuleContext(CNLParser.TimePeriodContext,0)
 
 
         def getRuleIndex(self):
@@ -1986,12 +1912,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitTiming" ):
                 listener.exitTiming(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitTiming" ):
-                return visitor.visitTiming(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -2001,10 +1921,10 @@ class CNLParser ( Parser ):
         self.enterRule(localctx, 56, self.RULE_timing)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 221
-            self.match(CNLParser.DURING)
-            self.state = 222
-            self.timeWindow()
+            self.state = 243
+            self.timePreposition()
+            self.state = 244
+            self.timePeriod()
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -2039,12 +1959,6 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitGeolocation" ):
                 listener.exitGeolocation(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitGeolocation" ):
-                return visitor.visitGeolocation(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -2054,10 +1968,236 @@ class CNLParser ( Parser ):
         self.enterRule(localctx, 58, self.RULE_geolocation)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 224
+            self.state = 246
             self.match(CNLParser.LOCATED_AT)
-            self.state = 225
+            self.state = 247
             self.geo_location()
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class TimePrepositionContext(ParserRuleContext):
+        __slots__ = 'parser'
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def DURING(self):
+            return self.getToken(CNLParser.DURING, 0)
+
+        def OUTSIDE(self):
+            return self.getToken(CNLParser.OUTSIDE, 0)
+
+        def getRuleIndex(self):
+            return CNLParser.RULE_timePreposition
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterTimePreposition" ):
+                listener.enterTimePreposition(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitTimePreposition" ):
+                listener.exitTimePreposition(self)
+
+
+
+
+    def timePreposition(self):
+
+        localctx = CNLParser.TimePrepositionContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 60, self.RULE_timePreposition)
+        self._la = 0 # Token type
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 249
+            _la = self._input.LA(1)
+            if not(_la==20 or _la==22):
+                self._errHandler.recoverInline(self)
+            else:
+                self._errHandler.reportMatch(self)
+                self.consume()
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class RepetitionContext(ParserRuleContext):
+        __slots__ = 'parser'
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def repeat(self):
+            return self.getTypedRuleContext(CNLParser.RepeatContext,0)
+
+
+        def timeWindow(self):
+            return self.getTypedRuleContext(CNLParser.TimeWindowContext,0)
+
+
+        def getRuleIndex(self):
+            return CNLParser.RULE_repetition
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterRepetition" ):
+                listener.enterRepetition(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitRepetition" ):
+                listener.exitRepetition(self)
+
+
+
+
+    def repetition(self):
+
+        localctx = CNLParser.RepetitionContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 62, self.RULE_repetition)
+        self._la = 0 # Token type
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 251
+            self.repeat()
+            self.state = 253
+            self._errHandler.sync(self)
+            _la = self._input.LA(1)
+            if _la==25:
+                self.state = 252
+                self.timeWindow()
+
+
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class RepeatContext(ParserRuleContext):
+        __slots__ = 'parser'
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def REPEATED(self):
+            return self.getToken(CNLParser.REPEATED, 0)
+
+        def TIMES(self):
+            return self.getToken(CNLParser.TIMES, 0)
+
+        def IDENTIFIER(self):
+            return self.getToken(CNLParser.IDENTIFIER, 0)
+
+        def DIGIT(self, i:int=None):
+            if i is None:
+                return self.getTokens(CNLParser.DIGIT)
+            else:
+                return self.getToken(CNLParser.DIGIT, i)
+
+        def getRuleIndex(self):
+            return CNLParser.RULE_repeat
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterRepeat" ):
+                listener.enterRepeat(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitRepeat" ):
+                listener.exitRepeat(self)
+
+
+
+
+    def repeat(self):
+
+        localctx = CNLParser.RepeatContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 64, self.RULE_repeat)
+        self._la = 0 # Token type
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 255
+            self.match(CNLParser.REPEATED)
+            self.state = 262
+            self._errHandler.sync(self)
+            token = self._input.LA(1)
+            if token in [34]:
+                self.state = 257 
+                self._errHandler.sync(self)
+                _la = self._input.LA(1)
+                while True:
+                    self.state = 256
+                    self.match(CNLParser.DIGIT)
+                    self.state = 259 
+                    self._errHandler.sync(self)
+                    _la = self._input.LA(1)
+                    if not (_la==34):
+                        break
+
+                pass
+            elif token in [32]:
+                self.state = 261
+                self.match(CNLParser.IDENTIFIER)
+                pass
+            else:
+                raise NoViableAltException(self)
+
+            self.state = 264
+            self.match(CNLParser.TIMES)
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class TimePeriodContext(ParserRuleContext):
+        __slots__ = 'parser'
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def IDENTIFIER(self):
+            return self.getToken(CNLParser.IDENTIFIER, 0)
+
+        def getRuleIndex(self):
+            return CNLParser.RULE_timePeriod
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterTimePeriod" ):
+                listener.enterTimePeriod(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitTimePeriod" ):
+                listener.exitTimePeriod(self)
+
+
+
+
+    def timePeriod(self):
+
+        localctx = CNLParser.TimePeriodContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 66, self.RULE_timePeriod)
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 266
+            self.match(CNLParser.IDENTIFIER)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -2074,8 +2214,18 @@ class CNLParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def IDENTIFIER(self):
-            return self.getToken(CNLParser.IDENTIFIER, 0)
+        def WITHIN(self):
+            return self.getToken(CNLParser.WITHIN, 0)
+
+        def time(self):
+            return self.getTypedRuleContext(CNLParser.TimeContext,0)
+
+
+        def DIGIT(self, i:int=None):
+            if i is None:
+                return self.getTokens(CNLParser.DIGIT)
+            else:
+                return self.getToken(CNLParser.DIGIT, i)
 
         def getRuleIndex(self):
             return CNLParser.RULE_timeWindow
@@ -2088,23 +2238,88 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitTimeWindow" ):
                 listener.exitTimeWindow(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitTimeWindow" ):
-                return visitor.visitTimeWindow(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
     def timeWindow(self):
 
         localctx = CNLParser.TimeWindowContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 60, self.RULE_timeWindow)
+        self.enterRule(localctx, 68, self.RULE_timeWindow)
+        self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 227
-            self.match(CNLParser.IDENTIFIER)
+            self.state = 268
+            self.match(CNLParser.WITHIN)
+            self.state = 270 
+            self._errHandler.sync(self)
+            _la = self._input.LA(1)
+            while True:
+                self.state = 269
+                self.match(CNLParser.DIGIT)
+                self.state = 272 
+                self._errHandler.sync(self)
+                _la = self._input.LA(1)
+                if not (_la==34):
+                    break
+
+            self.state = 274
+            self.time()
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class TimeContext(ParserRuleContext):
+        __slots__ = 'parser'
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def MILLISECONDS(self):
+            return self.getToken(CNLParser.MILLISECONDS, 0)
+
+        def SECONDS(self):
+            return self.getToken(CNLParser.SECONDS, 0)
+
+        def MINUTES(self):
+            return self.getToken(CNLParser.MINUTES, 0)
+
+        def HOURS(self):
+            return self.getToken(CNLParser.HOURS, 0)
+
+        def getRuleIndex(self):
+            return CNLParser.RULE_time
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterTime" ):
+                listener.enterTime(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitTime" ):
+                listener.exitTime(self)
+
+
+
+
+    def time(self):
+
+        localctx = CNLParser.TimeContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 70, self.RULE_time)
+        self._la = 0 # Token type
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 276
+            _la = self._input.LA(1)
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 1006632960) != 0)):
+                self._errHandler.recoverInline(self)
+            else:
+                self._errHandler.reportMatch(self)
+                self.consume()
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -2135,22 +2350,16 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitGeo_location" ):
                 listener.exitGeo_location(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitGeo_location" ):
-                return visitor.visitGeo_location(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
     def geo_location(self):
 
         localctx = CNLParser.Geo_locationContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 62, self.RULE_geo_location)
+        self.enterRule(localctx, 72, self.RULE_geo_location)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 229
+            self.state = 278
             self.match(CNLParser.IDENTIFIER)
         except RecognitionException as re:
             localctx.exception = re
@@ -2186,24 +2395,18 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitDetectionBlock" ):
                 listener.exitDetectionBlock(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitDetectionBlock" ):
-                return visitor.visitDetectionBlock(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
     def detectionBlock(self):
 
         localctx = CNLParser.DetectionBlockContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 64, self.RULE_detectionBlock)
+        self.enterRule(localctx, 74, self.RULE_detectionBlock)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 231
+            self.state = 280
             self.match(CNLParser.DETECTION)
-            self.state = 232
+            self.state = 281
             self.detectionExpr()
         except RecognitionException as re:
             localctx.exception = re
@@ -2257,38 +2460,32 @@ class CNLParser ( Parser ):
             if hasattr( listener, "exitDetectionExpr" ):
                 listener.exitDetectionExpr(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitDetectionExpr" ):
-                return visitor.visitDetectionExpr(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
     def detectionExpr(self):
 
         localctx = CNLParser.DetectionExprContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 66, self.RULE_detectionExpr)
+        self.enterRule(localctx, 76, self.RULE_detectionExpr)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 234
+            self.state = 283
             self.eventRef()
-            self.state = 239
+            self.state = 288
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while (((_la) & ~0x3f) == 0 and ((1 << _la) & 896) != 0):
-                self.state = 235
+                self.state = 284
                 _la = self._input.LA(1)
                 if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 896) != 0)):
                     self._errHandler.recoverInline(self)
                 else:
                     self._errHandler.reportMatch(self)
                     self.consume()
-                self.state = 236
+                self.state = 285
                 self.eventRef()
-                self.state = 241
+                self.state = 290
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
