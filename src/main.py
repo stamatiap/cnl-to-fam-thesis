@@ -6,7 +6,7 @@ from pprint import pprint
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python parse_description.py <input_file>")
+        print("Usage: python -m src.main <input_file>")
         sys.exit(1)
 
     input_file = sys.argv[1]
