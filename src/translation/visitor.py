@@ -37,7 +37,29 @@ class Visitor(CNLVisitor):
     def visitTiming(self, ctx: CNLParser.TimingContext):
         if ctx is None:
             return None
-        return ctx.timeWindow().getText()
+        return (ctx.timePreposition().getText(), ctx.timePeriod().getText())
+    
+    def visitRepeat(self, ctx: CNLParser.RepeatContext):
+        if ctx is None:
+            return None
+        if ctx.DIGIT:
+            return "".join(d.getText() for d in ctx.DIGIT())
+        else:
+            return ctx.IDENTIFIER().getText()
+        
+    def visitTimeWindow(self, ctx: CNLParser.TimeWindowContext):
+        if ctx is None:
+            return None
+        return "".join(d.getText() for d in ctx.DIGIT()), ctx.time().getText()
+
+    def visitRepetition(self, ctx: CNLParser.RepetitionContext):
+        if ctx is None:
+            return None
+        
+        repeats = self.visitRepeat(ctx.repeat())
+        x, time_unit = self.visitTimeWindow(ctx.timeWindow())
+        return (repeats, x, time_unit)
+        
 
     def visitAction(self, ctx: CNLParser.ActionContext):
         action_verb = ctx.actionVerb().getText()
@@ -61,7 +83,7 @@ class Visitor(CNLVisitor):
     
     def visitStateVerb(self, ctx: CNLParser.StateVerbContext):
         if ctx.IS():
-            return ctx.IDENTIFIER().getText()
+            return "is_" + ctx.IDENTIFIER().getText()
         return ctx.IDENTIFIER().getText()
     
     def visitStateCondition(self, ctx: CNLParser.StateConditionContext):
@@ -108,13 +130,15 @@ class Visitor(CNLVisitor):
         }
         
     def visitEventBlock(self, ctx: CNLParser.EventBlockContext):
-        event_number = ctx.DIGIT().getText()
+        event_number = "".join(d.getText() for d in ctx.DIGIT())
         statement = self.visitEventStatement(ctx.eventStatement())
         timing = self.visitTiming(ctx.timing())
+        repetition = self.visitRepetition(ctx.repetition())
         return {
             "event_number": event_number,
             **statement,
-            "timing": timing,
+            "repetition": repetition,
+            "time_period": timing
         }
 
     def visitEventStatement(self, ctx: CNLParser.EventStatementContext):
@@ -149,7 +173,7 @@ class Visitor(CNLVisitor):
         }
 
     def visitEventRef(self, ctx: CNLParser.EventRefContext):
-        return ctx.DIGIT().getText()
+        return "".join(d.getText() for d in ctx.DIGIT())
     
     def visitHeader(self, ctx: CNLParser.HeaderContext):
         tactics = self.visitTactics(ctx.tactics())

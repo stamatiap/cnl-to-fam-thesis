@@ -71,17 +71,39 @@ class Translator:
             modifiers= modifiers
         )
     
+    def create_repetition(self, repetition_item) -> dict[str, str]:
+        if repetition_item is None: return None
+
+        repetition={}
+        repetition['frequency'] = repetition_item[0]
+        repetition['time_value'] = repetition_item[1]
+
+        return {
+            'frequency': repetition_item[0],
+            'time_value': repetition_item[1],
+            'time_unit': TIME_UNIT_MAP.get(repetition_item[2], None),
+        }
+        
+    def create_time_period(self, time_period_item) -> dict[str, str]:
+        if time_period_item is None: return None
+
+        time_period={}
+        try:
+            time_period['preposition'] = TimePeriodPreposition(time_period_item[0].lower())
+        except ValueError:
+            time_period['preposition'] = None
+        
+        time_period['time_period'] = time_period_item[1]
+
+        return time_period
+
     def get_logical_operators(self, clause: dict) -> list:
         op_refs = clause.get('operators', [])
         operators = []
         for op in op_refs:
-            if op == LogicalOperatorType.AND.value:
-                operators.append(LogicalOperatorType.AND)
-            elif op == LogicalOperatorType.OR.value:
-                operators.append(LogicalOperatorType.OR)
-            elif op == LogicalOperatorType.XOR.value:
-                operators.append(LogicalOperatorType.XOR)
-            else:
+            try: 
+                operators.append(LogicalOperatorType(op.upper()))
+            except ValueError:
                 operators.append(None)
 
         return operators
@@ -93,6 +115,8 @@ class Translator:
         precondition_operators = self.get_logical_operators(event.get('given', {}))
         postconditions = self.create_state_conditions(event.get('then', {}).get('postconditions', []))
         postcondition_operators = self.get_logical_operators(event.get('then', {}))
+        repetition = self.create_repetition(event.get('repetition', None))
+        time_period = self.create_time_period(event.get('time_period', None))
 
         return Event(
             id = event.get('event_number', None),
@@ -102,7 +126,8 @@ class Translator:
             precondition_operators = precondition_operators,
             postconditions = postconditions,
             postcondition_operators = postcondition_operators,
-            timing = event.get('timing', None)
+            time_period = time_period,
+            repetition = repetition
 
         )
     
