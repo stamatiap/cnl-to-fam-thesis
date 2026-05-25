@@ -3,16 +3,28 @@ from src.cnl.grammar.CNLParser import CNLParser
 
 
 class Visitor(CNLVisitor):
+    def visitAssetProperty(self, ctx: CNLParser.AssetPropertyContext):
+        prop_name = ctx.propertyName().getText()
+        prop_value = ctx.propertyValue().getText()
+        return prop_name, prop_value   
+
     def visitAssetDefinition(self, ctx: CNLParser.AssetDefinitionContext):
         asset_type = ctx.assetType().getText()
         asset_name = ctx.assetName().getText()
-        return asset_type, asset_name
+        if ctx.assetProperty() is not None:
+            properties = {}
+            for prop in ctx.assetProperty():
+                property_name, property_value = self.visitAssetProperty(prop)
+                properties[property_name] = property_value
+        else:
+            properties = None
+        return asset_type, asset_name, properties
 
     def visitAssets(self, ctx: CNLParser.AssetsContext):
         result ={}
         for asset_def in ctx.assetDefinition():
-            asset_type, asset_name = self.visitAssetDefinition(asset_def)
-            result[asset_name] = asset_type
+            asset_type, asset_name, properties = self.visitAssetDefinition(asset_def)
+            result[asset_name] = {"asset_type": asset_type, "properties": properties}
         return result
     
     def visitActionObject(self, ctx:CNLParser.ActionObjectContext):
@@ -26,11 +38,7 @@ class Visitor(CNLVisitor):
         elif ctx.destination():
             return ("destination", ctx.destination().assetName().getText())
         elif ctx.source():
-            source = ctx.source()
-            if source.BY():
-                return ("source_by", source.assetName().getText())
-            elif source.FROM():
-                return ("source_from", source.assetName().getText())
+            return ("source", ctx.source().assetName().getText())
         elif ctx.geolocation():
             return ("geolocation", ctx.geolocation().geo_location().getText())
 
@@ -102,31 +110,31 @@ class Visitor(CNLVisitor):
 
     def visitGivenClause(self, ctx: CNLParser.GivenClauseContext):
         items = ctx.givenItem()
-        operators = []
+        operator = None
         
-        # get operators between items
-        for i in range(len(items) - 1):
-            if ctx.AND(i):
-                operators.append("AND")
-            elif ctx.OR(i):
-                operators.append("OR")
-            elif ctx.XOR(i):
-                operators.append("XOR")
+        # get the operator between given items
+        if len(items) > 1:
+            if ctx.AND():
+                operator = "AND"
+            elif ctx.OR():
+                operator = "OR"
+            elif ctx.XOR():
+                operator = "XOR"
         
         given_items = [self.visitGivenItem(item) for item in items]
         
         return {
             "preconditions": given_items,
-            "operators": operators
+            "operator": operator
         }
     
     def visitThenClause(self, ctx: CNLParser.ThenClauseContext):
         then_items = [self.visitStateCondition(item) for item in ctx.stateCondition()]
-        operators = ["AND"] * (len(then_items) - 1) # then clause supports only AND
+        operator = "AND" # then clause supports only AND
     
         return {
             "postconditions": then_items,
-            "operators": operators
+            "operator": operator
         }
         
     def visitEventBlock(self, ctx: CNLParser.EventBlockContext):
@@ -158,18 +166,19 @@ class Visitor(CNLVisitor):
         event_refs = [self.visitEventRef(e) for e in ctx.eventRef()]
         
         # figure out the operator between them
-        operators = []
-        for i in range(len(event_refs) - 1):
-            if ctx.AND(i):
-                operators.append("AND")
-            elif ctx.OR(i):
-                operators.append("OR")
-            elif ctx.XOR(i):
-                operators.append("XOR")
+        operator =None
+
+        if len(event_refs) > 1:
+            if ctx.AND():
+                operator = "AND"
+            elif ctx.OR():
+                operator = "OR"
+            elif ctx.XOR():
+                operator = "XOR"
             
         return {
             "events": event_refs,
-            "operators": operators
+            "operator": operator
         }
 
     def visitEventRef(self, ctx: CNLParser.EventRefContext):
