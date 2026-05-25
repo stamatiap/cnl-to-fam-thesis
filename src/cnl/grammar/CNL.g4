@@ -17,11 +17,17 @@ assets
     ;
 
 assetDefinition
-    : assetType AS assetName
+    : assetType AS assetName (WITH assetProperty (COMMA assetProperty)*)?
+    ;
+
+assetProperty
+    : propertyName EQUALS propertyValue
     ;
 
 assetType: IDENTIFIER ;
 assetName: IDENTIFIER ;
+propertyName: IDENTIFIER ;
+propertyValue: STRING ;
 
 tactics
     :  TACTICS COLON tactic (COMMA tactic)*
@@ -51,8 +57,7 @@ givenClause
     ;
 
 givenItem
-    : eventRef
-    | stateCondition
+    : stateCondition
     ;
 
 eventRef
@@ -99,7 +104,7 @@ stateVerb
 
 location : IN assetName;
 destination : TO assetName;
-source : BY assetName | FROM assetName;
+source : FROM assetName;
 timing: timePreposition timePeriod;
 geolocation: LOCATED_AT geo_location;
 
@@ -136,7 +141,7 @@ detectionBlock
     ;
 
 detectionExpr
-    : eventRef ((AND | OR | XOR) eventRef)*
+    : eventRef ((OR eventRef)* | (AND eventRef)* | (XOR eventRef)*)
     ;
 
 // Keywords
@@ -169,6 +174,8 @@ MILLISECONDS: 'milliseconds' | 'ms';
 SECONDS     : 'seconds' | 'sec';
 MINUTES     : 'minutes' | 'min';
 HOURS       : 'hours';
+WITH        : 'with';
+EQUALS      : '=';
 
 
 TACTIC_ID
@@ -179,6 +186,7 @@ TECHNIQUE_ID
     : 'T' DIGIT DIGIT DIGIT DIGIT ('.' DIGIT DIGIT DIGIT)*
     ;
 
+STRING     : '"' ( ~["\\\r\n] | '\\' . )* '"' ;
 IDENTIFIER : [A-Za-z][A-Za-z0-9_]* ;
 
 WS
