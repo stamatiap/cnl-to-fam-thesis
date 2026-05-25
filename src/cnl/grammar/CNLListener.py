@@ -53,6 +53,15 @@ class CNLListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by CNLParser#assetProperty.
+    def enterAssetProperty(self, ctx:CNLParser.AssetPropertyContext):
+        pass
+
+    # Exit a parse tree produced by CNLParser#assetProperty.
+    def exitAssetProperty(self, ctx:CNLParser.AssetPropertyContext):
+        pass
+
+
     # Enter a parse tree produced by CNLParser#assetType.
     def enterAssetType(self, ctx:CNLParser.AssetTypeContext):
         pass
@@ -68,6 +77,24 @@ class CNLListener(ParseTreeListener):
 
     # Exit a parse tree produced by CNLParser#assetName.
     def exitAssetName(self, ctx:CNLParser.AssetNameContext):
+        pass
+
+
+    # Enter a parse tree produced by CNLParser#propertyName.
+    def enterPropertyName(self, ctx:CNLParser.PropertyNameContext):
+        pass
+
+    # Exit a parse tree produced by CNLParser#propertyName.
+    def exitPropertyName(self, ctx:CNLParser.PropertyNameContext):
+        pass
+
+
+    # Enter a parse tree produced by CNLParser#propertyValue.
+    def enterPropertyValue(self, ctx:CNLParser.PropertyValueContext):
+        pass
+
+    # Exit a parse tree produced by CNLParser#propertyValue.
+    def exitPropertyValue(self, ctx:CNLParser.PropertyValueContext):
         pass
 
 
