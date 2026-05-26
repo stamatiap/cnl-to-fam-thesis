@@ -34,13 +34,143 @@ class CNLVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by CNLParser#assetProperty.
-    def visitAssetProperty(self, ctx:CNLParser.AssetPropertyContext):
+    # Visit a parse tree produced by CNLParser#processType.
+    def visitProcessType(self, ctx:CNLParser.ProcessTypeContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by CNLParser#assetType.
-    def visitAssetType(self, ctx:CNLParser.AssetTypeContext):
+    # Visit a parse tree produced by CNLParser#fileType.
+    def visitFileType(self, ctx:CNLParser.FileTypeContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#registryType.
+    def visitRegistryType(self, ctx:CNLParser.RegistryTypeContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#endpointType.
+    def visitEndpointType(self, ctx:CNLParser.EndpointTypeContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#networkConnectionType.
+    def visitNetworkConnectionType(self, ctx:CNLParser.NetworkConnectionTypeContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#driverType.
+    def visitDriverType(self, ctx:CNLParser.DriverTypeContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#moduleType.
+    def visitModuleType(self, ctx:CNLParser.ModuleTypeContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#deviceType.
+    def visitDeviceType(self, ctx:CNLParser.DeviceTypeContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#volumeType.
+    def visitVolumeType(self, ctx:CNLParser.VolumeTypeContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#accountType.
+    def visitAccountType(self, ctx:CNLParser.AccountTypeContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#sessionType.
+    def visitSessionType(self, ctx:CNLParser.SessionTypeContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#messageType.
+    def visitMessageType(self, ctx:CNLParser.MessageTypeContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#directoryType.
+    def visitDirectoryType(self, ctx:CNLParser.DirectoryTypeContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#otherType.
+    def visitOtherType(self, ctx:CNLParser.OtherTypeContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#processField.
+    def visitProcessField(self, ctx:CNLParser.ProcessFieldContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#fileField.
+    def visitFileField(self, ctx:CNLParser.FileFieldContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#registryField.
+    def visitRegistryField(self, ctx:CNLParser.RegistryFieldContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#endpointField.
+    def visitEndpointField(self, ctx:CNLParser.EndpointFieldContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#networkConnectionField.
+    def visitNetworkConnectionField(self, ctx:CNLParser.NetworkConnectionFieldContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#driverField.
+    def visitDriverField(self, ctx:CNLParser.DriverFieldContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#moduleField.
+    def visitModuleField(self, ctx:CNLParser.ModuleFieldContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#deviceField.
+    def visitDeviceField(self, ctx:CNLParser.DeviceFieldContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#volumeField.
+    def visitVolumeField(self, ctx:CNLParser.VolumeFieldContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#accountField.
+    def visitAccountField(self, ctx:CNLParser.AccountFieldContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#sessionField.
+    def visitSessionField(self, ctx:CNLParser.SessionFieldContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#messageField.
+    def visitMessageField(self, ctx:CNLParser.MessageFieldContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#directoryField.
+    def visitDirectoryField(self, ctx:CNLParser.DirectoryFieldContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#otherField.
+    def visitOtherField(self, ctx:CNLParser.OtherFieldContext):
         return self.visitChildren(ctx)
 
 
