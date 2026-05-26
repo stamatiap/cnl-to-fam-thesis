@@ -72,7 +72,6 @@ class TechniqueModel:
 
 @dataclass
 class Process(Asset):
-    parent_process: str = None
     signed: bool = None
     command_line: str = None
 
@@ -108,7 +107,7 @@ class Module(Asset):
 
 @dataclass
 class Device(Asset):
-    pass
+    device_type: str = None
 
 @dataclass
 class Volume(Asset):
@@ -116,13 +115,16 @@ class Volume(Asset):
 
 @dataclass
 class Account(Asset):
-    access_level: str = None
     scope: str = None
 
 @dataclass
 class Session(Asset):
-    pass
+    access_level: str = None
 
 @dataclass
 class Message(Asset):
     data: str = None
+
+@dataclass
+class Directory(Asset):
+    path: str = None
