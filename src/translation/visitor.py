@@ -2,23 +2,248 @@ from src.cnl.grammar.CNLVisitor import CNLVisitor
 from src.cnl.grammar.CNLParser import CNLParser
 
 
-class Visitor(CNLVisitor):
-    def visitAssetProperty(self, ctx: CNLParser.AssetPropertyContext):
-        prop_name = ctx.propertyName().getText()
-        prop_value = ctx.propertyValue().getText()
-        return prop_name, prop_value   
+class Visitor(CNLVisitor): 
 
     def visitAssetDefinition(self, ctx: CNLParser.AssetDefinitionContext):
-        asset_type = ctx.assetType().getText()
-        asset_name = ctx.assetName().getText()
-        if ctx.assetProperty() is not None:
-            properties = {}
-            for prop in ctx.assetProperty():
-                property_name, property_value = self.visitAssetProperty(prop)
-                properties[property_name] = property_value
-        else:
-            properties = None
+        if ctx.processType():
+            asset_type = "process"
+            asset_name, properties = self._extract_process(ctx.processType())
+        elif ctx.fileType():
+            asset_type = "file"
+            asset_name, properties = self._extract_file(ctx.fileType())
+        elif ctx.registryType():
+            asset_type = "registry"
+            asset_name, properties = self._extract_registry(ctx.registryType())
+        elif ctx.endpointType():
+            asset_type = "endpoint"
+            asset_name, properties = self._extract_endpoint(ctx.endpointType())
+        elif ctx.networkConnectionType():
+            asset_type = "network_connection"
+            asset_name, properties = self._extract_network_connection(ctx.networkConnectionType())
+        elif ctx.driverType():
+            asset_type = "driver"
+            asset_name, properties = self._extract_driver(ctx.driverType())
+        elif ctx.moduleType():
+            asset_type = "module"
+            asset_name, properties = self._extract_module(ctx.moduleType())
+        elif ctx.deviceType():
+            asset_type = "device"
+            asset_name, properties = self._extract_device(ctx.deviceType())
+        elif ctx.volumeType():
+            asset_type = "volume"
+            asset_name, properties = self._extract_volume(ctx.volumeType())
+        elif ctx.accountType():
+            asset_type = "account"
+            asset_name, properties = self._extract_account(ctx.accountType())
+        elif ctx.sessionType():
+            asset_type = "session"
+            asset_name, properties = self._extract_session(ctx.sessionType())
+        elif ctx.messageType():
+            asset_type = "message"
+            asset_name, properties = self._extract_message(ctx.messageType())
+        elif ctx.directoryType():
+            asset_type = "directory"
+            asset_name, properties = self._extract_directory(ctx.directoryType())
+        elif ctx.otherType():
+            asset_type = ctx.otherType().IDENTIFIER().getText()
+            asset_name, properties = self._extract_other(ctx.otherType())
+        
         return asset_type, asset_name, properties
+ 
+    def _extract_process(self, ctx):
+        """processType: PROCESS AS assetName (WITH processField EQUALS propertyValue (COMMA ...)*)?"""
+        asset_name = ctx.assetName().getText()
+        properties = None
+        
+        if ctx.propertyValue():
+            properties = {}
+            field_names = [f.getText() for f in ctx.processField()]
+            property_values = [p.getText() for p in ctx.propertyValue()]
+            for field_name, prop_value in zip(field_names, property_values):
+                properties[field_name] = prop_value
+        
+        return asset_name, properties
+ 
+    def _extract_file(self, ctx):
+        """fileType: FILE AS assetName (WITH fileField EQUALS propertyValue (COMMA ...)*)?"""
+        asset_name = ctx.assetName().getText()
+        properties = None
+        
+        if ctx.propertyValue():
+            properties = {}
+            field_names = [f.getText() for f in ctx.fileField()]
+            property_values = [p.getText() for p in ctx.propertyValue()]
+            for field_name, prop_value in zip(field_names, property_values):
+                properties[field_name] = prop_value
+        
+        return asset_name, properties
+ 
+    def _extract_registry(self, ctx):
+        """registryType: REGISTRY AS assetName (WITH registryField EQUALS propertyValue)?"""
+        asset_name = ctx.assetName().getText()
+        properties = None
+        
+        if ctx.propertyValue():
+            properties = {}
+            field_names = [f.getText() for f in ctx.registryField()]
+            property_values = [p.getText() for p in ctx.propertyValue()]
+            for field_name, prop_value in zip(field_names, property_values):
+                properties[field_name] = prop_value
+        
+        return asset_name, properties
+ 
+    def _extract_endpoint(self, ctx):
+        """endpointType: ENDPOINT AS assetName (WITH endpointField EQUALS propertyValue (COMMA ...)*)?"""
+        asset_name = ctx.assetName().getText()
+        properties = None
+        
+        if ctx.propertyValue():
+            properties = {}
+            field_names = [f.getText() for f in ctx.endpointField()]
+            property_values = [p.getText() for p in ctx.propertyValue()]
+            for field_name, prop_value in zip(field_names, property_values):
+                properties[field_name] = prop_value
+        
+        return asset_name, properties
+ 
+    def _extract_network_connection(self, ctx):
+        """networkConnectionType: NETWORK_CONNECTION AS assetName (WITH networkConnectionField EQUALS propertyValue (COMMA ...)*)?"""
+        asset_name = ctx.assetName().getText()
+        properties = None
+        
+        if ctx.propertyValue():
+            properties = {}
+            field_names = [f.getText() for f in ctx.networkConnectionField()]
+            property_values = [p.getText() for p in ctx.propertyValue()]
+            for field_name, prop_value in zip(field_names, property_values):
+                properties[field_name] = prop_value
+        
+        return asset_name, properties
+ 
+    def _extract_driver(self, ctx):
+        """driverType: DRIVER AS assetName (WITH driverField EQUALS propertyValue)?"""
+        asset_name = ctx.assetName().getText()
+        properties = None
+        
+        if ctx.propertyValue():
+            properties = {}
+            field_names = [f.getText() for f in ctx.driverField()]
+            property_values = [p.getText() for p in ctx.propertyValue()]
+            for field_name, prop_value in zip(field_names, property_values):
+                properties[field_name] = prop_value
+        
+        return asset_name, properties
+ 
+    def _extract_module(self, ctx):
+        """moduleType: MODULE AS assetName (WITH moduleField EQUALS propertyValue (COMMA ...)*)?"""
+        asset_name = ctx.assetName().getText()
+        properties = None
+        
+        if ctx.propertyValue():
+            properties = {}
+            field_names = [f.getText() for f in ctx.moduleField()]
+            property_values = [p.getText() for p in ctx.propertyValue()]
+            for field_name, prop_value in zip(field_names, property_values):
+                properties[field_name] = prop_value
+        
+        return asset_name, properties
+ 
+    def _extract_device(self, ctx):
+        """deviceType: DEVICE AS assetName (WITH deviceField EQUALS propertyValue)?"""
+        asset_name = ctx.assetName().getText()
+        properties = None
+        
+        if ctx.propertyValue():
+            properties = {}
+            field_names = [f.getText() for f in ctx.deviceField()]
+            property_values = [p.getText() for p in ctx.propertyValue()]
+            for field_name, prop_value in zip(field_names, property_values):
+                properties[field_name] = prop_value
+        
+        return asset_name, properties
+ 
+    def _extract_volume(self, ctx):
+        """volumeType: VOLUME AS assetName (WITH volumeField EQUALS propertyValue)?"""
+        asset_name = ctx.assetName().getText()
+        properties = None
+        
+        if ctx.propertyValue():
+            properties = {}
+            field_names = [f.getText() for f in ctx.volumeField()]
+            property_values = [p.getText() for p in ctx.propertyValue()]
+            for field_name, prop_value in zip(field_names, property_values):
+                properties[field_name] = prop_value
+        
+        return asset_name, properties
+ 
+    def _extract_account(self, ctx):
+        """accountType: ACCOUNT AS assetName (WITH accountField EQUALS propertyValue)?"""
+        asset_name = ctx.assetName().getText()
+        properties = None
+        
+        if ctx.propertyValue():
+            properties = {}
+            field_names = [f.getText() for f in ctx.accountField()]
+            property_values = [p.getText() for p in ctx.propertyValue()]
+            for field_name, prop_value in zip(field_names, property_values):
+                properties[field_name] = prop_value
+        
+        return asset_name, properties
+ 
+    def _extract_session(self, ctx):
+        """sessionType: SESSION AS assetName (WITH sessionField EQUALS propertyValue)?"""
+        asset_name = ctx.assetName().getText()
+        properties = None
+        
+        if ctx.propertyValue():
+            properties = {}
+            field_names = [f.getText() for f in ctx.sessionField()]
+            property_values = [p.getText() for p in ctx.propertyValue()]
+            for field_name, prop_value in zip(field_names, property_values):
+                properties[field_name] = prop_value
+        
+        return asset_name, properties
+ 
+    def _extract_message(self, ctx):
+        """messageType: MESSAGE AS assetName (WITH messageField EQUALS propertyValue (COMMA ...)*)?"""
+        asset_name = ctx.assetName().getText()
+        properties = None
+        
+        if ctx.propertyValue():
+            properties = {}
+            field_names = [f.getText() for f in ctx.messageField()]
+            property_values = [p.getText() for p in ctx.propertyValue()]
+            for field_name, prop_value in zip(field_names, property_values):
+                properties[field_name] = prop_value
+        
+        return asset_name, properties
+ 
+    def _extract_directory(self, ctx):
+        """directoryType: DIRECTORY AS assetName (WITH directoryField EQUALS propertyValue)?"""
+        asset_name = ctx.assetName().getText()
+        properties = None
+        
+        if ctx.propertyValue():
+            properties = {}
+            field_name = ctx.directoryField().getText()
+            prop_value = ctx.propertyValue().getText()
+            properties[field_name] = prop_value
+        
+        return asset_name, properties
+ 
+    def _extract_other(self, ctx):
+        """otherType: IDENTIFIER AS assetName (WITH otherField EQUALS propertyValue (COMMA ...)*)?"""
+        asset_name = ctx.assetName().getText()
+        properties = None
+        
+        if ctx.propertyValue():
+            properties = {}
+            field_names = [f.getText() for f in ctx.otherField()]
+            property_values = [p.getText() for p in ctx.propertyValue()]
+            for field_name, prop_value in zip(field_names, property_values):
+                properties[field_name] = prop_value
+        
+        return asset_name, properties
 
     def visitAssets(self, ctx: CNLParser.AssetsContext):
         result ={}
@@ -50,7 +275,7 @@ class Visitor(CNLVisitor):
     def visitRepeat(self, ctx: CNLParser.RepeatContext):
         if ctx is None:
             return None
-        if ctx.DIGIT:
+        if ctx.DIGIT():
             return "".join(d.getText() for d in ctx.DIGIT())
         else:
             return ctx.IDENTIFIER().getText()
