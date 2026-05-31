@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 from src.domain_model.enums import ModifierType, LogicalOperatorType
+from typing import Self
 import uuid
 
 @dataclass
@@ -69,11 +70,17 @@ class TechniqueModel:
     detection: Detection
 
 # --------------------------
+@dataclass
+class Handle(Asset):
+    hexadecimal_number: str = None
+    target: Asset = None
 
 @dataclass
 class Process(Asset):
     signed: bool = None
     command_line: str = None
+    parent_process: Self = None
+    handles: list[Handle] = field(default_factory=list)
 
 @dataclass
 class File(Asset):

@@ -1,10 +1,10 @@
-from enum import Enum, auto
+from enum import Enum
 
 class ModifierType(Enum):
     LOCATION = "in"
     DESTINATION = "to"
     SOURCE = "from"
-    GEOLOCATION = "located_at"
+    TRIGGER = "by"
 
 class LogicalOperatorType(Enum):
     AND = "AND"
