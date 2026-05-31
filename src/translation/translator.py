@@ -169,8 +169,6 @@ class Translator:
         postconditions = self.create_state_conditions(event.get('then', {}).get('postconditions', []))
         postcondition_operator = self.get_logical_operator(event.get('then', {}))
         
-        # apply changes from postcondition modifiers
-        
         repetition = self.create_repetition(event.get('repetition', None))
         time_period = self.create_time_period(event.get('time_period', None))
 
