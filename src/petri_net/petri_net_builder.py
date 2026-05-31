@@ -54,12 +54,10 @@ class PetriNetBuilder:
             return f"{name}_in_{modifier.value.name}"
         elif modifier.type == ModifierType.DESTINATION:
             return f"{name}_to_{modifier.value.name}"
-        elif modifier.type == ModifierType.SOURCE_BY:
-            return f"{name}_by_{modifier.value.name}"
-        elif modifier.type == ModifierType.SOURCE_FROM:
+        elif modifier.type == ModifierType.SOURCE:
             return f"{name}_from_{modifier.value.name}"
-        elif modifier.type == ModifierType.GEOLOCATION:
-            return f"{name}_at_{modifier.value}"
+        elif modifier.type == ModifierType.TRIGGER:
+            return f"{name}_by_{modifier.value.name}"
         else:
             return name
 
@@ -70,7 +68,7 @@ class PetriNetBuilder:
         
         transition = self._get_or_create_transition(transition_name)
 
-        if event.precondition_operators  and all(op == LogicalOperatorType.OR for op in event.precondition_operators):
+        if event.precondition_operator == LogicalOperatorType.OR :
             #OR - get all transitions that produce the precondition places
             previous_transitions = []
             for condition in event.preconditions:
@@ -178,7 +176,7 @@ class PetriNetBuilder:
             #     petri_utils.remove_place(self.net, place)
                     
            
-        elif event.precondition_operators and all(op == LogicalOperatorType.XOR for op in event.precondition_operators):
+        elif event.precondition_operator == LogicalOperatorType.XOR:
             # XOR — create silent transitions and shared xor_place
             xor_key = "xor_" + "_".join(sorted(self._get_place_name(c) for c in event.preconditions))
             xor_place = self._get_or_create_place(xor_key)
@@ -212,7 +210,7 @@ class PetriNetBuilder:
         self.event_postcondition_places[event.id] = post_places
 
     def _add_detection(self, detection: Detection, final_place: PetriNet.Place) -> None:
-        if detection.operators and all(op == LogicalOperatorType.XOR for op in detection.operators):
+        if detection.operator == LogicalOperatorType.XOR:
             # XOR — each postcondition place gets its own silent transition to final place
             for event_ref in detection.event_refs:
                 post_places = self._get_postcondition_place(event_ref.id)
