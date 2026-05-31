@@ -94,7 +94,7 @@ otherType:
     IDENTIFIER AS assetName (WITH otherField EQUALS propertyValue (COMMA otherField EQUALS propertyValue)*)?
     ;
 
-processField: PARENT_PROCESS | SIGNED | COMMAND_LINE | PARENT_PROCESS | HANDLES ;
+processField: PARENT_PROCESS | SIGNED | COMMAND_LINE | PARENT_PROCESS ;
 fileField: PATH | SIGNED ;
 registryField: PATH ;
 endpointField: PORT | PROTOCOL | IP_ADDRESS ;

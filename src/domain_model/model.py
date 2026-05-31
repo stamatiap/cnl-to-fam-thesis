@@ -80,7 +80,6 @@ class Process(Asset):
     signed: bool = None
     command_line: str = None
     parent_process: Self = None
-    handles: list[Handle] = field(default_factory=list)
 
 @dataclass
 class File(Asset):
