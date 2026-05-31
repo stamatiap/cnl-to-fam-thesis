@@ -99,6 +99,11 @@ class CNLVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by CNLParser#handleType.
+    def visitHandleType(self, ctx:CNLParser.HandleTypeContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by CNLParser#otherType.
     def visitOtherType(self, ctx:CNLParser.OtherTypeContext):
         return self.visitChildren(ctx)
@@ -166,6 +171,11 @@ class CNLVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by CNLParser#directoryField.
     def visitDirectoryField(self, ctx:CNLParser.DirectoryFieldContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by CNLParser#handleField.
+    def visitHandleField(self, ctx:CNLParser.HandleFieldContext):
         return self.visitChildren(ctx)
 
 
@@ -294,13 +304,13 @@ class CNLVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by CNLParser#timing.
-    def visitTiming(self, ctx:CNLParser.TimingContext):
+    # Visit a parse tree produced by CNLParser#trigger.
+    def visitTrigger(self, ctx:CNLParser.TriggerContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by CNLParser#geolocation.
-    def visitGeolocation(self, ctx:CNLParser.GeolocationContext):
+    # Visit a parse tree produced by CNLParser#timing.
+    def visitTiming(self, ctx:CNLParser.TimingContext):
         return self.visitChildren(ctx)
 
 

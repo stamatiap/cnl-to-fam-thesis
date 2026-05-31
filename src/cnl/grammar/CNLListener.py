@@ -170,6 +170,15 @@ class CNLListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by CNLParser#handleType.
+    def enterHandleType(self, ctx:CNLParser.HandleTypeContext):
+        pass
+
+    # Exit a parse tree produced by CNLParser#handleType.
+    def exitHandleType(self, ctx:CNLParser.HandleTypeContext):
+        pass
+
+
     # Enter a parse tree produced by CNLParser#otherType.
     def enterOtherType(self, ctx:CNLParser.OtherTypeContext):
         pass
@@ -293,6 +302,15 @@ class CNLListener(ParseTreeListener):
 
     # Exit a parse tree produced by CNLParser#directoryField.
     def exitDirectoryField(self, ctx:CNLParser.DirectoryFieldContext):
+        pass
+
+
+    # Enter a parse tree produced by CNLParser#handleField.
+    def enterHandleField(self, ctx:CNLParser.HandleFieldContext):
+        pass
+
+    # Exit a parse tree produced by CNLParser#handleField.
+    def exitHandleField(self, ctx:CNLParser.HandleFieldContext):
         pass
 
 
@@ -521,21 +539,21 @@ class CNLListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by CNLParser#trigger.
+    def enterTrigger(self, ctx:CNLParser.TriggerContext):
+        pass
+
+    # Exit a parse tree produced by CNLParser#trigger.
+    def exitTrigger(self, ctx:CNLParser.TriggerContext):
+        pass
+
+
     # Enter a parse tree produced by CNLParser#timing.
     def enterTiming(self, ctx:CNLParser.TimingContext):
         pass
 
     # Exit a parse tree produced by CNLParser#timing.
     def exitTiming(self, ctx:CNLParser.TimingContext):
-        pass
-
-
-    # Enter a parse tree produced by CNLParser#geolocation.
-    def enterGeolocation(self, ctx:CNLParser.GeolocationContext):
-        pass
-
-    # Exit a parse tree produced by CNLParser#geolocation.
-    def exitGeolocation(self, ctx:CNLParser.GeolocationContext):
         pass
 
 
