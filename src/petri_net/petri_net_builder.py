@@ -66,7 +66,7 @@ class PetriNetBuilder:
         for modifier in event.action.modifiers or []:
             transition_name = self._add_modifier_to_name(transition_name, modifier)
         
-        transition = self._get_or_create_transition(transition_name)
+        transition = self._get_or_create_transition(name=transition_name+event.id,label=transition_name)
 
         if event.precondition_operator == LogicalOperatorType.OR :
             #OR - get all transitions that produce the precondition places
@@ -90,7 +90,7 @@ class PetriNetBuilder:
                 if k>0:
                     perm_transitions = []
                     for t in perm:
-                        new_transition = self._get_or_create_transition(t.name+f"_{k}")
+                        new_transition = self._get_or_create_transition(name=t.name+f"_{k}"+event.id,label=t.name+f"_{k}")
                         for out in t.out_arcs:
                             if not self._arc_exists(new_transition, out.target):
                                             petri_utils.add_arc_from_to(new_transition, out.target, self.net)
@@ -250,7 +250,7 @@ class PetriNetBuilder:
     def _get_or_create_transition(self, name: str, label: str = "") -> PetriNet.Transition:
         if name not in self.transitions:
             # label=None means silent transition (rendered as black box)
-            transition = PetriNet.Transition(name, label=None if label is None else name)
+            transition = PetriNet.Transition(name, label=label)
             self.net.transitions.add(transition)
             self.transitions[name] = transition
         return self.transitions[name]
