@@ -44,13 +44,16 @@ class Visitor(CNLVisitor):
         elif ctx.directoryType():
             asset_type = "directory"
             asset_name, properties = self._extract_directory(ctx.directoryType())
+        elif ctx.handleType():
+            asset_type = "handle"
+            asset_name, properties = self._extract_handle(ctx.handleType())
         elif ctx.otherType():
             asset_type = ctx.otherType().IDENTIFIER().getText()
             asset_name, properties = self._extract_other(ctx.otherType())
         
         return asset_type, asset_name, properties
  
-    def _extract_process(self, ctx):
+    def _extract_process(self, ctx: CNLParser.ProcessTypeContext):
         """processType: PROCESS AS assetName (WITH processField EQUALS propertyValue (COMMA ...)*)?"""
         asset_name = ctx.assetName().getText()
         properties = None
@@ -64,7 +67,7 @@ class Visitor(CNLVisitor):
         
         return asset_name, properties
  
-    def _extract_file(self, ctx):
+    def _extract_file(self, ctx: CNLParser.FileTypeContext):
         """fileType: FILE AS assetName (WITH fileField EQUALS propertyValue (COMMA ...)*)?"""
         asset_name = ctx.assetName().getText()
         properties = None
@@ -78,7 +81,7 @@ class Visitor(CNLVisitor):
         
         return asset_name, properties
  
-    def _extract_registry(self, ctx):
+    def _extract_registry(self, ctx: CNLParser.RegistryTypeContext):
         """registryType: REGISTRY AS assetName (WITH registryField EQUALS propertyValue)?"""
         asset_name = ctx.assetName().getText()
         properties = None
@@ -92,7 +95,7 @@ class Visitor(CNLVisitor):
         
         return asset_name, properties
  
-    def _extract_endpoint(self, ctx):
+    def _extract_endpoint(self, ctx: CNLParser.EndpointTypeContext):
         """endpointType: ENDPOINT AS assetName (WITH endpointField EQUALS propertyValue (COMMA ...)*)?"""
         asset_name = ctx.assetName().getText()
         properties = None
@@ -106,7 +109,7 @@ class Visitor(CNLVisitor):
         
         return asset_name, properties
  
-    def _extract_network_connection(self, ctx):
+    def _extract_network_connection(self, ctx: CNLParser.NetworkConnectionTypeContext):
         """networkConnectionType: NETWORK_CONNECTION AS assetName (WITH networkConnectionField EQUALS propertyValue (COMMA ...)*)?"""
         asset_name = ctx.assetName().getText()
         properties = None
@@ -120,7 +123,7 @@ class Visitor(CNLVisitor):
         
         return asset_name, properties
  
-    def _extract_driver(self, ctx):
+    def _extract_driver(self, ctx: CNLParser.DriverTypeContext):
         """driverType: DRIVER AS assetName (WITH driverField EQUALS propertyValue)?"""
         asset_name = ctx.assetName().getText()
         properties = None
@@ -134,7 +137,7 @@ class Visitor(CNLVisitor):
         
         return asset_name, properties
  
-    def _extract_module(self, ctx):
+    def _extract_module(self, ctx: CNLParser.ModuleTypeContext):
         """moduleType: MODULE AS assetName (WITH moduleField EQUALS propertyValue (COMMA ...)*)?"""
         asset_name = ctx.assetName().getText()
         properties = None
@@ -148,7 +151,7 @@ class Visitor(CNLVisitor):
         
         return asset_name, properties
  
-    def _extract_device(self, ctx):
+    def _extract_device(self, ctx: CNLParser.DeviceTypeContext):
         """deviceType: DEVICE AS assetName (WITH deviceField EQUALS propertyValue)?"""
         asset_name = ctx.assetName().getText()
         properties = None
@@ -162,7 +165,7 @@ class Visitor(CNLVisitor):
         
         return asset_name, properties
  
-    def _extract_volume(self, ctx):
+    def _extract_volume(self, ctx: CNLParser.VolumeTypeContext):
         """volumeType: VOLUME AS assetName (WITH volumeField EQUALS propertyValue)?"""
         asset_name = ctx.assetName().getText()
         properties = None
@@ -176,7 +179,7 @@ class Visitor(CNLVisitor):
         
         return asset_name, properties
  
-    def _extract_account(self, ctx):
+    def _extract_account(self, ctx: CNLParser.AccountTypeContext):
         """accountType: ACCOUNT AS assetName (WITH accountField EQUALS propertyValue)?"""
         asset_name = ctx.assetName().getText()
         properties = None
@@ -190,7 +193,7 @@ class Visitor(CNLVisitor):
         
         return asset_name, properties
  
-    def _extract_session(self, ctx):
+    def _extract_session(self, ctx: CNLParser.SessionTypeContext):
         """sessionType: SESSION AS assetName (WITH sessionField EQUALS propertyValue)?"""
         asset_name = ctx.assetName().getText()
         properties = None
@@ -204,7 +207,7 @@ class Visitor(CNLVisitor):
         
         return asset_name, properties
  
-    def _extract_message(self, ctx):
+    def _extract_message(self, ctx: CNLParser.MessageTypeContext):
         """messageType: MESSAGE AS assetName (WITH messageField EQUALS propertyValue (COMMA ...)*)?"""
         asset_name = ctx.assetName().getText()
         properties = None
@@ -218,7 +221,7 @@ class Visitor(CNLVisitor):
         
         return asset_name, properties
  
-    def _extract_directory(self, ctx):
+    def _extract_directory(self, ctx: CNLParser.DirectoryTypeContext):
         """directoryType: DIRECTORY AS assetName (WITH directoryField EQUALS propertyValue)?"""
         asset_name = ctx.assetName().getText()
         properties = None
@@ -230,8 +233,22 @@ class Visitor(CNLVisitor):
             properties[field_name] = prop_value
         
         return asset_name, properties
+    
+    def _extract_handle(self, ctx: CNLParser.HandleTypeContext):
+        """handleType: HANDLE AS assetName (WITH handleField EQUALS propertyValue)?"""
+        asset_name = ctx.assetName().getText()
+        properties = None
+        
+        if ctx.propertyValue():
+            properties = {}
+            field_names = [f.getText() for f in ctx.handleField()]
+            property_values = [p.getText() for p in ctx.propertyValue()]
+            for field_name, prop_value in zip(field_names, property_values):
+                properties[field_name] = prop_value
+        
+        return asset_name, properties
  
-    def _extract_other(self, ctx):
+    def _extract_other(self, ctx: CNLParser.OtherTypeContext):
         """otherType: IDENTIFIER AS assetName (WITH otherField EQUALS propertyValue (COMMA ...)*)?"""
         asset_name = ctx.assetName().getText()
         properties = None
@@ -264,8 +281,8 @@ class Visitor(CNLVisitor):
             return ("destination", ctx.destination().assetName().getText())
         elif ctx.source():
             return ("source", ctx.source().assetName().getText())
-        elif ctx.geolocation():
-            return ("geolocation", ctx.geolocation().geo_location().getText())
+        elif ctx.trigger():
+            return ("trigger", ctx.trigger().assetName().getText())
 
     def visitTiming(self, ctx: CNLParser.TimingContext):
         if ctx is None:
