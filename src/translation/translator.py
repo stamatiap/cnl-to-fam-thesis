@@ -6,7 +6,6 @@ from src.domain_model.model import *
 from src.domain_model.enums import *
 from dataclasses import fields
 
-
 class Translator:
 
     def parse_input(self, input_path: str) -> dict:
@@ -50,9 +49,33 @@ class Translator:
             
             # validate properties
             valid_fields = {f.name for f in fields(cls)} - {'asset_type', 'name', 'asset_id'}
-            # remove quotes
+            # remove quotes from property values
             extra = {k: v.replace("'", "").replace('"', "") for k, v in properties.items() if k in valid_fields}
             
+            # create objects for Asset types that have other Assets as properties and add to registry
+            if asset_type_str == "network_connection":
+                if "source" in properties.keys():
+                    extra["source"] = Process(asset_type='process', name=properties['source'].replace("'", "").replace('"', ""))
+                    registry[extra["source"].name] = extra["source"]
+                if "destination" in properties.keys():
+                    extra["destination"] = Endpoint(asset_type='endpoint', name=properties['destination'].replace("'", "").replace('"', ""))
+                    registry[extra["destination"].name] = extra["destination"]
+            elif asset_type_str == "process":
+                if "parent_process" in properties.keys():
+                    extra["parent_process"] = Process(asset_type="process", name=properties['parent_process'].replace("'", "").replace('"', ""))
+                    registry[extra["parent_process"].name] = extra["parent_process"]
+            elif asset_type_str == "handle":
+                if "target" in properties.keys():
+                    target_name = properties['target'].replace("'", "").replace('"', "")
+                    # target asset must be declared beforehand
+                    if target_name in registry:
+                        extra["target"] = registry[target_name]
+                    else:
+                        raise ValueError(
+                            f"Handle '{name}' references target '{target_name}', which "
+                            f"is not declared, or is declared after the handle in the Background."
+                        )
+
             # warn on invalid properties
             for k, v in properties.items(): 
                 if k not in valid_fields:
@@ -139,58 +162,6 @@ class Translator:
 
         return operator
 
-    def apply_postcondition_changes(self, postconditions: list[StateCondition]) -> None:
-        """
-        Apply field changes based on postcondition modifiers.
-        
-        Convention:
-        - IN <asset>: For file/process/driver/module/registry, set subject.path = asset.path
-        - TO <asset>: For network_connection, set subject.destination = asset
-        - FROM <asset>: For network_connection, set subject.source = asset
-        - BY <asset>: 
-            - For process in subject place, if parent_process=None, set subject.parent_process = asset.
-            - For handle in subject and process in asset, add handle to process.handles 
-        """
-        for postcond in postconditions:
-            subject = postcond.subject
-            
-            for modifier in postcond.modifiers:
-                if modifier.type == ModifierType.LOCATION:
-                    # IN modifier: change path field
-                    location_asset = modifier.value
-                    
-                    # apply change rule: path-bearing assets inherit location path
-                    if subject.asset_type.lower() in ["file", "process", "driver", "module", "registry"]:
-                        if hasattr(location_asset, 'path') and location_asset.path:
-                            subject.path = location_asset.path
-                        elif hasattr(location_asset, 'name'):
-                            #  use asset name if path not available
-                            subject.path = location_asset.name
-                
-                elif modifier.type == ModifierType.DESTINATION:
-                    # TO modifier: set destination endpoint
-                    if (subject.asset_type.lower() == "network_connection") or (subject.asset_type.lower() == "handle"):
-                        if hasattr(subject, 'destination'):
-                            subject.destination = modifier.value
-                
-                elif modifier.type == ModifierType.SOURCE:
-                    # FROM modifier: set source endpoint
-                    if subject.asset_type.lower() == "network_connection":
-                        if hasattr(subject, 'source'):
-                            subject.source = modifier.value
-                
-                elif modifier.type == ModifierType.TRIGGER:
-                    # TRIGGER modifier
-                    if subject.asset_type.lower() == "process":
-                        # assumption: an action directly between 2 processes, where the 
-                        # triggered one has no parent_process, is spawning
-                        if hasattr(subject, 'parent_process'):
-                            if subject.parent_process is None:
-                                subject.parent_process = modifier.value
-                    if (subject.asset_type.lower() == "handle") and (modifier.value.asset_type == "process"):
-                        # a handle is triggered by a process 
-                        modifier.value.handles.append(subject)
-
     def create_event(self, event) -> Event:
         action = self.create_action(event.get('when', {}))
         preconditions = self.create_state_conditions(event.get('given', {}).get('preconditions', []))  # expecting only state conditions as preconditions
@@ -199,7 +170,6 @@ class Translator:
         postcondition_operator = self.get_logical_operator(event.get('then', {}))
         
         # apply changes from postcondition modifiers
-        self.apply_postcondition_changes(postconditions)
         
         repetition = self.create_repetition(event.get('repetition', None))
         time_period = self.create_time_period(event.get('time_period', None))
