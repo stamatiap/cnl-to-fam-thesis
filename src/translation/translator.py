@@ -24,21 +24,13 @@ class Translator:
             mod_type = ModifierType.DESTINATION
         elif modifier[0] == 'source':
             mod_type = ModifierType.SOURCE
-        elif modifier[0] == 'geolocation':
-            mod_type = ModifierType.GEOLOCATION
+        elif modifier[0] == 'trigger':
+            mod_type = ModifierType.TRIGGER
         
-        if modifier[0] in ['location', 'destination', 'source']:
-            # modifier references an Asset
-            return Modifier(
-                type = mod_type,
-                value = self.get_asset(modifier[1])
-            )
-        else:
-            # modifier does not reference an Asset
-            return Modifier(
-                type = mod_type,
-                value = modifier[1]
-            )
+        return Modifier(
+            type = mod_type,
+            value = self.get_asset(modifier[1])
+        )
         
     def build_asset_registry(self, assets_dict: dict) -> dict[str, Asset]:
         registry = {}
@@ -155,6 +147,9 @@ class Translator:
         - IN <asset>: For file/process/driver/module/registry, set subject.path = asset.path
         - TO <asset>: For network_connection, set subject.destination = asset
         - FROM <asset>: For network_connection, set subject.source = asset
+        - BY <asset>: 
+            - For process in subject place, if parent_process=None, set subject.parent_process = asset.
+            - For handle in subject and process in asset, add handle to process.handles 
         """
         for postcond in postconditions:
             subject = postcond.subject
@@ -174,7 +169,7 @@ class Translator:
                 
                 elif modifier.type == ModifierType.DESTINATION:
                     # TO modifier: set destination endpoint
-                    if subject.asset_type.lower() == "network_connection":
+                    if (subject.asset_type.lower() == "network_connection") or (subject.asset_type.lower() == "handle"):
                         if hasattr(subject, 'destination'):
                             subject.destination = modifier.value
                 
@@ -183,6 +178,18 @@ class Translator:
                     if subject.asset_type.lower() == "network_connection":
                         if hasattr(subject, 'source'):
                             subject.source = modifier.value
+                
+                elif modifier.type == ModifierType.TRIGGER:
+                    # TRIGGER modifier
+                    if subject.asset_type.lower() == "process":
+                        # assumption: an action directly between 2 processes, where the 
+                        # triggered one has no parent_process, is spawning
+                        if hasattr(subject, 'parent_process'):
+                            if subject.parent_process is None:
+                                subject.parent_process = modifier.value
+                    if (subject.asset_type.lower() == "handle") and (modifier.value.asset_type == "process"):
+                        # a handle is triggered by a process 
+                        modifier.value.handles.append(subject)
 
     def create_event(self, event) -> Event:
         action = self.create_action(event.get('when', {}))
