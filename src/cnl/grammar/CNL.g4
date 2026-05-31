@@ -30,6 +30,7 @@ assetDefinition
     | sessionType
     | messageType
     | directoryType
+    | handleType
     | otherType
     ;
 
@@ -85,11 +86,15 @@ directoryType:
     DIRECTORY AS assetName (WITH directoryField EQUALS propertyValue)?
     ;
 
+handleType:
+    HANDLE AS assetName (WITH handleField EQUALS propertyValue (COMMA handleField EQUALS propertyValue)*)?
+    ;
+
 otherType: 
     IDENTIFIER AS assetName (WITH otherField EQUALS propertyValue (COMMA otherField EQUALS propertyValue)*)?
     ;
 
-processField: PARENT_PROCESS | SIGNED | COMMAND_LINE ;
+processField: PARENT_PROCESS | SIGNED | COMMAND_LINE | PARENT_PROCESS | HANDLES ;
 fileField: PATH | SIGNED ;
 registryField: PATH ;
 endpointField: PORT | PROTOCOL | IP_ADDRESS ;
@@ -102,6 +107,7 @@ accountField: SCOPE ;
 sessionField: ACCESS_LEVEL ;
 messageField: DATA ; 
 directoryField: PATH ;
+handleField: HEXADECIMAL_NUMBER | TARGET;
 otherField: IDENTIFIER ;
 
 
@@ -110,7 +116,7 @@ propertyName: IDENTIFIER ;
 propertyValue: STRING ;
 
 tactics
-    :  TACTICS COLON tactic (COMMA tactic)*
+    :  (TACTICS | TACTIC) COLON tactic (COMMA tactic)*
     ;
 
 tactic
@@ -163,7 +169,7 @@ modifier
     : location
     | destination
     | source
-    | geolocation
+    | trigger
     ;
 
 thenClause
@@ -185,8 +191,8 @@ stateVerb
 location : IN assetName;
 destination : TO assetName;
 source : FROM assetName;
+trigger: BY assetName;
 timing: timePreposition timePeriod;
-geolocation: LOCATED_AT geo_location;
 
 timePreposition: 
     DURING | OUTSIDE
@@ -226,6 +232,7 @@ detectionExpr
 
 // General Technique Keywords
 TACTICS     : 'Tactics';
+TACTIC      : 'Tactic';
 TECHNIQUE   : 'Technique';
 
 TACTIC_ID
@@ -256,7 +263,6 @@ IN          : 'in';
 TO          : 'to';
 BY          : 'by';
 FROM        : 'from';
-LOCATED_AT  : 'located_at';
 
 // Time Window Keywords
 DURING      : 'During';
@@ -289,6 +295,7 @@ ACCOUNT         : 'account';
 SESSION         : 'session';
 MESSAGE         : 'message';
 DIRECTORY       : 'directory';
+HANDLE          : 'handle';
 
 // Asset fields
 PARENT_PROCESS  : 'parent_process';
@@ -305,9 +312,12 @@ DEVICE_TYPE     : 'device_type';
 ACCESS_LEVEL    : 'access_level';
 SCOPE           : 'scope';
 DATA            : 'data';
+HEXADECIMAL_NUMBER: 'hexadecimal_number';
+TARGET          : 'target';
+HANDLES         : 'handles';
 
 // Other Keywords
-STRING     : '"' ( ~["\\\r\n] | '\\' . )* '"' ;
+STRING     : ( '"' ( ~["\\\r\n] | '\\' . )* '"' ) | ( '\'' ( ~['\\\r\n] | '\\' . )* '\'' ) ;
 IDENTIFIER : [A-Za-z][A-Za-z0-9_]* ;
 COMMA       : ',';
 COLON       : ':';
