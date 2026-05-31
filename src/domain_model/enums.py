@@ -4,7 +4,7 @@ class ModifierType(Enum):
     LOCATION = "in"
     DESTINATION = "to"
     SOURCE = "from"
-    GEOLOCATION = "located_at"
+    TRIGGER = "by"
 
 class LogicalOperatorType(Enum):
     AND = "AND"
