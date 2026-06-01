@@ -1,10 +1,13 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from src.domain_model.enums import ModifierType, LogicalOperatorType
+from typing import Self
+import uuid
 
 @dataclass
 class Asset:
-    type: str
+    asset_type: str
     name: str
+    asset_id: str = field(default_factory=lambda: str(uuid.uuid4()))
 
 @dataclass
 class Modifier:
@@ -24,6 +27,16 @@ class Action:
     object: Asset
     modifiers: list[Modifier]
 
+@dataclass
+class Repetition:
+    frequency: str = None
+    time_value: int = None
+    time_unit: str = None
+
+@dataclass 
+class TimePeriod:
+    preposition: str = None
+    time_period: str = None
 
 @dataclass
 class Event:
@@ -31,16 +44,16 @@ class Event:
     name: str
     action: Action
     preconditions: list[StateCondition]
-    precondition_operators: list[LogicalOperatorType]
+    precondition_operator: LogicalOperatorType
     postconditions: list[StateCondition]
-    postcondition_operators: list[LogicalOperatorType]
-    repetition: dict[str, str] = None
-    time_period: dict[str, str] = None
+    postcondition_operator: LogicalOperatorType
+    repetition: Repetition = None
+    time_period: TimePeriod = None
 
 @dataclass
 class Detection:
     event_refs: list[Event]
-    operators: list[LogicalOperatorType]
+    operator: LogicalOperatorType
 
 @dataclass
 class Tactic:
@@ -52,92 +65,71 @@ class TechniqueModel:
     id: str
     name: str
     tactics: list[Tactic]
+    assets: dict[str, Asset]
     events: list[Event]
     detection: Detection
 
-    def get_all_assets(self) -> dict[str, list[Asset]]:
-        assets: dict[str, list[Asset]] = {}
-        seen_names = set()
-        
-        for event in self.events:
-            for asset in self._extract_assets_from_event(event):
-                if asset.name not in seen_names:
-                    seen_names.add(asset.name)
-                    asset_type = type(asset).__name__
-                    if asset_type not in assets:
-                        assets[asset_type] = []
-                    assets[asset_type].append(asset)
-        
-        return assets
-    
-    def _extract_assets_from_event(self, event: Event) -> list[Asset]:
-        assets = []
-        assets.append(event.action.actor)
-        assets.append(event.action.object)
-        for modifier in event.action.modifiers or []:
-            assets.append(modifier.value)
-        for condition in event.preconditions or []:
-            assets.append(condition.subject)
-            for modifier in condition.modifiers or []:
-                assets.append(modifier.value)
-        for condition in event.postconditions or []:
-            assets.append(condition.subject)
-            for modifier in condition.modifiers or []:
-                assets.append(modifier.value)
-        return assets
-
 # --------------------------
+@dataclass
+class Handle(Asset):
+    hexadecimal_number: str = None
+    target: Asset = None
 
 @dataclass
 class Process(Asset):
-    process_id: str = None
-    parent_process: str = None
-    started_at: str = None
-    status: str = None
+    signed: bool = None
+    command_line: str = None
+    parent_process: Self = None
 
 @dataclass
 class File(Asset):
     path: str = None
-    size: int = None
+    signed: bool = None
 
 @dataclass
-class Message(Asset):
-    data: str = None
+class Registry(Asset):
+    path: str = None
 
 @dataclass
-class Account(Asset):
-    username: str = None
-    password: str = None
-    access_level: str = None
+class Endpoint(Asset):
+    port: str = None
+    protocol: str = None
+    ip_address: str = None
+
+@dataclass
+class NetworkConnection(Asset):
+    destination: Endpoint = None
+    source: Endpoint = None
+    transport_protocol: str = None
+
+@dataclass
+class Driver(Asset):
+    signed: bool = None
+
+@dataclass
+class Module(Asset):
+    path: str = None
+    signed: bool = None
 
 @dataclass
 class Device(Asset):
     device_type: str = None
-    ip_address: str = None
+
+@dataclass
+class Volume(Asset):
+    path: str = None
+
+@dataclass
+class Account(Asset):
+    scope: str = None
 
 @dataclass
 class Session(Asset):
-    session_id: str = None
-    start_time: str = None
-    end_time: str = None
-    duration: int = None
+    access_level: str = None
 
 @dataclass
-class Endpoint(Asset):
-    protocol: str = None
-    port: str = None
-    ip_address: str = None
-    identifier_path: str = None
-
-@dataclass
-class NetworkConnection(Asset):
-    source: Process = None
-    destination: Endpoint = None
-    source_ip: str = None
-    destination_ip: str = None
-    transport_protocol: str = None
-    started_at: str = None
-    status: str = None
+class Message(Asset):
+    data: str = None
 
 @dataclass
 class Directory(Asset):

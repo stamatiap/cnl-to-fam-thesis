@@ -5,22 +5,26 @@ from pprint import pprint
 
 
 assets = {"accountA": Account(
-                type = "account",
+                asset_type = "account",
                 name = "accountA"
             ),
             "authentication": Process(
-                type = "authentication",
+                asset_type = "authentication",
                 name = "authentication_process"
             ),
             "correct_credentials": Message(
-                type = "credentials",
+                asset_type = "credentials",
                 name = "CorrectCredentials",
-                data = ["username", "guess_password"]
+                data = "guess_correct_password"
             ),
             "incorrect_credentials": Message(
-                type = "credentials",
+                asset_type = "credentials",
                 name = "IncorrectCredentials",
-                data = ["username", "guess_password"]
+                data = "guess_random_password"
+            ),
+            "user": Session(
+                asset_type = "session",
+                name = "user"
             )
             }
 
@@ -39,8 +43,8 @@ state_conditions = {"authentication_active": StateCondition(
             subject_state = "accepted",
             modifiers = None
         ),
-        "account_login": StateCondition(
-            subject = assets.get('accountA'),
+        "user_logged_in": StateCondition(
+            subject = assets.get('user'),
             subject_state = "logged_in",
             modifiers = None
         )}
@@ -56,9 +60,9 @@ events = [
             modifiers = [Modifier(type = ModifierType.DESTINATION, value = assets.get('accountA'))]
         ),
         preconditions = [state_conditions.get('authentication_active')],
-        precondition_operators = None,
+        precondition_operator = None,
         postconditions = [state_conditions.get('credentials_rejected'), state_conditions.get('authentication_active')],
-        postcondition_operators = [LogicalOperatorType.AND]
+        postcondition_operator = LogicalOperatorType.AND
     ),
     Event(
         id = "2",
@@ -70,9 +74,9 @@ events = [
             modifiers = [Modifier(type = ModifierType.DESTINATION, value = assets.get('accountA'))]
         ),
         preconditions = [state_conditions.get('authentication_active')],
-        precondition_operators = None,
-        postconditions = [state_conditions.get('credentials_accepted'), state_conditions.get('account_login')],
-        postcondition_operators = [LogicalOperatorType.AND]
+        precondition_operator = None,
+        postconditions = [state_conditions.get('credentials_accepted'), state_conditions.get('user_logged_in')],
+        postcondition_operator = LogicalOperatorType.AND
     )
 ]
 

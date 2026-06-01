@@ -4,109 +4,62 @@ from pprint import pprint
 
 
 
-assets = {"user": Account(
-                type = "user",
-                name = "User",
-                access_level = "Low"
+assets = {"lsass": Process(
+                asset_type = "process",
+                name = "lsass",
+                command_line = "lsass.exe",
+                signed = True
             ),
-            "authentication": Process(
-                type = "authentication",
-                name = "authentication_process"
+            "attacker_process": Process(
+                asset_type = "process",
+                name = "attacker_process",
+                signed = False
             ),
-            "lsass": Process(
-                type = "process",
-                name = "lsass_exe"
+            "lsass_handle": Handle(
+                asset_type = "handle",
+                name = "lsass_handle",
+                hexadecimal_number = "0x1F0FFF"
             ),
-            "credentials":  Message(
-                type = "credentials",
-                name = "credentials",
-                data = ["username", "password"]
+            "lsass_memory_dump": File(
+                asset_type = "file",
+                name = "lsass_memory_dump"
             ),
-            "administrator": Account(
-                type = "process",
-                name = "Administrator",
-                access_level = "High"
-            ),
-            "system_user": Account(
-                type = "process",
-                name = "SYSTEM_User",
-                access_level = "High"
-            ),
-            "lsass_memory": File(
-                type = "file",
-                name = "lsass_memory"
-            ),
-            "memory_dump": File(
-                type = "file",
-                name = "Memory_dump"
-            ),
-            "registry_keys": File(
-                type = "registry",
-                name = "Registry_Keys"
+            "registry": Registry(
+                asset_type = "registry",
+                name = "registry_keys"
             )
             }
 
-state_conditions = {"authentication_active": StateCondition(
-            subject = assets.get('authentication'),
-            subject_state = "active",
-            modifiers = None
-        ),
-        "user_active": StateCondition(
-            subject = assets.get('user'),
-            subject_state = "active",
-            modifiers = None
-        ),
-        "lsass_active": StateCondition(
+state_conditions = {"lsass_active": StateCondition(
             subject = assets.get('lsass'),
             subject_state = "active",
             modifiers = None
         ),
-        "credentials_stored": StateCondition(
-            subject = assets.get('credentials'),
-            subject_state = "stored",
-            modifiers = [Modifier(
-                type = ModifierType.LOCATION, 
-                value = assets.get("lsass_memory")
-            )]
-        ),
-        "administrator_active": StateCondition(
-            subject = assets.get('administrator'),
+        "attacker_process_active": StateCondition(
+            subject = assets.get('attacker_process'),
             subject_state = "active",
             modifiers = None
         ),
-        "system_user_active": StateCondition(
-            subject = assets.get('system_user'),
-            subject_state = "active",
+        "lsass_memory_dump_created": StateCondition(
+            subject = assets.get('lsass_memory_dump'),
+            subject_state = "created",
             modifiers = None
         ),
-        "system_user_lsass_access": StateCondition(
-            subject = assets.get('system_user'),
-            subject_state = "has_access",
+        "handle_obtained": StateCondition(
+            subject = assets.get('lsass_handle'),
+            subject_state = "obtained",
             modifiers = [Modifier(
-                type = ModifierType.DESTINATION,
-                value = assets.get('lsass_memory')
+                type = ModifierType.TRIGGER,
+                value = assets.get('attacker_process')
             )]
         ),
-        "administrator_lsass_access": StateCondition(
-            subject = assets.get('administrator'),
-            subject_state = "has_access",
-            modifiers = [Modifier(
-                type = ModifierType.DESTINATION,
-                value = assets.get('lsass_memory')
-            )]
-        ),
-        "memory_dump_exists": StateCondition(
-            subject = assets.get('memory_dump'),
-            subject_state = "exists",
-            modifiers = None
-        ),
-        "registry_keys_exists": StateCondition(
-            subject = assets.get('registry_keys'),
-            subject_state = "exists",
+        "memory_dump_created": StateCondition(
+            subject = assets.get('lsass_memory_dump'),
+            subject_state = "created",
             modifiers = None
         ),
         "registry_keys_modified": StateCondition(
-            subject = assets.get('registry_keys'),
+            subject = assets.get('registry'),
             subject_state = "modified",
             modifiers = None
         )}
@@ -116,98 +69,50 @@ events = [
         id = "1",
         name = "Event 1",
         action = Action(
-            actor = assets.get('user'),
-            action_verb = "sends",
-            object = assets.get('credentials'),
-            modifiers = [Modifier(type = ModifierType.DESTINATION, value= assets.get('authentication'))]
+            actor = assets.get('attacker_process'),
+            action_verb = "requests",
+            object = assets.get('lsass_handle'),
+            modifiers = None
         ),
-        preconditions = [state_conditions.get('authentication_active')],
-        precondition_operators = None,
-        postconditions = [state_conditions.get('user_active')],
-        postcondition_operators = None
+        preconditions = [state_conditions.get('attacker_process_active'),  state_conditions.get('lsass_active')],
+        precondition_operator = LogicalOperatorType.AND,
+        postconditions = [state_conditions.get('handle_obtained')],
+        postcondition_operator = None
     ),
     Event(
         id = "2",
         name = "Event 2",
         action = Action(
-            actor = assets.get('lsass'),
-            action_verb = "stores",
-            object = assets.get('credentials'),
-            modifiers = [Modifier(
-                type = ModifierType.LOCATION,
-                value = assets.get('lsass_memory'))]
+            actor = assets.get('attacker_process'),
+            action_verb = "requests",
+            object = assets.get('lsass_memory_dump'),
+            modifiers = None
         ),
-        preconditions = [state_conditions.get('lsass_active'), state_conditions.get('user_active')],
-        precondition_operators = [LogicalOperatorType.AND],
-        postconditions = [state_conditions.get('credentials_stored')],
-        postcondition_operators = None
+        preconditions = [state_conditions.get('attacker_process_active'), state_conditions.get('handle_obtained')],
+        precondition_operator = LogicalOperatorType.AND,
+        postconditions = [state_conditions.get('memory_dump_created'), state_conditions.get('attacker_process_active')],
+        postcondition_operator = LogicalOperatorType.AND
     ),
     Event(
         id = "3",
         name = "Event 3",
         action = Action(
-            actor = assets.get('administrator'),
-            action_verb = "creates",
-            object = assets.get('memory_dump'),
-            modifiers = [Modifier(
-                type = ModifierType.SOURCE_FROM,
-                value = assets.get('lsass_memory'))]
-        ),
-        preconditions = [state_conditions.get('administrator_active'), state_conditions.get('administrator_lsass_access'), state_conditions.get('credentials_stored')],
-        precondition_operators = [LogicalOperatorType.AND],            
-        postconditions = [state_conditions.get('memory_dump_exists'), state_conditions.get('administrator_active')],
-        postcondition_operators = [LogicalOperatorType.AND]
-    ),
-    Event(
-        id = "4",
-        name = "Event 4",
-        action = Action(
-            actor = assets.get('system_user'),
-            action_verb = "creates",
-            object = assets.get('memory_dump'),
-            modifiers = [Modifier(
-                type = ModifierType.SOURCE_FROM,
-                value = assets.get('lsass_memory'))]
-        ),
-        preconditions = [state_conditions.get('system_user_active'), state_conditions.get('system_user_lsass_access'), state_conditions.get('credentials_stored')],
-        precondition_operators = [LogicalOperatorType.AND],            
-        postconditions = [state_conditions.get('memory_dump_exists'), state_conditions.get('system_user_active')],
-        postcondition_operators = [LogicalOperatorType.AND]
-    ),
-    Event(
-        id = "5",
-        name = "Event 5",
-        action = Action(
-            actor = assets.get('administrator'),
+            actor = assets.get('attacker_process'),
             action_verb = "modifies",
-            object = assets.get('registry_keys'),
+            object = assets.get('registry'),
             modifiers = None
         ),
-        preconditions = [state_conditions.get('memory_dump_exists'),  state_conditions.get('registry_keys_exists'), state_conditions.get('administrator_active')],
-        precondition_operators = [LogicalOperatorType.AND],            
-        postconditions = [state_conditions.get('registry_keys_modified')],
-        postcondition_operators = None
-    ),
-    Event(
-        id = "6",
-        name = "Event 6",
-        action = Action(
-            actor = assets.get('system_user'),
-            action_verb = "modifies",
-            object = assets.get('registry_keys'),
-            modifiers = None
-        ),
-        preconditions = [state_conditions.get('memory_dump_exists'), state_conditions.get('registry_keys_exists'), state_conditions.get('system_user_active')],
-        precondition_operators = [LogicalOperatorType.AND],            
-        postconditions = [state_conditions.get('registry_keys_modified')],
-        postcondition_operators = None
-    ),
+        preconditions = [state_conditions.get('attacker_process_active'), state_conditions.get('memory_dump_created')],
+        precondition_operator = LogicalOperatorType.AND,            
+        postconditions = [state_conditions.get('registry_keys_modified'), state_conditions.get('attacker_process_active')],
+        postcondition_operator = LogicalOperatorType.AND
+    )
 
 ]
 
 detection = Detection(
-    event_refs= [event for event in events if event.id in ["3", "4", "5", "6"]],
-    operators= [LogicalOperatorType.XOR]
+    event_refs= [event for event in events if event.id in ["2", "3"]],
+    operator= LogicalOperatorType.XOR
 )
 
 
@@ -215,11 +120,12 @@ lsass_dumping_model = TechniqueModel(
         id= "T1003.001",
         name= "OS_Credential_Dumping_LSASS_Memory",
         tactics= [Tactic(id="TA0006", name="Credential_Access")],
+        assets=assets,
         events= events,
         detection= detection
     )
 
-# pprint(lsass_dumping_model)
+pprint(lsass_dumping_model)
 
 # from src.petri_net.petri_net_builder import PetriNetBuilder
 

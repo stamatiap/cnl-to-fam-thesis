@@ -54,12 +54,10 @@ class PetriNetBuilder:
             return f"{name}_in_{modifier.value.name}"
         elif modifier.type == ModifierType.DESTINATION:
             return f"{name}_to_{modifier.value.name}"
-        elif modifier.type == ModifierType.SOURCE_BY:
-            return f"{name}_by_{modifier.value.name}"
-        elif modifier.type == ModifierType.SOURCE_FROM:
+        elif modifier.type == ModifierType.SOURCE:
             return f"{name}_from_{modifier.value.name}"
-        elif modifier.type == ModifierType.GEOLOCATION:
-            return f"{name}_at_{modifier.value}"
+        elif modifier.type == ModifierType.TRIGGER:
+            return f"{name}_by_{modifier.value.name}"
         else:
             return name
 
@@ -68,9 +66,9 @@ class PetriNetBuilder:
         for modifier in event.action.modifiers or []:
             transition_name = self._add_modifier_to_name(transition_name, modifier)
         
-        transition = self._get_or_create_transition(transition_name)
+        transition = self._get_or_create_transition(name=transition_name+event.id,label=transition_name)
 
-        if event.precondition_operators  and all(op == LogicalOperatorType.OR for op in event.precondition_operators):
+        if event.precondition_operator == LogicalOperatorType.OR :
             #OR - get all transitions that produce the precondition places
             previous_transitions = []
             for condition in event.preconditions:
@@ -92,7 +90,7 @@ class PetriNetBuilder:
                 if k>0:
                     perm_transitions = []
                     for t in perm:
-                        new_transition = self._get_or_create_transition(t.name+f"_{k}")
+                        new_transition = self._get_or_create_transition(name=t.name+f"_{k}"+event.id,label=t.name+f"_{k}")
                         for out in t.out_arcs:
                             if not self._arc_exists(new_transition, out.target):
                                             petri_utils.add_arc_from_to(new_transition, out.target, self.net)
@@ -178,7 +176,7 @@ class PetriNetBuilder:
             #     petri_utils.remove_place(self.net, place)
                     
            
-        elif event.precondition_operators and all(op == LogicalOperatorType.XOR for op in event.precondition_operators):
+        elif event.precondition_operator == LogicalOperatorType.XOR:
             # XOR — create silent transitions and shared xor_place
             xor_key = "xor_" + "_".join(sorted(self._get_place_name(c) for c in event.preconditions))
             xor_place = self._get_or_create_place(xor_key)
@@ -212,7 +210,7 @@ class PetriNetBuilder:
         self.event_postcondition_places[event.id] = post_places
 
     def _add_detection(self, detection: Detection, final_place: PetriNet.Place) -> None:
-        if detection.operators and all(op == LogicalOperatorType.XOR for op in detection.operators):
+        if detection.operator == LogicalOperatorType.XOR:
             # XOR — each postcondition place gets its own silent transition to final place
             for event_ref in detection.event_refs:
                 post_places = self._get_postcondition_place(event_ref.id)
@@ -252,7 +250,7 @@ class PetriNetBuilder:
     def _get_or_create_transition(self, name: str, label: str = "") -> PetriNet.Transition:
         if name not in self.transitions:
             # label=None means silent transition (rendered as black box)
-            transition = PetriNet.Transition(name, label=None if label is None else name)
+            transition = PetriNet.Transition(name, label=label)
             self.net.transitions.add(transition)
             self.transitions[name] = transition
         return self.transitions[name]

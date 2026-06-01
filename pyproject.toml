@@ -1,0 +1,9 @@
+[tool.ruff.lint]
+ignore = ["F403", "F405"]
+
+[tool.ruff]
+extend-exclude = [
+    "generated/",        # ANTLR generated scripts
+    "*Lexer.py",
+    "*Parser.py"
+]
