@@ -49,8 +49,28 @@ class Translator:
             
             # validate properties
             valid_fields = {f.name for f in fields(cls)} - {'asset_type', 'name', 'asset_id'}
-            # remove quotes from property values
-            extra = {k: v.replace("'", "").replace('"', "") for k, v in properties.items() if k in valid_fields}
+            field_types = {f.name: f.type for f in fields(cls)}
+
+            extra = {}
+            for k,v in properties.items():
+                if k not in valid_fields:
+                    continue
+                clean_name = v.replace("'", "").replace('"', "") # remove quotes from property values
+                t = field_types[k]
+                if t is bool:
+                    if clean_name.lower() == "true":
+                        clean_name = True
+                    elif clean_name.lower() == "false":
+                        clean_name = False
+                    else:
+                        clean_name = None
+                if t is int:
+                    try:
+                        clean_name = int(clean_name)
+                    except ValueError:
+                        raise ValueError(f"Expected integer for {k}, got {clean_name!r}")
+                extra[k] = clean_name
+
             
             # create objects for Asset types that have other Assets as properties and add to registry
             if asset_type_str == "network_connection":
@@ -134,7 +154,7 @@ class Translator:
 
         return Repetition(
             frequency = repetition_item[0],
-            time_value = repetition_item[1],
+            time_value = int(repetition_item[1]) if repetition_item[1] is not None else None,
             time_unit = TIME_UNIT_MAP.get(repetition_item[2], None),
         )
         

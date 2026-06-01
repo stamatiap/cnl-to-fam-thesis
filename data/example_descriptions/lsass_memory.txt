@@ -1,33 +1,27 @@
-Tactics: TA0006 Credential_Access
+Tactic: TA0006 Credential_Access
 Technique: T1003.001 OS_Credential_Dumping_LSASS
 
 Background
-Given process as P
-And operating_system as OS
-And file as lsass_exe
+Given process as abnormal_process with command_line = "lsass.exe", signed = "true"
+And process as lsass_exe
+And handle as lsass_handle with hexadecimal_number = "0x1F0FFF", target = "lsass_exe"
 And file as lsass_dump
 And registry as registry_keys
-And handle as handle_request
 
 Event 1
-Given P is active
-When P requests handle_request to lsass_exe from OS
-Then P has_access to lsass_exe 
+Given abnormal_process is activated And lsass_exe is activated
+When abnormal_process requests lsass_handle
+Then lsass_handle acquired by abnormal_process
 
 Event 2
-Given P has_access to lsass_exe 
-When P loads lsass_exe
-Then lsass_exe is active
+Given lsass_handle acquired by abnormal_process
+When abnormal_process requests lsass_dump
+Then lsass_dump is created
 
 Event 3
-Given lsass_exe is active
-When P requests lsass_dump from lsass_exe
-Then lsass_dump exists
-
-Event 4
-Given lsass_dump exists
-When P modifies registry_keys
-Then registry_keys is modified
+Given lsass_dump is created
+When abnormal_process modifies registry_keys
+Then registry_keys modified
 
 Detection
-Event 3 Xor Event 4
+Event 2 Xor Event 3
