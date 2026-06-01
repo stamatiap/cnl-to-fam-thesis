@@ -88,10 +88,10 @@ events = [
             object = assets.get('lsass_memory_dump'),
             modifiers = None
         ),
-        preconditions = [state_conditions.get('attacker_process_active'), state_conditions.get('handle_obtained')],
-        precondition_operator = LogicalOperatorType.AND,
-        postconditions = [state_conditions.get('memory_dump_created'), state_conditions.get('attacker_process_active')],
-        postcondition_operator = LogicalOperatorType.AND
+        preconditions = [state_conditions.get('handle_obtained')],
+        precondition_operator = None,
+        postconditions = [state_conditions.get('memory_dump_created')],
+        postcondition_operator = None
     ),
     Event(
         id = "3",
@@ -102,10 +102,10 @@ events = [
             object = assets.get('registry'),
             modifiers = None
         ),
-        preconditions = [state_conditions.get('attacker_process_active'), state_conditions.get('memory_dump_created')],
-        precondition_operator = LogicalOperatorType.AND,            
-        postconditions = [state_conditions.get('registry_keys_modified'), state_conditions.get('attacker_process_active')],
-        postcondition_operator = LogicalOperatorType.AND
+        preconditions = [state_conditions.get('memory_dump_created')],
+        precondition_operator = None,          
+        postconditions = [state_conditions.get('registry_keys_modified')],
+        postcondition_operator = None
     )
 
 ]
@@ -125,7 +125,7 @@ lsass_dumping_model = TechniqueModel(
         detection= detection
     )
 
-pprint(lsass_dumping_model)
+# pprint(lsass_dumping_model)
 
 # from src.petri_net.petri_net_builder import PetriNetBuilder
 
