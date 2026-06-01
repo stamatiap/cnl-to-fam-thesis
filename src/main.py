@@ -20,8 +20,8 @@ def main():
     # print(is_valid)
 
     petri_net_builder = PetriNetBuilder()
-    petri_net_builder.visualize(*petri_net_builder.build(model), "cnl_petri_net_"+input_file[:-4]+"testt")
-
+    petri_net_builder.visualize(*petri_net_builder.build(model), "./generated_petri_nets/cnl_petri_net_"+input_file[:-4])
+    
     # domain_model = validator.fetch_domain_model(model.id)
     # if domain_model:
     #     petri_net_builder.visualize(*petri_net_builder.build(domain_model), f"{model.name}_domain_petri_net")
