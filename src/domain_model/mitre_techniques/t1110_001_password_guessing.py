@@ -96,9 +96,9 @@ password_guessing_model = TechniqueModel(
         detection= detection
     )
 
-pprint(password_guessing_model)
+# pprint(password_guessing_model)
 
-from src.petri_net.petri_net_builder import PetriNetBuilder
+# from src.petri_net.petri_net_builder import PetriNetBuilder
 
-petri_net_builder = PetriNetBuilder()
-petri_net_builder.visualize(*petri_net_builder.build(password_guessing_model), "domain_password_guessing_model")
+# petri_net_builder = PetriNetBuilder()
+# petri_net_builder.visualize(*petri_net_builder.build(password_guessing_model), "domain_password_guessing_model")
