@@ -21,4 +21,4 @@ if technique_title:
         petri_net_builder = PetriNetBuilder()
         petri_net_builder.visualize(*petri_net_builder.build(model), "testing_streamlit")
 
-        st.image("testing_streamlit.png", caption=f"Petri Net for {path.split('/')[-1][:-4]}")
+        st.image("testing_streamlit.png", caption=f"Petri Net for {" ".join(path.split('/')[-1][:-4].split("_")[2:])}")
