@@ -1,28 +1,32 @@
-Tactics: TA0002 Execution
+Tactics: TA0002 Execution, TA0003 Persistence, TA0004 Privilege_Escalation
 Technique: T1053 Scheduled_Task_Job
 
 Background
 Given process as at_exe
-And process as ScheduledTask
-And user as User
-And process as svchost_exe
-And process as taskeng_exe
-And process as AnomalousProcess
+And process as Win32_ScheduledJob
+And process as AnomalousScheduledTask
+And process as svchost_exe with command_line = "svchost.exe"
+And process as taskeng_exe with command_line = "taskeng.exe"
 
 Event 1
-Given at_exe is active
-When User creates ScheduledTask
-Then ScheduledTask is created
+Given Win32_ScheduledJob is activated
+When Win32_ScheduledJob creates AnomalousScheduledTask
+Then AnomalousScheduledTask is created
 
 Event 2
-Given ScheduledTask is created And svchost_exe is active
-When svchost_exe executes ScheduledTask
-Then ScheduledTask is active
+Given at_exe is activated
+When at_exe creates AnomalousScheduledTask
+Then AnomalousScheduledTask is created
 
 Event 3
-Given ScheduledTask is created And taskeng_exe is active
-When taskeng_exe executes ScheduledTask
-Then ScheduledTask is active
+Given AnomalousScheduledTask is created And svchost_exe is activated
+When svchost_exe executes AnomalousScheduledTask
+Then AnomalousScheduledTask is activated
+
+Event 4
+Given AnomalousScheduledTask is created And taskeng_exe is activated
+When taskeng_exe executes AnomalousScheduledTask
+Then AnomalousScheduledTask is activated
 
 Detection
-Event 2 Xor Event 3
+Event 3 Xor Event 4

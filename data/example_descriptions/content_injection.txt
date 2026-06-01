@@ -1,38 +1,38 @@
-Tactics: TA0001 Initial_Access
+Tactics: TA0001 Initial_Access, TA0011 Command_and_Control
 Technique: T1659 Content_Injection
 
 Background
-Given browser as B
-And folder as AppData
-And folder as Temp
+Given network_connection as Browser_connection with source = "browser", destination = "server"
 And process as P
 And file as F
+And directory as Temp with path = "/temp"
+And directory as AppData with path = "/%AppData%/"
 
 Event 1
-Given B is active
-When B spawns P
-Then P is active
+Given Browser_connection is active
+When browser receives F from server
+Then F is received
 
 Event 2
-Given P is active
-When P creates F in AppData
-Then F exists in AppData And P is active
+Given F is received
+When browser saves F in AppData
+Then F exists in AppData
 
 Event 3
-Given P is active
-When P creates F in Temp
-Then F exists in Temp And P is active
+Given F is received
+When browser saves F in Temp
+Then F exists in Temp
 
 Event 4
 Given F exists in AppData
 And P is active
-When P executes F in AppData
+When P executes F
 Then F is active
  
 Event 5
 Given F exists in Temp
 And P is active
-When P executes F in Temp
+When P executes F
 Then F is active
 
 Detection
