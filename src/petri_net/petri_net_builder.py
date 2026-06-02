@@ -40,13 +40,16 @@ class PetriNetBuilder:
         return self.net, initial_marking, final_marking
     
     def _identify_entry_place_names(self, model: TechniqueModel) -> set[str]:
-        all_pre, all_post = set(), set()
+        entry_names = set()
+        seen_post = set()
         for event in model.events:
             for cond in event.preconditions:
-                all_pre.add(self._get_place_name(cond))
+                name = self._get_place_name(cond)
+                if name not in seen_post:
+                    entry_names.add(name)
             for cond in event.postconditions:
-                all_post.add(self._get_place_name(cond))
-        return all_pre - all_post
+                seen_post.add(self._get_place_name(cond))
+        return entry_names
         
     def _add_start_place(self, model: TechniqueModel) -> PetriNet.Place:
         entry_names = self._identify_entry_place_names(model)
