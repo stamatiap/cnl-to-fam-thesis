@@ -134,7 +134,7 @@ scheduled_task_at_model = TechniqueModel(
         detection= detection
     )
 
-pprint(scheduled_task_at_model)
+# pprint(scheduled_task_at_model)
 
 # from src.petri_net.petri_net_builder import PetriNetBuilder
 
