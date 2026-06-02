@@ -25,6 +25,7 @@ class PetriNetBuilder:
 
         # create final place
         final_place = self._get_or_create_place("end")
+        start_place = self._add_start_place(model)
 
         # connect final transitions based on detection block
         if model.detection:
@@ -32,16 +33,41 @@ class PetriNetBuilder:
 
         # initial marking
         initial_marking = Marking()
-        first_event = model.events[0]
-        for condition in first_event.preconditions:
-            place_name = self._get_place_name(condition)
-            place = self.places.get(place_name)
 
         # final marking
         final_marking = Marking()
-        #final_marking[final_place] = 1
 
         return self.net, initial_marking, final_marking
+    
+    def _identify_entry_place_names(self, model: TechniqueModel) -> set[str]:
+        entry_names = set()
+        seen_post = set()
+        for event in model.events:
+            for cond in event.preconditions:
+                name = self._get_place_name(cond)
+                if name not in seen_post:
+                    entry_names.add(name)
+            for cond in event.postconditions:
+                seen_post.add(self._get_place_name(cond))
+        return entry_names
+        
+    def _add_start_place(self, model: TechniqueModel) -> PetriNet.Place:
+        entry_names = self._identify_entry_place_names(model)
+        if not entry_names:
+            raise ValueError(
+                f"Technique '{model.name}' has no entry state conditions (every precondition is produced by some event). "
+                "Add an initial precondition that no event produces."
+            )
+
+        start_place = self._get_or_create_place("start")
+        silent = self._get_or_create_transition("τ_start", label=None)
+        petri_utils.add_arc_from_to(start_place, silent, self.net)
+
+        for name in entry_names:
+            place = self.places.get(name)
+            if place is not None:
+                petri_utils.add_arc_from_to(silent, place, self.net)
+        return start_place
     
     def _arc_exists(self, source, target) -> bool:
         for arc in self.net.arcs:

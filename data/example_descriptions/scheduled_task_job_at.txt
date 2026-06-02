@@ -1,5 +1,5 @@
 Tactics: TA0002 Execution, TA0003 Persistence, TA0004 Privilege_Escalation
-Technique: T1053 Scheduled_Task_Job
+Technique: T1053.002 Scheduled_Task_Job_At
 
 Background
 Given process as at_exe
