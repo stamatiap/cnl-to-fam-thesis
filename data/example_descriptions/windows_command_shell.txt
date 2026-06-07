@@ -28,5 +28,5 @@ Given shell is active And batch_file exists
 When shell executes batch_file
 Then batch_file is executed
 
-Detection
+Completion
 Event 2 Xor Event 4

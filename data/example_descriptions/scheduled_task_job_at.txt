@@ -28,5 +28,5 @@ Given AnomalousScheduledTask is created And taskeng_exe is activated
 When taskeng_exe executes AnomalousScheduledTask
 Then AnomalousScheduledTask is activated
 
-Detection
+Completion
 Event 3 Xor Event 4

@@ -33,5 +33,5 @@ Then Administrator_account is active
 During outside_installation_or_maintenance_window
 
 
-Detection
+Completion
 Event 1 Xor Event 2 Xor Event 3 Xor Event 4

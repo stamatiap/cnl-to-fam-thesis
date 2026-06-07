@@ -60,5 +60,5 @@ Given P1 is active Xor V is mounted
 When DHCP receives MAC
 Then MAC is received
 
-Detection
+Completion
 Event 7 Xor Event 8 Xor Event 9

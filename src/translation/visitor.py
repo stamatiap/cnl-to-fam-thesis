@@ -399,12 +399,12 @@ class Visitor(CNLVisitor):
                 "given": given,
                 "then": then}
     
-    def visitDetectionBlock(self, ctx: CNLParser.DetectionBlockContext):
+    def visitCompletionBlock(self, ctx: CNLParser.CompletionBlockContext):
         if ctx is None:
             return None
-        return self.visitDetectionExpr(ctx.detectionExpr())
+        return self.visitCompletionExpr(ctx.completionExpr())
 
-    def visitDetectionExpr(self, ctx: CNLParser.DetectionExprContext):
+    def visitCompletionExpr(self, ctx: CNLParser.CompletionExprContext):
         event_refs = [self.visitEventRef(e) for e in ctx.eventRef()]
         
         # figure out the operator between them
@@ -451,11 +451,11 @@ class Visitor(CNLVisitor):
         header = self.visitHeader(ctx.header())
         background = self.visitBackground(ctx.background())
         events = [self.visitEventBlock(e) for e in ctx.eventBlock()]
-        detection = self.visitDetectionBlock(ctx.detectionBlock()) if ctx.detectionBlock() else None
+        completion = self.visitCompletionBlock(ctx.completionBlock()) if ctx.completionBlock() else None
         attack =  {
             **header,
             **background,
             "events": events,
-            "detection": detection
+            "completion": completion
         }
         return attack

@@ -119,7 +119,7 @@ events = [
     ),
 ]
 
-detection = Detection(
+completion = Completion(
     event_refs= [event for event in events if event.id in ["3", "4"]],
     operator= LogicalOperatorType.XOR
 )
@@ -131,7 +131,7 @@ scheduled_task_at_model = TechniqueModel(
         tactics= [Tactic(id="TA0002", name="Execution"), Tactic(id="TA0003", name="Persistence"), Tactic(id="TA0004", name="Privilege_Escalation")],
         assets= assets,
         events= events,
-        detection= detection
+        completion= completion
     )
 
 # pprint(scheduled_task_at_model)

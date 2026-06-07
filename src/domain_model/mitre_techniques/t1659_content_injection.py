@@ -141,7 +141,7 @@ events = [
 
 ]
 
-detection = Detection(
+completion = Completion(
     event_refs= [event for event in events if event.id in ["4", "5"]],
     operator= LogicalOperatorType.XOR
 )
@@ -153,7 +153,7 @@ content_injection_model = TechniqueModel(
         assets=assets,
         tactics= [Tactic(id="TA0001", name="Initial Access"), Tactic(id="TA0011", name="Command and Control")],
         events= events,
-        detection= detection
+        completion= completion
     )
 
 pprint(content_injection_model)

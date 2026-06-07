@@ -2,7 +2,7 @@ from pm4py.objects.petri_net.obj import PetriNet, Marking
 from pm4py.objects.petri_net.utils import petri_utils
 from pm4py.visualization.petri_net import visualizer as pn_visualizer
 from pm4py.visualization.petri_net.variants import wo_decoration
-from src.domain_model.model import TechniqueModel, Event, StateCondition, Modifier, Detection
+from src.domain_model.model import TechniqueModel, Event, StateCondition, Modifier, Completion
 from src.domain_model.enums import ModifierType, LogicalOperatorType
 from itertools import permutations
 
@@ -27,9 +27,9 @@ class PetriNetBuilder:
         final_place = self._get_or_create_place("end")
         start_place = self._add_start_place(model)
 
-        # connect final transitions based on detection block
-        if model.detection:
-            self._add_detection(model.detection, final_place)
+        # connect final transitions based on completion block
+        if model.completion:
+            self._add_completion(model.completion, final_place)
 
         # initial marking
         initial_marking = Marking()
@@ -165,9 +165,9 @@ class PetriNetBuilder:
             
                                 if not self._arc_exists(final_or_place, out_transition) and "τ" not in out_transition.name.split("_"):
                                     petri_utils.add_arc_from_to(final_or_place, out_transition, self.net)
-                                print(place_out_arc)
+                                #print(place_out_arc)
                                 if "τ" not in out_transition.name.split("_"):
-                                    print("GOT IN", place_out_arc)
+                                    #print("GOT IN", place_out_arc)
                                     arcs_to_be_deleted.append(place_out_arc)
                             
                             for arc in arcs_to_be_deleted:
@@ -235,10 +235,10 @@ class PetriNetBuilder:
 
         self.event_postcondition_places[event.id] = post_places
 
-    def _add_detection(self, detection: Detection, final_place: PetriNet.Place) -> None:
-        if detection.operator == LogicalOperatorType.XOR:
+    def _add_completion(self, completion: Completion, final_place: PetriNet.Place) -> None:
+        if completion.operator == LogicalOperatorType.XOR:
             # XOR — each postcondition place gets its own silent transition to final place
-            for event_ref in detection.event_refs:
+            for event_ref in completion.event_refs:
                 post_places = self._get_postcondition_place(event_ref.id)
                 for post_place in post_places:
                     silent = self._get_or_create_transition(f"τ_detect_{post_place.name}", label=None)
@@ -249,7 +249,7 @@ class PetriNetBuilder:
         else:
             # AND (or single event) — all postcondition places feed into one shared silent transition
             silent = self._get_or_create_transition("τ_detect_and", label=None)
-            for event_ref in detection.event_refs:
+            for event_ref in completion.event_refs:
                 post_places = self._get_postcondition_place(event_ref.id)
                 for post_place in post_places:
                     if not self._arc_exists(post_place, silent):
