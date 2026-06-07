@@ -94,7 +94,7 @@ otherType:
     IDENTIFIER AS assetName (WITH otherField EQUALS propertyValue (COMMA otherField EQUALS propertyValue)*)?
     ;
 
-processField: PARENT_PROCESS | SIGNED | COMMAND_LINE | PARENT_PROCESS ;
+processField: PARENT_PROCESS | SIGNED | COMMAND_LINE ;
 fileField: PATH | SIGNED ;
 registryField: PATH ;
 endpointField: PORT | PROTOCOL | IP_ADDRESS ;
@@ -314,7 +314,6 @@ SCOPE           : 'scope';
 DATA            : 'data';
 HEXADECIMAL_NUMBER: 'hexadecimal_number';
 TARGET          : 'target';
-HANDLES         : 'handles';
 
 // Other Keywords
 STRING     : ( '"' ( ~["\\\r\n] | '\\' . )* '"' ) | ( '\'' ( ~['\\\r\n] | '\\' . )* '\'' ) ;
