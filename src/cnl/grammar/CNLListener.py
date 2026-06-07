@@ -620,21 +620,21 @@ class CNLListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by CNLParser#detectionBlock.
-    def enterDetectionBlock(self, ctx:CNLParser.DetectionBlockContext):
+    # Enter a parse tree produced by CNLParser#completionBlock.
+    def enterCompletionBlock(self, ctx:CNLParser.CompletionBlockContext):
         pass
 
-    # Exit a parse tree produced by CNLParser#detectionBlock.
-    def exitDetectionBlock(self, ctx:CNLParser.DetectionBlockContext):
+    # Exit a parse tree produced by CNLParser#completionBlock.
+    def exitCompletionBlock(self, ctx:CNLParser.CompletionBlockContext):
         pass
 
 
-    # Enter a parse tree produced by CNLParser#detectionExpr.
-    def enterDetectionExpr(self, ctx:CNLParser.DetectionExprContext):
+    # Enter a parse tree produced by CNLParser#completionExpr.
+    def enterCompletionExpr(self, ctx:CNLParser.CompletionExprContext):
         pass
 
-    # Exit a parse tree produced by CNLParser#detectionExpr.
-    def exitDetectionExpr(self, ctx:CNLParser.DetectionExprContext):
+    # Exit a parse tree produced by CNLParser#completionExpr.
+    def exitCompletionExpr(self, ctx:CNLParser.CompletionExprContext):
         pass
 
 

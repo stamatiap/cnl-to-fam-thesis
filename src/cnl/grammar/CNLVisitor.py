@@ -349,13 +349,13 @@ class CNLVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by CNLParser#detectionBlock.
-    def visitDetectionBlock(self, ctx:CNLParser.DetectionBlockContext):
+    # Visit a parse tree produced by CNLParser#completionBlock.
+    def visitCompletionBlock(self, ctx:CNLParser.CompletionBlockContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by CNLParser#detectionExpr.
-    def visitDetectionExpr(self, ctx:CNLParser.DetectionExprContext):
+    # Visit a parse tree produced by CNLParser#completionExpr.
+    def visitCompletionExpr(self, ctx:CNLParser.CompletionExprContext):
         return self.visitChildren(ctx)
 
 

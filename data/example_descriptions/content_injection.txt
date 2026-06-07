@@ -35,5 +35,5 @@ And P is active
 When P executes F
 Then F is active
 
-Detection
+Completion
 Event 4 Xor Event 5

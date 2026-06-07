@@ -1,7 +1,7 @@
 grammar CNL;
 
 attack
-    : header background eventBlock+ detectionBlock? EOF
+    : header background eventBlock+ completionBlock? EOF
     ;
 
 header
@@ -222,11 +222,11 @@ geo_location
     : IDENTIFIER
     ;
 
-detectionBlock
-    : DETECTION detectionExpr
+completionBlock
+    : COMPLETION completionExpr
     ;
 
-detectionExpr
+completionExpr
     : eventRef ((OR eventRef)* | (AND eventRef)* | (XOR eventRef)*)
     ;
 
@@ -254,7 +254,7 @@ XOR         : 'Xor';
 
 // Main Clauses Keywords
 BACKGROUND  : 'Background';
-DETECTION   : 'Detection';
+COMPLETION   : 'Completion';
 IS          : 'is';
 AS          : 'as';
 

@@ -205,20 +205,20 @@ class Translator:
 
         )
     
-    def create_detection(self, detection, events) -> Detection:
-        event_id_refs = detection.get('events', [])
+    def create_completion(self, completion, events) -> Completion:
+        event_id_refs = completion.get('events', [])
         event_refs = [event for event in events if event.id in event_id_refs]
-        operator = self.get_logical_operator(detection)
+        operator = self.get_logical_operator(completion)
 
-        return Detection(event_refs= event_refs,
+        return Completion(event_refs= event_refs,
                operator= operator)
 
     def create_technique_model(self, parsed_data) -> TechniqueModel:
-        # background + detection
+        # background + completion
         self.assets = self.build_asset_registry(parsed_data.get('assets', {}))
         event_objects = [self.create_event(event) for event in parsed_data.get('events', [])]
-        detection_data = parsed_data.get('detection')
-        detection = self.create_detection(detection_data, event_objects) if detection_data else None
+        completion_data = parsed_data.get('completion')
+        completion = self.create_completion(completion_data, event_objects) if completion_data else None
         tactics = [Tactic(id=t["tactic_id"], name=t["tactic_name"]) for t in parsed_data.get("tactics", [])]
 
         return TechniqueModel(
@@ -227,7 +227,7 @@ class Translator:
             tactics=tactics,
             assets=self.assets,
             events=event_objects,
-            detection=detection
+            completion=completion
         )
     
     def translate(self, cnl_input_path: str) -> TechniqueModel:

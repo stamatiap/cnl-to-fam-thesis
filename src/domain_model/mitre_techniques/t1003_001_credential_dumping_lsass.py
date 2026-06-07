@@ -110,7 +110,7 @@ events = [
 
 ]
 
-detection = Detection(
+completion = Completion(
     event_refs= [event for event in events if event.id in ["2", "3"]],
     operator= LogicalOperatorType.XOR
 )
@@ -122,7 +122,7 @@ lsass_dumping_model = TechniqueModel(
         tactics= [Tactic(id="TA0006", name="Credential_Access")],
         assets=assets,
         events= events,
-        detection= detection
+        completion= completion
     )
 
 # pprint(lsass_dumping_model)

@@ -244,7 +244,7 @@ class CNLParser ( Parser ):
     literalNames = [ "<INVALID>", "'Tactics'", "'Tactic'", "'Technique'", 
                      "<INVALID>", "<INVALID>", "'Event'", "'Given'", "'When'", 
                      "'Then'", "'And'", "'Or'", "'Xor'", "'Background'", 
-                     "'Detection'", "'is'", "'as'", "'in'", "'to'", "'by'", 
+                     "'Completion'", "'is'", "'as'", "'in'", "'to'", "'by'", 
                      "'from'", "'During'", "'Outside'", "'Repeated'", "'times'", 
                      "'within'", "<INVALID>", "<INVALID>", "<INVALID>", 
                      "'hours'", "'with'", "'='", "'process'", "'file'", 
@@ -259,7 +259,7 @@ class CNLParser ( Parser ):
 
     symbolicNames = [ "<INVALID>", "TACTICS", "TACTIC", "TECHNIQUE", "TACTIC_ID", 
                       "TECHNIQUE_ID", "EVENT", "GIVEN", "WHEN", "THEN", 
-                      "AND", "OR", "XOR", "BACKGROUND", "DETECTION", "IS", 
+                      "AND", "OR", "XOR", "BACKGROUND", "COMPLETION", "IS", 
                       "AS", "IN", "TO", "BY", "FROM", "DURING", "OUTSIDE", 
                       "REPEATED", "TIMES", "WITHIN", "MILLISECONDS", "SECONDS", 
                       "MINUTES", "HOURS", "WITH", "EQUALS", "PROCESS", "FILE", 
@@ -340,8 +340,8 @@ class CNLParser ( Parser ):
     RULE_timeWindow = 65
     RULE_time = 66
     RULE_geo_location = 67
-    RULE_detectionBlock = 68
-    RULE_detectionExpr = 69
+    RULE_completionBlock = 68
+    RULE_completionExpr = 69
 
     ruleNames =  [ "attack", "header", "background", "assets", "assetDefinition", 
                    "processType", "fileType", "registryType", "endpointType", 
@@ -359,8 +359,8 @@ class CNLParser ( Parser ):
                    "thenClause", "stateCondition", "conditionObject", "stateVerb", 
                    "location", "destination", "source", "trigger", "timing", 
                    "timePreposition", "repetition", "repeat", "timePeriod", 
-                   "timeWindow", "time", "geo_location", "detectionBlock", 
-                   "detectionExpr" ]
+                   "timeWindow", "time", "geo_location", "completionBlock", 
+                   "completionExpr" ]
 
     EOF = Token.EOF
     TACTICS=1
@@ -376,7 +376,7 @@ class CNLParser ( Parser ):
     OR=11
     XOR=12
     BACKGROUND=13
-    DETECTION=14
+    COMPLETION=14
     IS=15
     AS=16
     IN=17
@@ -465,8 +465,8 @@ class CNLParser ( Parser ):
                 return self.getTypedRuleContext(CNLParser.EventBlockContext,i)
 
 
-        def detectionBlock(self):
-            return self.getTypedRuleContext(CNLParser.DetectionBlockContext,0)
+        def completionBlock(self):
+            return self.getTypedRuleContext(CNLParser.CompletionBlockContext,0)
 
 
         def getRuleIndex(self):
@@ -517,7 +517,7 @@ class CNLParser ( Parser ):
             _la = self._input.LA(1)
             if _la==14:
                 self.state = 147
-                self.detectionBlock()
+                self.completionBlock()
 
 
             self.state = 150
@@ -5267,50 +5267,50 @@ class CNLParser ( Parser ):
         return localctx
 
 
-    class DetectionBlockContext(ParserRuleContext):
+    class CompletionBlockContext(ParserRuleContext):
         __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def DETECTION(self):
-            return self.getToken(CNLParser.DETECTION, 0)
+        def COMPLETION(self):
+            return self.getToken(CNLParser.COMPLETION, 0)
 
-        def detectionExpr(self):
-            return self.getTypedRuleContext(CNLParser.DetectionExprContext,0)
+        def completionExpr(self):
+            return self.getTypedRuleContext(CNLParser.CompletionExprContext,0)
 
 
         def getRuleIndex(self):
-            return CNLParser.RULE_detectionBlock
+            return CNLParser.RULE_completionBlock
 
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterDetectionBlock" ):
-                listener.enterDetectionBlock(self)
+            if hasattr( listener, "enterCompletionBlock" ):
+                listener.enterCompletionBlock(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitDetectionBlock" ):
-                listener.exitDetectionBlock(self)
+            if hasattr( listener, "exitCompletionBlock" ):
+                listener.exitCompletionBlock(self)
 
         def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitDetectionBlock" ):
-                return visitor.visitDetectionBlock(self)
+            if hasattr( visitor, "visitCompletionBlock" ):
+                return visitor.visitCompletionBlock(self)
             else:
                 return visitor.visitChildren(self)
 
 
 
 
-    def detectionBlock(self):
+    def completionBlock(self):
 
-        localctx = CNLParser.DetectionBlockContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 136, self.RULE_detectionBlock)
+        localctx = CNLParser.CompletionBlockContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 136, self.RULE_completionBlock)
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 604
-            self.match(CNLParser.DETECTION)
+            self.match(CNLParser.COMPLETION)
             self.state = 605
-            self.detectionExpr()
+            self.completionExpr()
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -5320,7 +5320,7 @@ class CNLParser ( Parser ):
         return localctx
 
 
-    class DetectionExprContext(ParserRuleContext):
+    class CompletionExprContext(ParserRuleContext):
         __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -5353,29 +5353,29 @@ class CNLParser ( Parser ):
                 return self.getToken(CNLParser.XOR, i)
 
         def getRuleIndex(self):
-            return CNLParser.RULE_detectionExpr
+            return CNLParser.RULE_completionExpr
 
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterDetectionExpr" ):
-                listener.enterDetectionExpr(self)
+            if hasattr( listener, "enterCompletionExpr" ):
+                listener.enterCompletionExpr(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitDetectionExpr" ):
-                listener.exitDetectionExpr(self)
+            if hasattr( listener, "exitCompletionExpr" ):
+                listener.exitCompletionExpr(self)
 
         def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitDetectionExpr" ):
-                return visitor.visitDetectionExpr(self)
+            if hasattr( visitor, "visitCompletionExpr" ):
+                return visitor.visitCompletionExpr(self)
             else:
                 return visitor.visitChildren(self)
 
 
 
 
-    def detectionExpr(self):
+    def completionExpr(self):
 
-        localctx = CNLParser.DetectionExprContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 138, self.RULE_detectionExpr)
+        localctx = CNLParser.CompletionExprContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 138, self.RULE_completionExpr)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)

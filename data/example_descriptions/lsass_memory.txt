@@ -23,5 +23,5 @@ Given lsass_dump is created
 When abnormal_process modifies registry_keys
 Then registry_keys modified
 
-Detection
+Completion
 Event 2 Xor Event 3

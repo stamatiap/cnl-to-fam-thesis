@@ -81,7 +81,7 @@ events = [
     )
 ]
 
-detection = Detection(
+completion = Completion(
     event_refs= [event for event in events if event.id in ["2"]],
     operator= None
 )
@@ -93,7 +93,7 @@ password_guessing_model = TechniqueModel(
         tactics= [Tactic(id="TA0006", name="Credential_Access")],
         assets=assets,
         events= events,
-        detection= detection
+        completion= completion
     )
 
 # pprint(password_guessing_model)
