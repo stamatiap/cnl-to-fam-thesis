@@ -5,15 +5,27 @@ from src.translation.visitor import Visitor
 from src.domain_model.model import *
 from src.domain_model.enums import *
 from dataclasses import fields
+from src.monitoring import logger, LoguruErrorListener, write_artifact
+from pathlib import Path
 
 class Translator:
 
     def parse_input(self, input_path: str) -> dict:
+        logger.info("parsing text in {}", input_path)
         input = FileStream(input_path, encoding="utf-8")
         lexer        = CNLLexer(input)
         stream       = CommonTokenStream(lexer)
         parser       = CNLParser(stream)
-        tree         = parser.attack()
+        self._parser = parser  # ← keep a handle for toStringTree
+
+        listener = LoguruErrorListener(source=input_path)
+        parser.removeErrorListeners()
+        parser.addErrorListener(listener)
+        
+        tree = parser.attack()
+        if listener.errors:
+            logger.warning("skipped {} — {} syntax error(s)", input_path, len(listener.errors))
+            return None
         return tree
 
     def create_modifier(self, modifier) -> Modifier:
@@ -33,7 +45,6 @@ class Translator:
         
     def build_asset_registry(self, assets_dict: dict) -> dict[str, Asset]:
         registry = {}
-        warnings = []
         
         for name, info in assets_dict.items():
             asset_type_str = info.get("asset_type")
@@ -45,7 +56,7 @@ class Translator:
             
             # in case of "other" warn about generic Asset being used
             if cls == Asset and class_name != "Asset":
-                print(f"[WARNING] Unknown asset type '{asset_type_str}' for asset '{name}' — will be treated as generic Asset.")
+                logger.warning(f"Unknown asset type '{asset_type_str}' for asset '{name}' — will be treated as generic Asset.")
             
             # validate properties
             valid_fields = {f.name for f in fields(cls)} - {'asset_type', 'name', 'asset_id'}
@@ -63,12 +74,16 @@ class Translator:
                     elif clean_name.lower() == "false":
                         clean_name = False
                     else:
+                        logger.warning("Expected bool for {!r} on asset {!r}, got {!r}", k, name, clean_name)
                         clean_name = None
+                
                 if t is int:
                     try:
                         clean_name = int(clean_name)
                     except ValueError:
-                        raise ValueError(f"Expected integer for {k}, got {clean_name!r}")
+                        logger.warning("Expected int for {!r} on asset {!r}, got {!r}", k, name, clean_name)
+                        clean_name = None
+                
                 extra[k] = clean_name
 
             
@@ -91,7 +106,7 @@ class Translator:
                     if target_name in registry:
                         extra["target"] = registry[target_name]
                     else:
-                        raise ValueError(
+                        logger.error(
                             f"Handle '{name}' references target '{target_name}', which "
                             f"is not declared, or is declared after the handle in the Background."
                         )
@@ -101,16 +116,12 @@ class Translator:
                 if k not in valid_fields:
                     if cls != Asset:
                         # only raise for known types
-                        raise ValueError(f"Property '{k}' not a field of {asset_type_str}. Available fields: {valid_fields}")
+                        logger.error(f"Property '{k}' not a field of {asset_type_str}. Available fields: {valid_fields}")
                     else:
                         # for unknown types, just warn
-                        warnings.append(f"Property '{k}' on unknown asset type '{asset_type_str}' — will be ignored")
+                        logger.warning(f"Property '{k}' on unknown asset type '{asset_type_str}' — will be ignored")
             
             registry[name] = cls(asset_type=asset_type_str, name=name, **extra)
-        
-        # print warnings for now
-        for warning in warnings:
-            print(f"[WARNING] {warning}")
         
         return registry
     
@@ -122,7 +133,7 @@ class Translator:
     def get_asset(self, asset_name: str) -> Asset:
         asset = self.assets.get(asset_name)
         if asset is None:
-            raise ValueError(f"Asset '{asset_name}' referenced but not declared in Background")
+            logger.error(f"Asset '{asset_name}' referenced but not declared in Background")
         return asset
 
     def create_state_conditions(self, conditions: list) -> list[StateCondition]:
@@ -165,6 +176,7 @@ class Translator:
         try:
             preposition = TimePeriodPreposition(time_period_item[0].lower())
         except ValueError:
+            logger.warning("unknown time period preposition {!r}", time_period_item[0])
             preposition = None
         
         return TimePeriod(preposition=preposition, time_period=time_period_item[1])
@@ -176,6 +188,7 @@ class Translator:
             try: 
                 operator = LogicalOperatorType(op.upper())
             except ValueError:
+                logger.warning("unknown logical operator {!r}, treating as None", op)
                 operator = None
         else: 
             operator = None
@@ -233,9 +246,21 @@ class Translator:
     def translate(self, cnl_input_path: str) -> TechniqueModel:
         # Parse the CNL input using the grammar
         parsed_data = self.parse_input(cnl_input_path)
+        if parsed_data is None:
+            logger.error("failed parsing.")
+            return None
+
+        logger.info("Visiting parsed text.")
         visitor = Visitor()
         raw_strings = visitor.visitAttack(parsed_data)
         
         # Convert the parsed data into a TechniqueModel
         technique_model = self.create_technique_model(raw_strings)
+        # Save TechniqueModel
+        out = Path("data/parsed_cnl_models") / f"{technique_model.id.replace(".", "_")}_cnl_{technique_model.name}.json"
+        write_artifact(technique_model, out)
+        
+        logger.info("translated {}: {} assets, {} events. Saved in {}",
+                    technique_model.id, len(technique_model.assets), len(technique_model.events), out)
+        
         return technique_model
