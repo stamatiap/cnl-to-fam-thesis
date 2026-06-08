@@ -28,7 +28,7 @@ def main():
     if model is None:
         logger.error("Failed translation.")
     else:
-        logger.info("Succesful translation!")
+        logger.info("Successful translation!")
         
         # Validation
         logger.info("Validating Technique Model against Domain Model")
