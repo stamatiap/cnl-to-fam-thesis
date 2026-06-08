@@ -67,21 +67,22 @@ def main():
             except Exception as e:
                 logger.exception("Visualization was interrupted: {} - {}", type(e).__name__, e)
 
-        # Domain Model Petri Net Build and Visualization
-        logger.info("Buidling Petri Net of Domain Model")
-        try:
-            dom_petri_net = petri_net_builder.build(domain_model)
-        except Exception as e:
-            logger.exception("PN Building was interrupted: {} - {}", type(e).__name__, e)
-
-        if dom_petri_net:
-            logger.info("Visualizing Petri Net of Domain Model")
+        if domain_model is not None:
+            # Domain Model Petri Net Build and Visualization
+            logger.info("Buidling Petri Net of Domain Model")
             try:
-                output_path = f"./generated_petri_nets/domain_petri_net_{model.name}"
-                petri_net_builder.visualize(*dom_petri_net, output_path)
-                logger.info("Petri net saved to {}.png", output_path)
+                dom_petri_net = petri_net_builder.build(domain_model)
             except Exception as e:
-                logger.exception("Visualization was interrupted: {} - {}", type(e).__name__, e)
+                logger.exception("PN Building was interrupted: {} - {}", type(e).__name__, e)
+
+            if dom_petri_net:
+                logger.info("Visualizing Petri Net of Domain Model")
+                try:
+                    output_path = f"./generated_petri_nets/domain_petri_net_{model.name}"
+                    petri_net_builder.visualize(*dom_petri_net, output_path)
+                    logger.info("Petri net saved to {}.png", output_path)
+                except Exception as e:
+                    logger.exception("Visualization was interrupted: {} - {}", type(e).__name__, e)
 
 
 if __name__ == "__main__":
