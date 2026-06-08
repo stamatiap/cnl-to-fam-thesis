@@ -1,7 +1,5 @@
 from src.domain_model.model import *
 from src.domain_model.enums import *
-from pprint import pprint
-
 
 
 assets = {"lsass": Process(
@@ -124,10 +122,3 @@ lsass_dumping_model = TechniqueModel(
         events= events,
         completion= completion
     )
-
-# pprint(lsass_dumping_model)
-
-# from src.petri_net.petri_net_builder import PetriNetBuilder
-
-# petri_net_builder = PetriNetBuilder()
-# petri_net_builder.visualize(*petri_net_builder.build(lsass_dumping_model), "domain_lsass_dumping_model")

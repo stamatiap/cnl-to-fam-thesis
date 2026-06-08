@@ -1,7 +1,5 @@
 from src.domain_model.model import *
 from src.domain_model.enums import *
-from pprint import pprint
-
 
 
 assets = {"at_exe": Process(
@@ -133,10 +131,3 @@ scheduled_task_at_model = TechniqueModel(
         events= events,
         completion= completion
     )
-
-# pprint(scheduled_task_at_model)
-
-# from src.petri_net.petri_net_builder import PetriNetBuilder
-
-# petri_net_builder = PetriNetBuilder()
-# petri_net_builder.visualize(*petri_net_builder.build(scheduled_task_at_model), "domain_scheduled_task_at_model")

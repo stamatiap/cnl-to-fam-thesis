@@ -1,6 +1,5 @@
 from src.domain_model.model import *
 from src.domain_model.enums import *
-from pprint import pprint
 
 
 assets = {"communication_connection": NetworkConnection(
@@ -155,12 +154,3 @@ content_injection_model = TechniqueModel(
         events= events,
         completion= completion
     )
-
-pprint(content_injection_model)
-
-
-# from src.petri_net.petri_net_builder import PetriNetBuilder
-
-# petri_net_builder = PetriNetBuilder()
-# petri_net_builder.visualize(*petri_net_builder.build(content_injection_model), "domain_content_injection_model_test")
-
