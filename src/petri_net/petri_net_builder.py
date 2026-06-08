@@ -85,12 +85,44 @@ class PetriNetBuilder:
 
     def _arc_exists(self, source, target) -> bool:
         return (source.name, target.name) in self._arc_index
+    
+    def _apply_repetition(self, event: Event, transition: PetriNet.Transition) -> PetriNet.Transition:
+        """
+        When an event's repetition frequency is specified by an integer bigger than  1, then
+        the current transition gets cloned that many times, with the same label.
+         
+        Chain shape for frequency N:
+            transition → P_empty_1 → T_rep_1 → P_empty_2 → ... → P_empty_{N-1} → T_rep_{N-1}
 
-    # def _arc_exists(self, source, target) -> bool:
-    #     for arc in self.net.arcs:
-    #         if arc.source == source and arc.target == target:
-    #             return True
-    #     return False
+        Returns the tail transition
+        """
+        repetition = event.repetition
+        if not repetition:
+            return transition
+
+        frequency = repetition.frequency
+        if not isinstance(frequency, str):
+            return transition
+        try:
+            frequency = int(frequency)
+        except ValueError:
+            return transition
+        if frequency <= 1:
+            return transition
+
+        post_name = "_".join(sorted(self._get_place_name(p) for p in event.postconditions)) # get all postconditions' name into 1 place
+
+        current = transition
+        for i in range(1, frequency):
+            between_place = self._get_or_create_place(f"{post_name}_{i}")
+            clone = self._get_or_create_transition(
+                name=f"{transition.name}_rep_{i}",
+                label=transition.label,
+            )
+            self._add_arc(current, between_place)
+            self._add_arc(between_place, clone)
+            current = clone
+        return current
 
     def _add_modifier_to_name(self, name: str, modifier: Modifier) -> str:
         if modifier.type == ModifierType.LOCATION:
@@ -232,12 +264,14 @@ class PetriNetBuilder:
                 place = self._get_or_create_place(place_name)
                 self._add_arc(place, transition)
 
+        tail = self._apply_repetition(event, transition)
+
         # postconditions
         post_places = []
         for condition in event.postconditions:
             place_name = self._get_place_name(condition)
             place = self._get_or_create_place(place_name)
-            self._add_arc(transition, place)
+            self._add_arc(tail, place)
             post_places.append(place)
 
         self.event_postcondition_places[event.id] = post_places
