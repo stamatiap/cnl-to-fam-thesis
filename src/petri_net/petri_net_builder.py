@@ -5,6 +5,7 @@ from pm4py.visualization.petri_net.variants import wo_decoration
 from src.domain_model.model import TechniqueModel, Event, StateCondition, Modifier, Completion
 from src.domain_model.enums import ModifierType, LogicalOperatorType
 from itertools import permutations
+from src.monitoring import logger
 
 class PetriNetBuilder:
 
@@ -15,6 +16,8 @@ class PetriNetBuilder:
         self.event_postcondition_places: dict[str, list[PetriNet.Place]] = {}
 
     def build(self, model: TechniqueModel) -> tuple[PetriNet, Marking, Marking]:
+        logger.info("building petri net for {}", model.name)
+
         self.net = PetriNet(name=model.name)
         self.places = {}
         self.transitions = {}
@@ -37,6 +40,9 @@ class PetriNetBuilder:
         # final marking
         final_marking = Marking()
 
+        logger.info("built {}: {} places, {} transitions, {} arcs",
+                model.name, len(self.net.places), len(self.net.transitions), len(self.net.arcs))
+        
         return self.net, initial_marking, final_marking
     
     def _identify_entry_place_names(self, model: TechniqueModel) -> set[str]:
@@ -53,12 +59,6 @@ class PetriNetBuilder:
         
     def _add_start_place(self, model: TechniqueModel) -> PetriNet.Place:
         entry_names = self._identify_entry_place_names(model)
-        if not entry_names:
-            raise ValueError(
-                f"Technique '{model.name}' has no entry state conditions (every precondition is produced by some event). "
-                "Add an initial precondition that no event produces."
-            )
-
         start_place = self._get_or_create_place("start")
         silent = self._get_or_create_transition("τ_start", label=None)
         petri_utils.add_arc_from_to(start_place, silent, self.net)
@@ -88,6 +88,8 @@ class PetriNetBuilder:
             return name
 
     def _add_event(self, event: Event) -> None:
+        logger.debug("adding event {} (operator={})", event.id, event.precondition_operator)
+
         transition_name = f"{event.action.actor.name}_{event.action.action_verb}_{event.action.object.name}"
         for modifier in event.action.modifiers or []:
             transition_name = self._add_modifier_to_name(transition_name, modifier)
@@ -258,7 +260,10 @@ class PetriNetBuilder:
                 petri_utils.add_arc_from_to(silent, final_place, self.net)
 
     def _get_postcondition_place(self, event_id: str) -> list[PetriNet.Place]:
-        return self.event_postcondition_places.get(event_id, [])
+        places = self.event_postcondition_places.get(event_id, [])
+        if not places:
+            logger.warning("No postcondition places recorded for event {!r}", event_id)
+        return places
 
     def _get_place_name(self, condition: StateCondition) -> str:
         name = f"{condition.subject.name}_{condition.subject_state}"
@@ -302,4 +307,3 @@ class PetriNetBuilder:
             variant=wo_decoration
         )
         pn_visualizer.save(gviz, f"{output_path}.png")
-        print(f"Petri net saved to {output_path}.png")

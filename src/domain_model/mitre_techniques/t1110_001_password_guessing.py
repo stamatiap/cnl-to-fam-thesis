@@ -1,7 +1,5 @@
 from src.domain_model.model import *
 from src.domain_model.enums import *
-from pprint import pprint
-
 
 
 assets = {"accountA": Account(
@@ -95,10 +93,3 @@ password_guessing_model = TechniqueModel(
         events= events,
         completion= completion
     )
-
-# pprint(password_guessing_model)
-
-# from src.petri_net.petri_net_builder import PetriNetBuilder
-
-# petri_net_builder = PetriNetBuilder()
-# petri_net_builder.visualize(*petri_net_builder.build(password_guessing_model), "domain_password_guessing_model")
