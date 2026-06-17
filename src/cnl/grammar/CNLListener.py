@@ -332,15 +332,6 @@ class CNLListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by CNLParser#propertyName.
-    def enterPropertyName(self, ctx:CNLParser.PropertyNameContext):
-        pass
-
-    # Exit a parse tree produced by CNLParser#propertyName.
-    def exitPropertyName(self, ctx:CNLParser.PropertyNameContext):
-        pass
-
-
     # Enter a parse tree produced by CNLParser#propertyValue.
     def enterPropertyValue(self, ctx:CNLParser.PropertyValueContext):
         pass
@@ -608,15 +599,6 @@ class CNLListener(ParseTreeListener):
 
     # Exit a parse tree produced by CNLParser#time.
     def exitTime(self, ctx:CNLParser.TimeContext):
-        pass
-
-
-    # Enter a parse tree produced by CNLParser#geo_location.
-    def enterGeo_location(self, ctx:CNLParser.Geo_locationContext):
-        pass
-
-    # Exit a parse tree produced by CNLParser#geo_location.
-    def exitGeo_location(self, ctx:CNLParser.Geo_locationContext):
         pass
 
 
