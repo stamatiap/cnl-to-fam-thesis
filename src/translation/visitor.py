@@ -56,6 +56,13 @@ class Visitor(CNLVisitor):
     def _collect_properties(self, asset_name, field_ctxs, value_ctxs):
         if not value_ctxs:
             return None
+        
+        # turn to list single-element fields_ctxs
+        if not isinstance(field_ctxs, list):
+            field_ctxs = [field_ctxs]
+        if not isinstance(value_ctxs, list):
+            value_ctxs = [value_ctxs]
+        
         properties = {}
         for f, v in zip(field_ctxs, value_ctxs):
             name = f.getText()
