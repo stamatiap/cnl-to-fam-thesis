@@ -1,9 +1,9 @@
 Tactic: TA0006 Credential_Access
-Technique: T1003.001 OS_Credential_Dumping_LSASS
+Technique: T1003.001 OS_Credential_Dumping_LSASS_Memory
 
 Background
-Given process as abnormal_process with command_line = "lsass.exe", signed = "true"
-And process as lsass_exe
+Given process as abnormal_process
+And process as lsass_exe with command_line = "lsass.exe", signed = "true"
 And handle as lsass_handle with hexadecimal_number = "0x1F0FFF", target = "lsass_exe"
 And file as lsass_dump
 And registry as registry_keys
