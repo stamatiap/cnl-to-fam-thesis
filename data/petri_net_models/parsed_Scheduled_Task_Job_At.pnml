@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<pnml>
+  <net id="Scheduled_Task_Job_At" type="http://www.pnml.org/version-2009/grammar/pnmlcoremodel">
+    <name>
+      <text>Scheduled_Task_Job_At</text>
+    </name>
+    <page id="n0">
+      <place id="svchost_exe_is_activated">
+        <name>
+          <text>svchost_exe_is_activated</text>
+        </name>
+      </place>
+      <place id="AnomalousScheduledTask_is_created">
+        <name>
+          <text>AnomalousScheduledTask_is_created</text>
+        </name>
+      </place>
+      <place id="taskeng_exe_is_activated">
+        <name>
+          <text>taskeng_exe_is_activated</text>
+        </name>
+      </place>
+      <place id="end">
+        <name>
+          <text>end</text>
+        </name>
+      </place>
+      <place id="Win32_ScheduledJob_is_activated">
+        <name>
+          <text>Win32_ScheduledJob_is_activated</text>
+        </name>
+      </place>
+      <place id="at_exe_is_activated">
+        <name>
+          <text>at_exe_is_activated</text>
+        </name>
+      </place>
+      <place id="AnomalousScheduledTask_is_activated">
+        <name>
+          <text>AnomalousScheduledTask_is_activated</text>
+        </name>
+      </place>
+      <place id="start">
+        <name>
+          <text>start</text>
+        </name>
+      </place>
+      <transition id="Win32_ScheduledJob_creates_AnomalousScheduledTask1">
+        <name>
+          <text>Win32_ScheduledJob_creates_AnomalousScheduledTask</text>
+        </name>
+      </transition>
+      <transition id="taskeng_exe_executes_AnomalousScheduledTask4">
+        <name>
+          <text>taskeng_exe_executes_AnomalousScheduledTask</text>
+        </name>
+      </transition>
+      <transition id="t_start_at_exe_is_activated">
+        <name>
+          <text>t_start_at_exe_is_activated</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="3284e19e-c24b-4d67-bbd3-c501b483019c"/>
+      </transition>
+      <transition id="t_detect_AnomalousScheduledTask_is_activated">
+        <name>
+          <text>t_detect_AnomalousScheduledTask_is_activated</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="25e692bc-76ce-4a43-809c-ed2d38c71a7d"/>
+      </transition>
+      <transition id="svchost_exe_executes_AnomalousScheduledTask3">
+        <name>
+          <text>svchost_exe_executes_AnomalousScheduledTask</text>
+        </name>
+      </transition>
+      <transition id="at_exe_creates_AnomalousScheduledTask2">
+        <name>
+          <text>at_exe_creates_AnomalousScheduledTask</text>
+        </name>
+      </transition>
+      <transition id="t_start_taskeng_exe_is_activated">
+        <name>
+          <text>t_start_taskeng_exe_is_activated</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="2f12480b-c760-40fc-8a13-0472535d71e0"/>
+      </transition>
+      <transition id="t_start_Win32_ScheduledJob_is_activated">
+        <name>
+          <text>t_start_Win32_ScheduledJob_is_activated</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="23529bd7-0ab6-4623-b297-c7d6c7305d5d"/>
+      </transition>
+      <transition id="t_start_svchost_exe_is_activated">
+        <name>
+          <text>t_start_svchost_exe_is_activated</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="5f5635e1-652e-4d5e-9454-7a3fe9b41132"/>
+      </transition>
+      <arc id="2103564096512" source="Win32_ScheduledJob_is_activated" target="Win32_ScheduledJob_creates_AnomalousScheduledTask1"/>
+      <arc id="2103564096896" source="Win32_ScheduledJob_creates_AnomalousScheduledTask1" target="AnomalousScheduledTask_is_created"/>
+      <arc id="2103564097664" source="t_start_Win32_ScheduledJob_is_activated" target="Win32_ScheduledJob_is_activated"/>
+      <arc id="2103564097040" source="svchost_exe_is_activated" target="svchost_exe_executes_AnomalousScheduledTask3"/>
+      <arc id="2103564097424" source="start" target="t_start_taskeng_exe_is_activated"/>
+      <arc id="2103564098192" source="AnomalousScheduledTask_is_activated" target="t_detect_AnomalousScheduledTask_is_activated"/>
+      <arc id="2103564096800" source="at_exe_creates_AnomalousScheduledTask2" target="AnomalousScheduledTask_is_created"/>
+      <arc id="2103564097568" source="t_start_taskeng_exe_is_activated" target="taskeng_exe_is_activated"/>
+      <arc id="2103564097952" source="t_start_at_exe_is_activated" target="at_exe_is_activated"/>
+      <arc id="2103564098336" source="t_detect_AnomalousScheduledTask_is_activated" target="end"/>
+      <arc id="2103564096944" source="AnomalousScheduledTask_is_created" target="svchost_exe_executes_AnomalousScheduledTask3"/>
+      <arc id="2103564097328" source="taskeng_exe_executes_AnomalousScheduledTask4" target="AnomalousScheduledTask_is_activated"/>
+      <arc id="2103564097712" source="start" target="t_start_at_exe_is_activated"/>
+      <arc id="2103564097088" source="taskeng_exe_is_activated" target="taskeng_exe_executes_AnomalousScheduledTask4"/>
+      <arc id="2103564097856" source="start" target="t_start_Win32_ScheduledJob_is_activated"/>
+      <arc id="2103564098240" source="start" target="t_start_svchost_exe_is_activated"/>
+      <arc id="2103564096992" source="at_exe_is_activated" target="at_exe_creates_AnomalousScheduledTask2"/>
+      <arc id="2103564097136" source="svchost_exe_executes_AnomalousScheduledTask3" target="AnomalousScheduledTask_is_activated"/>
+      <arc id="2103564097520" source="AnomalousScheduledTask_is_created" target="taskeng_exe_executes_AnomalousScheduledTask4"/>
+      <arc id="2103564097904" source="t_start_svchost_exe_is_activated" target="svchost_exe_is_activated"/>
+    </page>
+  </net>
+</pnml>

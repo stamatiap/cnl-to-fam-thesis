@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<pnml>
+  <net id="Command_and_Scripting_Interpreter_PowerShell" type="http://www.pnml.org/version-2009/grammar/pnmlcoremodel">
+    <name>
+      <text>Command_and_Scripting_Interpreter_PowerShell</text>
+    </name>
+    <page id="n0">
+      <place id="child_process_is_activated">
+        <name>
+          <text>child_process_is_activated</text>
+        </name>
+      </place>
+      <place id="start">
+        <name>
+          <text>start</text>
+        </name>
+      </place>
+      <place id="P_is_activated">
+        <name>
+          <text>P_is_activated</text>
+        </name>
+      </place>
+      <place id="powershell_exe_is_activated">
+        <name>
+          <text>powershell_exe_is_activated</text>
+        </name>
+      </place>
+      <place id="suspicious_module_is_loaded">
+        <name>
+          <text>suspicious_module_is_loaded</text>
+        </name>
+      </place>
+      <place id="unusual_process_is_activated">
+        <name>
+          <text>unusual_process_is_activated</text>
+        </name>
+      </place>
+      <place id="connection_is_established">
+        <name>
+          <text>connection_is_established</text>
+        </name>
+      </place>
+      <place id="end">
+        <name>
+          <text>end</text>
+        </name>
+      </place>
+      <transition id="P_spawns_powershell_exe1">
+        <name>
+          <text>P_spawns_powershell_exe</text>
+        </name>
+      </transition>
+      <transition id="powershell_exe_spawns_child_process5">
+        <name>
+          <text>powershell_exe_spawns_child_process</text>
+        </name>
+      </transition>
+      <transition id="suspicious_module_spawns_powershell_exe4">
+        <name>
+          <text>suspicious_module_spawns_powershell_exe</text>
+        </name>
+      </transition>
+      <transition id="unusual_process_spawns_powershell_exe2">
+        <name>
+          <text>unusual_process_spawns_powershell_exe</text>
+        </name>
+      </transition>
+      <transition id="t_start_P_is_activated">
+        <name>
+          <text>t_start_P_is_activated</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="03bda597-694d-4c5c-91d5-b0e883049146"/>
+      </transition>
+      <transition id="t_start_unusual_process_is_activated">
+        <name>
+          <text>t_start_unusual_process_is_activated</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="6d768736-6b07-4af1-a095-e916c6415d32"/>
+      </transition>
+      <transition id="t_start_suspicious_module_is_loaded">
+        <name>
+          <text>t_start_suspicious_module_is_loaded</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="d615d11b-89aa-4f8b-9023-a4573f271dab"/>
+      </transition>
+      <transition id="powershell_exe_creates_connection6">
+        <name>
+          <text>powershell_exe_creates_connection</text>
+        </name>
+      </transition>
+      <transition id="t_detect_child_process_is_activated">
+        <name>
+          <text>t_detect_child_process_is_activated</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="6dfc5029-e7c5-48d8-b4c0-8886a2df07f1"/>
+      </transition>
+      <transition id="t_detect_connection_is_established">
+        <name>
+          <text>t_detect_connection_is_established</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="a8550103-9378-460c-897c-a2adfc47fa41"/>
+      </transition>
+      <arc id="1800768902144" source="suspicious_module_spawns_powershell_exe4" target="powershell_exe_is_activated"/>
+      <arc id="1800768902528" source="powershell_exe_creates_connection6" target="connection_is_established"/>
+      <arc id="1800768902912" source="start" target="t_start_suspicious_module_is_loaded"/>
+      <arc id="1800768903296" source="t_detect_connection_is_established" target="end"/>
+      <arc id="1800768901520" source="P_spawns_powershell_exe1" target="powershell_exe_is_activated"/>
+      <arc id="1800768903056" source="start" target="t_start_unusual_process_is_activated"/>
+      <arc id="1800768903200" source="connection_is_established" target="t_detect_connection_is_established"/>
+      <arc id="1800768902192" source="suspicious_module_is_loaded" target="suspicious_module_spawns_powershell_exe4"/>
+      <arc id="1800768901808" source="unusual_process_spawns_powershell_exe2" target="powershell_exe_is_activated"/>
+      <arc id="1800768902960" source="t_start_P_is_activated" target="P_is_activated"/>
+      <arc id="1800768902336" source="powershell_exe_spawns_child_process5" target="child_process_is_activated"/>
+      <arc id="1800768903104" source="t_start_suspicious_module_is_loaded" target="suspicious_module_is_loaded"/>
+      <arc id="1800768903488" source="t_detect_child_process_is_activated" target="end"/>
+      <arc id="1800768902480" source="powershell_exe_is_activated" target="powershell_exe_spawns_child_process5"/>
+      <arc id="1800768902864" source="start" target="t_start_P_is_activated"/>
+      <arc id="1800768902624" source="t_start_unusual_process_is_activated" target="unusual_process_is_activated"/>
+      <arc id="1800768903392" source="child_process_is_activated" target="t_detect_child_process_is_activated"/>
+      <arc id="1800768901616" source="P_is_activated" target="P_spawns_powershell_exe1"/>
+      <arc id="1800768902000" source="unusual_process_is_activated" target="unusual_process_spawns_powershell_exe2"/>
+      <arc id="1800768902768" source="powershell_exe_is_activated" target="powershell_exe_creates_connection6"/>
+    </page>
+  </net>
+</pnml>

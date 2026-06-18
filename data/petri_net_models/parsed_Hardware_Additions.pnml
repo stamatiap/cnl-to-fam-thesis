@@ -1,0 +1,232 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<pnml>
+  <net id="Hardware_Additions" type="http://www.pnml.org/version-2009/grammar/pnmlcoremodel">
+    <name>
+      <text>Hardware_Additions</text>
+    </name>
+    <page id="n0">
+      <place id="Windows_is_active">
+        <name>
+          <text>Windows_is_active</text>
+        </name>
+      </place>
+      <place id="USB_device_is_active">
+        <name>
+          <text>USB_device_is_active</text>
+        </name>
+      </place>
+      <place id="Thunderbolt_device_is_active">
+        <name>
+          <text>Thunderbolt_device_is_active</text>
+        </name>
+      </place>
+      <place id="xor_BD_is_active_PCIe_device_is_active_Thunderbolt_device_is_active_USB_device_is_active">
+        <name>
+          <text>xor_BD_is_active_PCIe_device_is_active_Thunderbolt_device_is_active_USB_device_is_active</text>
+        </name>
+      </place>
+      <place id="xor_P1_is_active_V_is_mounted">
+        <name>
+          <text>xor_P1_is_active_V_is_mounted</text>
+        </name>
+      </place>
+      <place id="HID_keystroke_is_received">
+        <name>
+          <text>HID_keystroke_is_received</text>
+        </name>
+      </place>
+      <place id="User_is_active">
+        <name>
+          <text>User_is_active</text>
+        </name>
+      </place>
+      <place id="PCIe_device_is_active">
+        <name>
+          <text>PCIe_device_is_active</text>
+        </name>
+      </place>
+      <place id="BD_is_active">
+        <name>
+          <text>BD_is_active</text>
+        </name>
+      </place>
+      <place id="P1_is_active">
+        <name>
+          <text>P1_is_active</text>
+        </name>
+      </place>
+      <place id="V_is_mounted">
+        <name>
+          <text>V_is_mounted</text>
+        </name>
+      </place>
+      <place id="DMA_driver_is_loaded">
+        <name>
+          <text>DMA_driver_is_loaded</text>
+        </name>
+      </place>
+      <place id="MAC_is_received">
+        <name>
+          <text>MAC_is_received</text>
+        </name>
+      </place>
+      <place id="end">
+        <name>
+          <text>end</text>
+        </name>
+      </place>
+      <place id="start">
+        <name>
+          <text>start</text>
+        </name>
+      </place>
+      <transition id="Windows_recognizes_USB_device1">
+        <name>
+          <text>Windows_recognizes_USB_device</text>
+        </name>
+      </transition>
+      <transition id="t_Thunderbolt_device_is_active">
+        <name>
+          <text>t_Thunderbolt_device_is_active</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="25304f9d-4801-4656-88e4-cc159ce1a121"/>
+      </transition>
+      <transition id="t_detect_MAC_is_received">
+        <name>
+          <text>t_detect_MAC_is_received</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="2cdc7fc7-17d2-44ef-96ce-880b507f43fb"/>
+      </transition>
+      <transition id="t_P1_is_active">
+        <name>
+          <text>t_P1_is_active</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="c845cf77-55e1-46fd-9dab-627fca88153c"/>
+      </transition>
+      <transition id="User_spawns_P15">
+        <name>
+          <text>User_spawns_P1</text>
+        </name>
+      </transition>
+      <transition id="Windows_receives_HID_keystroke7">
+        <name>
+          <text>Windows_receives_HID_keystroke</text>
+        </name>
+      </transition>
+      <transition id="t_start">
+        <name>
+          <text>t_start</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="1d058a30-84d8-4969-bdc3-9e8b116db32a"/>
+      </transition>
+      <transition id="Windows_recognizes_BD4">
+        <name>
+          <text>Windows_recognizes_BD</text>
+        </name>
+      </transition>
+      <transition id="t_USB_device_is_active">
+        <name>
+          <text>t_USB_device_is_active</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="60e3a294-a858-4256-95f5-83390e8ada2f"/>
+      </transition>
+      <transition id="t_BD_is_active">
+        <name>
+          <text>t_BD_is_active</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="5f9b6395-cefe-4910-8033-e6a9f2096a94"/>
+      </transition>
+      <transition id="Windows_recognizes_Thunderbolt_device2">
+        <name>
+          <text>Windows_recognizes_Thunderbolt_device</text>
+        </name>
+      </transition>
+      <transition id="Windows_mounts_V6">
+        <name>
+          <text>Windows_mounts_V</text>
+        </name>
+      </transition>
+      <transition id="t_detect_HID_keystroke_is_received">
+        <name>
+          <text>t_detect_HID_keystroke_is_received</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="e5f56157-c80f-4bcd-8c39-ece29af9b04e"/>
+      </transition>
+      <transition id="Windows_recognizes_PCIe_device3">
+        <name>
+          <text>Windows_recognizes_PCIe_device</text>
+        </name>
+      </transition>
+      <transition id="t_PCIe_device_is_active">
+        <name>
+          <text>t_PCIe_device_is_active</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="e56f5e72-27b0-42e7-93f3-191b9ca68d39"/>
+      </transition>
+      <transition id="t_V_is_mounted">
+        <name>
+          <text>t_V_is_mounted</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="4650d634-4c90-44e5-ae9d-3d70a8a55705"/>
+      </transition>
+      <transition id="Windows_loads_DMA_driver8">
+        <name>
+          <text>Windows_loads_DMA_driver</text>
+        </name>
+      </transition>
+      <transition id="DHCP_receives_MAC9">
+        <name>
+          <text>DHCP_receives_MAC</text>
+        </name>
+      </transition>
+      <transition id="t_detect_DMA_driver_is_loaded">
+        <name>
+          <text>t_detect_DMA_driver_is_loaded</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="71f4a879-6b2d-4506-a423-5307b6d71f21"/>
+      </transition>
+      <arc id="1847979123456" source="Windows_is_active" target="Windows_recognizes_USB_device1"/>
+      <arc id="1847979788672" source="Windows_recognizes_PCIe_device3" target="PCIe_device_is_active"/>
+      <arc id="1847979789056" source="Windows_is_active" target="Windows_recognizes_BD4"/>
+      <arc id="1847979795200" source="t_Thunderbolt_device_is_active" target="xor_BD_is_active_PCIe_device_is_active_Thunderbolt_device_is_active_USB_device_is_active"/>
+      <arc id="1847979795584" source="User_spawns_P15" target="P1_is_active"/>
+      <arc id="1847979796352" source="t_V_is_mounted" target="xor_P1_is_active_V_is_mounted"/>
+      <arc id="1847979796736" source="Windows_loads_DMA_driver8" target="DMA_driver_is_loaded"/>
+      <arc id="1847979797120" source="start" target="t_start"/>
+      <arc id="1847979788432" source="Windows_recognizes_Thunderbolt_device2" target="Thunderbolt_device_is_active"/>
+      <arc id="1847979794960" source="Thunderbolt_device_is_active" target="t_Thunderbolt_device_is_active"/>
+      <arc id="1847979795344" source="t_PCIe_device_is_active" target="xor_BD_is_active_PCIe_device_is_active_Thunderbolt_device_is_active_USB_device_is_active"/>
+      <arc id="1847979796112" source="t_P1_is_active" target="xor_P1_is_active_V_is_mounted"/>
+      <arc id="1847979796496" source="Windows_receives_HID_keystroke7" target="HID_keystroke_is_received"/>
+      <arc id="1847979796880" source="xor_P1_is_active_V_is_mounted" target="DHCP_receives_MAC9"/>
+      <arc id="1847979797264" source="t_start" target="User_is_active"/>
+      <arc id="1847979797648" source="HID_keystroke_is_received" target="t_detect_HID_keystroke_is_received"/>
+      <arc id="1847979787808" source="User_is_active" target="Windows_recognizes_USB_device1"/>
+      <arc id="1847979788576" source="Windows_is_active" target="Windows_recognizes_Thunderbolt_device2"/>
+      <arc id="1847979788192" source="User_is_active" target="Windows_recognizes_Thunderbolt_device2"/>
+      <arc id="1847979795488" source="t_BD_is_active" target="xor_BD_is_active_PCIe_device_is_active_Thunderbolt_device_is_active_USB_device_is_active"/>
+      <arc id="1847979796256" source="V_is_mounted" target="t_V_is_mounted"/>
+      <arc id="1847979797408" source="t_start" target="Windows_is_active"/>
+      <arc id="1847979796016" source="P1_is_active" target="t_P1_is_active"/>
+      <arc id="1847979788480" source="Windows_is_active" target="Windows_recognizes_PCIe_device3"/>
+      <arc id="1847979795008" source="xor_BD_is_active_PCIe_device_is_active_Thunderbolt_device_is_active_USB_device_is_active" target="User_spawns_P15"/>
+      <arc id="1847979795776" source="xor_BD_is_active_PCIe_device_is_active_Thunderbolt_device_is_active_USB_device_is_active" target="Windows_mounts_V6"/>
+      <arc id="1847979797696" source="DMA_driver_is_loaded" target="t_detect_DMA_driver_is_loaded"/>
+      <arc id="1847979798080" source="MAC_is_received" target="t_detect_MAC_is_received"/>
+      <arc id="1847979788240" source="Windows_recognizes_USB_device1" target="USB_device_is_active"/>
+      <arc id="1847979794768" source="USB_device_is_active" target="t_USB_device_is_active"/>
+      <arc id="1847979795152" source="t_USB_device_is_active" target="xor_BD_is_active_PCIe_device_is_active_Thunderbolt_device_is_active_USB_device_is_active"/>
+      <arc id="1847979789008" source="Windows_mounts_V6" target="V_is_mounted"/>
+      <arc id="1847979797840" source="t_detect_DMA_driver_is_loaded" target="end"/>
+      <arc id="1847979798224" source="t_detect_MAC_is_received" target="end"/>
+      <arc id="1847979788384" source="User_is_active" target="Windows_recognizes_PCIe_device3"/>
+      <arc id="1847979788768" source="Windows_recognizes_BD4" target="BD_is_active"/>
+      <arc id="1847979795296" source="PCIe_device_is_active" target="t_PCIe_device_is_active"/>
+      <arc id="1847979795680" source="xor_P1_is_active_V_is_mounted" target="Windows_receives_HID_keystroke7"/>
+      <arc id="1847979796448" source="xor_P1_is_active_V_is_mounted" target="Windows_loads_DMA_driver8"/>
+      <arc id="1847979795440" source="BD_is_active" target="t_BD_is_active"/>
+      <arc id="1847979796976" source="DHCP_receives_MAC9" target="MAC_is_received"/>
+      <arc id="1847979797744" source="t_detect_HID_keystroke_is_received" target="end"/>
+    </page>
+  </net>
+</pnml>
