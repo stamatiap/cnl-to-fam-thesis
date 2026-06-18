@@ -19,6 +19,7 @@ def main():
     input_file = sys.argv[1]
     input_path = "data/example_descriptions/" + input_file
     logger.info("Translating {}", input_path)
+    model = None
     try:
         translator = Translator()
         model = translator.translate(input_path)
@@ -54,16 +55,17 @@ def main():
         logger.info("Buidling Petri Net of Technique Model")
         petri_net_builder = PetriNetBuilder()
         try:
-            cnl_petri_net = petri_net_builder.build(model)
+            output_path = "data/petri_net_models/parsed_" + model.name
+            cnl_petri_net = petri_net_builder.build(model, output_path)
         except Exception as e:
             logger.exception("PN Building was interrupted: {} - {}", type(e).__name__, e)
 
         if cnl_petri_net:
             logger.info("Visualizing Petri Net of Technique Model")
             try:
-                output_path = f"./generated_petri_nets/cnl_petri_net_{input_file[:-4]}"
+                output_path = f"./data/generated_petri_nets/parsed_{model.name}"
                 petri_net_builder.visualize(*cnl_petri_net, output_path)
-                logger.info("Petri net saved to {}.png", output_path)
+                logger.info("Petri net saved to {}.svg", output_path)
             except Exception as e:
                 logger.exception("Visualization was interrupted: {} - {}", type(e).__name__, e)
 
@@ -71,16 +73,17 @@ def main():
             # Domain Model Petri Net Build and Visualization
             logger.info("Buidling Petri Net of Domain Model")
             try:
-                dom_petri_net = petri_net_builder.build(domain_model)
+                output_path = "data/petri_net_models/domain_" + domain_model.name
+                dom_petri_net = petri_net_builder.build(domain_model, output_path)
             except Exception as e:
                 logger.exception("PN Building was interrupted: {} - {}", type(e).__name__, e)
 
             if dom_petri_net:
                 logger.info("Visualizing Petri Net of Domain Model")
                 try:
-                    output_path = f"./generated_petri_nets/domain_petri_net_{model.name}"
+                    output_path = f"./data/generated_petri_nets/domain_{domain_model.name}"
                     petri_net_builder.visualize(*dom_petri_net, output_path)
-                    logger.info("Petri net saved to {}.png", output_path)
+                    logger.info("Petri net saved to {}.svg", output_path)
                 except Exception as e:
                     logger.exception("Visualization was interrupted: {} - {}", type(e).__name__, e)
 
