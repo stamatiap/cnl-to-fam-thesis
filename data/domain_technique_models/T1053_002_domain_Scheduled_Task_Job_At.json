@@ -24,7 +24,7 @@
             "__class__": "Process",
             "asset_type": "process",
             "name": "at.exe",
-            "asset_id": "d531385c-f92b-4d25-afea-0bbfe7eea082",
+            "asset_id": "7d45cd35-62ca-4b4f-8b87-cfdf92d0e684",
             "signed": null,
             "command_line": null,
             "parent_process": null
@@ -33,7 +33,7 @@
             "__class__": "Process",
             "asset_type": "process",
             "name": "WMI_Win32_ScheduledJob",
-            "asset_id": "32041700-c4b3-400a-b8b0-c5e968678553",
+            "asset_id": "3ce260b5-5f18-4ab4-b1ff-35a7c597b00f",
             "signed": null,
             "command_line": null,
             "parent_process": null
@@ -42,7 +42,7 @@
             "__class__": "Process",
             "asset_type": "process",
             "name": "AnomalousJob",
-            "asset_id": "f896d61a-6e1c-43b2-8c9c-50d41129c2bd",
+            "asset_id": "d4a3cdea-1f4f-4f1d-b7a9-3be8049d2830",
             "signed": null,
             "command_line": null,
             "parent_process": null
@@ -51,7 +51,7 @@
             "__class__": "Process",
             "asset_type": "process",
             "name": "svchost_exe",
-            "asset_id": "420be228-42ab-42bb-af60-dd372e0087af",
+            "asset_id": "116845ca-010c-4f20-a5a4-5d1fdc6bfe7b",
             "signed": null,
             "command_line": "svchost.exe",
             "parent_process": null
@@ -60,7 +60,7 @@
             "__class__": "Process",
             "asset_type": "process",
             "name": "taskeng_exe",
-            "asset_id": "1e5f1153-f5b4-4954-a27f-8ace0f1d580c",
+            "asset_id": "76dbef3d-8b2b-47fc-8a92-e726943ed87f",
             "signed": null,
             "command_line": "taskeng.exe",
             "parent_process": null
@@ -78,7 +78,7 @@
                     "__class__": "Process",
                     "asset_type": "process",
                     "name": "at.exe",
-                    "asset_id": "d531385c-f92b-4d25-afea-0bbfe7eea082",
+                    "asset_id": "7d45cd35-62ca-4b4f-8b87-cfdf92d0e684",
                     "signed": null,
                     "command_line": null,
                     "parent_process": null
@@ -87,7 +87,7 @@
                     "__class__": "Process",
                     "asset_type": "process",
                     "name": "AnomalousJob",
-                    "asset_id": "f896d61a-6e1c-43b2-8c9c-50d41129c2bd",
+                    "asset_id": "d4a3cdea-1f4f-4f1d-b7a9-3be8049d2830",
                     "signed": null,
                     "command_line": null,
                     "parent_process": null
@@ -101,7 +101,7 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "at.exe",
-                        "asset_id": "d531385c-f92b-4d25-afea-0bbfe7eea082",
+                        "asset_id": "7d45cd35-62ca-4b4f-8b87-cfdf92d0e684",
                         "signed": null,
                         "command_line": null,
                         "parent_process": null
@@ -118,7 +118,7 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "AnomalousJob",
-                        "asset_id": "f896d61a-6e1c-43b2-8c9c-50d41129c2bd",
+                        "asset_id": "d4a3cdea-1f4f-4f1d-b7a9-3be8049d2830",
                         "signed": null,
                         "command_line": null,
                         "parent_process": null
@@ -142,7 +142,7 @@
                     "__class__": "Process",
                     "asset_type": "process",
                     "name": "WMI_Win32_ScheduledJob",
-                    "asset_id": "32041700-c4b3-400a-b8b0-c5e968678553",
+                    "asset_id": "3ce260b5-5f18-4ab4-b1ff-35a7c597b00f",
                     "signed": null,
                     "command_line": null,
                     "parent_process": null
@@ -151,7 +151,7 @@
                     "__class__": "Process",
                     "asset_type": "process",
                     "name": "AnomalousJob",
-                    "asset_id": "f896d61a-6e1c-43b2-8c9c-50d41129c2bd",
+                    "asset_id": "d4a3cdea-1f4f-4f1d-b7a9-3be8049d2830",
                     "signed": null,
                     "command_line": null,
                     "parent_process": null
@@ -165,7 +165,7 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "WMI_Win32_ScheduledJob",
-                        "asset_id": "32041700-c4b3-400a-b8b0-c5e968678553",
+                        "asset_id": "3ce260b5-5f18-4ab4-b1ff-35a7c597b00f",
                         "signed": null,
                         "command_line": null,
                         "parent_process": null
@@ -182,7 +182,7 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "AnomalousJob",
-                        "asset_id": "f896d61a-6e1c-43b2-8c9c-50d41129c2bd",
+                        "asset_id": "d4a3cdea-1f4f-4f1d-b7a9-3be8049d2830",
                         "signed": null,
                         "command_line": null,
                         "parent_process": null
@@ -206,7 +206,7 @@
                     "__class__": "Process",
                     "asset_type": "process",
                     "name": "svchost_exe",
-                    "asset_id": "420be228-42ab-42bb-af60-dd372e0087af",
+                    "asset_id": "116845ca-010c-4f20-a5a4-5d1fdc6bfe7b",
                     "signed": null,
                     "command_line": "svchost.exe",
                     "parent_process": null
@@ -215,7 +215,7 @@
                     "__class__": "Process",
                     "asset_type": "process",
                     "name": "AnomalousJob",
-                    "asset_id": "f896d61a-6e1c-43b2-8c9c-50d41129c2bd",
+                    "asset_id": "d4a3cdea-1f4f-4f1d-b7a9-3be8049d2830",
                     "signed": null,
                     "command_line": null,
                     "parent_process": null
@@ -229,7 +229,7 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "AnomalousJob",
-                        "asset_id": "f896d61a-6e1c-43b2-8c9c-50d41129c2bd",
+                        "asset_id": "d4a3cdea-1f4f-4f1d-b7a9-3be8049d2830",
                         "signed": null,
                         "command_line": null,
                         "parent_process": null
@@ -243,7 +243,7 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "svchost_exe",
-                        "asset_id": "420be228-42ab-42bb-af60-dd372e0087af",
+                        "asset_id": "116845ca-010c-4f20-a5a4-5d1fdc6bfe7b",
                         "signed": null,
                         "command_line": "svchost.exe",
                         "parent_process": null
@@ -260,7 +260,7 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "AnomalousJob",
-                        "asset_id": "f896d61a-6e1c-43b2-8c9c-50d41129c2bd",
+                        "asset_id": "d4a3cdea-1f4f-4f1d-b7a9-3be8049d2830",
                         "signed": null,
                         "command_line": null,
                         "parent_process": null
@@ -284,7 +284,7 @@
                     "__class__": "Process",
                     "asset_type": "process",
                     "name": "taskeng_exe",
-                    "asset_id": "1e5f1153-f5b4-4954-a27f-8ace0f1d580c",
+                    "asset_id": "76dbef3d-8b2b-47fc-8a92-e726943ed87f",
                     "signed": null,
                     "command_line": "taskeng.exe",
                     "parent_process": null
@@ -293,7 +293,7 @@
                     "__class__": "Process",
                     "asset_type": "process",
                     "name": "AnomalousJob",
-                    "asset_id": "f896d61a-6e1c-43b2-8c9c-50d41129c2bd",
+                    "asset_id": "d4a3cdea-1f4f-4f1d-b7a9-3be8049d2830",
                     "signed": null,
                     "command_line": null,
                     "parent_process": null
@@ -307,7 +307,7 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "AnomalousJob",
-                        "asset_id": "f896d61a-6e1c-43b2-8c9c-50d41129c2bd",
+                        "asset_id": "d4a3cdea-1f4f-4f1d-b7a9-3be8049d2830",
                         "signed": null,
                         "command_line": null,
                         "parent_process": null
@@ -321,7 +321,7 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "taskeng_exe",
-                        "asset_id": "1e5f1153-f5b4-4954-a27f-8ace0f1d580c",
+                        "asset_id": "76dbef3d-8b2b-47fc-8a92-e726943ed87f",
                         "signed": null,
                         "command_line": "taskeng.exe",
                         "parent_process": null
@@ -338,7 +338,7 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "AnomalousJob",
-                        "asset_id": "f896d61a-6e1c-43b2-8c9c-50d41129c2bd",
+                        "asset_id": "d4a3cdea-1f4f-4f1d-b7a9-3be8049d2830",
                         "signed": null,
                         "command_line": null,
                         "parent_process": null
@@ -366,7 +366,7 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "svchost_exe",
-                        "asset_id": "420be228-42ab-42bb-af60-dd372e0087af",
+                        "asset_id": "116845ca-010c-4f20-a5a4-5d1fdc6bfe7b",
                         "signed": null,
                         "command_line": "svchost.exe",
                         "parent_process": null
@@ -375,7 +375,7 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "AnomalousJob",
-                        "asset_id": "f896d61a-6e1c-43b2-8c9c-50d41129c2bd",
+                        "asset_id": "d4a3cdea-1f4f-4f1d-b7a9-3be8049d2830",
                         "signed": null,
                         "command_line": null,
                         "parent_process": null
@@ -389,7 +389,7 @@
                             "__class__": "Process",
                             "asset_type": "process",
                             "name": "AnomalousJob",
-                            "asset_id": "f896d61a-6e1c-43b2-8c9c-50d41129c2bd",
+                            "asset_id": "d4a3cdea-1f4f-4f1d-b7a9-3be8049d2830",
                             "signed": null,
                             "command_line": null,
                             "parent_process": null
@@ -403,7 +403,7 @@
                             "__class__": "Process",
                             "asset_type": "process",
                             "name": "svchost_exe",
-                            "asset_id": "420be228-42ab-42bb-af60-dd372e0087af",
+                            "asset_id": "116845ca-010c-4f20-a5a4-5d1fdc6bfe7b",
                             "signed": null,
                             "command_line": "svchost.exe",
                             "parent_process": null
@@ -420,7 +420,7 @@
                             "__class__": "Process",
                             "asset_type": "process",
                             "name": "AnomalousJob",
-                            "asset_id": "f896d61a-6e1c-43b2-8c9c-50d41129c2bd",
+                            "asset_id": "d4a3cdea-1f4f-4f1d-b7a9-3be8049d2830",
                             "signed": null,
                             "command_line": null,
                             "parent_process": null
@@ -444,7 +444,7 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "taskeng_exe",
-                        "asset_id": "1e5f1153-f5b4-4954-a27f-8ace0f1d580c",
+                        "asset_id": "76dbef3d-8b2b-47fc-8a92-e726943ed87f",
                         "signed": null,
                         "command_line": "taskeng.exe",
                         "parent_process": null
@@ -453,7 +453,7 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "AnomalousJob",
-                        "asset_id": "f896d61a-6e1c-43b2-8c9c-50d41129c2bd",
+                        "asset_id": "d4a3cdea-1f4f-4f1d-b7a9-3be8049d2830",
                         "signed": null,
                         "command_line": null,
                         "parent_process": null
@@ -467,7 +467,7 @@
                             "__class__": "Process",
                             "asset_type": "process",
                             "name": "AnomalousJob",
-                            "asset_id": "f896d61a-6e1c-43b2-8c9c-50d41129c2bd",
+                            "asset_id": "d4a3cdea-1f4f-4f1d-b7a9-3be8049d2830",
                             "signed": null,
                             "command_line": null,
                             "parent_process": null
@@ -481,7 +481,7 @@
                             "__class__": "Process",
                             "asset_type": "process",
                             "name": "taskeng_exe",
-                            "asset_id": "1e5f1153-f5b4-4954-a27f-8ace0f1d580c",
+                            "asset_id": "76dbef3d-8b2b-47fc-8a92-e726943ed87f",
                             "signed": null,
                             "command_line": "taskeng.exe",
                             "parent_process": null
@@ -498,7 +498,7 @@
                             "__class__": "Process",
                             "asset_type": "process",
                             "name": "AnomalousJob",
-                            "asset_id": "f896d61a-6e1c-43b2-8c9c-50d41129c2bd",
+                            "asset_id": "d4a3cdea-1f4f-4f1d-b7a9-3be8049d2830",
                             "signed": null,
                             "command_line": null,
                             "parent_process": null

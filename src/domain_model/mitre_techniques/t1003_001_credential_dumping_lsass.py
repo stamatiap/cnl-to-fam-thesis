@@ -26,7 +26,9 @@ assets = {"lsass": Process(
                 asset_type = "registry",
                 name = "registry_keys"
             )
-            }
+}
+
+assets['lsass_handle'].target = assets.get('lsass')
 
 state_conditions = {"lsass_active": StateCondition(
             subject = assets.get('lsass'),
