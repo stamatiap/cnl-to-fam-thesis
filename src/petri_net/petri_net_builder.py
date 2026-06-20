@@ -6,6 +6,7 @@ from src.domain_model.model import TechniqueModel, Event, StateCondition, Modifi
 from src.domain_model.enums import ModifierType, LogicalOperatorType
 from itertools import permutations
 from src.monitoring import logger
+from pm4py import write_pnml
 
 class PetriNetBuilder:
 
@@ -16,7 +17,7 @@ class PetriNetBuilder:
         self.event_postcondition_places: dict[str, list[PetriNet.Place]] = {}
         self._arc_index: set[tuple[str, str]] = set()
 
-    def build(self, model: TechniqueModel) -> tuple[PetriNet, Marking, Marking]:
+    def build(self, model: TechniqueModel, output_path: str) -> tuple[PetriNet, Marking, Marking]:
         logger.info("building petri net for {}", model.name)
 
         self.net = PetriNet(name=model.name)
@@ -45,6 +46,8 @@ class PetriNetBuilder:
         logger.info("built {}: {} places, {} transitions, {} arcs",
                 model.name, len(self.net.places), len(self.net.transitions), len(self.net.arcs))
         
+        write_pnml(self.net, file_path = f"{output_path}.pnml", initial_marking=initial_marking, final_marking=final_marking)
+        
         return self.net, initial_marking, final_marking
     
     def _identify_entry_place_names(self, model: TechniqueModel) -> set[str]:
@@ -62,13 +65,14 @@ class PetriNetBuilder:
     def _add_start_place(self, model: TechniqueModel) -> PetriNet.Place:
         entry_names = self._identify_entry_place_names(model)
         start_place = self._get_or_create_place("start")
-        silent = self._get_or_create_transition("τ_start", label=None)
-        self._add_arc(start_place, silent)
 
         for name in entry_names:
             place = self.places.get(name)
-            if place is not None:
-                self._add_arc(silent, place)
+            if place is None:
+                continue
+            silent = self._get_or_create_transition(f"t_start_{name}", label=None)
+            self._add_arc(start_place, silent)
+            self._add_arc(silent, place)
         return start_place
     
     def _add_arc(self, source, target) -> bool:
@@ -201,7 +205,7 @@ class PetriNetBuilder:
                         # add silent transition between found outgoing places and final OR place
                         for out_arc in t.out_arcs:
                             out_place = out_arc.target
-                            silent = self._get_or_create_transition(f"τ_{out_place.name}", label=None)
+                            silent = self._get_or_create_transition(f"t_{out_place.name}", label=None)
                             self._add_arc(out_place, silent)
                             self._add_arc(silent, final_or_place)
 
@@ -223,7 +227,7 @@ class PetriNetBuilder:
                         # create intermediate place and connect to final or place
                         inter_place = self._get_or_create_place(f"intermediate_place_{k}{j}")
                         self._add_arc(t, inter_place)
-                        silent = self._get_or_create_transition(f"τ_{inter_place.name}", label=None)
+                        silent = self._get_or_create_transition(f"t_{inter_place.name}", label=None)
                         self._add_arc(inter_place, silent)
                         self._add_arc(silent, final_or_place)
                         # add arc to next transition in the permutation
@@ -253,7 +257,7 @@ class PetriNetBuilder:
             for condition in event.preconditions:
                 place_name = self._get_place_name(condition)
                 place = self._get_or_create_place(place_name)
-                silent = self._get_or_create_transition(f"τ_{place_name}", label=None)
+                silent = self._get_or_create_transition(f"t_{place_name}", label=None)
                 
                 self._add_arc(place, silent)
                 self._add_arc(silent, xor_place)
@@ -282,12 +286,12 @@ class PetriNetBuilder:
             for event_ref in completion.event_refs:
                 post_places = self._get_postcondition_place(event_ref.id)
                 for post_place in post_places:
-                    silent = self._get_or_create_transition(f"τ_detect_{post_place.name}", label=None)
+                    silent = self._get_or_create_transition(f"t_detect_{post_place.name}", label=None)
                     self._add_arc(post_place, silent)
                     self._add_arc(silent, final_place)
         else:
             # AND (or single event) — all postcondition places feed into one shared silent transition
-            silent = self._get_or_create_transition("τ_detect_and", label=None)
+            silent = self._get_or_create_transition("t_detect_and", label=None)
             for event_ref in completion.event_refs:
                 post_places = self._get_postcondition_place(event_ref.id)
                 for post_place in post_places:
@@ -331,7 +335,7 @@ class PetriNetBuilder:
 
         parameters = {
             "decorations": decorations,
-            "format": "png"
+            "format": "svg"
         }
 
         gviz = pn_visualizer.apply(
@@ -341,4 +345,4 @@ class PetriNetBuilder:
             parameters=parameters,
             variant=wo_decoration
         )
-        pn_visualizer.save(gviz, f"{output_path}.png")
+        pn_visualizer.save(gviz, f"{output_path}.svg")

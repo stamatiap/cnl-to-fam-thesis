@@ -2,7 +2,16 @@ from src.domain_model.model import *
 from src.domain_model.enums import *
 
 
-assets = {"communication_connection": NetworkConnection(
+assets = {
+        "browser": Process(
+                asset_type= "browser",
+                name= "Browser", 
+            ),
+        "server": Endpoint(
+                asset_type = "endpoint",
+                name = "some_server"
+            ),
+        "communication_connection": NetworkConnection(
             asset_type= "network_connection",
             name= "communication_connection",
             source = Process(
@@ -33,6 +42,9 @@ assets = {"communication_connection": NetworkConnection(
             path = "/%AppData%/"
         )
 }
+
+assets["communication_connection"].source = assets.get("browser")
+assets["communication_connection"].destination = assets.get("server")
 
 state_conditions = {"connection_active": StateCondition(
         subject = assets.get('communication_connection'),
@@ -118,22 +130,8 @@ events = [
             object = assets.get('payload'),
             modifiers = None
         ),
-        preconditions = [state_conditions.get('local_process_active'), state_conditions.get('payload_exists_Temp')],
-        precondition_operator = LogicalOperatorType.AND,
-        postconditions = [state_conditions.get('payload_active')],
-        postcondition_operator = None
-    ),
-    Event(
-        id = "5",
-        name = "Event 5",
-        action = Action(
-            actor = assets.get('local_process'),
-            action_verb = "executes",
-            object = assets.get('payload'),
-            modifiers = None
-        ),
-        preconditions = [state_conditions.get('local_process_active'), state_conditions.get('payload_exists_AppData')],
-        precondition_operator = LogicalOperatorType.AND,
+        preconditions = [state_conditions.get('payload_exists_AppData'), state_conditions.get('payload_exists_Temp')],
+        precondition_operator = LogicalOperatorType.XOR,
         postconditions = [state_conditions.get('payload_active')],
         postcondition_operator = None
     )
@@ -141,7 +139,7 @@ events = [
 ]
 
 completion = Completion(
-    event_refs= [event for event in events if event.id in ["4", "5"]],
+    event_refs= [event for event in events if event.id in ["4"]],
     operator= LogicalOperatorType.XOR
 )
 

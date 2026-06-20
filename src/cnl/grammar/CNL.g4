@@ -112,7 +112,6 @@ otherField: IDENTIFIER ;
 
 
 assetName: IDENTIFIER ;
-propertyName: IDENTIFIER ;
 propertyValue: STRING ;
 
 tactics
@@ -218,9 +217,6 @@ time:
     MILLISECONDS | SECONDS | MINUTES | HOURS
     ;
 
-geo_location
-    : IDENTIFIER
-    ;
 
 completionBlock
     : COMPLETION completionExpr
