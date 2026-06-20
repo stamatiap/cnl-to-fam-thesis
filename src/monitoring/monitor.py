@@ -19,7 +19,7 @@ def setup_logging(log_dir: Path = Path("logs")) -> Path:
 # Serialize artifact
 def serialize(obj):
     if isinstance(obj, Enum):
-        return obj.value
+        return {"__enum__": obj.__class__.__name__, "type_name": obj.name, "value": serialize(obj.value)}
     if is_dataclass(obj):
         return {"__class__": obj.__class__.__name__,
                 **{f.name: serialize(getattr(obj, f.name)) for f in fields(obj)}}
