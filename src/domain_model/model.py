@@ -99,7 +99,7 @@ class Endpoint(Asset):
 @dataclass
 class NetworkConnection(Asset):
     destination: Endpoint = None
-    source: Endpoint = None
+    source: Process = None
     transport_protocol: str = None
 
 @dataclass
