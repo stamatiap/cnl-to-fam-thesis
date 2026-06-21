@@ -47,6 +47,7 @@ class PetriNetBuilder:
                 model.name, len(self.net.places), len(self.net.transitions), len(self.net.arcs))
         
         write_pnml(self.net, file_path = f"{output_path}.pnml", initial_marking=initial_marking, final_marking=final_marking)
+        logger.info(f"saving petri net to {output_path}.pnml")
         
         return self.net, initial_marking, final_marking
     
@@ -326,6 +327,7 @@ class PetriNetBuilder:
         return self.transitions[name]
 
     def visualize(self, net: PetriNet, initial_marking: Marking, final_marking: Marking, output_path: str = "petri_net") -> None:
+        logger.info("Visualizing Petri Net of Technique Model")
         decorations = {}
         for place in net.places:
             decorations[place] = {
@@ -346,3 +348,4 @@ class PetriNetBuilder:
             variant=wo_decoration
         )
         pn_visualizer.save(gviz, f"{output_path}.svg")
+        logger.info("Petri net visualization saved to {}.svg", output_path)

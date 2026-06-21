@@ -31,11 +31,12 @@ def main():
     else:
         logger.info("Successful translation!")
         
-        # Validation
-        logger.info("Validating Technique Model against Domain Model")
+        # simple validation on the model structure
+        logger.info("Comparing the structure of Technique Model against Domain Model structure")
         domain_model = None
         try:
             domain_model = TECHNIQUE_REGISTRY.get(model.id)
+            logger.info("Domain model found!")
         except Exception as e:
             logger.exception("Fetching Domain Model interrupted: {} - {}", type(e).__name__, e)
 
@@ -44,7 +45,7 @@ def main():
             validator = Validator()
             is_valid = validator.validate_model(model, domain_model)
         except Exception as e:
-            logger.exception("Validation was interrupted: {} - {}", type(e).__name__, e)
+            logger.exception("Comparison was interrupted: {} - {}", type(e).__name__, e)
         
         if not is_valid:
             logger.error("Failed validation.")
@@ -53,6 +54,7 @@ def main():
 
         # CNL Model Petri Net Build and Visualization
         logger.info("Buidling Petri Net of Technique Model")
+        cnl_petri_net = None
         petri_net_builder = PetriNetBuilder()
         try:
             output_path = "data/petri_net_models/parsed_" + model.name
@@ -60,12 +62,10 @@ def main():
         except Exception as e:
             logger.exception("PN Building was interrupted: {} - {}", type(e).__name__, e)
 
-        if cnl_petri_net:
-            logger.info("Visualizing Petri Net of Technique Model")
+        if cnl_petri_net is not None:
             try:
                 output_path = f"./data/generated_petri_nets/parsed_{model.name}"
                 petri_net_builder.visualize(*cnl_petri_net, output_path)
-                logger.info("Petri net saved to {}.svg", output_path)
             except Exception as e:
                 logger.exception("Visualization was interrupted: {} - {}", type(e).__name__, e)
 
