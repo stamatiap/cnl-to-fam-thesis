@@ -332,15 +332,6 @@ class CNLListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by CNLParser#propertyName.
-    def enterPropertyName(self, ctx:CNLParser.PropertyNameContext):
-        pass
-
-    # Exit a parse tree produced by CNLParser#propertyName.
-    def exitPropertyName(self, ctx:CNLParser.PropertyNameContext):
-        pass
-
-
     # Enter a parse tree produced by CNLParser#propertyValue.
     def enterPropertyValue(self, ctx:CNLParser.PropertyValueContext):
         pass
@@ -611,30 +602,21 @@ class CNLListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by CNLParser#geo_location.
-    def enterGeo_location(self, ctx:CNLParser.Geo_locationContext):
+    # Enter a parse tree produced by CNLParser#completionBlock.
+    def enterCompletionBlock(self, ctx:CNLParser.CompletionBlockContext):
         pass
 
-    # Exit a parse tree produced by CNLParser#geo_location.
-    def exitGeo_location(self, ctx:CNLParser.Geo_locationContext):
-        pass
-
-
-    # Enter a parse tree produced by CNLParser#detectionBlock.
-    def enterDetectionBlock(self, ctx:CNLParser.DetectionBlockContext):
-        pass
-
-    # Exit a parse tree produced by CNLParser#detectionBlock.
-    def exitDetectionBlock(self, ctx:CNLParser.DetectionBlockContext):
+    # Exit a parse tree produced by CNLParser#completionBlock.
+    def exitCompletionBlock(self, ctx:CNLParser.CompletionBlockContext):
         pass
 
 
-    # Enter a parse tree produced by CNLParser#detectionExpr.
-    def enterDetectionExpr(self, ctx:CNLParser.DetectionExprContext):
+    # Enter a parse tree produced by CNLParser#completionExpr.
+    def enterCompletionExpr(self, ctx:CNLParser.CompletionExprContext):
         pass
 
-    # Exit a parse tree produced by CNLParser#detectionExpr.
-    def exitDetectionExpr(self, ctx:CNLParser.DetectionExprContext):
+    # Exit a parse tree produced by CNLParser#completionExpr.
+    def exitCompletionExpr(self, ctx:CNLParser.CompletionExprContext):
         pass
 
 

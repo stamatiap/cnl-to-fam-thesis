@@ -1,0 +1,589 @@
+{
+    "__class__": "TechniqueModel",
+    "id": "T1659",
+    "name": "Content Injection",
+    "tactics": [
+        {
+            "__class__": "Tactic",
+            "id": "TA0001",
+            "name": "Initial Access"
+        },
+        {
+            "__class__": "Tactic",
+            "id": "TA0011",
+            "name": "Command and Control"
+        }
+    ],
+    "assets": {
+        "browser": {
+            "__class__": "Process",
+            "asset_type": "browser",
+            "name": "Browser",
+            "asset_id": "85f1e46c-3612-4e5e-8cf1-d5b493e69968",
+            "signed": null,
+            "command_line": null,
+            "parent_process": null
+        },
+        "server": {
+            "__class__": "Endpoint",
+            "asset_type": "endpoint",
+            "name": "some_server",
+            "asset_id": "55dc1bc3-40a0-4b7b-b327-4ed71357f2b3",
+            "port": null,
+            "protocol": null,
+            "ip_address": null
+        },
+        "communication_connection": {
+            "__class__": "NetworkConnection",
+            "asset_type": "network_connection",
+            "name": "communication_connection",
+            "asset_id": "f5621c74-850f-4076-8873-cbbeaeb4b159",
+            "destination": {
+                "__class__": "Endpoint",
+                "asset_type": "endpoint",
+                "name": "some_server",
+                "asset_id": "55dc1bc3-40a0-4b7b-b327-4ed71357f2b3",
+                "port": null,
+                "protocol": null,
+                "ip_address": null
+            },
+            "source": {
+                "__class__": "Process",
+                "asset_type": "browser",
+                "name": "Browser",
+                "asset_id": "85f1e46c-3612-4e5e-8cf1-d5b493e69968",
+                "signed": null,
+                "command_line": null,
+                "parent_process": null
+            },
+            "transport_protocol": null
+        },
+        "payload": {
+            "__class__": "File",
+            "asset_type": "file",
+            "name": "PayloadFile",
+            "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+            "path": null,
+            "signed": null
+        },
+        "local_process": {
+            "__class__": "Process",
+            "asset_type": "process",
+            "name": "local_process",
+            "asset_id": "8957a668-678d-4867-b868-7181fd6ac971",
+            "signed": null,
+            "command_line": null,
+            "parent_process": null
+        },
+        "temp": {
+            "__class__": "Directory",
+            "asset_type": "directory",
+            "name": "Temp",
+            "asset_id": "22610b1a-9e6b-4830-afe0-8a84e3a47a59",
+            "path": "/Temp/"
+        },
+        "app_data": {
+            "__class__": "Directory",
+            "asset_type": "directory",
+            "name": "AppData",
+            "asset_id": "a5578e5f-3c80-450d-8705-e80884601d9a",
+            "path": "/%AppData%/"
+        }
+    },
+    "events": [
+        {
+            "__class__": "Event",
+            "id": "1",
+            "name": "Event 1",
+            "action": {
+                "__class__": "Action",
+                "action_verb": "receives",
+                "actor": {
+                    "__class__": "Process",
+                    "asset_type": "browser",
+                    "name": "Browser",
+                    "asset_id": "85f1e46c-3612-4e5e-8cf1-d5b493e69968",
+                    "signed": null,
+                    "command_line": null,
+                    "parent_process": null
+                },
+                "object": {
+                    "__class__": "File",
+                    "asset_type": "file",
+                    "name": "PayloadFile",
+                    "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                    "path": null,
+                    "signed": null
+                },
+                "modifiers": null
+            },
+            "preconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "NetworkConnection",
+                        "asset_type": "network_connection",
+                        "name": "communication_connection",
+                        "asset_id": "f5621c74-850f-4076-8873-cbbeaeb4b159",
+                        "destination": {
+                            "__class__": "Endpoint",
+                            "asset_type": "endpoint",
+                            "name": "some_server",
+                            "asset_id": "55dc1bc3-40a0-4b7b-b327-4ed71357f2b3",
+                            "port": null,
+                            "protocol": null,
+                            "ip_address": null
+                        },
+                        "source": {
+                            "__class__": "Process",
+                            "asset_type": "browser",
+                            "name": "Browser",
+                            "asset_id": "85f1e46c-3612-4e5e-8cf1-d5b493e69968",
+                            "signed": null,
+                            "command_line": null,
+                            "parent_process": null
+                        },
+                        "transport_protocol": null
+                    },
+                    "subject_state": "active",
+                    "modifiers": null
+                }
+            ],
+            "precondition_operator": null,
+            "postconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "File",
+                        "asset_type": "file",
+                        "name": "PayloadFile",
+                        "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                        "path": null,
+                        "signed": null
+                    },
+                    "subject_state": "received",
+                    "modifiers": null
+                }
+            ],
+            "postcondition_operator": null,
+            "repetition": null,
+            "time_period": null
+        },
+        {
+            "__class__": "Event",
+            "id": "2",
+            "name": "Event 2",
+            "action": {
+                "__class__": "Action",
+                "action_verb": "stores",
+                "actor": {
+                    "__class__": "Process",
+                    "asset_type": "browser",
+                    "name": "Browser",
+                    "asset_id": "85f1e46c-3612-4e5e-8cf1-d5b493e69968",
+                    "signed": null,
+                    "command_line": null,
+                    "parent_process": null
+                },
+                "object": {
+                    "__class__": "File",
+                    "asset_type": "file",
+                    "name": "PayloadFile",
+                    "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                    "path": null,
+                    "signed": null
+                },
+                "modifiers": [
+                    {
+                        "__class__": "Modifier",
+                        "type": {
+                            "__enum__": "ModifierType",
+                            "type_name": "LOCATION",
+                            "value": "in"
+                        },
+                        "value": {
+                            "__class__": "Directory",
+                            "asset_type": "directory",
+                            "name": "AppData",
+                            "asset_id": "a5578e5f-3c80-450d-8705-e80884601d9a",
+                            "path": "/%AppData%/"
+                        }
+                    }
+                ]
+            },
+            "preconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "File",
+                        "asset_type": "file",
+                        "name": "PayloadFile",
+                        "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                        "path": null,
+                        "signed": null
+                    },
+                    "subject_state": "received",
+                    "modifiers": null
+                }
+            ],
+            "precondition_operator": null,
+            "postconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "File",
+                        "asset_type": "file",
+                        "name": "PayloadFile",
+                        "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                        "path": null,
+                        "signed": null
+                    },
+                    "subject_state": "exists",
+                    "modifiers": [
+                        {
+                            "__class__": "Modifier",
+                            "type": {
+                                "__enum__": "ModifierType",
+                                "type_name": "LOCATION",
+                                "value": "in"
+                            },
+                            "value": {
+                                "__class__": "Directory",
+                                "asset_type": "directory",
+                                "name": "AppData",
+                                "asset_id": "a5578e5f-3c80-450d-8705-e80884601d9a",
+                                "path": "/%AppData%/"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "postcondition_operator": null,
+            "repetition": null,
+            "time_period": null
+        },
+        {
+            "__class__": "Event",
+            "id": "3",
+            "name": "Event 3",
+            "action": {
+                "__class__": "Action",
+                "action_verb": "stores",
+                "actor": {
+                    "__class__": "Process",
+                    "asset_type": "browser",
+                    "name": "Browser",
+                    "asset_id": "85f1e46c-3612-4e5e-8cf1-d5b493e69968",
+                    "signed": null,
+                    "command_line": null,
+                    "parent_process": null
+                },
+                "object": {
+                    "__class__": "File",
+                    "asset_type": "file",
+                    "name": "PayloadFile",
+                    "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                    "path": null,
+                    "signed": null
+                },
+                "modifiers": [
+                    {
+                        "__class__": "Modifier",
+                        "type": {
+                            "__enum__": "ModifierType",
+                            "type_name": "LOCATION",
+                            "value": "in"
+                        },
+                        "value": {
+                            "__class__": "Directory",
+                            "asset_type": "directory",
+                            "name": "Temp",
+                            "asset_id": "22610b1a-9e6b-4830-afe0-8a84e3a47a59",
+                            "path": "/Temp/"
+                        }
+                    }
+                ]
+            },
+            "preconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "File",
+                        "asset_type": "file",
+                        "name": "PayloadFile",
+                        "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                        "path": null,
+                        "signed": null
+                    },
+                    "subject_state": "received",
+                    "modifiers": null
+                }
+            ],
+            "precondition_operator": null,
+            "postconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "File",
+                        "asset_type": "file",
+                        "name": "PayloadFile",
+                        "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                        "path": null,
+                        "signed": null
+                    },
+                    "subject_state": "exists",
+                    "modifiers": [
+                        {
+                            "__class__": "Modifier",
+                            "type": {
+                                "__enum__": "ModifierType",
+                                "type_name": "LOCATION",
+                                "value": "in"
+                            },
+                            "value": {
+                                "__class__": "Directory",
+                                "asset_type": "directory",
+                                "name": "Temp",
+                                "asset_id": "22610b1a-9e6b-4830-afe0-8a84e3a47a59",
+                                "path": "/Temp/"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "postcondition_operator": null,
+            "repetition": null,
+            "time_period": null
+        },
+        {
+            "__class__": "Event",
+            "id": "4",
+            "name": "Event 4",
+            "action": {
+                "__class__": "Action",
+                "action_verb": "executes",
+                "actor": {
+                    "__class__": "Process",
+                    "asset_type": "process",
+                    "name": "local_process",
+                    "asset_id": "8957a668-678d-4867-b868-7181fd6ac971",
+                    "signed": null,
+                    "command_line": null,
+                    "parent_process": null
+                },
+                "object": {
+                    "__class__": "File",
+                    "asset_type": "file",
+                    "name": "PayloadFile",
+                    "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                    "path": null,
+                    "signed": null
+                },
+                "modifiers": null
+            },
+            "preconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "File",
+                        "asset_type": "file",
+                        "name": "PayloadFile",
+                        "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                        "path": null,
+                        "signed": null
+                    },
+                    "subject_state": "exists",
+                    "modifiers": [
+                        {
+                            "__class__": "Modifier",
+                            "type": {
+                                "__enum__": "ModifierType",
+                                "type_name": "LOCATION",
+                                "value": "in"
+                            },
+                            "value": {
+                                "__class__": "Directory",
+                                "asset_type": "directory",
+                                "name": "AppData",
+                                "asset_id": "a5578e5f-3c80-450d-8705-e80884601d9a",
+                                "path": "/%AppData%/"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "File",
+                        "asset_type": "file",
+                        "name": "PayloadFile",
+                        "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                        "path": null,
+                        "signed": null
+                    },
+                    "subject_state": "exists",
+                    "modifiers": [
+                        {
+                            "__class__": "Modifier",
+                            "type": {
+                                "__enum__": "ModifierType",
+                                "type_name": "LOCATION",
+                                "value": "in"
+                            },
+                            "value": {
+                                "__class__": "Directory",
+                                "asset_type": "directory",
+                                "name": "Temp",
+                                "asset_id": "22610b1a-9e6b-4830-afe0-8a84e3a47a59",
+                                "path": "/Temp/"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "precondition_operator": {
+                "__enum__": "LogicalOperatorType",
+                "type_name": "XOR",
+                "value": "XOR"
+            },
+            "postconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "File",
+                        "asset_type": "file",
+                        "name": "PayloadFile",
+                        "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                        "path": null,
+                        "signed": null
+                    },
+                    "subject_state": "active",
+                    "modifiers": null
+                }
+            ],
+            "postcondition_operator": null,
+            "repetition": null,
+            "time_period": null
+        }
+    ],
+    "completion": {
+        "__class__": "Completion",
+        "event_refs": [
+            {
+                "__class__": "Event",
+                "id": "4",
+                "name": "Event 4",
+                "action": {
+                    "__class__": "Action",
+                    "action_verb": "executes",
+                    "actor": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "local_process",
+                        "asset_id": "8957a668-678d-4867-b868-7181fd6ac971",
+                        "signed": null,
+                        "command_line": null,
+                        "parent_process": null
+                    },
+                    "object": {
+                        "__class__": "File",
+                        "asset_type": "file",
+                        "name": "PayloadFile",
+                        "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                        "path": null,
+                        "signed": null
+                    },
+                    "modifiers": null
+                },
+                "preconditions": [
+                    {
+                        "__class__": "StateCondition",
+                        "subject": {
+                            "__class__": "File",
+                            "asset_type": "file",
+                            "name": "PayloadFile",
+                            "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                            "path": null,
+                            "signed": null
+                        },
+                        "subject_state": "exists",
+                        "modifiers": [
+                            {
+                                "__class__": "Modifier",
+                                "type": {
+                                    "__enum__": "ModifierType",
+                                    "type_name": "LOCATION",
+                                    "value": "in"
+                                },
+                                "value": {
+                                    "__class__": "Directory",
+                                    "asset_type": "directory",
+                                    "name": "AppData",
+                                    "asset_id": "a5578e5f-3c80-450d-8705-e80884601d9a",
+                                    "path": "/%AppData%/"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "__class__": "StateCondition",
+                        "subject": {
+                            "__class__": "File",
+                            "asset_type": "file",
+                            "name": "PayloadFile",
+                            "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                            "path": null,
+                            "signed": null
+                        },
+                        "subject_state": "exists",
+                        "modifiers": [
+                            {
+                                "__class__": "Modifier",
+                                "type": {
+                                    "__enum__": "ModifierType",
+                                    "type_name": "LOCATION",
+                                    "value": "in"
+                                },
+                                "value": {
+                                    "__class__": "Directory",
+                                    "asset_type": "directory",
+                                    "name": "Temp",
+                                    "asset_id": "22610b1a-9e6b-4830-afe0-8a84e3a47a59",
+                                    "path": "/Temp/"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "precondition_operator": {
+                    "__enum__": "LogicalOperatorType",
+                    "type_name": "XOR",
+                    "value": "XOR"
+                },
+                "postconditions": [
+                    {
+                        "__class__": "StateCondition",
+                        "subject": {
+                            "__class__": "File",
+                            "asset_type": "file",
+                            "name": "PayloadFile",
+                            "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                            "path": null,
+                            "signed": null
+                        },
+                        "subject_state": "active",
+                        "modifiers": null
+                    }
+                ],
+                "postcondition_operator": null,
+                "repetition": null,
+                "time_period": null
+            }
+        ],
+        "operator": {
+            "__enum__": "LogicalOperatorType",
+            "type_name": "XOR",
+            "value": "XOR"
+        }
+    }
+}

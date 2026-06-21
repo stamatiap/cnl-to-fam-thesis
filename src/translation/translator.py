@@ -5,15 +5,27 @@ from src.translation.visitor import Visitor
 from src.domain_model.model import *
 from src.domain_model.enums import *
 from dataclasses import fields
+from src.monitoring import logger, LoguruErrorListener, write_artifact
+from pathlib import Path
 
 class Translator:
 
     def parse_input(self, input_path: str) -> dict:
+        logger.info("parsing text in {}", input_path)
         input = FileStream(input_path, encoding="utf-8")
         lexer        = CNLLexer(input)
         stream       = CommonTokenStream(lexer)
         parser       = CNLParser(stream)
-        tree         = parser.attack()
+        self._parser = parser  # ← keep a handle for toStringTree
+
+        listener = LoguruErrorListener(source=input_path)
+        parser.removeErrorListeners()
+        parser.addErrorListener(listener)
+        
+        tree = parser.attack()
+        if listener.errors:
+            logger.warning("skipped {} — {} syntax error(s)", input_path, len(listener.errors))
+            return None
         return tree
 
     def create_modifier(self, modifier) -> Modifier:
@@ -30,10 +42,31 @@ class Translator:
             type = mod_type,
             value = self.get_asset(modifier[1])
         )
-        
+
+    # find the referenced assets in the registry, if not log error
+    # all assets but be declared beforehand 
+    def _resolve_reference(self,registry: dict, owner_class: str, owner_name: str, field: str, properties: dict, expected_type: type = Asset ):
+        if field not in properties:
+            return None
+        ref_name = properties[field].replace("'", "").replace('"', "")
+        if ref_name not in registry:
+            logger.error(
+                f"{owner_class} '{owner_name}' references {field} '{ref_name}', which "
+                f"is not declared, or is declared after the {owner_class} in the Background."
+            )
+            return None
+        asset = registry[ref_name]
+        if not isinstance(asset, expected_type):
+            logger.error(
+                f"{owner_class} '{owner_name}' references {field} '{ref_name}', "
+                f"which is declared as {type(asset).__name__}, expected {expected_type.__name__}."
+            )
+            return None
+        return asset
+
+
     def build_asset_registry(self, assets_dict: dict) -> dict[str, Asset]:
         registry = {}
-        warnings = []
         
         for name, info in assets_dict.items():
             asset_type_str = info.get("asset_type")
@@ -45,7 +78,7 @@ class Translator:
             
             # in case of "other" warn about generic Asset being used
             if cls == Asset and class_name != "Asset":
-                print(f"[WARNING] Unknown asset type '{asset_type_str}' for asset '{name}' — will be treated as generic Asset.")
+                logger.warning(f"Unknown asset type '{asset_type_str}' for asset '{name}' — will be treated as generic Asset.")
             
             # validate properties
             valid_fields = {f.name for f in fields(cls)} - {'asset_type', 'name', 'asset_id'}
@@ -63,54 +96,38 @@ class Translator:
                     elif clean_name.lower() == "false":
                         clean_name = False
                     else:
+                        logger.warning("Expected bool for {!r} on asset {!r}, got {!r}", k, name, clean_name)
                         clean_name = None
+                
                 if t is int:
                     try:
                         clean_name = int(clean_name)
                     except ValueError:
-                        raise ValueError(f"Expected integer for {k}, got {clean_name!r}")
+                        logger.warning("Expected int for {!r} on asset {!r}, got {!r}", k, name, clean_name)
+                        clean_name = None
+                
                 extra[k] = clean_name
 
-            
-            # create objects for Asset types that have other Assets as properties and add to registry
+            # add referenced assets in properties
             if asset_type_str == "network_connection":
-                if "source" in properties.keys():
-                    extra["source"] = Process(asset_type='process', name=properties['source'].replace("'", "").replace('"', ""))
-                    registry[extra["source"].name] = extra["source"]
-                if "destination" in properties.keys():
-                    extra["destination"] = Endpoint(asset_type='endpoint', name=properties['destination'].replace("'", "").replace('"', ""))
-                    registry[extra["destination"].name] = extra["destination"]
+                extra["source"] = self._resolve_reference(registry, "NetworkConnection", name, "source", properties, Process)
+                extra["destination"] = self._resolve_reference(registry, "NetworkConnection", name, "destination", properties, Endpoint)
             elif asset_type_str == "process":
-                if "parent_process" in properties.keys():
-                    extra["parent_process"] = Process(asset_type="process", name=properties['parent_process'].replace("'", "").replace('"', ""))
-                    registry[extra["parent_process"].name] = extra["parent_process"]
+                extra["parent_process"] = self._resolve_reference(registry, "Process", name, "parent_process", properties, Process)
             elif asset_type_str == "handle":
-                if "target" in properties.keys():
-                    target_name = properties['target'].replace("'", "").replace('"', "")
-                    # target asset must be declared beforehand
-                    if target_name in registry:
-                        extra["target"] = registry[target_name]
-                    else:
-                        raise ValueError(
-                            f"Handle '{name}' references target '{target_name}', which "
-                            f"is not declared, or is declared after the handle in the Background."
-                        )
+                extra["target"] = self._resolve_reference(registry, "Handle", name, "target", properties)
 
             # warn on invalid properties
             for k, v in properties.items(): 
                 if k not in valid_fields:
                     if cls != Asset:
                         # only raise for known types
-                        raise ValueError(f"Property '{k}' not a field of {asset_type_str}. Available fields: {valid_fields}")
+                        logger.error(f"Property '{k}' not a field of {asset_type_str}. Available fields: {valid_fields}")
                     else:
                         # for unknown types, just warn
-                        warnings.append(f"Property '{k}' on unknown asset type '{asset_type_str}' — will be ignored")
+                        logger.warning(f"Property '{k}' on unknown asset type '{asset_type_str}' — will be ignored")
             
             registry[name] = cls(asset_type=asset_type_str, name=name, **extra)
-        
-        # print warnings for now
-        for warning in warnings:
-            print(f"[WARNING] {warning}")
         
         return registry
     
@@ -122,7 +139,7 @@ class Translator:
     def get_asset(self, asset_name: str) -> Asset:
         asset = self.assets.get(asset_name)
         if asset is None:
-            raise ValueError(f"Asset '{asset_name}' referenced but not declared in Background")
+            logger.error(f"Asset '{asset_name}' referenced but not declared in Background")
         return asset
 
     def create_state_conditions(self, conditions: list) -> list[StateCondition]:
@@ -165,6 +182,7 @@ class Translator:
         try:
             preposition = TimePeriodPreposition(time_period_item[0].lower())
         except ValueError:
+            logger.warning("unknown time period preposition {!r}", time_period_item[0])
             preposition = None
         
         return TimePeriod(preposition=preposition, time_period=time_period_item[1])
@@ -176,6 +194,7 @@ class Translator:
             try: 
                 operator = LogicalOperatorType(op.upper())
             except ValueError:
+                logger.warning("unknown logical operator {!r}, treating as None", op)
                 operator = None
         else: 
             operator = None
@@ -205,20 +224,20 @@ class Translator:
 
         )
     
-    def create_detection(self, detection, events) -> Detection:
-        event_id_refs = detection.get('events', [])
+    def create_completion(self, completion, events) -> Completion:
+        event_id_refs = completion.get('events', [])
         event_refs = [event for event in events if event.id in event_id_refs]
-        operator = self.get_logical_operator(detection)
+        operator = self.get_logical_operator(completion)
 
-        return Detection(event_refs= event_refs,
+        return Completion(event_refs= event_refs,
                operator= operator)
 
     def create_technique_model(self, parsed_data) -> TechniqueModel:
-        # background + detection
+        # background + completion
         self.assets = self.build_asset_registry(parsed_data.get('assets', {}))
         event_objects = [self.create_event(event) for event in parsed_data.get('events', [])]
-        detection_data = parsed_data.get('detection')
-        detection = self.create_detection(detection_data, event_objects) if detection_data else None
+        completion_data = parsed_data.get('completion')
+        completion = self.create_completion(completion_data, event_objects) if completion_data else None
         tactics = [Tactic(id=t["tactic_id"], name=t["tactic_name"]) for t in parsed_data.get("tactics", [])]
 
         return TechniqueModel(
@@ -227,15 +246,27 @@ class Translator:
             tactics=tactics,
             assets=self.assets,
             events=event_objects,
-            detection=detection
+            completion=completion
         )
     
     def translate(self, cnl_input_path: str) -> TechniqueModel:
         # Parse the CNL input using the grammar
         parsed_data = self.parse_input(cnl_input_path)
+        if parsed_data is None:
+            logger.error("failed parsing.")
+            return None
+
+        logger.info("visiting parsed text.")
         visitor = Visitor()
         raw_strings = visitor.visitAttack(parsed_data)
         
         # Convert the parsed data into a TechniqueModel
         technique_model = self.create_technique_model(raw_strings)
+        # Save TechniqueModel
+        out = Path("data/parsed_cnl_models") / f"{technique_model.id.replace(".", "_")}_cnl_{technique_model.name}.json"
+        write_artifact(technique_model, out)
+        
+        logger.info("translated {}: {} assets, {} events. Saved in {}",
+                    technique_model.id, len(technique_model.assets), len(technique_model.events), out)
+        
         return technique_model

@@ -1,7 +1,5 @@
 from src.domain_model.model import *
 from src.domain_model.enums import *
-from pprint import pprint
-
 
 
 assets = {"accountA": Account(
@@ -61,7 +59,7 @@ events = [
         ),
         preconditions = [state_conditions.get('authentication_awaiting_input')],
         precondition_operator = None,
-        postconditions = [state_conditions.get('authentication_awaiting_input')],
+        postconditions = [state_conditions.get('credentials_rejected')],
         postcondition_operator = None,
         repetition = Repetition(frequency="5", time_value=1, time_unit="seconds")
     ),
@@ -74,14 +72,14 @@ events = [
             object = assets.get('correct_credentials'),
             modifiers = [Modifier(type = ModifierType.DESTINATION, value = assets.get('accountA'))]
         ),
-        preconditions = [state_conditions.get('authentication_awaiting_input')],
+        preconditions = [state_conditions.get('credentials_rejected')],
         precondition_operator = None,
         postconditions = [state_conditions.get('credentials_accepted'), state_conditions.get('user_logged_in')],
         postcondition_operator = LogicalOperatorType.AND
     )
 ]
 
-detection = Detection(
+completion = Completion(
     event_refs= [event for event in events if event.id in ["2"]],
     operator= None
 )
@@ -93,12 +91,5 @@ password_guessing_model = TechniqueModel(
         tactics= [Tactic(id="TA0006", name="Credential_Access")],
         assets=assets,
         events= events,
-        detection= detection
+        completion= completion
     )
-
-# pprint(password_guessing_model)
-
-# from src.petri_net.petri_net_builder import PetriNetBuilder
-
-# petri_net_builder = PetriNetBuilder()
-# petri_net_builder.visualize(*petri_net_builder.build(password_guessing_model), "domain_password_guessing_model")

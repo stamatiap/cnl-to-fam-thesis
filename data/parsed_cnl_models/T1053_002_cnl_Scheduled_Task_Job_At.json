@@ -1,0 +1,561 @@
+{
+    "__class__": "TechniqueModel",
+    "id": "T1053.002",
+    "name": "Scheduled_Task_Job_At",
+    "tactics": [
+        {
+            "__class__": "Tactic",
+            "id": "TA0002",
+            "name": "Execution"
+        },
+        {
+            "__class__": "Tactic",
+            "id": "TA0003",
+            "name": "Persistence"
+        },
+        {
+            "__class__": "Tactic",
+            "id": "TA0004",
+            "name": "Privilege_Escalation"
+        }
+    ],
+    "assets": {
+        "at_exe": {
+            "__class__": "Process",
+            "asset_type": "process",
+            "name": "at_exe",
+            "asset_id": "b6075c94-4cf8-425f-a77d-9ae68eb4624f",
+            "signed": null,
+            "command_line": null,
+            "parent_process": null
+        },
+        "Win32_ScheduledJob": {
+            "__class__": "Process",
+            "asset_type": "process",
+            "name": "Win32_ScheduledJob",
+            "asset_id": "c86fdd30-8655-4cc3-993f-18594c76e5b5",
+            "signed": null,
+            "command_line": null,
+            "parent_process": null
+        },
+        "AnomalousScheduledTask": {
+            "__class__": "Process",
+            "asset_type": "process",
+            "name": "AnomalousScheduledTask",
+            "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
+            "signed": null,
+            "command_line": null,
+            "parent_process": null
+        },
+        "svchost_exe": {
+            "__class__": "Process",
+            "asset_type": "process",
+            "name": "svchost_exe",
+            "asset_id": "1b94d513-c5b5-4740-b820-eb0cdaae8a0e",
+            "signed": null,
+            "command_line": "svchost.exe",
+            "parent_process": null
+        },
+        "taskeng_exe": {
+            "__class__": "Process",
+            "asset_type": "process",
+            "name": "taskeng_exe",
+            "asset_id": "bd2426b8-0f64-41e9-82de-e6779daf6466",
+            "signed": null,
+            "command_line": "taskeng.exe",
+            "parent_process": null
+        }
+    },
+    "events": [
+        {
+            "__class__": "Event",
+            "id": "1",
+            "name": "Event1",
+            "action": {
+                "__class__": "Action",
+                "action_verb": "creates",
+                "actor": {
+                    "__class__": "Process",
+                    "asset_type": "process",
+                    "name": "Win32_ScheduledJob",
+                    "asset_id": "c86fdd30-8655-4cc3-993f-18594c76e5b5",
+                    "signed": null,
+                    "command_line": null,
+                    "parent_process": null
+                },
+                "object": {
+                    "__class__": "Process",
+                    "asset_type": "process",
+                    "name": "AnomalousScheduledTask",
+                    "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
+                    "signed": null,
+                    "command_line": null,
+                    "parent_process": null
+                },
+                "modifiers": []
+            },
+            "preconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "Win32_ScheduledJob",
+                        "asset_id": "c86fdd30-8655-4cc3-993f-18594c76e5b5",
+                        "signed": null,
+                        "command_line": null,
+                        "parent_process": null
+                    },
+                    "subject_state": "is_activated",
+                    "modifiers": []
+                }
+            ],
+            "precondition_operator": null,
+            "postconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "AnomalousScheduledTask",
+                        "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
+                        "signed": null,
+                        "command_line": null,
+                        "parent_process": null
+                    },
+                    "subject_state": "is_created",
+                    "modifiers": []
+                }
+            ],
+            "postcondition_operator": {
+                "__enum__": "LogicalOperatorType",
+                "type_name": "AND",
+                "value": "AND"
+            },
+            "repetition": null,
+            "time_period": null
+        },
+        {
+            "__class__": "Event",
+            "id": "2",
+            "name": "Event2",
+            "action": {
+                "__class__": "Action",
+                "action_verb": "creates",
+                "actor": {
+                    "__class__": "Process",
+                    "asset_type": "process",
+                    "name": "at_exe",
+                    "asset_id": "b6075c94-4cf8-425f-a77d-9ae68eb4624f",
+                    "signed": null,
+                    "command_line": null,
+                    "parent_process": null
+                },
+                "object": {
+                    "__class__": "Process",
+                    "asset_type": "process",
+                    "name": "AnomalousScheduledTask",
+                    "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
+                    "signed": null,
+                    "command_line": null,
+                    "parent_process": null
+                },
+                "modifiers": []
+            },
+            "preconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "at_exe",
+                        "asset_id": "b6075c94-4cf8-425f-a77d-9ae68eb4624f",
+                        "signed": null,
+                        "command_line": null,
+                        "parent_process": null
+                    },
+                    "subject_state": "is_activated",
+                    "modifiers": []
+                }
+            ],
+            "precondition_operator": null,
+            "postconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "AnomalousScheduledTask",
+                        "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
+                        "signed": null,
+                        "command_line": null,
+                        "parent_process": null
+                    },
+                    "subject_state": "is_created",
+                    "modifiers": []
+                }
+            ],
+            "postcondition_operator": {
+                "__enum__": "LogicalOperatorType",
+                "type_name": "AND",
+                "value": "AND"
+            },
+            "repetition": null,
+            "time_period": null
+        },
+        {
+            "__class__": "Event",
+            "id": "3",
+            "name": "Event3",
+            "action": {
+                "__class__": "Action",
+                "action_verb": "executes",
+                "actor": {
+                    "__class__": "Process",
+                    "asset_type": "process",
+                    "name": "svchost_exe",
+                    "asset_id": "1b94d513-c5b5-4740-b820-eb0cdaae8a0e",
+                    "signed": null,
+                    "command_line": "svchost.exe",
+                    "parent_process": null
+                },
+                "object": {
+                    "__class__": "Process",
+                    "asset_type": "process",
+                    "name": "AnomalousScheduledTask",
+                    "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
+                    "signed": null,
+                    "command_line": null,
+                    "parent_process": null
+                },
+                "modifiers": []
+            },
+            "preconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "AnomalousScheduledTask",
+                        "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
+                        "signed": null,
+                        "command_line": null,
+                        "parent_process": null
+                    },
+                    "subject_state": "is_created",
+                    "modifiers": []
+                },
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "svchost_exe",
+                        "asset_id": "1b94d513-c5b5-4740-b820-eb0cdaae8a0e",
+                        "signed": null,
+                        "command_line": "svchost.exe",
+                        "parent_process": null
+                    },
+                    "subject_state": "is_activated",
+                    "modifiers": []
+                }
+            ],
+            "precondition_operator": {
+                "__enum__": "LogicalOperatorType",
+                "type_name": "AND",
+                "value": "AND"
+            },
+            "postconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "AnomalousScheduledTask",
+                        "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
+                        "signed": null,
+                        "command_line": null,
+                        "parent_process": null
+                    },
+                    "subject_state": "is_activated",
+                    "modifiers": []
+                }
+            ],
+            "postcondition_operator": {
+                "__enum__": "LogicalOperatorType",
+                "type_name": "AND",
+                "value": "AND"
+            },
+            "repetition": null,
+            "time_period": null
+        },
+        {
+            "__class__": "Event",
+            "id": "4",
+            "name": "Event4",
+            "action": {
+                "__class__": "Action",
+                "action_verb": "executes",
+                "actor": {
+                    "__class__": "Process",
+                    "asset_type": "process",
+                    "name": "taskeng_exe",
+                    "asset_id": "bd2426b8-0f64-41e9-82de-e6779daf6466",
+                    "signed": null,
+                    "command_line": "taskeng.exe",
+                    "parent_process": null
+                },
+                "object": {
+                    "__class__": "Process",
+                    "asset_type": "process",
+                    "name": "AnomalousScheduledTask",
+                    "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
+                    "signed": null,
+                    "command_line": null,
+                    "parent_process": null
+                },
+                "modifiers": []
+            },
+            "preconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "AnomalousScheduledTask",
+                        "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
+                        "signed": null,
+                        "command_line": null,
+                        "parent_process": null
+                    },
+                    "subject_state": "is_created",
+                    "modifiers": []
+                },
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "taskeng_exe",
+                        "asset_id": "bd2426b8-0f64-41e9-82de-e6779daf6466",
+                        "signed": null,
+                        "command_line": "taskeng.exe",
+                        "parent_process": null
+                    },
+                    "subject_state": "is_activated",
+                    "modifiers": []
+                }
+            ],
+            "precondition_operator": {
+                "__enum__": "LogicalOperatorType",
+                "type_name": "AND",
+                "value": "AND"
+            },
+            "postconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "AnomalousScheduledTask",
+                        "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
+                        "signed": null,
+                        "command_line": null,
+                        "parent_process": null
+                    },
+                    "subject_state": "is_activated",
+                    "modifiers": []
+                }
+            ],
+            "postcondition_operator": {
+                "__enum__": "LogicalOperatorType",
+                "type_name": "AND",
+                "value": "AND"
+            },
+            "repetition": null,
+            "time_period": null
+        }
+    ],
+    "completion": {
+        "__class__": "Completion",
+        "event_refs": [
+            {
+                "__class__": "Event",
+                "id": "3",
+                "name": "Event3",
+                "action": {
+                    "__class__": "Action",
+                    "action_verb": "executes",
+                    "actor": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "svchost_exe",
+                        "asset_id": "1b94d513-c5b5-4740-b820-eb0cdaae8a0e",
+                        "signed": null,
+                        "command_line": "svchost.exe",
+                        "parent_process": null
+                    },
+                    "object": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "AnomalousScheduledTask",
+                        "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
+                        "signed": null,
+                        "command_line": null,
+                        "parent_process": null
+                    },
+                    "modifiers": []
+                },
+                "preconditions": [
+                    {
+                        "__class__": "StateCondition",
+                        "subject": {
+                            "__class__": "Process",
+                            "asset_type": "process",
+                            "name": "AnomalousScheduledTask",
+                            "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
+                            "signed": null,
+                            "command_line": null,
+                            "parent_process": null
+                        },
+                        "subject_state": "is_created",
+                        "modifiers": []
+                    },
+                    {
+                        "__class__": "StateCondition",
+                        "subject": {
+                            "__class__": "Process",
+                            "asset_type": "process",
+                            "name": "svchost_exe",
+                            "asset_id": "1b94d513-c5b5-4740-b820-eb0cdaae8a0e",
+                            "signed": null,
+                            "command_line": "svchost.exe",
+                            "parent_process": null
+                        },
+                        "subject_state": "is_activated",
+                        "modifiers": []
+                    }
+                ],
+                "precondition_operator": {
+                    "__enum__": "LogicalOperatorType",
+                    "type_name": "AND",
+                    "value": "AND"
+                },
+                "postconditions": [
+                    {
+                        "__class__": "StateCondition",
+                        "subject": {
+                            "__class__": "Process",
+                            "asset_type": "process",
+                            "name": "AnomalousScheduledTask",
+                            "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
+                            "signed": null,
+                            "command_line": null,
+                            "parent_process": null
+                        },
+                        "subject_state": "is_activated",
+                        "modifiers": []
+                    }
+                ],
+                "postcondition_operator": {
+                    "__enum__": "LogicalOperatorType",
+                    "type_name": "AND",
+                    "value": "AND"
+                },
+                "repetition": null,
+                "time_period": null
+            },
+            {
+                "__class__": "Event",
+                "id": "4",
+                "name": "Event4",
+                "action": {
+                    "__class__": "Action",
+                    "action_verb": "executes",
+                    "actor": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "taskeng_exe",
+                        "asset_id": "bd2426b8-0f64-41e9-82de-e6779daf6466",
+                        "signed": null,
+                        "command_line": "taskeng.exe",
+                        "parent_process": null
+                    },
+                    "object": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "AnomalousScheduledTask",
+                        "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
+                        "signed": null,
+                        "command_line": null,
+                        "parent_process": null
+                    },
+                    "modifiers": []
+                },
+                "preconditions": [
+                    {
+                        "__class__": "StateCondition",
+                        "subject": {
+                            "__class__": "Process",
+                            "asset_type": "process",
+                            "name": "AnomalousScheduledTask",
+                            "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
+                            "signed": null,
+                            "command_line": null,
+                            "parent_process": null
+                        },
+                        "subject_state": "is_created",
+                        "modifiers": []
+                    },
+                    {
+                        "__class__": "StateCondition",
+                        "subject": {
+                            "__class__": "Process",
+                            "asset_type": "process",
+                            "name": "taskeng_exe",
+                            "asset_id": "bd2426b8-0f64-41e9-82de-e6779daf6466",
+                            "signed": null,
+                            "command_line": "taskeng.exe",
+                            "parent_process": null
+                        },
+                        "subject_state": "is_activated",
+                        "modifiers": []
+                    }
+                ],
+                "precondition_operator": {
+                    "__enum__": "LogicalOperatorType",
+                    "type_name": "AND",
+                    "value": "AND"
+                },
+                "postconditions": [
+                    {
+                        "__class__": "StateCondition",
+                        "subject": {
+                            "__class__": "Process",
+                            "asset_type": "process",
+                            "name": "AnomalousScheduledTask",
+                            "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
+                            "signed": null,
+                            "command_line": null,
+                            "parent_process": null
+                        },
+                        "subject_state": "is_activated",
+                        "modifiers": []
+                    }
+                ],
+                "postcondition_operator": {
+                    "__enum__": "LogicalOperatorType",
+                    "type_name": "AND",
+                    "value": "AND"
+                },
+                "repetition": null,
+                "time_period": null
+            }
+        ],
+        "operator": {
+            "__enum__": "LogicalOperatorType",
+            "type_name": "XOR",
+            "value": "XOR"
+        }
+    }
+}

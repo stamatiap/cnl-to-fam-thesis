@@ -189,11 +189,6 @@ class CNLVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by CNLParser#propertyName.
-    def visitPropertyName(self, ctx:CNLParser.PropertyNameContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by CNLParser#propertyValue.
     def visitPropertyValue(self, ctx:CNLParser.PropertyValueContext):
         return self.visitChildren(ctx)
@@ -344,18 +339,13 @@ class CNLVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by CNLParser#geo_location.
-    def visitGeo_location(self, ctx:CNLParser.Geo_locationContext):
+    # Visit a parse tree produced by CNLParser#completionBlock.
+    def visitCompletionBlock(self, ctx:CNLParser.CompletionBlockContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by CNLParser#detectionBlock.
-    def visitDetectionBlock(self, ctx:CNLParser.DetectionBlockContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CNLParser#detectionExpr.
-    def visitDetectionExpr(self, ctx:CNLParser.DetectionExprContext):
+    # Visit a parse tree produced by CNLParser#completionExpr.
+    def visitCompletionExpr(self, ctx:CNLParser.CompletionExprContext):
         return self.visitChildren(ctx)
 
 

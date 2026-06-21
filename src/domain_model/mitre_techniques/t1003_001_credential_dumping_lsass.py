@@ -1,7 +1,5 @@
 from src.domain_model.model import *
 from src.domain_model.enums import *
-from pprint import pprint
-
 
 
 assets = {"lsass": Process(
@@ -28,7 +26,9 @@ assets = {"lsass": Process(
                 asset_type = "registry",
                 name = "registry_keys"
             )
-            }
+}
+
+assets['lsass_handle'].target = assets.get('lsass')
 
 state_conditions = {"lsass_active": StateCondition(
             subject = assets.get('lsass'),
@@ -110,7 +110,7 @@ events = [
 
 ]
 
-detection = Detection(
+completion = Completion(
     event_refs= [event for event in events if event.id in ["2", "3"]],
     operator= LogicalOperatorType.XOR
 )
@@ -122,12 +122,5 @@ lsass_dumping_model = TechniqueModel(
         tactics= [Tactic(id="TA0006", name="Credential_Access")],
         assets=assets,
         events= events,
-        detection= detection
+        completion= completion
     )
-
-# pprint(lsass_dumping_model)
-
-# from src.petri_net.petri_net_builder import PetriNetBuilder
-
-# petri_net_builder = PetriNetBuilder()
-# petri_net_builder.visualize(*petri_net_builder.build(lsass_dumping_model), "domain_lsass_dumping_model")

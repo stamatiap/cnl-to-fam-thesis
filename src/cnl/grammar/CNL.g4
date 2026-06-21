@@ -1,7 +1,7 @@
 grammar CNL;
 
 attack
-    : header background eventBlock+ detectionBlock? EOF
+    : header background eventBlock+ completionBlock? EOF
     ;
 
 header
@@ -94,7 +94,7 @@ otherType:
     IDENTIFIER AS assetName (WITH otherField EQUALS propertyValue (COMMA otherField EQUALS propertyValue)*)?
     ;
 
-processField: PARENT_PROCESS | SIGNED | COMMAND_LINE | PARENT_PROCESS ;
+processField: PARENT_PROCESS | SIGNED | COMMAND_LINE ;
 fileField: PATH | SIGNED ;
 registryField: PATH ;
 endpointField: PORT | PROTOCOL | IP_ADDRESS ;
@@ -112,7 +112,6 @@ otherField: IDENTIFIER ;
 
 
 assetName: IDENTIFIER ;
-propertyName: IDENTIFIER ;
 propertyValue: STRING ;
 
 tactics
@@ -218,15 +217,12 @@ time:
     MILLISECONDS | SECONDS | MINUTES | HOURS
     ;
 
-geo_location
-    : IDENTIFIER
+
+completionBlock
+    : COMPLETION completionExpr
     ;
 
-detectionBlock
-    : DETECTION detectionExpr
-    ;
-
-detectionExpr
+completionExpr
     : eventRef ((OR eventRef)* | (AND eventRef)* | (XOR eventRef)*)
     ;
 
@@ -254,7 +250,7 @@ XOR         : 'Xor';
 
 // Main Clauses Keywords
 BACKGROUND  : 'Background';
-DETECTION   : 'Detection';
+COMPLETION   : 'Completion';
 IS          : 'is';
 AS          : 'as';
 
@@ -314,7 +310,6 @@ SCOPE           : 'scope';
 DATA            : 'data';
 HEXADECIMAL_NUMBER: 'hexadecimal_number';
 TARGET          : 'target';
-HANDLES         : 'handles';
 
 // Other Keywords
 STRING     : ( '"' ( ~["\\\r\n] | '\\' . )* '"' ) | ( '\'' ( ~['\\\r\n] | '\\' . )* '\'' ) ;

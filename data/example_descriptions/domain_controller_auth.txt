@@ -25,5 +25,5 @@ When unusual_privileged_process modifies registry_keys
 Then registry_keys is modified
 
 
-Detection
+Completion
 Event 1 And Event 2 And Event 3

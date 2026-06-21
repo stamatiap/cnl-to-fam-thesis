@@ -51,7 +51,7 @@ class Event:
     time_period: TimePeriod = None
 
 @dataclass
-class Detection:
+class Completion:
     event_refs: list[Event]
     operator: LogicalOperatorType
 
@@ -67,7 +67,7 @@ class TechniqueModel:
     tactics: list[Tactic]
     assets: dict[str, Asset]
     events: list[Event]
-    detection: Detection
+    completion: Completion
 
 # --------------------------
 @dataclass
@@ -99,7 +99,7 @@ class Endpoint(Asset):
 @dataclass
 class NetworkConnection(Asset):
     destination: Endpoint = None
-    source: Endpoint = None
+    source: Process = None
     transport_protocol: str = None
 
 @dataclass
