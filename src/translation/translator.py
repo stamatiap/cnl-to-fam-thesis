@@ -42,7 +42,29 @@ class Translator:
             type = mod_type,
             value = self.get_asset(modifier[1])
         )
-        
+
+    # find the referenced assets in the registry, if not log error
+    # all assets but be declared beforehand 
+    def _resolve_reference(self,registry: dict, owner_class: str, owner_name: str, field: str, properties: dict, expected_type: type = Asset ):
+        if field not in properties:
+            return None
+        ref_name = properties[field].replace("'", "").replace('"', "")
+        if ref_name not in registry:
+            logger.error(
+                f"{owner_class} '{owner_name}' references {field} '{ref_name}', which "
+                f"is not declared, or is declared after the {owner_class} in the Background."
+            )
+            return None
+        asset = registry[ref_name]
+        if not isinstance(asset, expected_type):
+            logger.error(
+                f"{owner_class} '{owner_name}' references {field} '{ref_name}', "
+                f"which is declared as {type(asset).__name__}, expected {expected_type.__name__}."
+            )
+            return None
+        return asset
+
+
     def build_asset_registry(self, assets_dict: dict) -> dict[str, Asset]:
         registry = {}
         
@@ -86,30 +108,14 @@ class Translator:
                 
                 extra[k] = clean_name
 
-            
-            # create objects for Asset types that have other Assets as properties and add to registry
+            # add referenced assets in properties
             if asset_type_str == "network_connection":
-                if "source" in properties.keys():
-                    extra["source"] = Process(asset_type='process', name=properties['source'].replace("'", "").replace('"', ""))
-                    registry[extra["source"].name] = extra["source"]
-                if "destination" in properties.keys():
-                    extra["destination"] = Endpoint(asset_type='endpoint', name=properties['destination'].replace("'", "").replace('"', ""))
-                    registry[extra["destination"].name] = extra["destination"]
+                extra["source"] = self._resolve_reference(registry, "NetworkConnection", name, "source", properties, Process)
+                extra["destination"] = self._resolve_reference(registry, "NetworkConnection", name, "destination", properties, Endpoint)
             elif asset_type_str == "process":
-                if "parent_process" in properties.keys():
-                    extra["parent_process"] = Process(asset_type="process", name=properties['parent_process'].replace("'", "").replace('"', ""))
-                    registry[extra["parent_process"].name] = extra["parent_process"]
+                extra["parent_process"] = self._resolve_reference(registry, "Process", name, "parent_process", properties, Process)
             elif asset_type_str == "handle":
-                if "target" in properties.keys():
-                    target_name = properties['target'].replace("'", "").replace('"', "")
-                    # target asset must be declared beforehand
-                    if target_name in registry:
-                        extra["target"] = registry[target_name]
-                    else:
-                        logger.error(
-                            f"Handle '{name}' references target '{target_name}', which "
-                            f"is not declared, or is declared after the handle in the Background."
-                        )
+                extra["target"] = self._resolve_reference(registry, "Handle", name, "target", properties)
 
             # warn on invalid properties
             for k, v in properties.items(): 

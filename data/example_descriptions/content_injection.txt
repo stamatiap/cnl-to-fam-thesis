@@ -2,7 +2,9 @@ Tactics: TA0001 Initial_Access, TA0011 Command_and_Control
 Technique: T1659 Content_Injection
 
 Background
-Given network_connection as Browser_connection with source = "browser", destination = "server"
+Given process as browser
+And endpoint as server
+And network_connection as Browser_connection with source = "browser", destination = "server"
 And process as local_process with parent_process = "browser"
 And file as F
 And directory as Temp with path = "/temp"
