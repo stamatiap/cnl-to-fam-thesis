@@ -250,7 +250,7 @@ class Translator:
             logger.error("failed parsing.")
             return None
 
-        logger.info("Visiting parsed text.")
+        logger.info("visiting parsed text.")
         visitor = Visitor()
         raw_strings = visitor.visitAttack(parsed_data)
         
