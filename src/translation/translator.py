@@ -9,6 +9,9 @@ from src.monitoring import logger, LoguruErrorListener, write_artifact
 from pathlib import Path
 
 class Translator:
+    def __init__(self) -> None:
+        # keep track of syntax errors from parsing
+        self.parse_errors: list[dict] = []
 
     def parse_input(self, input_path: str) -> dict:
         logger.info("parsing text in {}", input_path)
@@ -16,13 +19,13 @@ class Translator:
         lexer        = CNLLexer(input)
         stream       = CommonTokenStream(lexer)
         parser       = CNLParser(stream)
-        self._parser = parser  # ← keep a handle for toStringTree
 
         listener = LoguruErrorListener(source=input_path)
         parser.removeErrorListeners()
         parser.addErrorListener(listener)
         
         tree = parser.attack()
+        self.parse_errors = listener.errors
         if listener.errors:
             logger.warning("skipped {} — {} syntax error(s)", input_path, len(listener.errors))
             return None
