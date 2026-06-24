@@ -1,7 +1,7 @@
 grammar CNL;
 
 attack
-    : header background eventBlock+ completionBlock? EOF
+    : header background eventBlock+ completionBlock EOF
     ;
 
 header
