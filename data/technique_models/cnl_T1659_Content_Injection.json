@@ -1,25 +1,25 @@
 {
     "__class__": "TechniqueModel",
     "id": "T1659",
-    "name": "Content Injection",
+    "name": "Content_Injection",
     "tactics": [
         {
             "__class__": "Tactic",
             "id": "TA0001",
-            "name": "Initial Access"
+            "name": "Initial_Access"
         },
         {
             "__class__": "Tactic",
             "id": "TA0011",
-            "name": "Command and Control"
+            "name": "Command_and_Control"
         }
     ],
     "assets": {
         "browser": {
             "__class__": "Process",
-            "asset_type": "browser",
-            "name": "Browser",
-            "asset_id": "85f1e46c-3612-4e5e-8cf1-d5b493e69968",
+            "asset_type": "process",
+            "name": "browser",
+            "asset_id": "135a0f31-2c70-4da3-bb1f-6eb94d3640ba",
             "signed": null,
             "command_line": null,
             "parent_process": null
@@ -27,66 +27,74 @@
         "server": {
             "__class__": "Endpoint",
             "asset_type": "endpoint",
-            "name": "some_server",
-            "asset_id": "55dc1bc3-40a0-4b7b-b327-4ed71357f2b3",
+            "name": "server",
+            "asset_id": "915db90d-464b-42b3-a4d4-aeabe28d15e6",
             "port": null,
             "protocol": null,
             "ip_address": null
         },
-        "communication_connection": {
+        "Browser_connection": {
             "__class__": "NetworkConnection",
             "asset_type": "network_connection",
-            "name": "communication_connection",
-            "asset_id": "f5621c74-850f-4076-8873-cbbeaeb4b159",
+            "name": "Browser_connection",
+            "asset_id": "ac2f4a90-9f5f-419b-a79d-15d83dd8743c",
             "destination": {
                 "__class__": "Endpoint",
                 "asset_type": "endpoint",
-                "name": "some_server",
-                "asset_id": "55dc1bc3-40a0-4b7b-b327-4ed71357f2b3",
+                "name": "server",
+                "asset_id": "915db90d-464b-42b3-a4d4-aeabe28d15e6",
                 "port": null,
                 "protocol": null,
                 "ip_address": null
             },
             "source": {
                 "__class__": "Process",
-                "asset_type": "browser",
-                "name": "Browser",
-                "asset_id": "85f1e46c-3612-4e5e-8cf1-d5b493e69968",
+                "asset_type": "process",
+                "name": "browser",
+                "asset_id": "135a0f31-2c70-4da3-bb1f-6eb94d3640ba",
                 "signed": null,
                 "command_line": null,
                 "parent_process": null
             },
             "transport_protocol": null
         },
-        "payload": {
-            "__class__": "File",
-            "asset_type": "file",
-            "name": "PayloadFile",
-            "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
-            "path": null,
-            "signed": null
-        },
         "local_process": {
             "__class__": "Process",
             "asset_type": "process",
             "name": "local_process",
-            "asset_id": "8957a668-678d-4867-b868-7181fd6ac971",
+            "asset_id": "6cd2bf4c-2a52-45d4-b8cc-36585c29a6a7",
             "signed": null,
             "command_line": null,
-            "parent_process": null
+            "parent_process": {
+                "__class__": "Process",
+                "asset_type": "process",
+                "name": "browser",
+                "asset_id": "135a0f31-2c70-4da3-bb1f-6eb94d3640ba",
+                "signed": null,
+                "command_line": null,
+                "parent_process": null
+            }
         },
-        "temp": {
+        "F": {
+            "__class__": "File",
+            "asset_type": "file",
+            "name": "F",
+            "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
+            "path": null,
+            "signed": null
+        },
+        "Temp": {
             "__class__": "Directory",
             "asset_type": "directory",
             "name": "Temp",
-            "asset_id": "22610b1a-9e6b-4830-afe0-8a84e3a47a59",
-            "path": "/Temp/"
+            "asset_id": "25d7db98-aaab-4157-920f-fa87458c51ff",
+            "path": "/temp"
         },
-        "app_data": {
+        "AppData": {
             "__class__": "Directory",
             "asset_type": "directory",
             "name": "AppData",
-            "asset_id": "a5578e5f-3c80-450d-8705-e80884601d9a",
+            "asset_id": "619b8b1d-b305-40ae-9d74-f9ec94ffeb70",
             "path": "/%AppData%/"
         }
     },
@@ -94,15 +102,15 @@
         {
             "__class__": "Event",
             "id": "1",
-            "name": "Event 1",
+            "name": "Event1",
             "action": {
                 "__class__": "Action",
                 "action_verb": "receives",
                 "actor": {
                     "__class__": "Process",
-                    "asset_type": "browser",
-                    "name": "Browser",
-                    "asset_id": "85f1e46c-3612-4e5e-8cf1-d5b493e69968",
+                    "asset_type": "process",
+                    "name": "browser",
+                    "asset_id": "135a0f31-2c70-4da3-bb1f-6eb94d3640ba",
                     "signed": null,
                     "command_line": null,
                     "parent_process": null
@@ -110,12 +118,30 @@
                 "object": {
                     "__class__": "File",
                     "asset_type": "file",
-                    "name": "PayloadFile",
-                    "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                    "name": "F",
+                    "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
                     "path": null,
                     "signed": null
                 },
-                "modifiers": null
+                "modifiers": [
+                    {
+                        "__class__": "Modifier",
+                        "type": {
+                            "__enum__": "ModifierType",
+                            "type_name": "SOURCE",
+                            "value": "from"
+                        },
+                        "value": {
+                            "__class__": "Endpoint",
+                            "asset_type": "endpoint",
+                            "name": "server",
+                            "asset_id": "915db90d-464b-42b3-a4d4-aeabe28d15e6",
+                            "port": null,
+                            "protocol": null,
+                            "ip_address": null
+                        }
+                    }
+                ]
             },
             "preconditions": [
                 {
@@ -123,30 +149,30 @@
                     "subject": {
                         "__class__": "NetworkConnection",
                         "asset_type": "network_connection",
-                        "name": "communication_connection",
-                        "asset_id": "f5621c74-850f-4076-8873-cbbeaeb4b159",
+                        "name": "Browser_connection",
+                        "asset_id": "ac2f4a90-9f5f-419b-a79d-15d83dd8743c",
                         "destination": {
                             "__class__": "Endpoint",
                             "asset_type": "endpoint",
-                            "name": "some_server",
-                            "asset_id": "55dc1bc3-40a0-4b7b-b327-4ed71357f2b3",
+                            "name": "server",
+                            "asset_id": "915db90d-464b-42b3-a4d4-aeabe28d15e6",
                             "port": null,
                             "protocol": null,
                             "ip_address": null
                         },
                         "source": {
                             "__class__": "Process",
-                            "asset_type": "browser",
-                            "name": "Browser",
-                            "asset_id": "85f1e46c-3612-4e5e-8cf1-d5b493e69968",
+                            "asset_type": "process",
+                            "name": "browser",
+                            "asset_id": "135a0f31-2c70-4da3-bb1f-6eb94d3640ba",
                             "signed": null,
                             "command_line": null,
                             "parent_process": null
                         },
                         "transport_protocol": null
                     },
-                    "subject_state": "active",
-                    "modifiers": null
+                    "subject_state": "is_activated",
+                    "modifiers": []
                 }
             ],
             "precondition_operator": null,
@@ -156,31 +182,35 @@
                     "subject": {
                         "__class__": "File",
                         "asset_type": "file",
-                        "name": "PayloadFile",
-                        "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                        "name": "F",
+                        "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
                         "path": null,
                         "signed": null
                     },
-                    "subject_state": "received",
-                    "modifiers": null
+                    "subject_state": "is_received",
+                    "modifiers": []
                 }
             ],
-            "postcondition_operator": null,
+            "postcondition_operator": {
+                "__enum__": "LogicalOperatorType",
+                "type_name": "AND",
+                "value": "AND"
+            },
             "repetition": null,
             "time_period": null
         },
         {
             "__class__": "Event",
             "id": "2",
-            "name": "Event 2",
+            "name": "Event2",
             "action": {
                 "__class__": "Action",
-                "action_verb": "stores",
+                "action_verb": "saves",
                 "actor": {
                     "__class__": "Process",
-                    "asset_type": "browser",
-                    "name": "Browser",
-                    "asset_id": "85f1e46c-3612-4e5e-8cf1-d5b493e69968",
+                    "asset_type": "process",
+                    "name": "browser",
+                    "asset_id": "135a0f31-2c70-4da3-bb1f-6eb94d3640ba",
                     "signed": null,
                     "command_line": null,
                     "parent_process": null
@@ -188,8 +218,8 @@
                 "object": {
                     "__class__": "File",
                     "asset_type": "file",
-                    "name": "PayloadFile",
-                    "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                    "name": "F",
+                    "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
                     "path": null,
                     "signed": null
                 },
@@ -205,7 +235,7 @@
                             "__class__": "Directory",
                             "asset_type": "directory",
                             "name": "AppData",
-                            "asset_id": "a5578e5f-3c80-450d-8705-e80884601d9a",
+                            "asset_id": "619b8b1d-b305-40ae-9d74-f9ec94ffeb70",
                             "path": "/%AppData%/"
                         }
                     }
@@ -217,13 +247,13 @@
                     "subject": {
                         "__class__": "File",
                         "asset_type": "file",
-                        "name": "PayloadFile",
-                        "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                        "name": "F",
+                        "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
                         "path": null,
                         "signed": null
                     },
-                    "subject_state": "received",
-                    "modifiers": null
+                    "subject_state": "is_received",
+                    "modifiers": []
                 }
             ],
             "precondition_operator": null,
@@ -233,8 +263,8 @@
                     "subject": {
                         "__class__": "File",
                         "asset_type": "file",
-                        "name": "PayloadFile",
-                        "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                        "name": "F",
+                        "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
                         "path": null,
                         "signed": null
                     },
@@ -251,29 +281,33 @@
                                 "__class__": "Directory",
                                 "asset_type": "directory",
                                 "name": "AppData",
-                                "asset_id": "a5578e5f-3c80-450d-8705-e80884601d9a",
+                                "asset_id": "619b8b1d-b305-40ae-9d74-f9ec94ffeb70",
                                 "path": "/%AppData%/"
                             }
                         }
                     ]
                 }
             ],
-            "postcondition_operator": null,
+            "postcondition_operator": {
+                "__enum__": "LogicalOperatorType",
+                "type_name": "AND",
+                "value": "AND"
+            },
             "repetition": null,
             "time_period": null
         },
         {
             "__class__": "Event",
             "id": "3",
-            "name": "Event 3",
+            "name": "Event3",
             "action": {
                 "__class__": "Action",
-                "action_verb": "stores",
+                "action_verb": "saves",
                 "actor": {
                     "__class__": "Process",
-                    "asset_type": "browser",
-                    "name": "Browser",
-                    "asset_id": "85f1e46c-3612-4e5e-8cf1-d5b493e69968",
+                    "asset_type": "process",
+                    "name": "browser",
+                    "asset_id": "135a0f31-2c70-4da3-bb1f-6eb94d3640ba",
                     "signed": null,
                     "command_line": null,
                     "parent_process": null
@@ -281,8 +315,8 @@
                 "object": {
                     "__class__": "File",
                     "asset_type": "file",
-                    "name": "PayloadFile",
-                    "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                    "name": "F",
+                    "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
                     "path": null,
                     "signed": null
                 },
@@ -298,8 +332,8 @@
                             "__class__": "Directory",
                             "asset_type": "directory",
                             "name": "Temp",
-                            "asset_id": "22610b1a-9e6b-4830-afe0-8a84e3a47a59",
-                            "path": "/Temp/"
+                            "asset_id": "25d7db98-aaab-4157-920f-fa87458c51ff",
+                            "path": "/temp"
                         }
                     }
                 ]
@@ -310,13 +344,13 @@
                     "subject": {
                         "__class__": "File",
                         "asset_type": "file",
-                        "name": "PayloadFile",
-                        "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                        "name": "F",
+                        "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
                         "path": null,
                         "signed": null
                     },
-                    "subject_state": "received",
-                    "modifiers": null
+                    "subject_state": "is_received",
+                    "modifiers": []
                 }
             ],
             "precondition_operator": null,
@@ -326,8 +360,8 @@
                     "subject": {
                         "__class__": "File",
                         "asset_type": "file",
-                        "name": "PayloadFile",
-                        "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                        "name": "F",
+                        "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
                         "path": null,
                         "signed": null
                     },
@@ -344,21 +378,25 @@
                                 "__class__": "Directory",
                                 "asset_type": "directory",
                                 "name": "Temp",
-                                "asset_id": "22610b1a-9e6b-4830-afe0-8a84e3a47a59",
-                                "path": "/Temp/"
+                                "asset_id": "25d7db98-aaab-4157-920f-fa87458c51ff",
+                                "path": "/temp"
                             }
                         }
                     ]
                 }
             ],
-            "postcondition_operator": null,
+            "postcondition_operator": {
+                "__enum__": "LogicalOperatorType",
+                "type_name": "AND",
+                "value": "AND"
+            },
             "repetition": null,
             "time_period": null
         },
         {
             "__class__": "Event",
             "id": "4",
-            "name": "Event 4",
+            "name": "Event4",
             "action": {
                 "__class__": "Action",
                 "action_verb": "executes",
@@ -366,20 +404,28 @@
                     "__class__": "Process",
                     "asset_type": "process",
                     "name": "local_process",
-                    "asset_id": "8957a668-678d-4867-b868-7181fd6ac971",
+                    "asset_id": "6cd2bf4c-2a52-45d4-b8cc-36585c29a6a7",
                     "signed": null,
                     "command_line": null,
-                    "parent_process": null
+                    "parent_process": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "browser",
+                        "asset_id": "135a0f31-2c70-4da3-bb1f-6eb94d3640ba",
+                        "signed": null,
+                        "command_line": null,
+                        "parent_process": null
+                    }
                 },
                 "object": {
                     "__class__": "File",
                     "asset_type": "file",
-                    "name": "PayloadFile",
-                    "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                    "name": "F",
+                    "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
                     "path": null,
                     "signed": null
                 },
-                "modifiers": null
+                "modifiers": []
             },
             "preconditions": [
                 {
@@ -387,8 +433,8 @@
                     "subject": {
                         "__class__": "File",
                         "asset_type": "file",
-                        "name": "PayloadFile",
-                        "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                        "name": "F",
+                        "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
                         "path": null,
                         "signed": null
                     },
@@ -405,7 +451,7 @@
                                 "__class__": "Directory",
                                 "asset_type": "directory",
                                 "name": "AppData",
-                                "asset_id": "a5578e5f-3c80-450d-8705-e80884601d9a",
+                                "asset_id": "619b8b1d-b305-40ae-9d74-f9ec94ffeb70",
                                 "path": "/%AppData%/"
                             }
                         }
@@ -416,8 +462,8 @@
                     "subject": {
                         "__class__": "File",
                         "asset_type": "file",
-                        "name": "PayloadFile",
-                        "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                        "name": "F",
+                        "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
                         "path": null,
                         "signed": null
                     },
@@ -434,8 +480,8 @@
                                 "__class__": "Directory",
                                 "asset_type": "directory",
                                 "name": "Temp",
-                                "asset_id": "22610b1a-9e6b-4830-afe0-8a84e3a47a59",
-                                "path": "/Temp/"
+                                "asset_id": "25d7db98-aaab-4157-920f-fa87458c51ff",
+                                "path": "/temp"
                             }
                         }
                     ]
@@ -452,16 +498,20 @@
                     "subject": {
                         "__class__": "File",
                         "asset_type": "file",
-                        "name": "PayloadFile",
-                        "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                        "name": "F",
+                        "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
                         "path": null,
                         "signed": null
                     },
-                    "subject_state": "active",
-                    "modifiers": null
+                    "subject_state": "is_active",
+                    "modifiers": []
                 }
             ],
-            "postcondition_operator": null,
+            "postcondition_operator": {
+                "__enum__": "LogicalOperatorType",
+                "type_name": "AND",
+                "value": "AND"
+            },
             "repetition": null,
             "time_period": null
         }
@@ -472,7 +522,7 @@
             {
                 "__class__": "Event",
                 "id": "4",
-                "name": "Event 4",
+                "name": "Event4",
                 "action": {
                     "__class__": "Action",
                     "action_verb": "executes",
@@ -480,20 +530,28 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "local_process",
-                        "asset_id": "8957a668-678d-4867-b868-7181fd6ac971",
+                        "asset_id": "6cd2bf4c-2a52-45d4-b8cc-36585c29a6a7",
                         "signed": null,
                         "command_line": null,
-                        "parent_process": null
+                        "parent_process": {
+                            "__class__": "Process",
+                            "asset_type": "process",
+                            "name": "browser",
+                            "asset_id": "135a0f31-2c70-4da3-bb1f-6eb94d3640ba",
+                            "signed": null,
+                            "command_line": null,
+                            "parent_process": null
+                        }
                     },
                     "object": {
                         "__class__": "File",
                         "asset_type": "file",
-                        "name": "PayloadFile",
-                        "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                        "name": "F",
+                        "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
                         "path": null,
                         "signed": null
                     },
-                    "modifiers": null
+                    "modifiers": []
                 },
                 "preconditions": [
                     {
@@ -501,8 +559,8 @@
                         "subject": {
                             "__class__": "File",
                             "asset_type": "file",
-                            "name": "PayloadFile",
-                            "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                            "name": "F",
+                            "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
                             "path": null,
                             "signed": null
                         },
@@ -519,7 +577,7 @@
                                     "__class__": "Directory",
                                     "asset_type": "directory",
                                     "name": "AppData",
-                                    "asset_id": "a5578e5f-3c80-450d-8705-e80884601d9a",
+                                    "asset_id": "619b8b1d-b305-40ae-9d74-f9ec94ffeb70",
                                     "path": "/%AppData%/"
                                 }
                             }
@@ -530,8 +588,8 @@
                         "subject": {
                             "__class__": "File",
                             "asset_type": "file",
-                            "name": "PayloadFile",
-                            "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                            "name": "F",
+                            "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
                             "path": null,
                             "signed": null
                         },
@@ -548,8 +606,8 @@
                                     "__class__": "Directory",
                                     "asset_type": "directory",
                                     "name": "Temp",
-                                    "asset_id": "22610b1a-9e6b-4830-afe0-8a84e3a47a59",
-                                    "path": "/Temp/"
+                                    "asset_id": "25d7db98-aaab-4157-920f-fa87458c51ff",
+                                    "path": "/temp"
                                 }
                             }
                         ]
@@ -566,24 +624,24 @@
                         "subject": {
                             "__class__": "File",
                             "asset_type": "file",
-                            "name": "PayloadFile",
-                            "asset_id": "39f95a8f-8521-4199-ba77-baef26a2933e",
+                            "name": "F",
+                            "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
                             "path": null,
                             "signed": null
                         },
-                        "subject_state": "active",
-                        "modifiers": null
+                        "subject_state": "is_active",
+                        "modifiers": []
                     }
                 ],
-                "postcondition_operator": null,
+                "postcondition_operator": {
+                    "__enum__": "LogicalOperatorType",
+                    "type_name": "AND",
+                    "value": "AND"
+                },
                 "repetition": null,
                 "time_period": null
             }
         ],
-        "operator": {
-            "__enum__": "LogicalOperatorType",
-            "type_name": "XOR",
-            "value": "XOR"
-        }
+        "operator": null
     }
 }

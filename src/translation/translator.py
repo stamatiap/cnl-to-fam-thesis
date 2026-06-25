@@ -31,7 +31,9 @@ class Translator:
             return None
         
         tree_str = tree.toStringTree(recog=parser)
-        write_path = Path("data/parse_trees") / f"parse_tree_{input_path.split("/")[-1]}"
+        
+        # name parse tree with file's name
+        write_path = Path("data/parse_trees") / f"parse_tree_{input_path.split("/")[-1].split('\\')[-1]}"
         write_artifact(tree_str, write_path)
         logger.info("parse tree stored in: {}", write_path)
 
@@ -273,7 +275,7 @@ class Translator:
         # Convert the parsed data into a TechniqueModel
         technique_model = self.create_technique_model(raw_strings)
         # Save TechniqueModel
-        out = Path("data/parsed_cnl_models") / f"{technique_model.id.replace(".", "_")}_cnl_{technique_model.name}.json"
+        out = Path("data/technique_models") / f"cnl_{technique_model.id.replace(".", "_")}_{technique_model.name}.json"
         write_artifact(technique_model, out)
         
         logger.info("translated {}: {} assets, {} events. Saved in {}",

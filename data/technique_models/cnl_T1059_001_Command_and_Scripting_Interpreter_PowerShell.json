@@ -1,69 +1,67 @@
 {
     "__class__": "TechniqueModel",
-    "id": "T1053.002",
-    "name": "Scheduled_Task_Job_At",
+    "id": "T1059.001",
+    "name": "Command_and_Scripting_Interpreter_PowerShell",
     "tactics": [
         {
             "__class__": "Tactic",
             "id": "TA0002",
             "name": "Execution"
-        },
-        {
-            "__class__": "Tactic",
-            "id": "TA0003",
-            "name": "Persistence"
-        },
-        {
-            "__class__": "Tactic",
-            "id": "TA0004",
-            "name": "Privilege_Escalation"
         }
     ],
     "assets": {
-        "at_exe": {
+        "P": {
             "__class__": "Process",
             "asset_type": "process",
-            "name": "at_exe",
-            "asset_id": "b6075c94-4cf8-425f-a77d-9ae68eb4624f",
+            "name": "P",
+            "asset_id": "7e9761e0-a4cb-4521-b096-63bbb66c5eb1",
             "signed": null,
             "command_line": null,
             "parent_process": null
         },
-        "Win32_ScheduledJob": {
+        "unusual_process": {
             "__class__": "Process",
             "asset_type": "process",
-            "name": "Win32_ScheduledJob",
-            "asset_id": "c86fdd30-8655-4cc3-993f-18594c76e5b5",
+            "name": "unusual_process",
+            "asset_id": "54f849a4-7f22-4a30-8437-3ebc78634c16",
             "signed": null,
             "command_line": null,
             "parent_process": null
         },
-        "AnomalousScheduledTask": {
+        "powershell_exe": {
             "__class__": "Process",
             "asset_type": "process",
-            "name": "AnomalousScheduledTask",
-            "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
+            "name": "powershell_exe",
+            "asset_id": "3ba6637b-58ac-43a4-8b69-83f0e84e77e4",
+            "signed": null,
+            "command_line": "encoded_command",
+            "parent_process": null
+        },
+        "suspicious_module": {
+            "__class__": "Module",
+            "asset_type": "module",
+            "name": "suspicious_module",
+            "asset_id": "e9b7fbf7-ada0-4246-9dd1-d1d0ff86d8b4",
+            "path": null,
+            "signed": null
+        },
+        "child_process": {
+            "__class__": "Process",
+            "asset_type": "process",
+            "name": "child_process",
+            "asset_id": "02ef9ff5-d012-4a87-b04a-3a5eed122373",
             "signed": null,
             "command_line": null,
             "parent_process": null
         },
-        "svchost_exe": {
-            "__class__": "Process",
-            "asset_type": "process",
-            "name": "svchost_exe",
-            "asset_id": "1b94d513-c5b5-4740-b820-eb0cdaae8a0e",
-            "signed": null,
-            "command_line": "svchost.exe",
-            "parent_process": null
-        },
-        "taskeng_exe": {
-            "__class__": "Process",
-            "asset_type": "process",
-            "name": "taskeng_exe",
-            "asset_id": "bd2426b8-0f64-41e9-82de-e6779daf6466",
-            "signed": null,
-            "command_line": "taskeng.exe",
-            "parent_process": null
+        "connection": {
+            "__class__": "NetworkConnection",
+            "asset_type": "network_connection",
+            "name": "connection",
+            "asset_id": "86f1e55f-ab68-4639-8c7f-88d08fddf2ba",
+            "destination": null,
+            "source": null,
+            "transport_protocol": null
         }
     },
     "events": [
@@ -73,12 +71,12 @@
             "name": "Event1",
             "action": {
                 "__class__": "Action",
-                "action_verb": "creates",
+                "action_verb": "spawns",
                 "actor": {
                     "__class__": "Process",
                     "asset_type": "process",
-                    "name": "Win32_ScheduledJob",
-                    "asset_id": "c86fdd30-8655-4cc3-993f-18594c76e5b5",
+                    "name": "P",
+                    "asset_id": "7e9761e0-a4cb-4521-b096-63bbb66c5eb1",
                     "signed": null,
                     "command_line": null,
                     "parent_process": null
@@ -86,10 +84,10 @@
                 "object": {
                     "__class__": "Process",
                     "asset_type": "process",
-                    "name": "AnomalousScheduledTask",
-                    "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
+                    "name": "powershell_exe",
+                    "asset_id": "3ba6637b-58ac-43a4-8b69-83f0e84e77e4",
                     "signed": null,
-                    "command_line": null,
+                    "command_line": "encoded_command",
                     "parent_process": null
                 },
                 "modifiers": []
@@ -100,8 +98,8 @@
                     "subject": {
                         "__class__": "Process",
                         "asset_type": "process",
-                        "name": "Win32_ScheduledJob",
-                        "asset_id": "c86fdd30-8655-4cc3-993f-18594c76e5b5",
+                        "name": "P",
+                        "asset_id": "7e9761e0-a4cb-4521-b096-63bbb66c5eb1",
                         "signed": null,
                         "command_line": null,
                         "parent_process": null
@@ -117,13 +115,13 @@
                     "subject": {
                         "__class__": "Process",
                         "asset_type": "process",
-                        "name": "AnomalousScheduledTask",
-                        "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
+                        "name": "powershell_exe",
+                        "asset_id": "3ba6637b-58ac-43a4-8b69-83f0e84e77e4",
                         "signed": null,
-                        "command_line": null,
+                        "command_line": "encoded_command",
                         "parent_process": null
                     },
-                    "subject_state": "is_created",
+                    "subject_state": "is_activated",
                     "modifiers": []
                 }
             ],
@@ -141,12 +139,12 @@
             "name": "Event2",
             "action": {
                 "__class__": "Action",
-                "action_verb": "creates",
+                "action_verb": "spawns",
                 "actor": {
                     "__class__": "Process",
                     "asset_type": "process",
-                    "name": "at_exe",
-                    "asset_id": "b6075c94-4cf8-425f-a77d-9ae68eb4624f",
+                    "name": "unusual_process",
+                    "asset_id": "54f849a4-7f22-4a30-8437-3ebc78634c16",
                     "signed": null,
                     "command_line": null,
                     "parent_process": null
@@ -154,10 +152,10 @@
                 "object": {
                     "__class__": "Process",
                     "asset_type": "process",
-                    "name": "AnomalousScheduledTask",
-                    "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
+                    "name": "powershell_exe",
+                    "asset_id": "3ba6637b-58ac-43a4-8b69-83f0e84e77e4",
                     "signed": null,
-                    "command_line": null,
+                    "command_line": "encoded_command",
                     "parent_process": null
                 },
                 "modifiers": []
@@ -168,8 +166,8 @@
                     "subject": {
                         "__class__": "Process",
                         "asset_type": "process",
-                        "name": "at_exe",
-                        "asset_id": "b6075c94-4cf8-425f-a77d-9ae68eb4624f",
+                        "name": "unusual_process",
+                        "asset_id": "54f849a4-7f22-4a30-8437-3ebc78634c16",
                         "signed": null,
                         "command_line": null,
                         "parent_process": null
@@ -185,96 +183,10 @@
                     "subject": {
                         "__class__": "Process",
                         "asset_type": "process",
-                        "name": "AnomalousScheduledTask",
-                        "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
+                        "name": "powershell_exe",
+                        "asset_id": "3ba6637b-58ac-43a4-8b69-83f0e84e77e4",
                         "signed": null,
-                        "command_line": null,
-                        "parent_process": null
-                    },
-                    "subject_state": "is_created",
-                    "modifiers": []
-                }
-            ],
-            "postcondition_operator": {
-                "__enum__": "LogicalOperatorType",
-                "type_name": "AND",
-                "value": "AND"
-            },
-            "repetition": null,
-            "time_period": null
-        },
-        {
-            "__class__": "Event",
-            "id": "3",
-            "name": "Event3",
-            "action": {
-                "__class__": "Action",
-                "action_verb": "executes",
-                "actor": {
-                    "__class__": "Process",
-                    "asset_type": "process",
-                    "name": "svchost_exe",
-                    "asset_id": "1b94d513-c5b5-4740-b820-eb0cdaae8a0e",
-                    "signed": null,
-                    "command_line": "svchost.exe",
-                    "parent_process": null
-                },
-                "object": {
-                    "__class__": "Process",
-                    "asset_type": "process",
-                    "name": "AnomalousScheduledTask",
-                    "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
-                    "signed": null,
-                    "command_line": null,
-                    "parent_process": null
-                },
-                "modifiers": []
-            },
-            "preconditions": [
-                {
-                    "__class__": "StateCondition",
-                    "subject": {
-                        "__class__": "Process",
-                        "asset_type": "process",
-                        "name": "AnomalousScheduledTask",
-                        "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
-                        "signed": null,
-                        "command_line": null,
-                        "parent_process": null
-                    },
-                    "subject_state": "is_created",
-                    "modifiers": []
-                },
-                {
-                    "__class__": "StateCondition",
-                    "subject": {
-                        "__class__": "Process",
-                        "asset_type": "process",
-                        "name": "svchost_exe",
-                        "asset_id": "1b94d513-c5b5-4740-b820-eb0cdaae8a0e",
-                        "signed": null,
-                        "command_line": "svchost.exe",
-                        "parent_process": null
-                    },
-                    "subject_state": "is_activated",
-                    "modifiers": []
-                }
-            ],
-            "precondition_operator": {
-                "__enum__": "LogicalOperatorType",
-                "type_name": "AND",
-                "value": "AND"
-            },
-            "postconditions": [
-                {
-                    "__class__": "StateCondition",
-                    "subject": {
-                        "__class__": "Process",
-                        "asset_type": "process",
-                        "name": "AnomalousScheduledTask",
-                        "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
-                        "signed": null,
-                        "command_line": null,
+                        "command_line": "encoded_command",
                         "parent_process": null
                     },
                     "subject_state": "is_activated",
@@ -295,21 +207,87 @@
             "name": "Event4",
             "action": {
                 "__class__": "Action",
-                "action_verb": "executes",
+                "action_verb": "spawns",
+                "actor": {
+                    "__class__": "Module",
+                    "asset_type": "module",
+                    "name": "suspicious_module",
+                    "asset_id": "e9b7fbf7-ada0-4246-9dd1-d1d0ff86d8b4",
+                    "path": null,
+                    "signed": null
+                },
+                "object": {
+                    "__class__": "Process",
+                    "asset_type": "process",
+                    "name": "powershell_exe",
+                    "asset_id": "3ba6637b-58ac-43a4-8b69-83f0e84e77e4",
+                    "signed": null,
+                    "command_line": "encoded_command",
+                    "parent_process": null
+                },
+                "modifiers": []
+            },
+            "preconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "Module",
+                        "asset_type": "module",
+                        "name": "suspicious_module",
+                        "asset_id": "e9b7fbf7-ada0-4246-9dd1-d1d0ff86d8b4",
+                        "path": null,
+                        "signed": null
+                    },
+                    "subject_state": "is_loaded",
+                    "modifiers": []
+                }
+            ],
+            "precondition_operator": null,
+            "postconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "powershell_exe",
+                        "asset_id": "3ba6637b-58ac-43a4-8b69-83f0e84e77e4",
+                        "signed": null,
+                        "command_line": "encoded_command",
+                        "parent_process": null
+                    },
+                    "subject_state": "is_activated",
+                    "modifiers": []
+                }
+            ],
+            "postcondition_operator": {
+                "__enum__": "LogicalOperatorType",
+                "type_name": "AND",
+                "value": "AND"
+            },
+            "repetition": null,
+            "time_period": null
+        },
+        {
+            "__class__": "Event",
+            "id": "5",
+            "name": "Event5",
+            "action": {
+                "__class__": "Action",
+                "action_verb": "spawns",
                 "actor": {
                     "__class__": "Process",
                     "asset_type": "process",
-                    "name": "taskeng_exe",
-                    "asset_id": "bd2426b8-0f64-41e9-82de-e6779daf6466",
+                    "name": "powershell_exe",
+                    "asset_id": "3ba6637b-58ac-43a4-8b69-83f0e84e77e4",
                     "signed": null,
-                    "command_line": "taskeng.exe",
+                    "command_line": "encoded_command",
                     "parent_process": null
                 },
                 "object": {
                     "__class__": "Process",
                     "asset_type": "process",
-                    "name": "AnomalousScheduledTask",
-                    "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
+                    "name": "child_process",
+                    "asset_id": "02ef9ff5-d012-4a87-b04a-3a5eed122373",
                     "signed": null,
                     "command_line": null,
                     "parent_process": null
@@ -322,48 +300,98 @@
                     "subject": {
                         "__class__": "Process",
                         "asset_type": "process",
-                        "name": "AnomalousScheduledTask",
-                        "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
+                        "name": "powershell_exe",
+                        "asset_id": "3ba6637b-58ac-43a4-8b69-83f0e84e77e4",
                         "signed": null,
-                        "command_line": null,
-                        "parent_process": null
-                    },
-                    "subject_state": "is_created",
-                    "modifiers": []
-                },
-                {
-                    "__class__": "StateCondition",
-                    "subject": {
-                        "__class__": "Process",
-                        "asset_type": "process",
-                        "name": "taskeng_exe",
-                        "asset_id": "bd2426b8-0f64-41e9-82de-e6779daf6466",
-                        "signed": null,
-                        "command_line": "taskeng.exe",
+                        "command_line": "encoded_command",
                         "parent_process": null
                     },
                     "subject_state": "is_activated",
                     "modifiers": []
                 }
             ],
-            "precondition_operator": {
-                "__enum__": "LogicalOperatorType",
-                "type_name": "AND",
-                "value": "AND"
-            },
+            "precondition_operator": null,
             "postconditions": [
                 {
                     "__class__": "StateCondition",
                     "subject": {
                         "__class__": "Process",
                         "asset_type": "process",
-                        "name": "AnomalousScheduledTask",
-                        "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
+                        "name": "child_process",
+                        "asset_id": "02ef9ff5-d012-4a87-b04a-3a5eed122373",
                         "signed": null,
                         "command_line": null,
                         "parent_process": null
                     },
                     "subject_state": "is_activated",
+                    "modifiers": []
+                }
+            ],
+            "postcondition_operator": {
+                "__enum__": "LogicalOperatorType",
+                "type_name": "AND",
+                "value": "AND"
+            },
+            "repetition": null,
+            "time_period": null
+        },
+        {
+            "__class__": "Event",
+            "id": "6",
+            "name": "Event6",
+            "action": {
+                "__class__": "Action",
+                "action_verb": "creates",
+                "actor": {
+                    "__class__": "Process",
+                    "asset_type": "process",
+                    "name": "powershell_exe",
+                    "asset_id": "3ba6637b-58ac-43a4-8b69-83f0e84e77e4",
+                    "signed": null,
+                    "command_line": "encoded_command",
+                    "parent_process": null
+                },
+                "object": {
+                    "__class__": "NetworkConnection",
+                    "asset_type": "network_connection",
+                    "name": "connection",
+                    "asset_id": "86f1e55f-ab68-4639-8c7f-88d08fddf2ba",
+                    "destination": null,
+                    "source": null,
+                    "transport_protocol": null
+                },
+                "modifiers": []
+            },
+            "preconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "powershell_exe",
+                        "asset_id": "3ba6637b-58ac-43a4-8b69-83f0e84e77e4",
+                        "signed": null,
+                        "command_line": "encoded_command",
+                        "parent_process": null
+                    },
+                    "subject_state": "is_activated",
+                    "modifiers": []
+                }
+            ],
+            "precondition_operator": null,
+            "postconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "NetworkConnection",
+                        "asset_type": "network_connection",
+                        "name": "connection",
+                        "asset_id": "86f1e55f-ab68-4639-8c7f-88d08fddf2ba",
+                        "destination": null,
+                        "source": null,
+                        "transport_protocol": null
+                    },
+                    "subject_state": "is_established",
                     "modifiers": []
                 }
             ],
@@ -381,25 +409,25 @@
         "event_refs": [
             {
                 "__class__": "Event",
-                "id": "3",
-                "name": "Event3",
+                "id": "5",
+                "name": "Event5",
                 "action": {
                     "__class__": "Action",
-                    "action_verb": "executes",
+                    "action_verb": "spawns",
                     "actor": {
                         "__class__": "Process",
                         "asset_type": "process",
-                        "name": "svchost_exe",
-                        "asset_id": "1b94d513-c5b5-4740-b820-eb0cdaae8a0e",
+                        "name": "powershell_exe",
+                        "asset_id": "3ba6637b-58ac-43a4-8b69-83f0e84e77e4",
                         "signed": null,
-                        "command_line": "svchost.exe",
+                        "command_line": "encoded_command",
                         "parent_process": null
                     },
                     "object": {
                         "__class__": "Process",
                         "asset_type": "process",
-                        "name": "AnomalousScheduledTask",
-                        "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
+                        "name": "child_process",
+                        "asset_id": "02ef9ff5-d012-4a87-b04a-3a5eed122373",
                         "signed": null,
                         "command_line": null,
                         "parent_process": null
@@ -412,43 +440,25 @@
                         "subject": {
                             "__class__": "Process",
                             "asset_type": "process",
-                            "name": "AnomalousScheduledTask",
-                            "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
+                            "name": "powershell_exe",
+                            "asset_id": "3ba6637b-58ac-43a4-8b69-83f0e84e77e4",
                             "signed": null,
-                            "command_line": null,
-                            "parent_process": null
-                        },
-                        "subject_state": "is_created",
-                        "modifiers": []
-                    },
-                    {
-                        "__class__": "StateCondition",
-                        "subject": {
-                            "__class__": "Process",
-                            "asset_type": "process",
-                            "name": "svchost_exe",
-                            "asset_id": "1b94d513-c5b5-4740-b820-eb0cdaae8a0e",
-                            "signed": null,
-                            "command_line": "svchost.exe",
+                            "command_line": "encoded_command",
                             "parent_process": null
                         },
                         "subject_state": "is_activated",
                         "modifiers": []
                     }
                 ],
-                "precondition_operator": {
-                    "__enum__": "LogicalOperatorType",
-                    "type_name": "AND",
-                    "value": "AND"
-                },
+                "precondition_operator": null,
                 "postconditions": [
                     {
                         "__class__": "StateCondition",
                         "subject": {
                             "__class__": "Process",
                             "asset_type": "process",
-                            "name": "AnomalousScheduledTask",
-                            "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
+                            "name": "child_process",
+                            "asset_id": "02ef9ff5-d012-4a87-b04a-3a5eed122373",
                             "signed": null,
                             "command_line": null,
                             "parent_process": null
@@ -467,28 +477,28 @@
             },
             {
                 "__class__": "Event",
-                "id": "4",
-                "name": "Event4",
+                "id": "6",
+                "name": "Event6",
                 "action": {
                     "__class__": "Action",
-                    "action_verb": "executes",
+                    "action_verb": "creates",
                     "actor": {
                         "__class__": "Process",
                         "asset_type": "process",
-                        "name": "taskeng_exe",
-                        "asset_id": "bd2426b8-0f64-41e9-82de-e6779daf6466",
+                        "name": "powershell_exe",
+                        "asset_id": "3ba6637b-58ac-43a4-8b69-83f0e84e77e4",
                         "signed": null,
-                        "command_line": "taskeng.exe",
+                        "command_line": "encoded_command",
                         "parent_process": null
                     },
                     "object": {
-                        "__class__": "Process",
-                        "asset_type": "process",
-                        "name": "AnomalousScheduledTask",
-                        "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
-                        "signed": null,
-                        "command_line": null,
-                        "parent_process": null
+                        "__class__": "NetworkConnection",
+                        "asset_type": "network_connection",
+                        "name": "connection",
+                        "asset_id": "86f1e55f-ab68-4639-8c7f-88d08fddf2ba",
+                        "destination": null,
+                        "source": null,
+                        "transport_protocol": null
                     },
                     "modifiers": []
                 },
@@ -498,48 +508,30 @@
                         "subject": {
                             "__class__": "Process",
                             "asset_type": "process",
-                            "name": "AnomalousScheduledTask",
-                            "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
+                            "name": "powershell_exe",
+                            "asset_id": "3ba6637b-58ac-43a4-8b69-83f0e84e77e4",
                             "signed": null,
-                            "command_line": null,
-                            "parent_process": null
-                        },
-                        "subject_state": "is_created",
-                        "modifiers": []
-                    },
-                    {
-                        "__class__": "StateCondition",
-                        "subject": {
-                            "__class__": "Process",
-                            "asset_type": "process",
-                            "name": "taskeng_exe",
-                            "asset_id": "bd2426b8-0f64-41e9-82de-e6779daf6466",
-                            "signed": null,
-                            "command_line": "taskeng.exe",
+                            "command_line": "encoded_command",
                             "parent_process": null
                         },
                         "subject_state": "is_activated",
                         "modifiers": []
                     }
                 ],
-                "precondition_operator": {
-                    "__enum__": "LogicalOperatorType",
-                    "type_name": "AND",
-                    "value": "AND"
-                },
+                "precondition_operator": null,
                 "postconditions": [
                     {
                         "__class__": "StateCondition",
                         "subject": {
-                            "__class__": "Process",
-                            "asset_type": "process",
-                            "name": "AnomalousScheduledTask",
-                            "asset_id": "6e22b56d-30e2-4058-aaa1-fd7c8840cb87",
-                            "signed": null,
-                            "command_line": null,
-                            "parent_process": null
+                            "__class__": "NetworkConnection",
+                            "asset_type": "network_connection",
+                            "name": "connection",
+                            "asset_id": "86f1e55f-ab68-4639-8c7f-88d08fddf2ba",
+                            "destination": null,
+                            "source": null,
+                            "transport_protocol": null
                         },
-                        "subject_state": "is_activated",
+                        "subject_state": "is_established",
                         "modifiers": []
                     }
                 ],

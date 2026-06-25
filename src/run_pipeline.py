@@ -19,9 +19,8 @@ class PipelineResult:
     def ok(self) -> bool:
         return self.translated and not self.translation_errors
 
-def run_pipeline(input_path, validate: bool = False, build_domain: bool = False,
-    pnml_dir: Path = "data/petri_net_models", svg_dir: Path = "data/generated_petri_nets",
-    parsed_prefix: str = "parsed_", domain_prefix: str = "domain_") -> PipelineResult:
+def run_pipeline(input_path, validate: bool = False, build_domain: bool = False, petri_net_dir: Path = "data/generated_petri_nets", 
+                 parsed_prefix: str = "parsed_",  domain_prefix: str = "domain_") -> PipelineResult:
     """Run the CNL -> Petri net pipeline on a CNL description file.
 
     This is where the pipeline is run. Both the CLI (``src.main``) and the 
@@ -36,8 +35,7 @@ def run_pipeline(input_path, validate: bool = False, build_domain: bool = False,
     domain_prefix:  Filename prefix for the domain artifacts
     """
     input_path = str(input_path)
-    pnml_dir = Path(pnml_dir)
-    svg_dir = Path(svg_dir)
+    petri_net_dir = Path(petri_net_dir)
     result = PipelineResult()
 
     # translate CNL text into a TechniqueModel
@@ -94,13 +92,13 @@ def run_pipeline(input_path, validate: bool = False, build_domain: bool = False,
     logger.info("Building Petri Net of Technique Model")
     cnl_net = None
     try:
-        cnl_net = builder.build(model, str(pnml_dir / f"{parsed_prefix}{model.name}"))
+        cnl_net = builder.build(model, str(petri_net_dir / f"{parsed_prefix}{model.name}"))
     except Exception as e:
         logger.exception("PN Building was interrupted: {} - {}", type(e).__name__, e)
 
     if cnl_net is not None:
         try:
-            out = svg_dir / f"{parsed_prefix}{model.name}"
+            out = petri_net_dir / f"{parsed_prefix}{model.name}"
             builder.visualize(*cnl_net, str(out))
             result.cnl_svg_path = Path(f"{out}.svg")
         except Exception as e:
@@ -111,14 +109,14 @@ def run_pipeline(input_path, validate: bool = False, build_domain: bool = False,
         logger.info("Building Petri Net of Domain Model")
         dom_net = None
         try:
-            dom_net = builder.build(domain_model, str(pnml_dir / f"{domain_prefix}{domain_model.name}"))
+            dom_net = builder.build(domain_model, str(petri_net_dir / f"{domain_prefix}{domain_model.name}"))
         except Exception as e:
             logger.exception("PN Building was interrupted: {} - {}", type(e).__name__, e)
 
         if dom_net is not None:
             logger.info("Visualizing Petri Net of Domain Model")
             try:
-                out = svg_dir / f"{domain_prefix}{domain_model.name}"
+                out = petri_net_dir / f"{domain_prefix}{domain_model.name}"
                 builder.visualize(*dom_net, str(out))
                 logger.info("Petri net saved to {}.svg", out)
             except Exception as e:

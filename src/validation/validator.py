@@ -107,7 +107,7 @@ class Validator():
             return False
         else:
             # Save domain model 
-            out = Path("data/domain_technique_models") / f"{domain_model.id.replace(".", "_")}_domain_{domain_model.name}.json"
+            out = Path("data/technique_models") / f"domain_{domain_model.id.replace(".", "_")}_{domain_model.name}.json"
             write_artifact(domain_model, out)
 
         if not self.validate_model_structure(cnl_model, domain_model):
