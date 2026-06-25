@@ -198,7 +198,7 @@ repetition:
     ;
 
 repeat:
-    REPEATED (DIGIT+ | IDENTIFIER) TIMES
+    REPEATED DIGIT+ TIMES
     ;
 
 timePeriod:

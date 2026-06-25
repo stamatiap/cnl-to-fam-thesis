@@ -221,10 +221,7 @@ class Visitor(CNLVisitor):
     def visitRepeat(self, ctx: CNLParser.RepeatContext):
         if ctx is None:
             return None
-        if ctx.DIGIT():
-            return "".join(d.getText() for d in ctx.DIGIT())
-        else:
-            return ctx.IDENTIFIER().getText()
+        return "".join(d.getText() for d in ctx.DIGIT())
         
     def visitTimeWindow(self, ctx: CNLParser.TimeWindowContext):
         if ctx is None:

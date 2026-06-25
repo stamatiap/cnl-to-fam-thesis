@@ -61,7 +61,7 @@ events = [
         precondition_operator = None,
         postconditions = [state_conditions.get('credentials_rejected')],
         postcondition_operator = None,
-        repetition = Repetition(frequency="5", time_value=1, time_unit="seconds")
+        repetition = Repetition(occurrences=5, time_value=1, time_unit="seconds")
     ),
     Event(
         id = "2",

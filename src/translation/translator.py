@@ -34,7 +34,7 @@ class Translator:
         write_path = Path("data/parse_trees") / f"parse_tree_{input_path.split("/")[-1]}"
         write_artifact(tree_str, write_path)
         logger.info("parse tree stored in: {}", write_path)
-        
+
         return tree
 
     def create_modifier(self, modifier) -> Modifier:
@@ -180,7 +180,7 @@ class Translator:
             return None
 
         return Repetition(
-            frequency = repetition_item[0],
+            occurrences = int(repetition_item[0]),
             time_value = int(repetition_item[1]) if repetition_item[1] is not None else None,
             time_unit = TIME_UNIT_MAP.get(repetition_item[2], None),
         )
