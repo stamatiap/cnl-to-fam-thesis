@@ -19,7 +19,7 @@ class PipelineResult:
     def ok(self) -> bool:
         return self.translated and not self.translation_errors
 
-def run_pipeline(input_path, validate: bool = True, build_domain: bool = True,
+def run_pipeline(input_path, validate: bool = False, build_domain: bool = False,
     pnml_dir: Path = "data/petri_net_models", svg_dir: Path = "data/generated_petri_nets",
     parsed_prefix: str = "parsed_", domain_prefix: str = "domain_") -> PipelineResult:
     """Run the CNL -> Petri net pipeline on a CNL description file.
