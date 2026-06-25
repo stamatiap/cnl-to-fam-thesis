@@ -32,14 +32,15 @@ class Translator:
         return tree
 
     def create_modifier(self, modifier) -> Modifier:
-        if modifier[0] == 'location':
-            mod_type = ModifierType.LOCATION
-        elif modifier[0] == 'destination':
-            mod_type = ModifierType.DESTINATION
-        elif modifier[0] == 'source':
-            mod_type = ModifierType.SOURCE
-        elif modifier[0] == 'trigger':
-            mod_type = ModifierType.TRIGGER
+
+        if modifier is not None:
+            try: 
+                mod_type = ModifierType[modifier[0].upper()]
+            except ValueError:
+                logger.warning("unknown modifier {!r}, treating as None", modifier[0].upper())
+                mod_type = None
+        else: 
+            mod_type = None
         
         return Modifier(
             type = mod_type,

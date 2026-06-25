@@ -275,16 +275,13 @@ class Visitor(CNLVisitor):
             "modifiers": modifiers
         }
         return condition
-    
-    def visitGivenItem(self, ctx: CNLParser.GivenItemContext):
-        return self.visitStateCondition(ctx.stateCondition())
 
     def visitGivenClause(self, ctx: CNLParser.GivenClauseContext):
-        items = ctx.givenItem()
+        states = ctx.stateCondition()
         operator = None
         
         # get the operator between given items
-        if len(items) > 1:
+        if len(states) > 1:
             if ctx.AND():
                 operator = "AND"
             elif ctx.OR():
@@ -292,10 +289,10 @@ class Visitor(CNLVisitor):
             elif ctx.XOR():
                 operator = "XOR"
         
-        given_items = [self.visitGivenItem(item) for item in items]
+        given_states = [self.visitStateCondition(state) for state in states]
         
         return {
-            "preconditions": given_items,
+            "preconditions": given_states,
             "operator": operator
         }
     

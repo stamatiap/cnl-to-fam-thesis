@@ -138,11 +138,7 @@ eventStatement
     ;
 
 givenClause
-    : GIVEN givenItem ((AND givenItem)* | (OR givenItem)* | (XOR givenItem)* )
-    ;
-
-givenItem
-    : stateCondition
+    : GIVEN stateCondition ((AND stateCondition)* | (OR stateCondition)* | (XOR stateCondition)* )
     ;
 
 eventRef
