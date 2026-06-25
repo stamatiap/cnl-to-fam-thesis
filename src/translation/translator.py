@@ -29,6 +29,12 @@ class Translator:
         if listener.errors:
             logger.warning("skipped {} — {} syntax error(s)", input_path, len(listener.errors))
             return None
+        
+        tree_str = tree.toStringTree(recog=parser)
+        write_path = Path("data/parse_trees") / f"parse_tree_{input_path.split("/")[-1]}"
+        write_artifact(tree_str, write_path)
+        logger.info("parse tree stored in: {}", write_path)
+        
         return tree
 
     def create_modifier(self, modifier) -> Modifier:
