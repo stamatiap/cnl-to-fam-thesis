@@ -27,8 +27,7 @@ if technique_title:
             input_path,
             validate=False,
             build_domain=False,
-            pnml_dir="data/web_app_pn_models",
-            svg_dir="data/web_app_pn_models",
+            petri_net_dir=Path("data/web_app_pn_models"),
             parsed_prefix="",
         )
 

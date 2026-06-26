@@ -224,11 +224,6 @@ class CNLVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by CNLParser#givenItem.
-    def visitGivenItem(self, ctx:CNLParser.GivenItemContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by CNLParser#eventRef.
     def visitEventRef(self, ctx:CNLParser.EventRefContext):
         return self.visitChildren(ctx)

@@ -1,7 +1,7 @@
 grammar CNL;
 
 attack
-    : header background eventBlock+ completionBlock? EOF
+    : header background eventBlock+ completionBlock EOF
     ;
 
 header
@@ -138,11 +138,7 @@ eventStatement
     ;
 
 givenClause
-    : GIVEN givenItem ((AND givenItem)* | (OR givenItem)* | (XOR givenItem)* )
-    ;
-
-givenItem
-    : stateCondition
+    : GIVEN stateCondition ((AND stateCondition)* | (OR stateCondition)* | (XOR stateCondition)* )
     ;
 
 eventRef
@@ -202,7 +198,7 @@ repetition:
     ;
 
 repeat:
-    REPEATED (DIGIT+ | IDENTIFIER) TIMES
+    REPEATED DIGIT+ TIMES
     ;
 
 timePeriod:

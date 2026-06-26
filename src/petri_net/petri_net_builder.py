@@ -93,7 +93,7 @@ class PetriNetBuilder:
     
     def _apply_repetition(self, event: Event, transition: PetriNet.Transition) -> PetriNet.Transition:
         """
-        When an event's repetition frequency is specified by an integer bigger than  1, then
+        When an event's repetition number of occurrences is specified by an integer bigger than  1, then
         the current transition gets cloned that many times, with the same label.
          
         Chain shape for frequency N:
@@ -105,20 +105,14 @@ class PetriNetBuilder:
         if not repetition:
             return transition
 
-        frequency = repetition.frequency
-        if not isinstance(frequency, str):
-            return transition
-        try:
-            frequency = int(frequency)
-        except ValueError:
-            return transition
-        if frequency <= 1:
+        occurrences = repetition.occurrences
+        if occurrences <= 1:
             return transition
 
         post_name = "_".join(sorted(self._get_place_name(p) for p in event.postconditions)) # get all postconditions' name into 1 place
 
         current = transition
-        for i in range(1, frequency):
+        for i in range(1, occurrences):
             between_place = self._get_or_create_place(f"{post_name}_{i}")
             clone = self._get_or_create_transition(
                 name=f"{transition.name}_rep_{i}",

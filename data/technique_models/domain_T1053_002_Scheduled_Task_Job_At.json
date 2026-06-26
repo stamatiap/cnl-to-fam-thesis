@@ -1,0 +1,537 @@
+{
+    "__class__": "TechniqueModel",
+    "id": "T1053.002",
+    "name": "Scheduled_Task_Job_At",
+    "tactics": [
+        {
+            "__class__": "Tactic",
+            "id": "TA0002",
+            "name": "Execution"
+        },
+        {
+            "__class__": "Tactic",
+            "id": "TA0003",
+            "name": "Persistence"
+        },
+        {
+            "__class__": "Tactic",
+            "id": "TA0004",
+            "name": "Privilege_Escalation"
+        }
+    ],
+    "assets": {
+        "at_exe": {
+            "__class__": "Process",
+            "asset_type": "process",
+            "name": "at.exe",
+            "asset_id": "4d05c385-d44b-4221-b38e-8dafef7b818b",
+            "signed": null,
+            "command_line": null,
+            "parent_process": null
+        },
+        "WMI_Win32_ScheduledJob": {
+            "__class__": "Process",
+            "asset_type": "process",
+            "name": "WMI_Win32_ScheduledJob",
+            "asset_id": "e4489e31-ca64-47af-beab-4fa7f7466e44",
+            "signed": null,
+            "command_line": null,
+            "parent_process": null
+        },
+        "anomalous_job": {
+            "__class__": "Process",
+            "asset_type": "process",
+            "name": "AnomalousJob",
+            "asset_id": "de9027a2-4a62-46a5-97d9-9deb41159291",
+            "signed": null,
+            "command_line": null,
+            "parent_process": null
+        },
+        "svchost_process": {
+            "__class__": "Process",
+            "asset_type": "process",
+            "name": "svchost_exe",
+            "asset_id": "6c779343-1865-4da2-bbce-0ad1672b0d79",
+            "signed": null,
+            "command_line": "svchost.exe",
+            "parent_process": null
+        },
+        "taskeng_process": {
+            "__class__": "Process",
+            "asset_type": "process",
+            "name": "taskeng_exe",
+            "asset_id": "d3dd0ae1-89be-41d7-9d73-dc99a4ef15c0",
+            "signed": null,
+            "command_line": "taskeng.exe",
+            "parent_process": null
+        }
+    },
+    "events": [
+        {
+            "__class__": "Event",
+            "id": "1",
+            "name": "Event 1",
+            "action": {
+                "__class__": "Action",
+                "action_verb": "creates",
+                "actor": {
+                    "__class__": "Process",
+                    "asset_type": "process",
+                    "name": "at.exe",
+                    "asset_id": "4d05c385-d44b-4221-b38e-8dafef7b818b",
+                    "signed": null,
+                    "command_line": null,
+                    "parent_process": null
+                },
+                "object": {
+                    "__class__": "Process",
+                    "asset_type": "process",
+                    "name": "AnomalousJob",
+                    "asset_id": "de9027a2-4a62-46a5-97d9-9deb41159291",
+                    "signed": null,
+                    "command_line": null,
+                    "parent_process": null
+                },
+                "modifiers": null
+            },
+            "preconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "at.exe",
+                        "asset_id": "4d05c385-d44b-4221-b38e-8dafef7b818b",
+                        "signed": null,
+                        "command_line": null,
+                        "parent_process": null
+                    },
+                    "subject_state": "active",
+                    "modifiers": null
+                }
+            ],
+            "precondition_operator": null,
+            "postconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "AnomalousJob",
+                        "asset_id": "de9027a2-4a62-46a5-97d9-9deb41159291",
+                        "signed": null,
+                        "command_line": null,
+                        "parent_process": null
+                    },
+                    "subject_state": "created",
+                    "modifiers": null
+                }
+            ],
+            "postcondition_operator": null,
+            "repetition": null,
+            "time_period": null
+        },
+        {
+            "__class__": "Event",
+            "id": "2",
+            "name": "Event 2",
+            "action": {
+                "__class__": "Action",
+                "action_verb": "creates",
+                "actor": {
+                    "__class__": "Process",
+                    "asset_type": "process",
+                    "name": "WMI_Win32_ScheduledJob",
+                    "asset_id": "e4489e31-ca64-47af-beab-4fa7f7466e44",
+                    "signed": null,
+                    "command_line": null,
+                    "parent_process": null
+                },
+                "object": {
+                    "__class__": "Process",
+                    "asset_type": "process",
+                    "name": "AnomalousJob",
+                    "asset_id": "de9027a2-4a62-46a5-97d9-9deb41159291",
+                    "signed": null,
+                    "command_line": null,
+                    "parent_process": null
+                },
+                "modifiers": null
+            },
+            "preconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "WMI_Win32_ScheduledJob",
+                        "asset_id": "e4489e31-ca64-47af-beab-4fa7f7466e44",
+                        "signed": null,
+                        "command_line": null,
+                        "parent_process": null
+                    },
+                    "subject_state": "active",
+                    "modifiers": null
+                }
+            ],
+            "precondition_operator": null,
+            "postconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "AnomalousJob",
+                        "asset_id": "de9027a2-4a62-46a5-97d9-9deb41159291",
+                        "signed": null,
+                        "command_line": null,
+                        "parent_process": null
+                    },
+                    "subject_state": "created",
+                    "modifiers": null
+                }
+            ],
+            "postcondition_operator": null,
+            "repetition": null,
+            "time_period": null
+        },
+        {
+            "__class__": "Event",
+            "id": "3",
+            "name": "Event 3",
+            "action": {
+                "__class__": "Action",
+                "action_verb": "executes",
+                "actor": {
+                    "__class__": "Process",
+                    "asset_type": "process",
+                    "name": "svchost_exe",
+                    "asset_id": "6c779343-1865-4da2-bbce-0ad1672b0d79",
+                    "signed": null,
+                    "command_line": "svchost.exe",
+                    "parent_process": null
+                },
+                "object": {
+                    "__class__": "Process",
+                    "asset_type": "process",
+                    "name": "AnomalousJob",
+                    "asset_id": "de9027a2-4a62-46a5-97d9-9deb41159291",
+                    "signed": null,
+                    "command_line": null,
+                    "parent_process": null
+                },
+                "modifiers": null
+            },
+            "preconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "AnomalousJob",
+                        "asset_id": "de9027a2-4a62-46a5-97d9-9deb41159291",
+                        "signed": null,
+                        "command_line": null,
+                        "parent_process": null
+                    },
+                    "subject_state": "created",
+                    "modifiers": null
+                },
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "svchost_exe",
+                        "asset_id": "6c779343-1865-4da2-bbce-0ad1672b0d79",
+                        "signed": null,
+                        "command_line": "svchost.exe",
+                        "parent_process": null
+                    },
+                    "subject_state": "active",
+                    "modifiers": null
+                }
+            ],
+            "precondition_operator": {
+                "__enum__": "LogicalOperatorType",
+                "type_name": "AND",
+                "value": "AND"
+            },
+            "postconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "AnomalousJob",
+                        "asset_id": "de9027a2-4a62-46a5-97d9-9deb41159291",
+                        "signed": null,
+                        "command_line": null,
+                        "parent_process": null
+                    },
+                    "subject_state": "active",
+                    "modifiers": null
+                }
+            ],
+            "postcondition_operator": null,
+            "repetition": null,
+            "time_period": null
+        },
+        {
+            "__class__": "Event",
+            "id": "4",
+            "name": "Event 4",
+            "action": {
+                "__class__": "Action",
+                "action_verb": "executes",
+                "actor": {
+                    "__class__": "Process",
+                    "asset_type": "process",
+                    "name": "taskeng_exe",
+                    "asset_id": "d3dd0ae1-89be-41d7-9d73-dc99a4ef15c0",
+                    "signed": null,
+                    "command_line": "taskeng.exe",
+                    "parent_process": null
+                },
+                "object": {
+                    "__class__": "Process",
+                    "asset_type": "process",
+                    "name": "AnomalousJob",
+                    "asset_id": "de9027a2-4a62-46a5-97d9-9deb41159291",
+                    "signed": null,
+                    "command_line": null,
+                    "parent_process": null
+                },
+                "modifiers": null
+            },
+            "preconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "AnomalousJob",
+                        "asset_id": "de9027a2-4a62-46a5-97d9-9deb41159291",
+                        "signed": null,
+                        "command_line": null,
+                        "parent_process": null
+                    },
+                    "subject_state": "created",
+                    "modifiers": null
+                },
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "taskeng_exe",
+                        "asset_id": "d3dd0ae1-89be-41d7-9d73-dc99a4ef15c0",
+                        "signed": null,
+                        "command_line": "taskeng.exe",
+                        "parent_process": null
+                    },
+                    "subject_state": "active",
+                    "modifiers": null
+                }
+            ],
+            "precondition_operator": {
+                "__enum__": "LogicalOperatorType",
+                "type_name": "AND",
+                "value": "AND"
+            },
+            "postconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "AnomalousJob",
+                        "asset_id": "de9027a2-4a62-46a5-97d9-9deb41159291",
+                        "signed": null,
+                        "command_line": null,
+                        "parent_process": null
+                    },
+                    "subject_state": "active",
+                    "modifiers": null
+                }
+            ],
+            "postcondition_operator": null,
+            "repetition": null,
+            "time_period": null
+        }
+    ],
+    "completion": {
+        "__class__": "Completion",
+        "event_refs": [
+            {
+                "__class__": "Event",
+                "id": "3",
+                "name": "Event 3",
+                "action": {
+                    "__class__": "Action",
+                    "action_verb": "executes",
+                    "actor": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "svchost_exe",
+                        "asset_id": "6c779343-1865-4da2-bbce-0ad1672b0d79",
+                        "signed": null,
+                        "command_line": "svchost.exe",
+                        "parent_process": null
+                    },
+                    "object": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "AnomalousJob",
+                        "asset_id": "de9027a2-4a62-46a5-97d9-9deb41159291",
+                        "signed": null,
+                        "command_line": null,
+                        "parent_process": null
+                    },
+                    "modifiers": null
+                },
+                "preconditions": [
+                    {
+                        "__class__": "StateCondition",
+                        "subject": {
+                            "__class__": "Process",
+                            "asset_type": "process",
+                            "name": "AnomalousJob",
+                            "asset_id": "de9027a2-4a62-46a5-97d9-9deb41159291",
+                            "signed": null,
+                            "command_line": null,
+                            "parent_process": null
+                        },
+                        "subject_state": "created",
+                        "modifiers": null
+                    },
+                    {
+                        "__class__": "StateCondition",
+                        "subject": {
+                            "__class__": "Process",
+                            "asset_type": "process",
+                            "name": "svchost_exe",
+                            "asset_id": "6c779343-1865-4da2-bbce-0ad1672b0d79",
+                            "signed": null,
+                            "command_line": "svchost.exe",
+                            "parent_process": null
+                        },
+                        "subject_state": "active",
+                        "modifiers": null
+                    }
+                ],
+                "precondition_operator": {
+                    "__enum__": "LogicalOperatorType",
+                    "type_name": "AND",
+                    "value": "AND"
+                },
+                "postconditions": [
+                    {
+                        "__class__": "StateCondition",
+                        "subject": {
+                            "__class__": "Process",
+                            "asset_type": "process",
+                            "name": "AnomalousJob",
+                            "asset_id": "de9027a2-4a62-46a5-97d9-9deb41159291",
+                            "signed": null,
+                            "command_line": null,
+                            "parent_process": null
+                        },
+                        "subject_state": "active",
+                        "modifiers": null
+                    }
+                ],
+                "postcondition_operator": null,
+                "repetition": null,
+                "time_period": null
+            },
+            {
+                "__class__": "Event",
+                "id": "4",
+                "name": "Event 4",
+                "action": {
+                    "__class__": "Action",
+                    "action_verb": "executes",
+                    "actor": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "taskeng_exe",
+                        "asset_id": "d3dd0ae1-89be-41d7-9d73-dc99a4ef15c0",
+                        "signed": null,
+                        "command_line": "taskeng.exe",
+                        "parent_process": null
+                    },
+                    "object": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "AnomalousJob",
+                        "asset_id": "de9027a2-4a62-46a5-97d9-9deb41159291",
+                        "signed": null,
+                        "command_line": null,
+                        "parent_process": null
+                    },
+                    "modifiers": null
+                },
+                "preconditions": [
+                    {
+                        "__class__": "StateCondition",
+                        "subject": {
+                            "__class__": "Process",
+                            "asset_type": "process",
+                            "name": "AnomalousJob",
+                            "asset_id": "de9027a2-4a62-46a5-97d9-9deb41159291",
+                            "signed": null,
+                            "command_line": null,
+                            "parent_process": null
+                        },
+                        "subject_state": "created",
+                        "modifiers": null
+                    },
+                    {
+                        "__class__": "StateCondition",
+                        "subject": {
+                            "__class__": "Process",
+                            "asset_type": "process",
+                            "name": "taskeng_exe",
+                            "asset_id": "d3dd0ae1-89be-41d7-9d73-dc99a4ef15c0",
+                            "signed": null,
+                            "command_line": "taskeng.exe",
+                            "parent_process": null
+                        },
+                        "subject_state": "active",
+                        "modifiers": null
+                    }
+                ],
+                "precondition_operator": {
+                    "__enum__": "LogicalOperatorType",
+                    "type_name": "AND",
+                    "value": "AND"
+                },
+                "postconditions": [
+                    {
+                        "__class__": "StateCondition",
+                        "subject": {
+                            "__class__": "Process",
+                            "asset_type": "process",
+                            "name": "AnomalousJob",
+                            "asset_id": "de9027a2-4a62-46a5-97d9-9deb41159291",
+                            "signed": null,
+                            "command_line": null,
+                            "parent_process": null
+                        },
+                        "subject_state": "active",
+                        "modifiers": null
+                    }
+                ],
+                "postcondition_operator": null,
+                "repetition": null,
+                "time_period": null
+            }
+        ],
+        "operator": {
+            "__enum__": "LogicalOperatorType",
+            "type_name": "XOR",
+            "value": "XOR"
+        }
+    }
+}

@@ -9,193 +9,193 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 94)">
 <title>Content_Injection</title>
 <polygon fill="white" stroke="none" points="-4,4 -4,-94 2049.15,-94 2049.15,4 -4,4"/>
-<!-- 3046234776608 -->
+<!-- 2045516000256 -->
 <g id="node1" class="node">
-<title>3046234776608</title>
-<polygon fill="black" stroke="black" points="1231.13,-36 1177.13,-36 1177.13,0 1231.13,0 1231.13,-36"/>
-</g>
-<!-- 3046234776944 -->
-<g id="node14" class="node">
-<title>3046234776944</title>
-<ellipse fill="white" stroke="black" cx="1416.12" cy="-45" rx="148.99" ry="18"/>
-<text xml:space="preserve" text-anchor="middle" x="1416.12" y="-40.73" font-family="Times New Roman,serif" font-size="12.00">xor_F_exists_in_AppData_F_exists_in_Temp</text>
-</g>
-<!-- 3046234776608&#45;&gt;3046234776944 -->
-<g id="edge14" class="edge">
-<title>3046234776608&#45;&gt;3046234776944</title>
-<path fill="none" stroke="black" d="M1231.3,-21.36C1249.39,-23.69 1274.83,-26.96 1301.03,-30.33"/>
-<polygon fill="black" stroke="black" points="1300.42,-33.78 1310.78,-31.58 1301.31,-26.84 1300.42,-33.78"/>
-</g>
-<!-- 3046234776704 -->
-<g id="node2" class="node">
-<title>3046234776704</title>
-<polygon fill="white" stroke="black" points="944.87,-90 798.37,-90 798.37,-54 944.87,-54 944.87,-90"/>
-<text xml:space="preserve" text-anchor="middle" x="871.62" y="-67.72" font-family="Times New Roman,serif" font-size="12.00">browser_saves_F_in_Temp</text>
-</g>
-<!-- 3046234776656 -->
-<g id="node15" class="node">
-<title>3046234776656</title>
-<ellipse fill="white" stroke="black" cx="1065.12" cy="-72" rx="65.51" ry="18"/>
-<text xml:space="preserve" text-anchor="middle" x="1065.12" y="-67.72" font-family="Times New Roman,serif" font-size="12.00">F_exists_in_Temp</text>
-</g>
-<!-- 3046234776704&#45;&gt;3046234776656 -->
-<g id="edge12" class="edge">
-<title>3046234776704&#45;&gt;3046234776656</title>
-<path fill="none" stroke="black" d="M945.29,-72C959.32,-72 974.05,-72 988.18,-72"/>
-<polygon fill="black" stroke="black" points="987.84,-75.5 997.84,-72 987.84,-68.5 987.84,-75.5"/>
-</g>
-<!-- 3046234776512 -->
-<g id="node3" class="node">
-<title>3046234776512</title>
+<title>2045516000256</title>
 <polygon fill="white" stroke="black" points="1740.11,-63 1601.11,-63 1601.11,-27 1740.11,-27 1740.11,-63"/>
 <text xml:space="preserve" text-anchor="middle" x="1670.61" y="-40.73" font-family="Times New Roman,serif" font-size="12.00">local_process_executes_F</text>
 </g>
-<!-- 3046234777328 -->
-<g id="node16" class="node">
-<title>3046234777328</title>
+<!-- 2045516000736 -->
+<g id="node10" class="node">
+<title>2045516000736</title>
 <ellipse fill="white" stroke="black" cx="1820.63" cy="-45" rx="44.52" ry="18"/>
 <text xml:space="preserve" text-anchor="middle" x="1820.63" y="-40.73" font-family="Times New Roman,serif" font-size="12.00">F_is_active</text>
 </g>
-<!-- 3046234776512&#45;&gt;3046234777328 -->
-<g id="edge6" class="edge">
-<title>3046234776512&#45;&gt;3046234777328</title>
+<!-- 2045516000256&#45;&gt;2045516000736 -->
+<g id="edge13" class="edge">
+<title>2045516000256&#45;&gt;2045516000736</title>
 <path fill="none" stroke="black" d="M1740.42,-45C1748.53,-45 1756.73,-45 1764.62,-45"/>
 <polygon fill="black" stroke="black" points="1764.4,-48.5 1774.4,-45 1764.4,-41.5 1764.4,-48.5"/>
 </g>
-<!-- 3046234776800 -->
-<g id="node4" class="node">
-<title>3046234776800</title>
-<polygon fill="black" stroke="black" points="144,-63 90,-63 90,-27 144,-27 144,-63"/>
-</g>
-<!-- 3046234776272 -->
-<g id="node13" class="node">
-<title>3046234776272</title>
-<ellipse fill="white" stroke="black" cx="291.78" cy="-45" rx="111.78" ry="18"/>
-<text xml:space="preserve" text-anchor="middle" x="291.78" y="-40.73" font-family="Times New Roman,serif" font-size="12.00">Browser_connection_is_activated</text>
-</g>
-<!-- 3046234776800&#45;&gt;3046234776272 -->
-<g id="edge7" class="edge">
-<title>3046234776800&#45;&gt;3046234776272</title>
-<path fill="none" stroke="black" d="M144.24,-45C151.34,-45 159.52,-45 168.31,-45"/>
-<polygon fill="black" stroke="black" points="168.21,-48.5 178.21,-45 168.21,-41.5 168.21,-48.5"/>
-</g>
-<!-- 3046234777568 -->
-<g id="node5" class="node">
-<title>3046234777568</title>
-<polygon fill="black" stroke="black" points="1955.15,-63 1901.15,-63 1901.15,-27 1955.15,-27 1955.15,-63"/>
-</g>
-<!-- 3046234775744 -->
-<g id="node11" class="node">
-<title>3046234775744</title>
-<ellipse fill="white" stroke="black" cx="2018.15" cy="-45" rx="27" ry="18"/>
-<text xml:space="preserve" text-anchor="middle" x="2018.15" y="-40.73" font-family="Times New Roman,serif" font-size="12.00">end</text>
-</g>
-<!-- 3046234777568&#45;&gt;3046234775744 -->
-<g id="edge9" class="edge">
-<title>3046234777568&#45;&gt;3046234775744</title>
-<path fill="none" stroke="black" d="M1955.55,-45C1963.04,-45 1971.33,-45 1979.35,-45"/>
-<polygon fill="black" stroke="black" points="1979.25,-48.5 1989.25,-45 1979.25,-41.5 1979.25,-48.5"/>
-</g>
-<!-- 3046234776080 -->
-<g id="node6" class="node">
-<title>3046234776080</title>
-<polygon fill="white" stroke="black" points="613.81,-63 439.56,-63 439.56,-27 613.81,-27 613.81,-63"/>
-<text xml:space="preserve" text-anchor="middle" x="526.69" y="-40.73" font-family="Times New Roman,serif" font-size="12.00">browser_receives_F_from_server</text>
-</g>
-<!-- 3046234776224 -->
-<g id="node10" class="node">
-<title>3046234776224</title>
-<ellipse fill="white" stroke="black" cx="701.97" cy="-45" rx="52.15" ry="18"/>
-<text xml:space="preserve" text-anchor="middle" x="701.97" y="-40.73" font-family="Times New Roman,serif" font-size="12.00">F_is_received</text>
-</g>
-<!-- 3046234776080&#45;&gt;3046234776224 -->
-<g id="edge3" class="edge">
-<title>3046234776080&#45;&gt;3046234776224</title>
-<path fill="none" stroke="black" d="M614.07,-45C622.27,-45 630.48,-45 638.39,-45"/>
-<polygon fill="black" stroke="black" points="638.23,-48.5 648.23,-45 638.23,-41.5 638.23,-48.5"/>
-</g>
-<!-- 3046234776464 -->
-<g id="node7" class="node">
-<title>3046234776464</title>
-<polygon fill="white" stroke="black" points="953.12,-36 790.12,-36 790.12,0 953.12,0 953.12,-36"/>
-<text xml:space="preserve" text-anchor="middle" x="871.62" y="-13.72" font-family="Times New Roman,serif" font-size="12.00">browser_saves_F_in_AppData</text>
-</g>
-<!-- 3046234776416 -->
-<g id="node9" class="node">
-<title>3046234776416</title>
-<ellipse fill="white" stroke="black" cx="1065.12" cy="-18" rx="76" ry="18"/>
-<text xml:space="preserve" text-anchor="middle" x="1065.12" y="-13.72" font-family="Times New Roman,serif" font-size="12.00">F_exists_in_AppData</text>
-</g>
-<!-- 3046234776464&#45;&gt;3046234776416 -->
-<g id="edge2" class="edge">
-<title>3046234776464&#45;&gt;3046234776416</title>
-<path fill="none" stroke="black" d="M953.56,-18C961.38,-18 969.33,-18 977.2,-18"/>
-<polygon fill="black" stroke="black" points="977.14,-21.5 987.14,-18 977.14,-14.5 977.14,-21.5"/>
-</g>
-<!-- 3046234777136 -->
-<g id="node8" class="node">
-<title>3046234777136</title>
+<!-- 2045516000160 -->
+<g id="node2" class="node">
+<title>2045516000160</title>
 <polygon fill="black" stroke="black" points="1231.13,-90 1177.13,-90 1177.13,-54 1231.13,-54 1231.13,-90"/>
 </g>
-<!-- 3046234777136&#45;&gt;3046234776944 -->
-<g id="edge5" class="edge">
-<title>3046234777136&#45;&gt;3046234776944</title>
+<!-- 2045516000448 -->
+<g id="node9" class="node">
+<title>2045516000448</title>
+<ellipse fill="white" stroke="black" cx="1416.12" cy="-45" rx="148.99" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="1416.12" y="-40.73" font-family="Times New Roman,serif" font-size="12.00">xor_F_exists_in_AppData_F_exists_in_Temp</text>
+</g>
+<!-- 2045516000160&#45;&gt;2045516000448 -->
+<g id="edge4" class="edge">
+<title>2045516000160&#45;&gt;2045516000448</title>
 <path fill="none" stroke="black" d="M1231.3,-68.64C1249.39,-66.31 1274.83,-63.04 1301.03,-59.67"/>
 <polygon fill="black" stroke="black" points="1301.31,-63.16 1310.78,-58.42 1300.42,-56.22 1301.31,-63.16"/>
 </g>
-<!-- 3046234776416&#45;&gt;3046234776608 -->
-<g id="edge13" class="edge">
-<title>3046234776416&#45;&gt;3046234776608</title>
-<path fill="none" stroke="black" d="M1141.44,-18C1149.77,-18 1157.95,-18 1165.51,-18"/>
-<polygon fill="black" stroke="black" points="1165.27,-21.5 1175.27,-18 1165.27,-14.5 1165.27,-21.5"/>
+<!-- 2045515999392 -->
+<g id="node3" class="node">
+<title>2045515999392</title>
+<polygon fill="white" stroke="black" points="953.12,-90 790.12,-90 790.12,-54 953.12,-54 953.12,-90"/>
+<text xml:space="preserve" text-anchor="middle" x="871.62" y="-67.72" font-family="Times New Roman,serif" font-size="12.00">browser_saves_F_in_AppData</text>
 </g>
-<!-- 3046234776224&#45;&gt;3046234776704 -->
-<g id="edge11" class="edge">
-<title>3046234776224&#45;&gt;3046234776704</title>
-<path fill="none" stroke="black" d="M749.67,-52.52C761.28,-54.39 774.09,-56.45 786.89,-58.52"/>
-<polygon fill="black" stroke="black" points="786.19,-61.95 796.62,-60.08 787.3,-55.04 786.19,-61.95"/>
+<!-- 2045515999632 -->
+<g id="node16" class="node">
+<title>2045515999632</title>
+<ellipse fill="white" stroke="black" cx="1065.12" cy="-72" rx="76" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="1065.12" y="-67.72" font-family="Times New Roman,serif" font-size="12.00">F_exists_in_AppData</text>
 </g>
-<!-- 3046234776224&#45;&gt;3046234776464 -->
-<g id="edge10" class="edge">
-<title>3046234776224&#45;&gt;3046234776464</title>
-<path fill="none" stroke="black" d="M749.67,-37.48C758.75,-36.02 768.56,-34.44 778.52,-32.83"/>
-<polygon fill="black" stroke="black" points="779,-36.3 788.32,-31.25 777.89,-29.39 779,-36.3"/>
+<!-- 2045515999392&#45;&gt;2045515999632 -->
+<g id="edge2" class="edge">
+<title>2045515999392&#45;&gt;2045515999632</title>
+<path fill="none" stroke="black" d="M953.56,-72C961.38,-72 969.33,-72 977.2,-72"/>
+<polygon fill="black" stroke="black" points="977.14,-75.5 987.14,-72 977.14,-68.5 977.14,-75.5"/>
 </g>
-<!-- 3046234775936 -->
-<g id="node12" class="node">
-<title>3046234775936</title>
-<ellipse fill="white" stroke="black" cx="27" cy="-45" rx="27" ry="18"/>
-<text xml:space="preserve" text-anchor="middle" x="27" y="-40.73" font-family="Times New Roman,serif" font-size="12.00">start</text>
+<!-- 2045515999968 -->
+<g id="node4" class="node">
+<title>2045515999968</title>
+<polygon fill="black" stroke="black" points="1231.13,-36 1177.13,-36 1177.13,0 1231.13,0 1231.13,-36"/>
 </g>
-<!-- 3046234775936&#45;&gt;3046234776800 -->
+<!-- 2045515999968&#45;&gt;2045516000448 -->
+<g id="edge6" class="edge">
+<title>2045515999968&#45;&gt;2045516000448</title>
+<path fill="none" stroke="black" d="M1231.3,-21.36C1249.39,-23.69 1274.83,-26.96 1301.03,-30.33"/>
+<polygon fill="black" stroke="black" points="1300.42,-33.78 1310.78,-31.58 1301.31,-26.84 1300.42,-33.78"/>
+</g>
+<!-- 2045516000928 -->
+<g id="node5" class="node">
+<title>2045516000928</title>
+<polygon fill="black" stroke="black" points="1955.15,-63 1901.15,-63 1901.15,-27 1955.15,-27 1955.15,-63"/>
+</g>
+<!-- 2045515999776 -->
+<g id="node11" class="node">
+<title>2045515999776</title>
+<ellipse fill="white" stroke="black" cx="2018.15" cy="-45" rx="27" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="2018.15" y="-40.73" font-family="Times New Roman,serif" font-size="12.00">end</text>
+</g>
+<!-- 2045516000928&#45;&gt;2045515999776 -->
 <g id="edge16" class="edge">
-<title>3046234775936&#45;&gt;3046234776800</title>
-<path fill="none" stroke="black" d="M54.4,-45C61.89,-45 70.18,-45 78.2,-45"/>
-<polygon fill="black" stroke="black" points="78.1,-48.5 88.1,-45 78.1,-41.5 78.1,-48.5"/>
+<title>2045516000928&#45;&gt;2045515999776</title>
+<path fill="none" stroke="black" d="M1955.55,-45C1963.04,-45 1971.33,-45 1979.35,-45"/>
+<polygon fill="black" stroke="black" points="1979.25,-48.5 1989.25,-45 1979.25,-41.5 1979.25,-48.5"/>
 </g>
-<!-- 3046234776272&#45;&gt;3046234776080 -->
+<!-- 2045515999344 -->
+<g id="node6" class="node">
+<title>2045515999344</title>
+<polygon fill="white" stroke="black" points="613.81,-63 439.56,-63 439.56,-27 613.81,-27 613.81,-63"/>
+<text xml:space="preserve" text-anchor="middle" x="526.69" y="-40.73" font-family="Times New Roman,serif" font-size="12.00">browser_receives_F_from_server</text>
+</g>
+<!-- 2045515999728 -->
+<g id="node14" class="node">
+<title>2045515999728</title>
+<ellipse fill="white" stroke="black" cx="701.97" cy="-45" rx="52.15" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="701.97" y="-40.73" font-family="Times New Roman,serif" font-size="12.00">F_is_received</text>
+</g>
+<!-- 2045515999344&#45;&gt;2045515999728 -->
 <g id="edge1" class="edge">
-<title>3046234776272&#45;&gt;3046234776080</title>
-<path fill="none" stroke="black" d="M403.78,-45C411.9,-45 420.06,-45 428.09,-45"/>
-<polygon fill="black" stroke="black" points="427.84,-48.5 437.84,-45 427.84,-41.5 427.84,-48.5"/>
+<title>2045515999344&#45;&gt;2045515999728</title>
+<path fill="none" stroke="black" d="M614.07,-45C622.27,-45 630.48,-45 638.39,-45"/>
+<polygon fill="black" stroke="black" points="638.23,-48.5 648.23,-45 638.23,-41.5 638.23,-48.5"/>
 </g>
-<!-- 3046234776944&#45;&gt;3046234776512 -->
-<g id="edge4" class="edge">
-<title>3046234776944&#45;&gt;3046234776512</title>
+<!-- 2045516000208 -->
+<g id="node7" class="node">
+<title>2045516000208</title>
+<polygon fill="white" stroke="black" points="944.87,-36 798.37,-36 798.37,0 944.87,0 944.87,-36"/>
+<text xml:space="preserve" text-anchor="middle" x="871.62" y="-13.72" font-family="Times New Roman,serif" font-size="12.00">browser_saves_F_in_Temp</text>
+</g>
+<!-- 2045516000112 -->
+<g id="node15" class="node">
+<title>2045516000112</title>
+<ellipse fill="white" stroke="black" cx="1065.12" cy="-18" rx="65.51" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="1065.12" y="-13.72" font-family="Times New Roman,serif" font-size="12.00">F_exists_in_Temp</text>
+</g>
+<!-- 2045516000208&#45;&gt;2045516000112 -->
+<g id="edge3" class="edge">
+<title>2045516000208&#45;&gt;2045516000112</title>
+<path fill="none" stroke="black" d="M945.29,-18C959.32,-18 974.05,-18 988.18,-18"/>
+<polygon fill="black" stroke="black" points="987.84,-21.5 997.84,-18 987.84,-14.5 987.84,-21.5"/>
+</g>
+<!-- 2045516000400 -->
+<g id="node8" class="node">
+<title>2045516000400</title>
+<polygon fill="black" stroke="black" points="144,-63 90,-63 90,-27 144,-27 144,-63"/>
+</g>
+<!-- 2045515999824 -->
+<g id="node13" class="node">
+<title>2045515999824</title>
+<ellipse fill="white" stroke="black" cx="291.78" cy="-45" rx="111.78" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="291.78" y="-40.73" font-family="Times New Roman,serif" font-size="12.00">Browser_connection_is_activated</text>
+</g>
+<!-- 2045516000400&#45;&gt;2045515999824 -->
+<g id="edge14" class="edge">
+<title>2045516000400&#45;&gt;2045515999824</title>
+<path fill="none" stroke="black" d="M144.24,-45C151.34,-45 159.52,-45 168.31,-45"/>
+<polygon fill="black" stroke="black" points="168.21,-48.5 178.21,-45 168.21,-41.5 168.21,-48.5"/>
+</g>
+<!-- 2045516000448&#45;&gt;2045516000256 -->
+<g id="edge11" class="edge">
+<title>2045516000448&#45;&gt;2045516000256</title>
 <path fill="none" stroke="black" d="M1565.45,-45C1573.67,-45 1581.77,-45 1589.59,-45"/>
 <polygon fill="black" stroke="black" points="1589.31,-48.5 1599.31,-45 1589.31,-41.5 1589.31,-48.5"/>
 </g>
-<!-- 3046234776656&#45;&gt;3046234777136 -->
+<!-- 2045516000736&#45;&gt;2045516000928 -->
 <g id="edge15" class="edge">
-<title>3046234776656&#45;&gt;3046234777136</title>
-<path fill="none" stroke="black" d="M1131.02,-72C1142.78,-72 1154.68,-72 1165.33,-72"/>
-<polygon fill="black" stroke="black" points="1165.24,-75.5 1175.24,-72 1165.24,-68.5 1165.24,-75.5"/>
-</g>
-<!-- 3046234777328&#45;&gt;3046234777568 -->
-<g id="edge8" class="edge">
-<title>3046234777328&#45;&gt;3046234777568</title>
+<title>2045516000736&#45;&gt;2045516000928</title>
 <path fill="none" stroke="black" d="M1865.46,-45C1873.43,-45 1881.69,-45 1889.46,-45"/>
 <polygon fill="black" stroke="black" points="1889.28,-48.5 1899.28,-45 1889.28,-41.5 1889.28,-48.5"/>
+</g>
+<!-- 2045515995552 -->
+<g id="node12" class="node">
+<title>2045515995552</title>
+<ellipse fill="white" stroke="black" cx="27" cy="-45" rx="27" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-40.73" font-family="Times New Roman,serif" font-size="12.00">start</text>
+</g>
+<!-- 2045515995552&#45;&gt;2045516000400 -->
+<g id="edge7" class="edge">
+<title>2045515995552&#45;&gt;2045516000400</title>
+<path fill="none" stroke="black" d="M54.4,-45C61.89,-45 70.18,-45 78.2,-45"/>
+<polygon fill="black" stroke="black" points="78.1,-48.5 88.1,-45 78.1,-41.5 78.1,-48.5"/>
+</g>
+<!-- 2045515999824&#45;&gt;2045515999344 -->
+<g id="edge8" class="edge">
+<title>2045515999824&#45;&gt;2045515999344</title>
+<path fill="none" stroke="black" d="M403.78,-45C411.9,-45 420.06,-45 428.09,-45"/>
+<polygon fill="black" stroke="black" points="427.84,-48.5 437.84,-45 427.84,-41.5 427.84,-48.5"/>
+</g>
+<!-- 2045515999728&#45;&gt;2045515999392 -->
+<g id="edge10" class="edge">
+<title>2045515999728&#45;&gt;2045515999392</title>
+<path fill="none" stroke="black" d="M749.67,-52.52C758.75,-53.98 768.56,-55.56 778.52,-57.17"/>
+<polygon fill="black" stroke="black" points="777.89,-60.61 788.32,-58.75 779,-53.7 777.89,-60.61"/>
+</g>
+<!-- 2045515999728&#45;&gt;2045516000208 -->
+<g id="edge9" class="edge">
+<title>2045515999728&#45;&gt;2045516000208</title>
+<path fill="none" stroke="black" d="M749.67,-37.48C761.28,-35.61 774.09,-33.55 786.89,-31.48"/>
+<polygon fill="black" stroke="black" points="787.3,-34.96 796.62,-29.92 786.19,-28.05 787.3,-34.96"/>
+</g>
+<!-- 2045516000112&#45;&gt;2045515999968 -->
+<g id="edge5" class="edge">
+<title>2045516000112&#45;&gt;2045515999968</title>
+<path fill="none" stroke="black" d="M1131.02,-18C1142.78,-18 1154.68,-18 1165.33,-18"/>
+<polygon fill="black" stroke="black" points="1165.24,-21.5 1175.24,-18 1165.24,-14.5 1165.24,-21.5"/>
+</g>
+<!-- 2045515999632&#45;&gt;2045516000160 -->
+<g id="edge12" class="edge">
+<title>2045515999632&#45;&gt;2045516000160</title>
+<path fill="none" stroke="black" d="M1141.44,-72C1149.77,-72 1157.95,-72 1165.51,-72"/>
+<polygon fill="black" stroke="black" points="1165.27,-75.5 1175.27,-72 1165.27,-68.5 1165.27,-75.5"/>
 </g>
 </g>
 </svg>

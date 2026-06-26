@@ -29,17 +29,26 @@ class Translator:
         if listener.errors:
             logger.warning("skipped {} — {} syntax error(s)", input_path, len(listener.errors))
             return None
+        
+        tree_str = tree.toStringTree(recog=parser)
+        
+        # name parse tree with file's name
+        write_path = Path("data/parse_trees") / f"parse_tree_{input_path.split("/")[-1].split('\\')[-1]}"
+        write_artifact(tree_str, write_path)
+        logger.info("parse tree stored in: {}", write_path)
+
         return tree
 
     def create_modifier(self, modifier) -> Modifier:
-        if modifier[0] == 'location':
-            mod_type = ModifierType.LOCATION
-        elif modifier[0] == 'destination':
-            mod_type = ModifierType.DESTINATION
-        elif modifier[0] == 'source':
-            mod_type = ModifierType.SOURCE
-        elif modifier[0] == 'trigger':
-            mod_type = ModifierType.TRIGGER
+
+        if modifier is not None:
+            try: 
+                mod_type = ModifierType[modifier[0].upper()]
+            except ValueError:
+                logger.warning("unknown modifier {!r}, treating as None", modifier[0].upper())
+                mod_type = None
+        else: 
+            mod_type = None
         
         return Modifier(
             type = mod_type,
@@ -173,7 +182,7 @@ class Translator:
             return None
 
         return Repetition(
-            frequency = repetition_item[0],
+            occurrences = int(repetition_item[0]),
             time_value = int(repetition_item[1]) if repetition_item[1] is not None else None,
             time_unit = TIME_UNIT_MAP.get(repetition_item[2], None),
         )
@@ -266,7 +275,7 @@ class Translator:
         # Convert the parsed data into a TechniqueModel
         technique_model = self.create_technique_model(raw_strings)
         # Save TechniqueModel
-        out = Path("data/parsed_cnl_models") / f"{technique_model.id.replace(".", "_")}_cnl_{technique_model.name}.json"
+        out = Path("data/technique_models") / f"cnl_{technique_model.id.replace(".", "_")}_{technique_model.name}.json"
         write_artifact(technique_model, out)
         
         logger.info("translated {}: {} assets, {} events. Saved in {}",

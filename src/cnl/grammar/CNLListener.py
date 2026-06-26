@@ -395,15 +395,6 @@ class CNLListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by CNLParser#givenItem.
-    def enterGivenItem(self, ctx:CNLParser.GivenItemContext):
-        pass
-
-    # Exit a parse tree produced by CNLParser#givenItem.
-    def exitGivenItem(self, ctx:CNLParser.GivenItemContext):
-        pass
-
-
     # Enter a parse tree produced by CNLParser#eventRef.
     def enterEventRef(self, ctx:CNLParser.EventRefContext):
         pass

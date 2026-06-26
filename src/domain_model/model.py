@@ -29,7 +29,7 @@ class Action:
 
 @dataclass
 class Repetition:
-    frequency: str = None
+    occurrences: int = None
     time_value: int = None
     time_unit: str = None
 
