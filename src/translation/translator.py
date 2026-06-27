@@ -108,14 +108,14 @@ class Translator:
                     elif clean_name.lower() == "false":
                         clean_name = False
                     else:
-                        logger.warning("Expected bool for {!r} on asset {!r}, got {!r}", k, name, clean_name)
+                        logger.error("Expected bool for {!r} on asset {!r}, got {!r}", k, name, clean_name)
                         clean_name = None
                 
                 if t is int:
                     try:
                         clean_name = int(clean_name)
                     except ValueError:
-                        logger.warning("Expected int for {!r} on asset {!r}, got {!r}", k, name, clean_name)
+                        logger.error("Expected int for {!r} on asset {!r}, got {!r}", k, name, clean_name)
                         clean_name = None
                 
                 extra[k] = clean_name
@@ -187,7 +187,7 @@ class Translator:
             time_unit = TIME_UNIT_MAP.get(repetition_item[2], None),
         )
         
-    def create_time_period(self, time_period_item) -> TimePeriod | None:
+    def create_time_period(self, time_period_item) -> Timing | None:
         if time_period_item is None:
             return None
         
@@ -197,7 +197,7 @@ class Translator:
             logger.warning("unknown time period preposition {!r}", time_period_item[0])
             preposition = None
         
-        return TimePeriod(preposition=preposition, time_period=time_period_item[1])
+        return Timing(preposition=preposition, time_period=time_period_item[1])
 
     def get_logical_operator(self, clause: dict) -> LogicalOperatorType | None:
         op = clause.get('operator', None)
@@ -231,7 +231,7 @@ class Translator:
             precondition_operator = precondition_operator,
             postconditions = postconditions,
             postcondition_operator = postcondition_operator,
-            time_period = time_period,
+            timing = time_period,
             repetition = repetition
 
         )

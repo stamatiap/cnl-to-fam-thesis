@@ -19,7 +19,7 @@
             "__class__": "Process",
             "asset_type": "process",
             "name": "browser",
-            "asset_id": "135a0f31-2c70-4da3-bb1f-6eb94d3640ba",
+            "asset_id": "085dc8fd-2dc9-4937-85bf-a9b24ff61018",
             "signed": null,
             "command_line": null,
             "parent_process": null
@@ -28,7 +28,7 @@
             "__class__": "Endpoint",
             "asset_type": "endpoint",
             "name": "server",
-            "asset_id": "915db90d-464b-42b3-a4d4-aeabe28d15e6",
+            "asset_id": "edfddde9-0192-4c1b-b311-02001276f1f3",
             "port": null,
             "protocol": null,
             "ip_address": null
@@ -37,12 +37,12 @@
             "__class__": "NetworkConnection",
             "asset_type": "network_connection",
             "name": "Browser_connection",
-            "asset_id": "ac2f4a90-9f5f-419b-a79d-15d83dd8743c",
+            "asset_id": "cdf4652d-327c-427e-8f0c-29aff5e6ec48",
             "destination": {
                 "__class__": "Endpoint",
                 "asset_type": "endpoint",
                 "name": "server",
-                "asset_id": "915db90d-464b-42b3-a4d4-aeabe28d15e6",
+                "asset_id": "edfddde9-0192-4c1b-b311-02001276f1f3",
                 "port": null,
                 "protocol": null,
                 "ip_address": null
@@ -51,7 +51,7 @@
                 "__class__": "Process",
                 "asset_type": "process",
                 "name": "browser",
-                "asset_id": "135a0f31-2c70-4da3-bb1f-6eb94d3640ba",
+                "asset_id": "085dc8fd-2dc9-4937-85bf-a9b24ff61018",
                 "signed": null,
                 "command_line": null,
                 "parent_process": null
@@ -62,14 +62,14 @@
             "__class__": "Process",
             "asset_type": "process",
             "name": "local_process",
-            "asset_id": "6cd2bf4c-2a52-45d4-b8cc-36585c29a6a7",
+            "asset_id": "e5c8ab62-9b5c-4bec-adfb-f5751c9939d7",
             "signed": null,
             "command_line": null,
             "parent_process": {
                 "__class__": "Process",
                 "asset_type": "process",
                 "name": "browser",
-                "asset_id": "135a0f31-2c70-4da3-bb1f-6eb94d3640ba",
+                "asset_id": "085dc8fd-2dc9-4937-85bf-a9b24ff61018",
                 "signed": null,
                 "command_line": null,
                 "parent_process": null
@@ -79,7 +79,7 @@
             "__class__": "File",
             "asset_type": "file",
             "name": "F",
-            "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
+            "asset_id": "6be3e6a1-5107-48db-a96d-5b5f18501209",
             "path": null,
             "signed": null
         },
@@ -87,14 +87,14 @@
             "__class__": "Directory",
             "asset_type": "directory",
             "name": "Temp",
-            "asset_id": "25d7db98-aaab-4157-920f-fa87458c51ff",
+            "asset_id": "c84d7fa0-2e06-4e97-9912-6ff237232f0e",
             "path": "/temp"
         },
         "AppData": {
             "__class__": "Directory",
             "asset_type": "directory",
             "name": "AppData",
-            "asset_id": "619b8b1d-b305-40ae-9d74-f9ec94ffeb70",
+            "asset_id": "86674ac9-5ebf-40d5-a3c2-70711c1d7976",
             "path": "/%AppData%/"
         }
     },
@@ -110,7 +110,7 @@
                     "__class__": "Process",
                     "asset_type": "process",
                     "name": "browser",
-                    "asset_id": "135a0f31-2c70-4da3-bb1f-6eb94d3640ba",
+                    "asset_id": "085dc8fd-2dc9-4937-85bf-a9b24ff61018",
                     "signed": null,
                     "command_line": null,
                     "parent_process": null
@@ -119,7 +119,7 @@
                     "__class__": "File",
                     "asset_type": "file",
                     "name": "F",
-                    "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
+                    "asset_id": "6be3e6a1-5107-48db-a96d-5b5f18501209",
                     "path": null,
                     "signed": null
                 },
@@ -135,7 +135,7 @@
                             "__class__": "Endpoint",
                             "asset_type": "endpoint",
                             "name": "server",
-                            "asset_id": "915db90d-464b-42b3-a4d4-aeabe28d15e6",
+                            "asset_id": "edfddde9-0192-4c1b-b311-02001276f1f3",
                             "port": null,
                             "protocol": null,
                             "ip_address": null
@@ -150,12 +150,12 @@
                         "__class__": "NetworkConnection",
                         "asset_type": "network_connection",
                         "name": "Browser_connection",
-                        "asset_id": "ac2f4a90-9f5f-419b-a79d-15d83dd8743c",
+                        "asset_id": "cdf4652d-327c-427e-8f0c-29aff5e6ec48",
                         "destination": {
                             "__class__": "Endpoint",
                             "asset_type": "endpoint",
                             "name": "server",
-                            "asset_id": "915db90d-464b-42b3-a4d4-aeabe28d15e6",
+                            "asset_id": "edfddde9-0192-4c1b-b311-02001276f1f3",
                             "port": null,
                             "protocol": null,
                             "ip_address": null
@@ -164,7 +164,7 @@
                             "__class__": "Process",
                             "asset_type": "process",
                             "name": "browser",
-                            "asset_id": "135a0f31-2c70-4da3-bb1f-6eb94d3640ba",
+                            "asset_id": "085dc8fd-2dc9-4937-85bf-a9b24ff61018",
                             "signed": null,
                             "command_line": null,
                             "parent_process": null
@@ -183,7 +183,7 @@
                         "__class__": "File",
                         "asset_type": "file",
                         "name": "F",
-                        "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
+                        "asset_id": "6be3e6a1-5107-48db-a96d-5b5f18501209",
                         "path": null,
                         "signed": null
                     },
@@ -197,7 +197,7 @@
                 "value": "AND"
             },
             "repetition": null,
-            "time_period": null
+            "timing": null
         },
         {
             "__class__": "Event",
@@ -210,7 +210,7 @@
                     "__class__": "Process",
                     "asset_type": "process",
                     "name": "browser",
-                    "asset_id": "135a0f31-2c70-4da3-bb1f-6eb94d3640ba",
+                    "asset_id": "085dc8fd-2dc9-4937-85bf-a9b24ff61018",
                     "signed": null,
                     "command_line": null,
                     "parent_process": null
@@ -219,7 +219,7 @@
                     "__class__": "File",
                     "asset_type": "file",
                     "name": "F",
-                    "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
+                    "asset_id": "6be3e6a1-5107-48db-a96d-5b5f18501209",
                     "path": null,
                     "signed": null
                 },
@@ -235,7 +235,7 @@
                             "__class__": "Directory",
                             "asset_type": "directory",
                             "name": "AppData",
-                            "asset_id": "619b8b1d-b305-40ae-9d74-f9ec94ffeb70",
+                            "asset_id": "86674ac9-5ebf-40d5-a3c2-70711c1d7976",
                             "path": "/%AppData%/"
                         }
                     }
@@ -248,7 +248,7 @@
                         "__class__": "File",
                         "asset_type": "file",
                         "name": "F",
-                        "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
+                        "asset_id": "6be3e6a1-5107-48db-a96d-5b5f18501209",
                         "path": null,
                         "signed": null
                     },
@@ -264,7 +264,7 @@
                         "__class__": "File",
                         "asset_type": "file",
                         "name": "F",
-                        "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
+                        "asset_id": "6be3e6a1-5107-48db-a96d-5b5f18501209",
                         "path": null,
                         "signed": null
                     },
@@ -281,7 +281,7 @@
                                 "__class__": "Directory",
                                 "asset_type": "directory",
                                 "name": "AppData",
-                                "asset_id": "619b8b1d-b305-40ae-9d74-f9ec94ffeb70",
+                                "asset_id": "86674ac9-5ebf-40d5-a3c2-70711c1d7976",
                                 "path": "/%AppData%/"
                             }
                         }
@@ -294,7 +294,7 @@
                 "value": "AND"
             },
             "repetition": null,
-            "time_period": null
+            "timing": null
         },
         {
             "__class__": "Event",
@@ -307,7 +307,7 @@
                     "__class__": "Process",
                     "asset_type": "process",
                     "name": "browser",
-                    "asset_id": "135a0f31-2c70-4da3-bb1f-6eb94d3640ba",
+                    "asset_id": "085dc8fd-2dc9-4937-85bf-a9b24ff61018",
                     "signed": null,
                     "command_line": null,
                     "parent_process": null
@@ -316,7 +316,7 @@
                     "__class__": "File",
                     "asset_type": "file",
                     "name": "F",
-                    "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
+                    "asset_id": "6be3e6a1-5107-48db-a96d-5b5f18501209",
                     "path": null,
                     "signed": null
                 },
@@ -332,7 +332,7 @@
                             "__class__": "Directory",
                             "asset_type": "directory",
                             "name": "Temp",
-                            "asset_id": "25d7db98-aaab-4157-920f-fa87458c51ff",
+                            "asset_id": "c84d7fa0-2e06-4e97-9912-6ff237232f0e",
                             "path": "/temp"
                         }
                     }
@@ -345,7 +345,7 @@
                         "__class__": "File",
                         "asset_type": "file",
                         "name": "F",
-                        "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
+                        "asset_id": "6be3e6a1-5107-48db-a96d-5b5f18501209",
                         "path": null,
                         "signed": null
                     },
@@ -361,7 +361,7 @@
                         "__class__": "File",
                         "asset_type": "file",
                         "name": "F",
-                        "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
+                        "asset_id": "6be3e6a1-5107-48db-a96d-5b5f18501209",
                         "path": null,
                         "signed": null
                     },
@@ -378,7 +378,7 @@
                                 "__class__": "Directory",
                                 "asset_type": "directory",
                                 "name": "Temp",
-                                "asset_id": "25d7db98-aaab-4157-920f-fa87458c51ff",
+                                "asset_id": "c84d7fa0-2e06-4e97-9912-6ff237232f0e",
                                 "path": "/temp"
                             }
                         }
@@ -391,7 +391,7 @@
                 "value": "AND"
             },
             "repetition": null,
-            "time_period": null
+            "timing": null
         },
         {
             "__class__": "Event",
@@ -404,14 +404,14 @@
                     "__class__": "Process",
                     "asset_type": "process",
                     "name": "local_process",
-                    "asset_id": "6cd2bf4c-2a52-45d4-b8cc-36585c29a6a7",
+                    "asset_id": "e5c8ab62-9b5c-4bec-adfb-f5751c9939d7",
                     "signed": null,
                     "command_line": null,
                     "parent_process": {
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "browser",
-                        "asset_id": "135a0f31-2c70-4da3-bb1f-6eb94d3640ba",
+                        "asset_id": "085dc8fd-2dc9-4937-85bf-a9b24ff61018",
                         "signed": null,
                         "command_line": null,
                         "parent_process": null
@@ -421,7 +421,7 @@
                     "__class__": "File",
                     "asset_type": "file",
                     "name": "F",
-                    "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
+                    "asset_id": "6be3e6a1-5107-48db-a96d-5b5f18501209",
                     "path": null,
                     "signed": null
                 },
@@ -434,7 +434,7 @@
                         "__class__": "File",
                         "asset_type": "file",
                         "name": "F",
-                        "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
+                        "asset_id": "6be3e6a1-5107-48db-a96d-5b5f18501209",
                         "path": null,
                         "signed": null
                     },
@@ -451,7 +451,7 @@
                                 "__class__": "Directory",
                                 "asset_type": "directory",
                                 "name": "AppData",
-                                "asset_id": "619b8b1d-b305-40ae-9d74-f9ec94ffeb70",
+                                "asset_id": "86674ac9-5ebf-40d5-a3c2-70711c1d7976",
                                 "path": "/%AppData%/"
                             }
                         }
@@ -463,7 +463,7 @@
                         "__class__": "File",
                         "asset_type": "file",
                         "name": "F",
-                        "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
+                        "asset_id": "6be3e6a1-5107-48db-a96d-5b5f18501209",
                         "path": null,
                         "signed": null
                     },
@@ -480,7 +480,7 @@
                                 "__class__": "Directory",
                                 "asset_type": "directory",
                                 "name": "Temp",
-                                "asset_id": "25d7db98-aaab-4157-920f-fa87458c51ff",
+                                "asset_id": "c84d7fa0-2e06-4e97-9912-6ff237232f0e",
                                 "path": "/temp"
                             }
                         }
@@ -499,7 +499,7 @@
                         "__class__": "File",
                         "asset_type": "file",
                         "name": "F",
-                        "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
+                        "asset_id": "6be3e6a1-5107-48db-a96d-5b5f18501209",
                         "path": null,
                         "signed": null
                     },
@@ -513,7 +513,7 @@
                 "value": "AND"
             },
             "repetition": null,
-            "time_period": null
+            "timing": null
         }
     ],
     "completion": {
@@ -530,14 +530,14 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "local_process",
-                        "asset_id": "6cd2bf4c-2a52-45d4-b8cc-36585c29a6a7",
+                        "asset_id": "e5c8ab62-9b5c-4bec-adfb-f5751c9939d7",
                         "signed": null,
                         "command_line": null,
                         "parent_process": {
                             "__class__": "Process",
                             "asset_type": "process",
                             "name": "browser",
-                            "asset_id": "135a0f31-2c70-4da3-bb1f-6eb94d3640ba",
+                            "asset_id": "085dc8fd-2dc9-4937-85bf-a9b24ff61018",
                             "signed": null,
                             "command_line": null,
                             "parent_process": null
@@ -547,7 +547,7 @@
                         "__class__": "File",
                         "asset_type": "file",
                         "name": "F",
-                        "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
+                        "asset_id": "6be3e6a1-5107-48db-a96d-5b5f18501209",
                         "path": null,
                         "signed": null
                     },
@@ -560,7 +560,7 @@
                             "__class__": "File",
                             "asset_type": "file",
                             "name": "F",
-                            "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
+                            "asset_id": "6be3e6a1-5107-48db-a96d-5b5f18501209",
                             "path": null,
                             "signed": null
                         },
@@ -577,7 +577,7 @@
                                     "__class__": "Directory",
                                     "asset_type": "directory",
                                     "name": "AppData",
-                                    "asset_id": "619b8b1d-b305-40ae-9d74-f9ec94ffeb70",
+                                    "asset_id": "86674ac9-5ebf-40d5-a3c2-70711c1d7976",
                                     "path": "/%AppData%/"
                                 }
                             }
@@ -589,7 +589,7 @@
                             "__class__": "File",
                             "asset_type": "file",
                             "name": "F",
-                            "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
+                            "asset_id": "6be3e6a1-5107-48db-a96d-5b5f18501209",
                             "path": null,
                             "signed": null
                         },
@@ -606,7 +606,7 @@
                                     "__class__": "Directory",
                                     "asset_type": "directory",
                                     "name": "Temp",
-                                    "asset_id": "25d7db98-aaab-4157-920f-fa87458c51ff",
+                                    "asset_id": "c84d7fa0-2e06-4e97-9912-6ff237232f0e",
                                     "path": "/temp"
                                 }
                             }
@@ -625,7 +625,7 @@
                             "__class__": "File",
                             "asset_type": "file",
                             "name": "F",
-                            "asset_id": "0cb5e205-30de-4ec3-b54f-c516b839112a",
+                            "asset_id": "6be3e6a1-5107-48db-a96d-5b5f18501209",
                             "path": null,
                             "signed": null
                         },
@@ -639,7 +639,7 @@
                     "value": "AND"
                 },
                 "repetition": null,
-                "time_period": null
+                "timing": null
             }
         ],
         "operator": null
