@@ -146,9 +146,9 @@ completion = Completion(
 
 content_injection_model = TechniqueModel(
         id= "T1659",
-        name= "Content Injection",
+        name= "Content_Injection",
         assets=assets,
-        tactics= [Tactic(id="TA0001", name="Initial Access"), Tactic(id="TA0011", name="Command and Control")],
+        tactics= [Tactic(id="TA0001", name="Initial_Access"), Tactic(id="TA0011", name="Command_and_Control")],
         events= events,
         completion= completion
     )
