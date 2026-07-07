@@ -5,19 +5,9 @@
       <text>Content_Injection</text>
     </name>
     <page id="n0">
-      <place id="F_exists_in_AppData">
+      <place id="F_is_received">
         <name>
-          <text>F_exists_in_AppData</text>
-        </name>
-      </place>
-      <place id="end">
-        <name>
-          <text>end</text>
-        </name>
-      </place>
-      <place id="Browser_connection_is_activated">
-        <name>
-          <text>Browser_connection_is_activated</text>
+          <text>F_is_received</text>
         </name>
       </place>
       <place id="F_exists_in_Temp">
@@ -30,14 +20,14 @@
           <text>xor_F_exists_in_AppData_F_exists_in_Temp</text>
         </name>
       </place>
-      <place id="F_is_received">
-        <name>
-          <text>F_is_received</text>
-        </name>
-      </place>
       <place id="F_is_active">
         <name>
           <text>F_is_active</text>
+        </name>
+      </place>
+      <place id="end">
+        <name>
+          <text>end</text>
         </name>
       </place>
       <place id="start">
@@ -45,6 +35,50 @@
           <text>start</text>
         </name>
       </place>
+      <place id="Browser_connection_is_activated">
+        <name>
+          <text>Browser_connection_is_activated</text>
+        </name>
+      </place>
+      <place id="F_exists_in_AppData">
+        <name>
+          <text>F_exists_in_AppData</text>
+        </name>
+      </place>
+      <transition id="local_process_executes_F4">
+        <name>
+          <text>local_process_executes_F</text>
+        </name>
+      </transition>
+      <transition id="t_F_exists_in_AppData">
+        <name>
+          <text>t_F_exists_in_AppData</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="3225c587-12c0-43b0-9d0d-63a2a428e8df"/>
+      </transition>
+      <transition id="browser_saves_F_in_AppData2">
+        <name>
+          <text>browser_saves_F_in_AppData</text>
+        </name>
+      </transition>
+      <transition id="t_F_exists_in_Temp">
+        <name>
+          <text>t_F_exists_in_Temp</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="2e39127b-c5a6-4d6a-93ed-d3b1809e165e"/>
+      </transition>
+      <transition id="t_detect_and">
+        <name>
+          <text>t_detect_and</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="591afd82-d0a3-42c2-9a9b-8e839bd9e173"/>
+      </transition>
+      <transition id="t_start_Browser_connection_is_activated">
+        <name>
+          <text>t_start_Browser_connection_is_activated</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="8ae88143-ffbe-48a7-9bf4-6a6d610f3225"/>
+      </transition>
       <transition id="browser_receives_F_from_server1">
         <name>
           <text>browser_receives_F_from_server</text>
@@ -55,56 +89,22 @@
           <text>browser_saves_F_in_Temp</text>
         </name>
       </transition>
-      <transition id="t_F_exists_in_AppData">
-        <name>
-          <text>t_F_exists_in_AppData</text>
-        </name>
-        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="d8edf9e5-6443-481e-addb-b5d44314fcbc"/>
-      </transition>
-      <transition id="browser_saves_F_in_AppData2">
-        <name>
-          <text>browser_saves_F_in_AppData</text>
-        </name>
-      </transition>
-      <transition id="local_process_executes_F4">
-        <name>
-          <text>local_process_executes_F</text>
-        </name>
-      </transition>
-      <transition id="t_F_exists_in_Temp">
-        <name>
-          <text>t_F_exists_in_Temp</text>
-        </name>
-        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="c6eeff85-e8a0-450b-833f-03b365292d62"/>
-      </transition>
-      <transition id="t_start_Browser_connection_is_activated">
-        <name>
-          <text>t_start_Browser_connection_is_activated</text>
-        </name>
-        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="14fc8471-c65d-42ed-b1fe-c5e34b142423"/>
-      </transition>
-      <transition id="t_detect_and">
-        <name>
-          <text>t_detect_and</text>
-        </name>
-        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="223b1fc3-73ce-469a-b720-266712ed57f2"/>
-      </transition>
-      <arc id="1618167426240" source="browser_saves_F_in_AppData2" target="F_exists_in_AppData"/>
-      <arc id="1618167426528" source="F_is_received" target="browser_saves_F_in_Temp3"/>
-      <arc id="1618167426432" source="F_is_received" target="browser_saves_F_in_AppData2"/>
-      <arc id="1618167426816" source="xor_F_exists_in_AppData_F_exists_in_Temp" target="local_process_executes_F4"/>
-      <arc id="1618167426912" source="F_exists_in_AppData" target="t_F_exists_in_AppData"/>
-      <arc id="1618167426720" source="F_exists_in_Temp" target="t_F_exists_in_Temp"/>
-      <arc id="1618167427104" source="t_F_exists_in_Temp" target="xor_F_exists_in_AppData_F_exists_in_Temp"/>
-      <arc id="1618167427200" source="local_process_executes_F4" target="F_is_active"/>
-      <arc id="1618167427008" source="t_start_Browser_connection_is_activated" target="Browser_connection_is_activated"/>
-      <arc id="1618167427488" source="F_is_active" target="t_detect_and"/>
-      <arc id="1618167425712" source="Browser_connection_is_activated" target="browser_receives_F_from_server1"/>
-      <arc id="1618167426000" source="browser_receives_F_from_server1" target="F_is_received"/>
-      <arc id="1618167426480" source="browser_saves_F_in_Temp3" target="F_exists_in_Temp"/>
-      <arc id="1618167426960" source="t_F_exists_in_AppData" target="xor_F_exists_in_AppData_F_exists_in_Temp"/>
-      <arc id="1618167427248" source="start" target="t_start_Browser_connection_is_activated"/>
-      <arc id="1618167427056" source="t_detect_and" target="end"/>
+      <arc id="2247380413248" source="browser_receives_F_from_server1" target="F_is_received"/>
+      <arc id="2247380413536" source="browser_saves_F_in_AppData2" target="F_exists_in_AppData"/>
+      <arc id="2247380414016" source="browser_saves_F_in_Temp3" target="F_exists_in_Temp"/>
+      <arc id="2247380414496" source="t_F_exists_in_AppData" target="xor_F_exists_in_AppData_F_exists_in_Temp"/>
+      <arc id="2247380413824" source="t_detect_and" target="end"/>
+      <arc id="2247380414976" source="t_start_Browser_connection_is_activated" target="Browser_connection_is_activated"/>
+      <arc id="2247379004848" source="Browser_connection_is_activated" target="browser_receives_F_from_server1"/>
+      <arc id="2247380413968" source="F_is_received" target="browser_saves_F_in_AppData2"/>
+      <arc id="2247380414064" source="F_is_received" target="browser_saves_F_in_Temp3"/>
+      <arc id="2247380414352" source="xor_F_exists_in_AppData_F_exists_in_Temp" target="local_process_executes_F4"/>
+      <arc id="2247380414448" source="F_exists_in_AppData" target="t_F_exists_in_AppData"/>
+      <arc id="2247380414256" source="F_exists_in_Temp" target="t_F_exists_in_Temp"/>
+      <arc id="2247380414640" source="t_F_exists_in_Temp" target="xor_F_exists_in_AppData_F_exists_in_Temp"/>
+      <arc id="2247380414736" source="local_process_executes_F4" target="F_is_active"/>
+      <arc id="2247380414544" source="F_is_active" target="t_detect_and"/>
+      <arc id="2247380414928" source="start" target="t_start_Browser_connection_is_activated"/>
     </page>
   </net>
 </pnml>
