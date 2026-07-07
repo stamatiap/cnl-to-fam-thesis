@@ -31,12 +31,13 @@ class PetriNetBuilder:
 
         # create final place
         final_place = self._get_or_create_place("end") # synthetic end place
-        start_place = self._add_start_place(model) # synthetic start place
 
         # connect final transitions based on completion block
         if model.completion:
             self._add_completion(model.completion, final_place)
 
+        start_place = self._add_start_place(model) # synthetic start place
+        
         # initial marking
         initial_marking = Marking()
 
@@ -52,16 +53,9 @@ class PetriNetBuilder:
         return self.net, initial_marking, final_marking
     
     def _identify_entry_place_names(self, model: TechniqueModel) -> set[str]:
-        entry_names = set()
-        seen_post = set()
-        for event in model.events:
-            for cond in event.preconditions:
-                name = self._get_place_name(cond)
-                if name not in seen_post:
-                    entry_names.add(name)
-            for cond in event.postconditions:
-                seen_post.add(self._get_place_name(cond))
-        return entry_names
+        return {p.name for p in self.net.places
+            if len(p.in_arcs) == 0}
+
         
     def _add_start_place(self, model: TechniqueModel) -> PetriNet.Place:
         entry_names = self._identify_entry_place_names(model)
