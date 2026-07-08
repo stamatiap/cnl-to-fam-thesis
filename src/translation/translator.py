@@ -272,6 +272,9 @@ class Translator:
         visitor = Visitor()
         raw_strings = visitor.visitAttack(parsed_data)
         
+        out = Path("data/raw_string_dictionaries") / f"{raw_strings.get('technique_id')}_{raw_strings.get('technique_name')}_dict.json"
+        write_artifact(raw_strings, out)
+        
         # Convert the parsed data into a TechniqueModel
         technique_model = self.create_technique_model(raw_strings)
         # Save TechniqueModel
