@@ -4,7 +4,8 @@ from src.domain_model.enums import *
 
 assets = {"at_exe": Process(
                 asset_type = "process",
-                name = "at.exe"
+                name = "at_exe",
+                command_line = "at.exe"
             ),
             "WMI_Win32_ScheduledJob": Process(
                 asset_type = "process",

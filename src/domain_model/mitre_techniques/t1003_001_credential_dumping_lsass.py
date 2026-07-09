@@ -10,8 +10,7 @@ assets = {"lsass": Process(
             ),
             "attacker_process": Process(
                 asset_type = "process",
-                name = "attacker_process",
-                signed = False
+                name = "attacker_process"
             ),
             "lsass_handle": Handle(
                 asset_type = "handle",

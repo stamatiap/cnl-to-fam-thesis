@@ -7,18 +7,16 @@ assets = {"accountA": Account(
                 name = "accountA"
             ),
             "authentication": Process(
-                asset_type = "authentication",
+                asset_type = "process",
                 name = "authentication_process"
             ),
             "correct_credentials": Message(
-                asset_type = "credentials",
-                name = "CorrectCredentials",
-                data = "guess_correct_password"
+                asset_type = "message",
+                name = "CorrectCredentials"
             ),
             "incorrect_credentials": Message(
-                asset_type = "credentials",
-                name = "IncorrectCredentials",
-                data = "guess_random_password"
+                asset_type = "message",
+                name = "IncorrectCredentials"
             ),
             "user": Session(
                 asset_type = "session",
