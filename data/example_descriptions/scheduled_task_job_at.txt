@@ -2,15 +2,15 @@ Tactics: TA0002 Execution, TA0003 Persistence, TA0004 Privilege_Escalation
 Technique: T1053.002 Scheduled_Task_Job_At
 
 Background
-Given process as at_exe
-And process as Win32_ScheduledJob
+Given process as at_exe with command_line = "at.exe"
+And process as WMI_Win32_ScheduledJob
 And process as AnomalousScheduledTask
 And process as svchost_exe with command_line = "svchost.exe"
 And process as taskeng_exe with command_line = "taskeng.exe"
 
 Event 1
-Given Win32_ScheduledJob is activated
-When Win32_ScheduledJob creates AnomalousScheduledTask
+Given WMI_Win32_ScheduledJob is activated
+When WMI_Win32_ScheduledJob creates AnomalousScheduledTask
 Then AnomalousScheduledTask is created
 
 Event 2
