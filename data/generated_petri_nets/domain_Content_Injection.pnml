@@ -10,19 +10,14 @@
           <text>communication_connection_active</text>
         </name>
       </place>
+      <place id="PayloadFile_exists_in_AppData">
+        <name>
+          <text>PayloadFile_exists_in_AppData</text>
+        </name>
+      </place>
       <place id="PayloadFile_received">
         <name>
           <text>PayloadFile_received</text>
-        </name>
-      </place>
-      <place id="end">
-        <name>
-          <text>end</text>
-        </name>
-      </place>
-      <place id="xor_PayloadFile_exists_in_AppData_PayloadFile_exists_in_Temp">
-        <name>
-          <text>xor_PayloadFile_exists_in_AppData_PayloadFile_exists_in_Temp</text>
         </name>
       </place>
       <place id="PayloadFile_exists_in_Temp">
@@ -30,9 +25,9 @@
           <text>PayloadFile_exists_in_Temp</text>
         </name>
       </place>
-      <place id="PayloadFile_exists_in_AppData">
+      <place id="xor_PayloadFile_exists_in_AppData_PayloadFile_exists_in_Temp">
         <name>
-          <text>PayloadFile_exists_in_AppData</text>
+          <text>xor_PayloadFile_exists_in_AppData_PayloadFile_exists_in_Temp</text>
         </name>
       </place>
       <place id="PayloadFile_active">
@@ -40,71 +35,76 @@
           <text>PayloadFile_active</text>
         </name>
       </place>
+      <place id="end">
+        <name>
+          <text>end</text>
+        </name>
+      </place>
       <place id="start">
         <name>
           <text>start</text>
         </name>
       </place>
+      <transition id="Browser_receives_PayloadFile_from_some_server1">
+        <name>
+          <text>Browser_receives_PayloadFile_from_some_server</text>
+        </name>
+      </transition>
       <transition id="local_process_executes_PayloadFile4">
         <name>
           <text>local_process_executes_PayloadFile</text>
-        </name>
-      </transition>
-      <transition id="Browser_stores_PayloadFile_in_AppData2">
-        <name>
-          <text>Browser_stores_PayloadFile_in_AppData</text>
-        </name>
-      </transition>
-      <transition id="Browser_stores_PayloadFile_in_Temp3">
-        <name>
-          <text>Browser_stores_PayloadFile_in_Temp</text>
         </name>
       </transition>
       <transition id="t_PayloadFile_exists_in_Temp">
         <name>
           <text>t_PayloadFile_exists_in_Temp</text>
         </name>
-        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="45dbfd6f-f95d-4fc8-a328-100250f23df0"/>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="062c6d21-02b7-4d73-bdce-6b4f343ea7fb"/>
+      </transition>
+      <transition id="t_detect_and">
+        <name>
+          <text>t_detect_and</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="b519cf09-a236-4414-bc2e-bc9c33c64f48"/>
       </transition>
       <transition id="t_start_communication_connection_active">
         <name>
           <text>t_start_communication_connection_active</text>
         </name>
-        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="15167499-e4a1-4a36-a9ab-9c099e1f64b4"/>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="48a940dd-e2a0-400b-9700-2fe6e89a459f"/>
       </transition>
-      <transition id="Browser_receives_PayloadFile1">
+      <transition id="Browser_stores_PayloadFile_in_AppData2">
         <name>
-          <text>Browser_receives_PayloadFile</text>
+          <text>Browser_stores_PayloadFile_in_AppData</text>
         </name>
       </transition>
       <transition id="t_PayloadFile_exists_in_AppData">
         <name>
           <text>t_PayloadFile_exists_in_AppData</text>
         </name>
-        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="fe7beb27-e634-426b-8f88-4986ee6bb8f3"/>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="937e9d79-d25c-4391-a26b-3be643e29480"/>
       </transition>
-      <transition id="t_detect_PayloadFile_active">
+      <transition id="Browser_stores_PayloadFile_in_Temp3">
         <name>
-          <text>t_detect_PayloadFile_active</text>
+          <text>Browser_stores_PayloadFile_in_Temp</text>
         </name>
-        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="a11d05c0-aa3f-495d-9329-1a258542dcb8"/>
       </transition>
-      <arc id="2247380416992" source="xor_PayloadFile_exists_in_AppData_PayloadFile_exists_in_Temp" target="local_process_executes_PayloadFile4"/>
-      <arc id="2247380418144" source="PayloadFile_exists_in_AppData" target="t_PayloadFile_exists_in_AppData"/>
-      <arc id="2247380417952" source="t_PayloadFile_exists_in_AppData" target="xor_PayloadFile_exists_in_AppData_PayloadFile_exists_in_Temp"/>
-      <arc id="2247380417568" source="PayloadFile_exists_in_Temp" target="t_PayloadFile_exists_in_Temp"/>
-      <arc id="2247380417856" source="t_PayloadFile_exists_in_Temp" target="xor_PayloadFile_exists_in_AppData_PayloadFile_exists_in_Temp"/>
-      <arc id="2247380418432" source="t_detect_PayloadFile_active" target="end"/>
-      <arc id="2247380414880" source="start" target="t_start_communication_connection_active"/>
-      <arc id="2247380415024" source="communication_connection_active" target="Browser_receives_PayloadFile1"/>
-      <arc id="2247380418096" source="Browser_receives_PayloadFile1" target="PayloadFile_received"/>
-      <arc id="2247380415312" source="Browser_stores_PayloadFile_in_AppData2" target="PayloadFile_exists_in_AppData"/>
-      <arc id="2247380417904" source="PayloadFile_received" target="Browser_stores_PayloadFile_in_AppData2"/>
-      <arc id="2247380416176" source="PayloadFile_received" target="Browser_stores_PayloadFile_in_Temp3"/>
-      <arc id="2247380416656" source="Browser_stores_PayloadFile_in_Temp3" target="PayloadFile_exists_in_Temp"/>
-      <arc id="2247380417712" source="local_process_executes_PayloadFile4" target="PayloadFile_active"/>
-      <arc id="2247380418480" source="PayloadFile_active" target="t_detect_PayloadFile_active"/>
-      <arc id="2247380417424" source="t_start_communication_connection_active" target="communication_connection_active"/>
+      <arc id="2178647768576" source="PayloadFile_received" target="Browser_stores_PayloadFile_in_AppData2"/>
+      <arc id="2178647767520" source="Browser_stores_PayloadFile_in_AppData2" target="PayloadFile_exists_in_AppData"/>
+      <arc id="2178647766368" source="xor_PayloadFile_exists_in_AppData_PayloadFile_exists_in_Temp" target="local_process_executes_PayloadFile4"/>
+      <arc id="2178648080512" source="t_PayloadFile_exists_in_AppData" target="xor_PayloadFile_exists_in_AppData_PayloadFile_exists_in_Temp"/>
+      <arc id="2178648080896" source="local_process_executes_PayloadFile4" target="PayloadFile_active"/>
+      <arc id="2178647765696" source="t_detect_and" target="end"/>
+      <arc id="2178646036976" source="communication_connection_active" target="Browser_receives_PayloadFile_from_some_server1"/>
+      <arc id="2178646632464" source="Browser_receives_PayloadFile_from_some_server1" target="PayloadFile_received"/>
+      <arc id="2178647766992" source="PayloadFile_received" target="Browser_stores_PayloadFile_in_Temp3"/>
+      <arc id="2178647765360" source="Browser_stores_PayloadFile_in_Temp3" target="PayloadFile_exists_in_Temp"/>
+      <arc id="2178648080560" source="PayloadFile_exists_in_AppData" target="t_PayloadFile_exists_in_AppData"/>
+      <arc id="2178648080752" source="PayloadFile_exists_in_Temp" target="t_PayloadFile_exists_in_Temp"/>
+      <arc id="2178648080656" source="t_PayloadFile_exists_in_Temp" target="xor_PayloadFile_exists_in_AppData_PayloadFile_exists_in_Temp"/>
+      <arc id="2178648081040" source="PayloadFile_active" target="t_detect_and"/>
+      <arc id="2178648081232" source="start" target="t_start_communication_connection_active"/>
+      <arc id="2178648081328" source="t_start_communication_connection_active" target="communication_connection_active"/>
     </page>
   </net>
 </pnml>

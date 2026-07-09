@@ -5,29 +5,14 @@
       <text>Scheduled_Task_Job_At</text>
     </name>
     <page id="n0">
-      <place id="at.exe_active">
+      <place id="at_exe_active">
         <name>
-          <text>at.exe_active</text>
+          <text>at_exe_active</text>
         </name>
       </place>
       <place id="WMI_Win32_ScheduledJob_active">
         <name>
           <text>WMI_Win32_ScheduledJob_active</text>
-        </name>
-      </place>
-      <place id="taskeng_exe_active">
-        <name>
-          <text>taskeng_exe_active</text>
-        </name>
-      </place>
-      <place id="end">
-        <name>
-          <text>end</text>
-        </name>
-      </place>
-      <place id="start">
-        <name>
-          <text>start</text>
         </name>
       </place>
       <place id="svchost_exe_active">
@@ -40,36 +25,29 @@
           <text>AnomalousJob_active</text>
         </name>
       </place>
+      <place id="end">
+        <name>
+          <text>end</text>
+        </name>
+      </place>
       <place id="AnomalousJob_created">
         <name>
           <text>AnomalousJob_created</text>
         </name>
       </place>
-      <transition id="at.exe_creates_AnomalousJob1">
+      <place id="taskeng_exe_active">
         <name>
-          <text>at.exe_creates_AnomalousJob</text>
+          <text>taskeng_exe_active</text>
         </name>
-      </transition>
+      </place>
+      <place id="start">
+        <name>
+          <text>start</text>
+        </name>
+      </place>
       <transition id="WMI_Win32_ScheduledJob_creates_AnomalousJob2">
         <name>
           <text>WMI_Win32_ScheduledJob_creates_AnomalousJob</text>
-        </name>
-      </transition>
-      <transition id="t_start_at.exe_active">
-        <name>
-          <text>t_start_at.exe_active</text>
-        </name>
-        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="e68d5187-8d12-4e71-8832-e13cc3be416a"/>
-      </transition>
-      <transition id="t_detect_AnomalousJob_active">
-        <name>
-          <text>t_detect_AnomalousJob_active</text>
-        </name>
-        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="ef65cbd4-7cb5-458a-aa52-1f363705011e"/>
-      </transition>
-      <transition id="taskeng_exe_executes_AnomalousJob4">
-        <name>
-          <text>taskeng_exe_executes_AnomalousJob</text>
         </name>
       </transition>
       <transition id="svchost_exe_executes_AnomalousJob3">
@@ -77,44 +55,66 @@
           <text>svchost_exe_executes_AnomalousJob</text>
         </name>
       </transition>
-      <transition id="t_start_taskeng_exe_active">
+      <transition id="t_start_at_exe_active">
         <name>
-          <text>t_start_taskeng_exe_active</text>
+          <text>t_start_at_exe_active</text>
         </name>
-        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="70a19295-3bcc-46da-a481-6cb00d60b100"/>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="b2c4ef49-dcec-4092-8614-0a01cb3d7674"/>
       </transition>
       <transition id="t_start_WMI_Win32_ScheduledJob_active">
         <name>
           <text>t_start_WMI_Win32_ScheduledJob_active</text>
         </name>
-        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="c01c4608-0115-473b-b5fd-7a346c83933c"/>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="b5ec8c3c-fc4c-4847-bdf9-1a968a1a02d2"/>
       </transition>
       <transition id="t_start_svchost_exe_active">
         <name>
           <text>t_start_svchost_exe_active</text>
         </name>
-        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="b5c924a8-573b-46ce-864f-d866818882b4"/>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="0e5beda0-cd4d-4150-8561-315de8508edd"/>
       </transition>
-      <arc id="2739186380688" source="taskeng_exe_executes_AnomalousJob4" target="AnomalousJob_active"/>
-      <arc id="2739186381456" source="t_start_at.exe_active" target="at.exe_active"/>
-      <arc id="2739186380448" source="WMI_Win32_ScheduledJob_creates_AnomalousJob2" target="AnomalousJob_created"/>
-      <arc id="2739186381216" source="t_start_WMI_Win32_ScheduledJob_active" target="WMI_Win32_ScheduledJob_active"/>
-      <arc id="2739186381600" source="start" target="t_start_svchost_exe_active"/>
-      <arc id="2739186380976" source="t_start_taskeng_exe_active" target="taskeng_exe_active"/>
-      <arc id="2739186381360" source="start" target="t_start_at.exe_active"/>
-      <arc id="2739186379968" source="at.exe_active" target="at.exe_creates_AnomalousJob1"/>
-      <arc id="2739186378048" source="WMI_Win32_ScheduledJob_active" target="WMI_Win32_ScheduledJob_creates_AnomalousJob2"/>
-      <arc id="2739186378432" source="at.exe_creates_AnomalousJob1" target="AnomalousJob_created"/>
-      <arc id="2739186380352" source="taskeng_exe_active" target="taskeng_exe_executes_AnomalousJob4"/>
-      <arc id="2739186379200" source="AnomalousJob_active" target="t_detect_AnomalousJob_active"/>
-      <arc id="2739186381120" source="start" target="t_start_WMI_Win32_ScheduledJob_active"/>
-      <arc id="2739186375504" source="svchost_exe_executes_AnomalousJob3" target="AnomalousJob_active"/>
-      <arc id="2739186380880" source="start" target="t_start_taskeng_exe_active"/>
-      <arc id="2739186380640" source="AnomalousJob_created" target="taskeng_exe_executes_AnomalousJob4"/>
-      <arc id="2739183731296" source="t_start_svchost_exe_active" target="svchost_exe_active"/>
-      <arc id="2739186379632" source="AnomalousJob_created" target="svchost_exe_executes_AnomalousJob3"/>
-      <arc id="2739186378864" source="svchost_exe_active" target="svchost_exe_executes_AnomalousJob3"/>
-      <arc id="2739186380784" source="t_detect_AnomalousJob_active" target="end"/>
+      <transition id="at_exe_creates_AnomalousJob1">
+        <name>
+          <text>at_exe_creates_AnomalousJob</text>
+        </name>
+      </transition>
+      <transition id="taskeng_exe_executes_AnomalousJob4">
+        <name>
+          <text>taskeng_exe_executes_AnomalousJob</text>
+        </name>
+      </transition>
+      <transition id="t_detect_AnomalousJob_active">
+        <name>
+          <text>t_detect_AnomalousJob_active</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="9aaac8c7-1ff0-46dd-ad1f-634b81ce9ff2"/>
+      </transition>
+      <transition id="t_start_taskeng_exe_active">
+        <name>
+          <text>t_start_taskeng_exe_active</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="e49b0533-f754-423a-aa3b-568dd5fa338f"/>
+      </transition>
+      <arc id="2726272185216" source="start" target="t_start_taskeng_exe_active"/>
+      <arc id="2726271916304" source="at_exe_active" target="at_exe_creates_AnomalousJob1"/>
+      <arc id="2726272184592" source="svchost_exe_executes_AnomalousJob3" target="AnomalousJob_active"/>
+      <arc id="2726272184976" source="AnomalousJob_active" target="t_detect_AnomalousJob_active"/>
+      <arc id="2726270591648" source="WMI_Win32_ScheduledJob_active" target="WMI_Win32_ScheduledJob_creates_AnomalousJob2"/>
+      <arc id="2726272180128" source="AnomalousJob_created" target="taskeng_exe_executes_AnomalousJob4"/>
+      <arc id="2726272185120" source="t_detect_AnomalousJob_active" target="end"/>
+      <arc id="2726272182960" source="WMI_Win32_ScheduledJob_creates_AnomalousJob2" target="AnomalousJob_created"/>
+      <arc id="2726272183344" source="svchost_exe_active" target="svchost_exe_executes_AnomalousJob3"/>
+      <arc id="2726271914672" source="t_start_svchost_exe_active" target="svchost_exe_active"/>
+      <arc id="2726272184640" source="taskeng_exe_active" target="taskeng_exe_executes_AnomalousJob4"/>
+      <arc id="2726271425216" source="start" target="t_start_at_exe_active"/>
+      <arc id="2726272180944" source="AnomalousJob_created" target="svchost_exe_executes_AnomalousJob3"/>
+      <arc id="2723664198352" source="at_exe_creates_AnomalousJob1" target="AnomalousJob_created"/>
+      <arc id="2726272184016" source="taskeng_exe_executes_AnomalousJob4" target="AnomalousJob_active"/>
+      <arc id="2726272185312" source="t_start_taskeng_exe_active" target="taskeng_exe_active"/>
+      <arc id="2726271921248" source="start" target="t_start_svchost_exe_active"/>
+      <arc id="2726271920624" source="t_start_WMI_Win32_ScheduledJob_active" target="WMI_Win32_ScheduledJob_active"/>
+      <arc id="2726271428720" source="t_start_at_exe_active" target="at_exe_active"/>
+      <arc id="2726271920240" source="start" target="t_start_WMI_Win32_ScheduledJob_active"/>
     </page>
   </net>
 </pnml>

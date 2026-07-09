@@ -18,9 +18,11 @@
     "assets": {
         "at_exe": {
             "asset_type": "process",
-            "properties": null
+            "properties": {
+                "command_line": "\"at.exe\""
+            }
         },
-        "Win32_ScheduledJob": {
+        "WMI_Win32_ScheduledJob": {
             "asset_type": "process",
             "properties": null
         },
@@ -45,7 +47,7 @@
         {
             "event_number": "1",
             "when": {
-                "actor": "Win32_ScheduledJob",
+                "actor": "WMI_Win32_ScheduledJob",
                 "action_verb": "creates",
                 "object": "AnomalousScheduledTask",
                 "modifiers": []
@@ -53,7 +55,7 @@
             "given": {
                 "preconditions": [
                     {
-                        "object": "Win32_ScheduledJob",
+                        "object": "WMI_Win32_ScheduledJob",
                         "verb": "is_activated",
                         "modifiers": []
                     }
@@ -68,7 +70,7 @@
                         "modifiers": []
                     }
                 ],
-                "operator": "AND"
+                "operator": null
             },
             "repetition": null,
             "time_period": null
@@ -99,7 +101,7 @@
                         "modifiers": []
                     }
                 ],
-                "operator": "AND"
+                "operator": null
             },
             "repetition": null,
             "time_period": null
@@ -135,7 +137,7 @@
                         "modifiers": []
                     }
                 ],
-                "operator": "AND"
+                "operator": null
             },
             "repetition": null,
             "time_period": null
@@ -171,7 +173,7 @@
                         "modifiers": []
                     }
                 ],
-                "operator": "AND"
+                "operator": null
             },
             "repetition": null,
             "time_period": null

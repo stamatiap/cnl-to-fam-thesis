@@ -82,7 +82,7 @@
                         "modifiers": []
                     }
                 ],
-                "operator": "AND"
+                "operator": null
             },
             "repetition": null,
             "time_period": null
@@ -123,7 +123,7 @@
                         ]
                     }
                 ],
-                "operator": "AND"
+                "operator": null
             },
             "repetition": null,
             "time_period": null
@@ -164,7 +164,7 @@
                         ]
                     }
                 ],
-                "operator": "AND"
+                "operator": null
             },
             "repetition": null,
             "time_period": null
@@ -210,7 +210,7 @@
                         "modifiers": []
                     }
                 ],
-                "operator": "AND"
+                "operator": null
             },
             "repetition": null,
             "time_period": null
