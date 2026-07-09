@@ -160,6 +160,7 @@ class Translator:
     def create_state_condition(self, condition: dict) -> StateCondition:
         subject = self.get_asset(condition["object"])
         modifiers = [self.create_modifier(m) for m in condition.get("modifiers", [])]
+        modifiers = None if len(modifiers)==0 else modifiers
         return StateCondition(
             subject=subject,
             subject_state=condition["verb"],
@@ -271,7 +272,7 @@ class Translator:
         logger.info("visiting parsed text.")
         visitor = Visitor()
         raw_strings = visitor.visitAttack(parsed_data)
-        
+
         out = Path("data/raw_string_dictionaries") / f"{raw_strings.get('technique_id')}_{raw_strings.get('technique_name')}_dict.json"
         write_artifact(raw_strings, out)
         
