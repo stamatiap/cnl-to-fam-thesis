@@ -86,20 +86,6 @@ class Validator():
             )
             self.errors += 1
 
-    def serialize(self, obj):
-        if isinstance(obj, Enum):
-            return obj.value
-        if is_dataclass(obj):
-            result = {"__class__": obj.__class__.__name__}
-            for f in fields(obj):
-                result[f.name] = self.serialize(getattr(obj, f.name))
-            return result
-        if isinstance(obj, list):
-            return [self.serialize(x) for x in obj]
-        if isinstance(obj, dict):
-            return {k: self.serialize(v) for k, v in obj.items()}
-        return obj
-
     def validate_model(self, cnl_model: TechniqueModel, domain_model: TechniqueModel) -> bool:
 
         if domain_model is None:
