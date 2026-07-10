@@ -7,18 +7,16 @@ assets = {"accountA": Account(
                 name = "accountA"
             ),
             "authentication": Process(
-                asset_type = "authentication",
+                asset_type = "process",
                 name = "authentication_process"
             ),
             "correct_credentials": Message(
-                asset_type = "credentials",
-                name = "CorrectCredentials",
-                data = "guess_correct_password"
+                asset_type = "message",
+                name = "CorrectCredentials"
             ),
             "incorrect_credentials": Message(
-                asset_type = "credentials",
-                name = "IncorrectCredentials",
-                data = "guess_random_password"
+                asset_type = "message",
+                name = "IncorrectCredentials"
             ),
             "user": Session(
                 asset_type = "session",
@@ -61,7 +59,7 @@ events = [
         precondition_operator = None,
         postconditions = [state_conditions.get('credentials_rejected')],
         postcondition_operator = None,
-        repetition = Repetition(occurrences=5, time_value=1, time_unit="seconds")
+        repetition = Repetition(occurrences=5, time_value=1, time_unit=TimeUnit.SECOND)
     ),
     Event(
         id = "2",

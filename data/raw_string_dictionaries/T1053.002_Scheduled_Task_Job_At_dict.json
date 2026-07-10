@@ -1,0 +1,189 @@
+{
+    "tactics": [
+        {
+            "tactic_id": "TA0002",
+            "tactic_name": "Execution"
+        },
+        {
+            "tactic_id": "TA0003",
+            "tactic_name": "Persistence"
+        },
+        {
+            "tactic_id": "TA0004",
+            "tactic_name": "Privilege_Escalation"
+        }
+    ],
+    "technique_id": "T1053.002",
+    "technique_name": "Scheduled_Task_Job_At",
+    "assets": {
+        "at_exe": {
+            "asset_type": "process",
+            "properties": {
+                "command_line": "\"at.exe\""
+            }
+        },
+        "WMI_Win32_ScheduledJob": {
+            "asset_type": "process",
+            "properties": null
+        },
+        "AnomalousScheduledTask": {
+            "asset_type": "process",
+            "properties": null
+        },
+        "svchost_exe": {
+            "asset_type": "process",
+            "properties": {
+                "command_line": "\"svchost.exe\""
+            }
+        },
+        "taskeng_exe": {
+            "asset_type": "process",
+            "properties": {
+                "command_line": "\"taskeng.exe\""
+            }
+        }
+    },
+    "events": [
+        {
+            "event_number": "1",
+            "when": {
+                "actor": "WMI_Win32_ScheduledJob",
+                "action_verb": "creates",
+                "object": "AnomalousScheduledTask",
+                "modifiers": []
+            },
+            "given": {
+                "preconditions": [
+                    {
+                        "object": "WMI_Win32_ScheduledJob",
+                        "verb": "is_activated",
+                        "modifiers": []
+                    }
+                ],
+                "operator": null
+            },
+            "then": {
+                "postconditions": [
+                    {
+                        "object": "AnomalousScheduledTask",
+                        "verb": "is_created",
+                        "modifiers": []
+                    }
+                ],
+                "operator": null
+            },
+            "repetition": null,
+            "time_period": null
+        },
+        {
+            "event_number": "2",
+            "when": {
+                "actor": "at_exe",
+                "action_verb": "creates",
+                "object": "AnomalousScheduledTask",
+                "modifiers": []
+            },
+            "given": {
+                "preconditions": [
+                    {
+                        "object": "at_exe",
+                        "verb": "is_activated",
+                        "modifiers": []
+                    }
+                ],
+                "operator": null
+            },
+            "then": {
+                "postconditions": [
+                    {
+                        "object": "AnomalousScheduledTask",
+                        "verb": "is_created",
+                        "modifiers": []
+                    }
+                ],
+                "operator": null
+            },
+            "repetition": null,
+            "time_period": null
+        },
+        {
+            "event_number": "3",
+            "when": {
+                "actor": "svchost_exe",
+                "action_verb": "executes",
+                "object": "AnomalousScheduledTask",
+                "modifiers": []
+            },
+            "given": {
+                "preconditions": [
+                    {
+                        "object": "AnomalousScheduledTask",
+                        "verb": "is_created",
+                        "modifiers": []
+                    },
+                    {
+                        "object": "svchost_exe",
+                        "verb": "is_activated",
+                        "modifiers": []
+                    }
+                ],
+                "operator": "AND"
+            },
+            "then": {
+                "postconditions": [
+                    {
+                        "object": "AnomalousScheduledTask",
+                        "verb": "is_activated",
+                        "modifiers": []
+                    }
+                ],
+                "operator": null
+            },
+            "repetition": null,
+            "time_period": null
+        },
+        {
+            "event_number": "4",
+            "when": {
+                "actor": "taskeng_exe",
+                "action_verb": "executes",
+                "object": "AnomalousScheduledTask",
+                "modifiers": []
+            },
+            "given": {
+                "preconditions": [
+                    {
+                        "object": "AnomalousScheduledTask",
+                        "verb": "is_created",
+                        "modifiers": []
+                    },
+                    {
+                        "object": "taskeng_exe",
+                        "verb": "is_activated",
+                        "modifiers": []
+                    }
+                ],
+                "operator": "AND"
+            },
+            "then": {
+                "postconditions": [
+                    {
+                        "object": "AnomalousScheduledTask",
+                        "verb": "is_activated",
+                        "modifiers": []
+                    }
+                ],
+                "operator": null
+            },
+            "repetition": null,
+            "time_period": null
+        }
+    ],
+    "completion": {
+        "events": [
+            "3",
+            "4"
+        ],
+        "operator": "XOR"
+    }
+}

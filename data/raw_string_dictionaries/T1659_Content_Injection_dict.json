@@ -1,0 +1,225 @@
+{
+    "tactics": [
+        {
+            "tactic_id": "TA0001",
+            "tactic_name": "Initial_Access"
+        },
+        {
+            "tactic_id": "TA0011",
+            "tactic_name": "Command_and_Control"
+        }
+    ],
+    "technique_id": "T1659",
+    "technique_name": "Content_Injection",
+    "assets": {
+        "browser": {
+            "asset_type": "process",
+            "properties": null
+        },
+        "server": {
+            "asset_type": "endpoint",
+            "properties": null
+        },
+        "Browser_connection": {
+            "asset_type": "network_connection",
+            "properties": {
+                "source": "\"browser\"",
+                "destination": "\"server\""
+            }
+        },
+        "local_process": {
+            "asset_type": "process",
+            "properties": {
+                "parent_process": "\"browser\""
+            }
+        },
+        "F": {
+            "asset_type": "file",
+            "properties": null
+        },
+        "Temp": {
+            "asset_type": "directory",
+            "properties": {
+                "path": "\"/temp/\""
+            }
+        },
+        "AppData": {
+            "asset_type": "directory",
+            "properties": {
+                "path": "\"/%AppData%/\""
+            }
+        }
+    },
+    "events": [
+        {
+            "event_number": "1",
+            "when": {
+                "actor": "browser",
+                "action_verb": "receives",
+                "object": "F",
+                "modifiers": [
+                    [
+                        "source",
+                        "server"
+                    ]
+                ]
+            },
+            "given": {
+                "preconditions": [
+                    {
+                        "object": "Browser_connection",
+                        "verb": "is_activated",
+                        "modifiers": []
+                    }
+                ],
+                "operator": null
+            },
+            "then": {
+                "postconditions": [
+                    {
+                        "object": "F",
+                        "verb": "is_received",
+                        "modifiers": []
+                    }
+                ],
+                "operator": null
+            },
+            "repetition": null,
+            "time_period": null
+        },
+        {
+            "event_number": "2",
+            "when": {
+                "actor": "browser",
+                "action_verb": "saves",
+                "object": "F",
+                "modifiers": [
+                    [
+                        "location",
+                        "AppData"
+                    ]
+                ]
+            },
+            "given": {
+                "preconditions": [
+                    {
+                        "object": "F",
+                        "verb": "is_received",
+                        "modifiers": []
+                    }
+                ],
+                "operator": null
+            },
+            "then": {
+                "postconditions": [
+                    {
+                        "object": "F",
+                        "verb": "exists",
+                        "modifiers": [
+                            [
+                                "location",
+                                "AppData"
+                            ]
+                        ]
+                    }
+                ],
+                "operator": null
+            },
+            "repetition": null,
+            "time_period": null
+        },
+        {
+            "event_number": "3",
+            "when": {
+                "actor": "browser",
+                "action_verb": "saves",
+                "object": "F",
+                "modifiers": [
+                    [
+                        "location",
+                        "Temp"
+                    ]
+                ]
+            },
+            "given": {
+                "preconditions": [
+                    {
+                        "object": "F",
+                        "verb": "is_received",
+                        "modifiers": []
+                    }
+                ],
+                "operator": null
+            },
+            "then": {
+                "postconditions": [
+                    {
+                        "object": "F",
+                        "verb": "exists",
+                        "modifiers": [
+                            [
+                                "location",
+                                "Temp"
+                            ]
+                        ]
+                    }
+                ],
+                "operator": null
+            },
+            "repetition": null,
+            "time_period": null
+        },
+        {
+            "event_number": "4",
+            "when": {
+                "actor": "local_process",
+                "action_verb": "executes",
+                "object": "F",
+                "modifiers": []
+            },
+            "given": {
+                "preconditions": [
+                    {
+                        "object": "F",
+                        "verb": "exists",
+                        "modifiers": [
+                            [
+                                "location",
+                                "AppData"
+                            ]
+                        ]
+                    },
+                    {
+                        "object": "F",
+                        "verb": "exists",
+                        "modifiers": [
+                            [
+                                "location",
+                                "Temp"
+                            ]
+                        ]
+                    }
+                ],
+                "operator": "XOR"
+            },
+            "then": {
+                "postconditions": [
+                    {
+                        "object": "F",
+                        "verb": "is_active",
+                        "modifiers": []
+                    }
+                ],
+                "operator": null
+            },
+            "repetition": null,
+            "time_period": null
+        }
+    ],
+    "completion": {
+        "events": [
+            "4"
+        ],
+        "operator": null
+    }
+}

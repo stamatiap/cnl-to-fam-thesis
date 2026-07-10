@@ -31,12 +31,13 @@ class PetriNetBuilder:
 
         # create final place
         final_place = self._get_or_create_place("end") # synthetic end place
-        start_place = self._add_start_place(model) # synthetic start place
 
         # connect final transitions based on completion block
         if model.completion:
             self._add_completion(model.completion, final_place)
 
+        start_place = self._add_start_place(model) # synthetic start place
+        
         # initial marking
         initial_marking = Marking()
 
@@ -52,16 +53,9 @@ class PetriNetBuilder:
         return self.net, initial_marking, final_marking
     
     def _identify_entry_place_names(self, model: TechniqueModel) -> set[str]:
-        entry_names = set()
-        seen_post = set()
-        for event in model.events:
-            for cond in event.preconditions:
-                name = self._get_place_name(cond)
-                if name not in seen_post:
-                    entry_names.add(name)
-            for cond in event.postconditions:
-                seen_post.add(self._get_place_name(cond))
-        return entry_names
+        return {p.name for p in self.net.places
+            if len(p.in_arcs) == 0}
+
         
     def _add_start_place(self, model: TechniqueModel) -> PetriNet.Place:
         entry_names = self._identify_entry_place_names(model)
@@ -143,106 +137,9 @@ class PetriNetBuilder:
             transition_name = self._add_modifier_to_name(transition_name, modifier)
         
         transition = self._get_or_create_transition(name=transition_name+event.id,label=transition_name)
-
-        if event.precondition_operator == LogicalOperatorType.OR :
-            #OR - get all transitions that produce the precondition places
-            previous_transitions = []
-            for condition in event.preconditions:
-                place_name = self._get_place_name(condition)
-                place = self._get_or_create_place(place_name)
-                self._add_arc(place, transition)
-                
-                incoming_transitions = [arc.source for arc in place.in_arcs]
-                for t in incoming_transitions:
-                    previous_transitions.append(t)
-
-            # permutations of all transitions included in the OR
-            transition_permutations = permutations(previous_transitions)
-
-            # keep original transitions and clone them as many times as the permutations
-            all_transitions = []
-            for k, perm in enumerate(transition_permutations):
-                if k>0:
-                    perm_transitions = []
-                    for t in perm:
-                        new_transition = self._get_or_create_transition(name=t.name+f"_{k}"+event.id,label=t.name+f"_{k}")
-                        for out in t.out_arcs:
-                            self._add_arc(new_transition, out.target)
-                        perm_transitions.append(new_transition)
-                else: 
-                    perm_transitions = list(perm)
-                all_transitions.append(perm_transitions)
-                # create final OR place that connects all final OR transitions
-                final_or_place = self._get_or_create_place(f"final_or_place_{event.id}")
-            
-            for k, perm in enumerate(all_transitions):
-                for j, t in enumerate(perm):
-                    # if first transition, find incoming arcs and add them to it
-                    if j == 0:
-                        if not t.in_arcs:
-                            # find cloned transition and connect arcs
-                            for trans in self.transitions.values():
-                                if trans.in_arcs and trans.name == "_".join(t.name.split("_")[:-1]):
-                                    for arc in trans.in_arcs:
-                                        if "intermediate" not in arc.source.name.split("_"):
-                                            self._add_arc(arc.source, t)
-
-                    # if last transition, find outgoing arcs and add them to it
-                    if j==len(perm)-1:
-                        if not t.out_arcs:
-                            # find original transition and connect outgoing arcs to this one
-                            for trans in self.transitions.values():
-                                if trans.out_arcs and trans.name == "_".join(t.name.split("_")[:-1]):
-                                    for arc in trans.out_arcs:
-                                        if "intermediate" not in arc.target.name.split("_"):
-                                            self._add_arc(t, arc.target)
-
-                        # add silent transition between found outgoing places and final OR place
-                        for out_arc in t.out_arcs:
-                            out_place = out_arc.target
-                            silent = self._get_or_create_transition(f"t_{out_place.name}", label=None)
-                            self._add_arc(out_place, silent)
-                            self._add_arc(silent, final_or_place)
-
-                            # their old outgoing arcs get deleted and the or_final_place gets connected to outgoing transitions
-                            arcs_to_be_deleted = []
-                            for place_out_arc in out_place.out_arcs:
-                                out_transition = place_out_arc.target
-            
-                                if out_transition.label is None:
-                                    continue
-                                self._add_arc(final_or_place, out_transition)
-                                arcs_to_be_deleted.append(place_out_arc)
-                            
-                            for arc in arcs_to_be_deleted:
-                                self._remove_arc(arc)
-
-                    # if not at last transition of the permutation
-                    else:
-                        # create intermediate place and connect to final or place
-                        inter_place = self._get_or_create_place(f"intermediate_place_{k}{j}")
-                        self._add_arc(t, inter_place)
-                        silent = self._get_or_create_transition(f"t_{inter_place.name}", label=None)
-                        self._add_arc(inter_place, silent)
-                        self._add_arc(silent, final_or_place)
-                        # add arc to next transition in the permutation
-                        self._add_arc(inter_place, perm[j+1])
-            
-            #print(all_transitions[0])
-            # arcs_to_be_deleted = []
-            # places_to_be_deleted = []
-            # for t in all_transitions[0]:
-            #     for out in t.out_arcs:
-            #         if "intermediate" not in out.target.name.split("_"):
-            #             arcs_to_be_deleted.append(out)
-            #             places_to_be_deleted.append(out.target)
-            # for arc in arcs_to_be_deleted:
-            #     petri_utils.remove_arc(self.net, arc)
-            # for place in places_to_be_deleted:
-            #     petri_utils.remove_place(self.net, place)
-                    
+        
            
-        elif event.precondition_operator == LogicalOperatorType.XOR:
+        if event.precondition_operator == LogicalOperatorType.XOR or event.precondition_operator == LogicalOperatorType.OR:
             # XOR — create silent transitions and shared xor_place
             xor_key = "xor_" + "_".join(sorted(self._get_place_name(c) for c in event.preconditions))
             xor_place = self._get_or_create_place(xor_key)
@@ -276,8 +173,8 @@ class PetriNetBuilder:
         self.event_postcondition_places[event.id] = post_places
 
     def _add_completion(self, completion: Completion, final_place: PetriNet.Place) -> None:
-        if completion.operator == LogicalOperatorType.XOR:
-            # XOR — each postcondition place gets its own silent transition to final place
+        if completion.operator == LogicalOperatorType.XOR or completion.operator == LogicalOperatorType.OR:
+            # XOR/OR — each postcondition place gets its own silent transition to final place
             for event_ref in completion.event_refs:
                 post_places = self._get_postcondition_place(event_ref.id)
                 for post_place in post_places:

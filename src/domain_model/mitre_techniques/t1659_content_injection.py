@@ -4,7 +4,7 @@ from src.domain_model.enums import *
 
 assets = {
         "browser": Process(
-                asset_type= "browser",
+                asset_type= "process",
                 name= "Browser", 
             ),
         "server": Endpoint(
@@ -13,15 +13,7 @@ assets = {
             ),
         "communication_connection": NetworkConnection(
             asset_type= "network_connection",
-            name= "communication_connection",
-            source = Process(
-                asset_type= "browser",
-                name= "Browser", 
-            ),
-            destination = Endpoint(
-                asset_type = "endpoint",
-                name = "some_server"
-            )
+            name= "communication_connection"
         ),
         "payload": File(
             asset_type= "file",
@@ -45,6 +37,7 @@ assets = {
 
 assets["communication_connection"].source = assets.get("browser")
 assets["communication_connection"].destination = assets.get("server")
+assets["local_process"].parent_process = assets.get('browser')
 
 state_conditions = {"connection_active": StateCondition(
         subject = assets.get('communication_connection'),
@@ -86,7 +79,7 @@ events = [
             actor = assets.get('communication_connection').source,
             action_verb = "receives",
             object = assets.get('payload'),
-            modifiers = None
+            modifiers = [Modifier(type = ModifierType.SOURCE, value = assets.get('server'))]
         ),
         preconditions = [state_conditions.get('connection_active')],
         precondition_operator = None,
@@ -140,15 +133,15 @@ events = [
 
 completion = Completion(
     event_refs= [event for event in events if event.id in ["4"]],
-    operator= LogicalOperatorType.XOR
+    operator= None
 )
 
 
 content_injection_model = TechniqueModel(
         id= "T1659",
-        name= "Content Injection",
+        name= "Content_Injection",
         assets=assets,
-        tactics= [Tactic(id="TA0001", name="Initial Access"), Tactic(id="TA0011", name="Command and Control")],
+        tactics= [Tactic(id="TA0001", name="Initial_Access"), Tactic(id="TA0011", name="Command_and_Control")],
         events= events,
         completion= completion
     )

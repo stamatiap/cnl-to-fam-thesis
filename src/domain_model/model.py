@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from src.domain_model.enums import ModifierType, LogicalOperatorType
+from src.domain_model.enums import *
 from typing import Self
 import uuid
 
@@ -29,14 +29,14 @@ class Action:
 
 @dataclass
 class Repetition:
-    occurrences: int = None
-    time_value: int = None
-    time_unit: str = None
+    occurrences: int
+    time_value: int
+    time_unit: TimeUnit
 
 @dataclass 
-class TimePeriod:
-    preposition: str = None
-    time_period: str = None
+class Timing:
+    preposition: TimePeriodPreposition
+    time_period: str
 
 @dataclass
 class Event:
@@ -48,7 +48,7 @@ class Event:
     postconditions: list[StateCondition]
     postcondition_operator: LogicalOperatorType
     repetition: Repetition = None
-    time_period: TimePeriod = None
+    timing: Timing = None
 
 @dataclass
 class Completion:

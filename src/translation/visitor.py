@@ -295,7 +295,10 @@ class Visitor(CNLVisitor):
     
     def visitThenClause(self, ctx: CNLParser.ThenClauseContext):
         then_items = [self.visitStateCondition(item) for item in ctx.stateCondition()]
-        operator = "AND" # then clause supports only AND
+        if len(then_items) > 1:
+            operator = "AND" # then clause supports only AND
+        else:
+            operator = None
     
         return {
             "postconditions": then_items,
