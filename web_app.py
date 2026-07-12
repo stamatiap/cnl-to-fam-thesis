@@ -2,6 +2,9 @@ from pathlib import Path
 import streamlit as st
 from src.monitoring import setup_logging
 from src.run_pipeline import run_pipeline
+import shutil
+
+st.write(shutil.which("dot"))
 
 # setup logging once per session so every translation, Petri-net build,
 # and visualization is written to one log
