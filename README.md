@@ -67,3 +67,21 @@ The Streamlit app lets you type a CNL description and see the resulting Petri ne
 ```bash
 streamlit run web_app.py
 ```
+
+### Regenerating the parser
+
+Editing `CNL.g4` requires the ANTLR4 tool itself. To install ANTLR4, follow the [official getting started guide](https://github.com/antlr/antlr4/blob/master/doc/getting-started.md).
+
+Once ANTLR4 is installed, regenerate the Python lexer and parser (targeting Python 3) after any grammar change, following the command:
+
+```bash
+antlr4 -Dlanguage=Python3 CNL.g4
+```
+To generate the visitor, simply run the same command with the flag `-visitor` as such:
+```bash
+antlr4 -Dlanguage=Python3 -visitor CNL.g4
+```
+
+## License
+
+Apache License 2.0. See [LICENSE](LICENSE).
