@@ -36,6 +36,7 @@ def run_pipeline(input_path, validate: bool = False, build_domain: bool = False,
     """
     input_path = str(input_path)
     petri_net_dir = Path(petri_net_dir)
+    petri_net_dir.mkdir(parents=True, exist_ok=True)
     result = PipelineResult()
 
     # translate CNL text into a TechniqueModel
