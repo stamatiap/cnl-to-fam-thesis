@@ -1,7 +1,5 @@
 #ANTLR
 .antlr/
-*.interp
-*.tokens
 antlr-*.jar
 *.jar
 
