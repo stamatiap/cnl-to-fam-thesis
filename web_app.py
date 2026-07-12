@@ -32,6 +32,7 @@ if technique_title:
         )
 
         if result.ok and result.cnl_svg_path is not None:
+            print(result.cnl_svg_path)
             st.image(str(result.cnl_svg_path), caption=f"Petri Net for {technique_title}")
         elif result.grammar_errors:
             st.error("Your description couldn't be parsed. Fix the following grammar issue(s):")
