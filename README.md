@@ -2,6 +2,12 @@
 
 This repository contains the implementation of a translation pipeline that takes cyber attack descriptions written in a **Constrained Natural Language (CNL)** and produces a formal representation - a Technique Model - of the described behaviour. The CNL is designed to encode MITRE ATT&CK techniques in a structured, machine-readable form, addressing the gaps and ambiguities in existing threat intelligence formats. Its parsed text is translated into a Technique Model that contains the procedural and other attack semantics needed to formally model the system behavior under attack.
 
+## Demo [![Live app](https://img.shields.io/badge/Live%20app-Streamlit-FF4B4B?logo=streamlit&logoColor=white)](https://cnl-to-fam-thesis-web-app.streamlit.app/)
+
+
+**Try the CNL → Attack Model translator [here!](https://cnl-to-fam-thesis-web-app.streamlit.app/)**
+
+Enter a MITRE ATT&CK technique in the Controlled Natural Language and see the generated Technique Model and Petri net.
 
 ## Translation Pipeline Architecture
 
