@@ -12,6 +12,9 @@ from src.monitoring import logger
 class PipelineResult:
     translated: bool = False
     cnl_svg_path: Path | None = None
+    parse_tree_path: Path | None = None
+    raw_dict_path: Path | None = None
+    technique_model_path: Path | None = None
     grammar_errors: list[dict] = field(default_factory=list)
     translation_errors: list[str] = field(default_factory=list)
 
@@ -48,7 +51,10 @@ def run_pipeline(input_path, validate: bool = False, build_domain: bool = False,
     sink_id = logger.add(lambda m: captured_errors.append(m.record["message"]), level="ERROR")
 
     try:
-        model = translator.translate(input_path)
+        model, pt_out, dict_out, tm_out = translator.translate(input_path)
+        result.parse_tree_path = pt_out
+        result.raw_dict_path = dict_out
+        result.technique_model_path = tm_out
     except Exception as e:
         logger.exception("Translation interrupted with error: {} - {}", type(e).__name__, e)
     finally:
