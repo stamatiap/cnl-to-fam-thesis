@@ -37,7 +37,7 @@ class Translator:
         write_artifact(tree_str, write_path)
         logger.info("parse tree stored in: {}", write_path)
 
-        return tree
+        return tree, write_path
 
     def create_modifier(self, modifier) -> Modifier:
 
@@ -264,7 +264,7 @@ class Translator:
     
     def translate(self, cnl_input_path: str) -> TechniqueModel:
         # Parse the CNL input using the grammar
-        parsed_data = self.parse_input(cnl_input_path)
+        parsed_data, parse_tree_out = self.parse_input(cnl_input_path)
         if parsed_data is None:
             logger.error("failed parsing.")
             return None
@@ -273,16 +273,16 @@ class Translator:
         visitor = Visitor()
         raw_strings = visitor.visitAttack(parsed_data)
 
-        out = Path("data/raw_string_dictionaries") / f"{raw_strings.get('technique_id')}_{raw_strings.get('technique_name')}_dict.json"
-        write_artifact(raw_strings, out)
+        dict_out = Path("data/raw_string_dictionaries") / f"{raw_strings.get('technique_id')}_{raw_strings.get('technique_name')}_dict.json"
+        write_artifact(raw_strings, dict_out)
         
         # Convert the parsed data into a TechniqueModel
         technique_model = self.create_technique_model(raw_strings)
         # Save TechniqueModel
-        out = Path("data/technique_models") / f"cnl_{technique_model.id.replace(".", "_")}_{technique_model.name}.json"
-        write_artifact(technique_model, out)
+        tm_out = Path("data/technique_models") / f"cnl_{technique_model.id.replace(".", "_")}_{technique_model.name}.json"
+        write_artifact(technique_model, tm_out)
         
         logger.info("translated {}: {} assets, {} events. Saved in {}",
-                    technique_model.id, len(technique_model.assets), len(technique_model.events), out)
+                    technique_model.id, len(technique_model.assets), len(technique_model.events), tm_out)
         
-        return technique_model
+        return technique_model, parse_tree_out, dict_out, tm_out
