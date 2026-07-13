@@ -62,7 +62,7 @@ if technique_title:
             with col2:
                 if has_tree:
                     st.download_button(
-                        "Save Parse tree",
+                        "Save Parse Tree",
                         data=tree_text,
                         file_name=f"{file_name}_parse_tree.txt",
                         mime="text/plain",
