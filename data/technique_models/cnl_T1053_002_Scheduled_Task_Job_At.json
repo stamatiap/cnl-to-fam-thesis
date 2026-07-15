@@ -24,7 +24,7 @@
             "__class__": "Process",
             "asset_type": "process",
             "name": "at_exe",
-            "asset_id": "9cdaf378-8a4e-4966-aeaf-e70013046067",
+            "asset_id": "89afd485-d1ef-4e89-ab59-0cfea00954da",
             "signed": null,
             "command_line": "at.exe",
             "parent_process": null
@@ -33,7 +33,7 @@
             "__class__": "Process",
             "asset_type": "process",
             "name": "WMI_Win32_ScheduledJob",
-            "asset_id": "2bd6cfab-b85d-431c-bd00-11eab1dd45d8",
+            "asset_id": "d52cdb53-e4af-45b5-934e-68e80ae306f9",
             "signed": null,
             "command_line": null,
             "parent_process": null
@@ -42,7 +42,7 @@
             "__class__": "Process",
             "asset_type": "process",
             "name": "AnomalousScheduledTask",
-            "asset_id": "08b9b0eb-c1fd-4c33-ae3b-efc3d2ca017a",
+            "asset_id": "5db9db23-78e2-4ee9-b5a9-4002f1196f0f",
             "signed": null,
             "command_line": null,
             "parent_process": null
@@ -51,7 +51,7 @@
             "__class__": "Process",
             "asset_type": "process",
             "name": "svchost_exe",
-            "asset_id": "965a86b8-f087-480d-a01e-423c44a5f4b4",
+            "asset_id": "1d8d6f3c-bb15-4399-83da-09ffae113405",
             "signed": null,
             "command_line": "svchost.exe",
             "parent_process": null
@@ -60,7 +60,7 @@
             "__class__": "Process",
             "asset_type": "process",
             "name": "taskeng_exe",
-            "asset_id": "4f923f9b-0384-4a29-81b0-aba098370f56",
+            "asset_id": "3107bc68-b2ef-48b7-98a9-bfcdb0c15f8e",
             "signed": null,
             "command_line": "taskeng.exe",
             "parent_process": null
@@ -78,7 +78,7 @@
                     "__class__": "Process",
                     "asset_type": "process",
                     "name": "WMI_Win32_ScheduledJob",
-                    "asset_id": "2bd6cfab-b85d-431c-bd00-11eab1dd45d8",
+                    "asset_id": "d52cdb53-e4af-45b5-934e-68e80ae306f9",
                     "signed": null,
                     "command_line": null,
                     "parent_process": null
@@ -87,12 +87,12 @@
                     "__class__": "Process",
                     "asset_type": "process",
                     "name": "AnomalousScheduledTask",
-                    "asset_id": "08b9b0eb-c1fd-4c33-ae3b-efc3d2ca017a",
+                    "asset_id": "5db9db23-78e2-4ee9-b5a9-4002f1196f0f",
                     "signed": null,
                     "command_line": null,
                     "parent_process": null
                 },
-                "modifiers": []
+                "modifiers": null
             },
             "preconditions": [
                 {
@@ -101,7 +101,7 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "WMI_Win32_ScheduledJob",
-                        "asset_id": "2bd6cfab-b85d-431c-bd00-11eab1dd45d8",
+                        "asset_id": "d52cdb53-e4af-45b5-934e-68e80ae306f9",
                         "signed": null,
                         "command_line": null,
                         "parent_process": null
@@ -118,7 +118,7 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "AnomalousScheduledTask",
-                        "asset_id": "08b9b0eb-c1fd-4c33-ae3b-efc3d2ca017a",
+                        "asset_id": "5db9db23-78e2-4ee9-b5a9-4002f1196f0f",
                         "signed": null,
                         "command_line": null,
                         "parent_process": null
@@ -142,7 +142,7 @@
                     "__class__": "Process",
                     "asset_type": "process",
                     "name": "at_exe",
-                    "asset_id": "9cdaf378-8a4e-4966-aeaf-e70013046067",
+                    "asset_id": "89afd485-d1ef-4e89-ab59-0cfea00954da",
                     "signed": null,
                     "command_line": "at.exe",
                     "parent_process": null
@@ -151,12 +151,12 @@
                     "__class__": "Process",
                     "asset_type": "process",
                     "name": "AnomalousScheduledTask",
-                    "asset_id": "08b9b0eb-c1fd-4c33-ae3b-efc3d2ca017a",
+                    "asset_id": "5db9db23-78e2-4ee9-b5a9-4002f1196f0f",
                     "signed": null,
                     "command_line": null,
                     "parent_process": null
                 },
-                "modifiers": []
+                "modifiers": null
             },
             "preconditions": [
                 {
@@ -165,7 +165,7 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "at_exe",
-                        "asset_id": "9cdaf378-8a4e-4966-aeaf-e70013046067",
+                        "asset_id": "89afd485-d1ef-4e89-ab59-0cfea00954da",
                         "signed": null,
                         "command_line": "at.exe",
                         "parent_process": null
@@ -182,7 +182,7 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "AnomalousScheduledTask",
-                        "asset_id": "08b9b0eb-c1fd-4c33-ae3b-efc3d2ca017a",
+                        "asset_id": "5db9db23-78e2-4ee9-b5a9-4002f1196f0f",
                         "signed": null,
                         "command_line": null,
                         "parent_process": null
@@ -206,7 +206,7 @@
                     "__class__": "Process",
                     "asset_type": "process",
                     "name": "svchost_exe",
-                    "asset_id": "965a86b8-f087-480d-a01e-423c44a5f4b4",
+                    "asset_id": "1d8d6f3c-bb15-4399-83da-09ffae113405",
                     "signed": null,
                     "command_line": "svchost.exe",
                     "parent_process": null
@@ -215,12 +215,12 @@
                     "__class__": "Process",
                     "asset_type": "process",
                     "name": "AnomalousScheduledTask",
-                    "asset_id": "08b9b0eb-c1fd-4c33-ae3b-efc3d2ca017a",
+                    "asset_id": "5db9db23-78e2-4ee9-b5a9-4002f1196f0f",
                     "signed": null,
                     "command_line": null,
                     "parent_process": null
                 },
-                "modifiers": []
+                "modifiers": null
             },
             "preconditions": [
                 {
@@ -229,7 +229,7 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "AnomalousScheduledTask",
-                        "asset_id": "08b9b0eb-c1fd-4c33-ae3b-efc3d2ca017a",
+                        "asset_id": "5db9db23-78e2-4ee9-b5a9-4002f1196f0f",
                         "signed": null,
                         "command_line": null,
                         "parent_process": null
@@ -243,7 +243,7 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "svchost_exe",
-                        "asset_id": "965a86b8-f087-480d-a01e-423c44a5f4b4",
+                        "asset_id": "1d8d6f3c-bb15-4399-83da-09ffae113405",
                         "signed": null,
                         "command_line": "svchost.exe",
                         "parent_process": null
@@ -264,7 +264,7 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "AnomalousScheduledTask",
-                        "asset_id": "08b9b0eb-c1fd-4c33-ae3b-efc3d2ca017a",
+                        "asset_id": "5db9db23-78e2-4ee9-b5a9-4002f1196f0f",
                         "signed": null,
                         "command_line": null,
                         "parent_process": null
@@ -288,7 +288,7 @@
                     "__class__": "Process",
                     "asset_type": "process",
                     "name": "taskeng_exe",
-                    "asset_id": "4f923f9b-0384-4a29-81b0-aba098370f56",
+                    "asset_id": "3107bc68-b2ef-48b7-98a9-bfcdb0c15f8e",
                     "signed": null,
                     "command_line": "taskeng.exe",
                     "parent_process": null
@@ -297,12 +297,12 @@
                     "__class__": "Process",
                     "asset_type": "process",
                     "name": "AnomalousScheduledTask",
-                    "asset_id": "08b9b0eb-c1fd-4c33-ae3b-efc3d2ca017a",
+                    "asset_id": "5db9db23-78e2-4ee9-b5a9-4002f1196f0f",
                     "signed": null,
                     "command_line": null,
                     "parent_process": null
                 },
-                "modifiers": []
+                "modifiers": null
             },
             "preconditions": [
                 {
@@ -311,7 +311,7 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "AnomalousScheduledTask",
-                        "asset_id": "08b9b0eb-c1fd-4c33-ae3b-efc3d2ca017a",
+                        "asset_id": "5db9db23-78e2-4ee9-b5a9-4002f1196f0f",
                         "signed": null,
                         "command_line": null,
                         "parent_process": null
@@ -325,7 +325,7 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "taskeng_exe",
-                        "asset_id": "4f923f9b-0384-4a29-81b0-aba098370f56",
+                        "asset_id": "3107bc68-b2ef-48b7-98a9-bfcdb0c15f8e",
                         "signed": null,
                         "command_line": "taskeng.exe",
                         "parent_process": null
@@ -346,7 +346,7 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "AnomalousScheduledTask",
-                        "asset_id": "08b9b0eb-c1fd-4c33-ae3b-efc3d2ca017a",
+                        "asset_id": "5db9db23-78e2-4ee9-b5a9-4002f1196f0f",
                         "signed": null,
                         "command_line": null,
                         "parent_process": null
@@ -374,7 +374,7 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "svchost_exe",
-                        "asset_id": "965a86b8-f087-480d-a01e-423c44a5f4b4",
+                        "asset_id": "1d8d6f3c-bb15-4399-83da-09ffae113405",
                         "signed": null,
                         "command_line": "svchost.exe",
                         "parent_process": null
@@ -383,12 +383,12 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "AnomalousScheduledTask",
-                        "asset_id": "08b9b0eb-c1fd-4c33-ae3b-efc3d2ca017a",
+                        "asset_id": "5db9db23-78e2-4ee9-b5a9-4002f1196f0f",
                         "signed": null,
                         "command_line": null,
                         "parent_process": null
                     },
-                    "modifiers": []
+                    "modifiers": null
                 },
                 "preconditions": [
                     {
@@ -397,7 +397,7 @@
                             "__class__": "Process",
                             "asset_type": "process",
                             "name": "AnomalousScheduledTask",
-                            "asset_id": "08b9b0eb-c1fd-4c33-ae3b-efc3d2ca017a",
+                            "asset_id": "5db9db23-78e2-4ee9-b5a9-4002f1196f0f",
                             "signed": null,
                             "command_line": null,
                             "parent_process": null
@@ -411,7 +411,7 @@
                             "__class__": "Process",
                             "asset_type": "process",
                             "name": "svchost_exe",
-                            "asset_id": "965a86b8-f087-480d-a01e-423c44a5f4b4",
+                            "asset_id": "1d8d6f3c-bb15-4399-83da-09ffae113405",
                             "signed": null,
                             "command_line": "svchost.exe",
                             "parent_process": null
@@ -432,7 +432,7 @@
                             "__class__": "Process",
                             "asset_type": "process",
                             "name": "AnomalousScheduledTask",
-                            "asset_id": "08b9b0eb-c1fd-4c33-ae3b-efc3d2ca017a",
+                            "asset_id": "5db9db23-78e2-4ee9-b5a9-4002f1196f0f",
                             "signed": null,
                             "command_line": null,
                             "parent_process": null
@@ -456,7 +456,7 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "taskeng_exe",
-                        "asset_id": "4f923f9b-0384-4a29-81b0-aba098370f56",
+                        "asset_id": "3107bc68-b2ef-48b7-98a9-bfcdb0c15f8e",
                         "signed": null,
                         "command_line": "taskeng.exe",
                         "parent_process": null
@@ -465,12 +465,12 @@
                         "__class__": "Process",
                         "asset_type": "process",
                         "name": "AnomalousScheduledTask",
-                        "asset_id": "08b9b0eb-c1fd-4c33-ae3b-efc3d2ca017a",
+                        "asset_id": "5db9db23-78e2-4ee9-b5a9-4002f1196f0f",
                         "signed": null,
                         "command_line": null,
                         "parent_process": null
                     },
-                    "modifiers": []
+                    "modifiers": null
                 },
                 "preconditions": [
                     {
@@ -479,7 +479,7 @@
                             "__class__": "Process",
                             "asset_type": "process",
                             "name": "AnomalousScheduledTask",
-                            "asset_id": "08b9b0eb-c1fd-4c33-ae3b-efc3d2ca017a",
+                            "asset_id": "5db9db23-78e2-4ee9-b5a9-4002f1196f0f",
                             "signed": null,
                             "command_line": null,
                             "parent_process": null
@@ -493,7 +493,7 @@
                             "__class__": "Process",
                             "asset_type": "process",
                             "name": "taskeng_exe",
-                            "asset_id": "4f923f9b-0384-4a29-81b0-aba098370f56",
+                            "asset_id": "3107bc68-b2ef-48b7-98a9-bfcdb0c15f8e",
                             "signed": null,
                             "command_line": "taskeng.exe",
                             "parent_process": null
@@ -514,7 +514,7 @@
                             "__class__": "Process",
                             "asset_type": "process",
                             "name": "AnomalousScheduledTask",
-                            "asset_id": "08b9b0eb-c1fd-4c33-ae3b-efc3d2ca017a",
+                            "asset_id": "5db9db23-78e2-4ee9-b5a9-4002f1196f0f",
                             "signed": null,
                             "command_line": null,
                             "parent_process": null
