@@ -171,6 +171,7 @@ class Translator:
         actor = self.get_asset(action.get('actor', None))
         object = self.get_asset(action.get('object', None))
         modifiers = [self.create_modifier(m) for m in action.get('modifiers', [])]
+        modifiers = None if len(modifiers)==0 else modifiers
         return Action(
             action_verb = action.get('action_verb', None),
             actor = actor,
