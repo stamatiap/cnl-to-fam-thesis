@@ -1,0 +1,5 @@
+loguru==0.7.3
+pm4py==2.7.22.2
+streamlit==1.57.0
+antlr4-python3-runtime==4.13.2
+antlr4-tools==0.2.2
