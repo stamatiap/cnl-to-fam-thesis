@@ -21,7 +21,7 @@ if "logging_configured" not in st.session_state:
 col1, col2 = st.columns([3, 2])
 
 
-col1.subheader("Let's model ATT&CK Techniques!")
+col1.subheader("Let's model MITRE ATT&CK Techniques!")
 with col2:
     show_guide = st.toggle("📖 Show CNL Guide", value=False)
 
@@ -148,7 +148,7 @@ technique_title = col1.text_input("Which Technique are you modeling?")
     
 file_name = f"web_app_{st.session_state['session_id']}_{technique_title.replace(' ', '_')}"
 
-description_text = col1.text_area("Please describe a MITRE ATT&CK Technique using the CNL:", height="content")
+description_text = col1.text_area("Describe the Technique using the CNL:", height="content")
 
 if description_text:
     # save the description so the translator (which reads from a file) can parse it.
