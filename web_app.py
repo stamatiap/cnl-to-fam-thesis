@@ -103,7 +103,7 @@ with col2:
                     'Completion\n'
                     'Event 2 Xor Event 3\n'],
                 "notes": [
-                        "Multiple events can be joined with `And` `Or`, or `Xor`."
+                        "Multiple events can be joined with `And`, `Or`, or `Xor`."
                     ],
             },
         }
@@ -148,7 +148,7 @@ technique_title = col1.text_input("Which Technique are you modeling?")
     
 file_name = f"web_app_{st.session_state['session_id']}_{technique_title.replace(' ', '_')}"
 
-description_text = col1.text_area("Please write a MITRE ATT&CK technique in CNL:", height="content")
+description_text = col1.text_area("Please describe a MITRE ATT&CK Technique using the CNL:", height="content")
 
 if description_text:
     # save the description so the translator (which reads from a file) can parse it.
