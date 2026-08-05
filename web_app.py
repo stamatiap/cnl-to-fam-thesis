@@ -6,7 +6,11 @@ from src.run_pipeline import run_pipeline
 import uuid
 import json
 
-st.set_page_config(layout="wide")
+st.set_page_config(
+    page_title="CNL to Formal Attack Models",
+    page_icon="icons/model.png",
+    layout="wide",
+)
 
 if "session_id" not in st.session_state:
     st.session_state["session_id"] = uuid.uuid4().hex[:8]
