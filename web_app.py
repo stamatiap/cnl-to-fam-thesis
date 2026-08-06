@@ -5,7 +5,10 @@ from src.monitoring import setup_logging
 from src.run_pipeline import run_pipeline
 import uuid
 import json
+import re
 
+
+# setup page title/icon and session ID
 st.set_page_config(
     page_title="CNL to Formal Attack Models",
     page_icon="icons/model.png",
@@ -24,7 +27,7 @@ if "logging_configured" not in st.session_state:
 
 col1, col2 = st.columns([3, 2])
 
-
+# setup column1
 col1.subheader("Let's model MITRE ATT&CK Techniques!")
 
 EXAMPLE_NAME = """Ex. Content Injection"""
@@ -48,6 +51,8 @@ Event <n>"""
 
 description_text = col1.text_area("Describe the Technique using the CNL:", height="content", placeholder= SKELETON)
 
+
+# setup column2
 with col2:
     show_guide = st.toggle("📖 Show CNL Guide", value=False)
 
@@ -170,6 +175,7 @@ with col2:
                 for ex in data["examples"]:
                     st.code(ex, language=None)
 
+# setup example CNL descriptions
 col2.subheader("Example CNL Descriptions")
 with col2.expander("OS Credential Dumping: LSASS Memory"):
     description = Path("data/example_descriptions/lsass_memory.txt").read_text(encoding="utf-8")
@@ -196,6 +202,7 @@ if description_text:
         input_path.parent.mkdir(parents=True, exist_ok=True)
         input_path.write_text(description_text, encoding="utf-8")
 
+        # run the translation pipeline
         result = run_pipeline(
             input_path,
             validate=False,
@@ -204,12 +211,11 @@ if description_text:
             parsed_prefix="",
         )
 
+        # show Petri Net visualization
         if result.ok and result.cnl_svg_path is not None:
             svg_path = Path(result.cnl_svg_path)
             with open(str(svg_path)) as f:
                 svg_code = f.read()
-
-            import re
 
             # --- prep the SVG so it fills the container ---
             # ensure there's a viewBox (needed for correct fitting)
@@ -303,6 +309,7 @@ if description_text:
             has_tree = result.parse_tree_path is not None
             tree_text = Path(result.parse_tree_path).read_text(encoding="utf-8") if has_tree else None
 
+            # setup download buttons
             left, center, right = col1.columns(3)
             with left:
                 st.download_button(
