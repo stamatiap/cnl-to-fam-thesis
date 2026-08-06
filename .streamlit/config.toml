@@ -1,0 +1,11 @@
+
+
+[theme]
+base = "light"
+primaryColor = "#7C3AED"          # violet
+backgroundColor = "#F7F5FB"       # pale lilac
+secondaryBackgroundColor = "#ECE7F6"  # light lavender panels
+textColor = "#2B2438"
+font = "sans-serif"
+codeFont = "monospace"
+codeBackgroundColor = "#f0ebf8"
