@@ -214,6 +214,8 @@ if description_text:
         # show Petri Net visualization
         if result.ok and result.cnl_svg_path is not None:
             svg_path = Path(result.cnl_svg_path)
+            pnml_path = Path(result.cnl_pnml_path)
+            
             with open(str(svg_path)) as f:
                 svg_code = f.read()
 
@@ -310,10 +312,10 @@ if description_text:
             tree_text = Path(result.parse_tree_path).read_text(encoding="utf-8") if has_tree else None
 
             # setup download buttons
-            left, center, right = col1.columns(3)
-            with left:
+            left1, left2, right1, right2 = col1.columns(4)
+            with left1:
                 st.download_button(
-                    "Save Petri net",
+                    "Save Petri Net Image",
                     data=svg_path.read_bytes(),
                     file_name=f"{file_name}_petri_net.svg",
                     mime="image/svg+xml",
@@ -322,7 +324,18 @@ if description_text:
                     width="stretch"
                 )
 
-            with center:
+            with left2:
+                st.download_button(
+                    "Save Petri Net Model",
+                    data=pnml_path.read_bytes(),
+                    file_name=f"{file_name}_petri_net.pnml",
+                    mime="application/xml",
+                    icon=":material/download:",
+                    key="pn_model_dl",
+                    width="stretch"
+                )
+
+            with right1:
                 if has_tree:
                     st.download_button(
                         "Save Parse Tree",
@@ -334,7 +347,7 @@ if description_text:
                         width="stretch"
                     )
 
-            with right:
+            with right2:
                 if has_json:
                     st.download_button(
                         "Save Technique Model",
