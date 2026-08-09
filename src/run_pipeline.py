@@ -12,6 +12,7 @@ from src.monitoring import logger
 class PipelineResult:
     translated: bool = False
     cnl_svg_path: Path | None = None
+    cnl_pnml_path: Path | None = None
     parse_tree_path: Path | None = None
     raw_dict_path: Path | None = None
     technique_model_path: Path | None = None
@@ -99,7 +100,9 @@ def run_pipeline(input_path, validate: bool = False, build_domain: bool = False,
     logger.info("Building Petri Net of Technique Model")
     cnl_net = None
     try:
-        cnl_net = builder.build(model, str(petri_net_dir / f"{parsed_prefix}{model.name}"))
+        out = petri_net_dir / f"{parsed_prefix}{model.name}"
+        cnl_net = builder.build(model, str(out))
+        result.cnl_pnml_path = Path(f"{out}.pnml")
     except Exception as e:
         logger.exception("PN Building was interrupted: {} - {}", type(e).__name__, e)
 
