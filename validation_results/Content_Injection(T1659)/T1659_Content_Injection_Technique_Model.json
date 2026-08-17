@@ -1,0 +1,627 @@
+{
+    "__class__": "TechniqueModel",
+    "id": "T1659",
+    "name": "Content_Injection",
+    "tactics": [
+        {
+            "__class__": "Tactic",
+            "id": "TA0001",
+            "name": "Initial_Access"
+        },
+        {
+            "__class__": "Tactic",
+            "id": "TA0011",
+            "name": "Command_and_Control"
+        }
+    ],
+    "assets": {
+        "browser": {
+            "__class__": "Process",
+            "asset_type": "process",
+            "name": "browser",
+            "asset_id": "4b2513e6-dd45-4306-8908-1b193703734c",
+            "signed": null,
+            "command_line": null,
+            "parent_process": null
+        },
+        "server": {
+            "__class__": "Endpoint",
+            "asset_type": "endpoint",
+            "name": "server",
+            "asset_id": "c6b810fe-0122-49ad-9d09-763417009a6d",
+            "port": null,
+            "protocol": null,
+            "ip_address": null
+        },
+        "Browser_connection": {
+            "__class__": "NetworkConnection",
+            "asset_type": "network_connection",
+            "name": "Browser_connection",
+            "asset_id": "91f35266-d75f-4773-a054-59a4a603c0ee",
+            "destination": {
+                "__class__": "Endpoint",
+                "asset_type": "endpoint",
+                "name": "server",
+                "asset_id": "c6b810fe-0122-49ad-9d09-763417009a6d",
+                "port": null,
+                "protocol": null,
+                "ip_address": null
+            },
+            "source": {
+                "__class__": "Process",
+                "asset_type": "process",
+                "name": "browser",
+                "asset_id": "4b2513e6-dd45-4306-8908-1b193703734c",
+                "signed": null,
+                "command_line": null,
+                "parent_process": null
+            },
+            "transport_protocol": null
+        },
+        "local_process": {
+            "__class__": "Process",
+            "asset_type": "process",
+            "name": "local_process",
+            "asset_id": "4fcec5a8-564b-445f-b08d-7648f94dbb72",
+            "signed": null,
+            "command_line": null,
+            "parent_process": {
+                "__class__": "Process",
+                "asset_type": "process",
+                "name": "browser",
+                "asset_id": "4b2513e6-dd45-4306-8908-1b193703734c",
+                "signed": null,
+                "command_line": null,
+                "parent_process": null
+            }
+        },
+        "F": {
+            "__class__": "File",
+            "asset_type": "file",
+            "name": "F",
+            "asset_id": "84ee8afb-6f7f-484b-89a7-e57b627ece6d",
+            "path": null,
+            "signed": null
+        },
+        "Temp": {
+            "__class__": "Directory",
+            "asset_type": "directory",
+            "name": "Temp",
+            "asset_id": "7c1c5d8a-6716-4bbe-b1cc-6f603ed0e01b",
+            "path": "/temp/"
+        },
+        "AppData": {
+            "__class__": "Directory",
+            "asset_type": "directory",
+            "name": "AppData",
+            "asset_id": "45b4e26f-554e-4618-8689-014541bed790",
+            "path": "/%AppData%/"
+        }
+    },
+    "events": [
+        {
+            "__class__": "Event",
+            "id": "1",
+            "name": "Event1",
+            "action": {
+                "__class__": "Action",
+                "action_verb": "receives",
+                "actor": {
+                    "__class__": "Process",
+                    "asset_type": "process",
+                    "name": "browser",
+                    "asset_id": "4b2513e6-dd45-4306-8908-1b193703734c",
+                    "signed": null,
+                    "command_line": null,
+                    "parent_process": null
+                },
+                "object": {
+                    "__class__": "File",
+                    "asset_type": "file",
+                    "name": "F",
+                    "asset_id": "84ee8afb-6f7f-484b-89a7-e57b627ece6d",
+                    "path": null,
+                    "signed": null
+                },
+                "modifiers": [
+                    {
+                        "__class__": "Modifier",
+                        "type": {
+                            "__enum__": "ModifierType",
+                            "type_name": "SOURCE",
+                            "value": "from"
+                        },
+                        "value": {
+                            "__class__": "Endpoint",
+                            "asset_type": "endpoint",
+                            "name": "server",
+                            "asset_id": "c6b810fe-0122-49ad-9d09-763417009a6d",
+                            "port": null,
+                            "protocol": null,
+                            "ip_address": null
+                        }
+                    }
+                ]
+            },
+            "preconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "NetworkConnection",
+                        "asset_type": "network_connection",
+                        "name": "Browser_connection",
+                        "asset_id": "91f35266-d75f-4773-a054-59a4a603c0ee",
+                        "destination": {
+                            "__class__": "Endpoint",
+                            "asset_type": "endpoint",
+                            "name": "server",
+                            "asset_id": "c6b810fe-0122-49ad-9d09-763417009a6d",
+                            "port": null,
+                            "protocol": null,
+                            "ip_address": null
+                        },
+                        "source": {
+                            "__class__": "Process",
+                            "asset_type": "process",
+                            "name": "browser",
+                            "asset_id": "4b2513e6-dd45-4306-8908-1b193703734c",
+                            "signed": null,
+                            "command_line": null,
+                            "parent_process": null
+                        },
+                        "transport_protocol": null
+                    },
+                    "subject_state": "is_activated",
+                    "modifiers": null
+                }
+            ],
+            "precondition_operator": null,
+            "postconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "File",
+                        "asset_type": "file",
+                        "name": "F",
+                        "asset_id": "84ee8afb-6f7f-484b-89a7-e57b627ece6d",
+                        "path": null,
+                        "signed": null
+                    },
+                    "subject_state": "is_received",
+                    "modifiers": null
+                }
+            ],
+            "postcondition_operator": null,
+            "repetition": null,
+            "timing": null
+        },
+        {
+            "__class__": "Event",
+            "id": "2",
+            "name": "Event2",
+            "action": {
+                "__class__": "Action",
+                "action_verb": "saves",
+                "actor": {
+                    "__class__": "Process",
+                    "asset_type": "process",
+                    "name": "browser",
+                    "asset_id": "4b2513e6-dd45-4306-8908-1b193703734c",
+                    "signed": null,
+                    "command_line": null,
+                    "parent_process": null
+                },
+                "object": {
+                    "__class__": "File",
+                    "asset_type": "file",
+                    "name": "F",
+                    "asset_id": "84ee8afb-6f7f-484b-89a7-e57b627ece6d",
+                    "path": null,
+                    "signed": null
+                },
+                "modifiers": [
+                    {
+                        "__class__": "Modifier",
+                        "type": {
+                            "__enum__": "ModifierType",
+                            "type_name": "LOCATION",
+                            "value": "in"
+                        },
+                        "value": {
+                            "__class__": "Directory",
+                            "asset_type": "directory",
+                            "name": "AppData",
+                            "asset_id": "45b4e26f-554e-4618-8689-014541bed790",
+                            "path": "/%AppData%/"
+                        }
+                    }
+                ]
+            },
+            "preconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "File",
+                        "asset_type": "file",
+                        "name": "F",
+                        "asset_id": "84ee8afb-6f7f-484b-89a7-e57b627ece6d",
+                        "path": null,
+                        "signed": null
+                    },
+                    "subject_state": "is_received",
+                    "modifiers": null
+                }
+            ],
+            "precondition_operator": null,
+            "postconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "File",
+                        "asset_type": "file",
+                        "name": "F",
+                        "asset_id": "84ee8afb-6f7f-484b-89a7-e57b627ece6d",
+                        "path": null,
+                        "signed": null
+                    },
+                    "subject_state": "exists",
+                    "modifiers": [
+                        {
+                            "__class__": "Modifier",
+                            "type": {
+                                "__enum__": "ModifierType",
+                                "type_name": "LOCATION",
+                                "value": "in"
+                            },
+                            "value": {
+                                "__class__": "Directory",
+                                "asset_type": "directory",
+                                "name": "AppData",
+                                "asset_id": "45b4e26f-554e-4618-8689-014541bed790",
+                                "path": "/%AppData%/"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "postcondition_operator": null,
+            "repetition": null,
+            "timing": null
+        },
+        {
+            "__class__": "Event",
+            "id": "3",
+            "name": "Event3",
+            "action": {
+                "__class__": "Action",
+                "action_verb": "saves",
+                "actor": {
+                    "__class__": "Process",
+                    "asset_type": "process",
+                    "name": "browser",
+                    "asset_id": "4b2513e6-dd45-4306-8908-1b193703734c",
+                    "signed": null,
+                    "command_line": null,
+                    "parent_process": null
+                },
+                "object": {
+                    "__class__": "File",
+                    "asset_type": "file",
+                    "name": "F",
+                    "asset_id": "84ee8afb-6f7f-484b-89a7-e57b627ece6d",
+                    "path": null,
+                    "signed": null
+                },
+                "modifiers": [
+                    {
+                        "__class__": "Modifier",
+                        "type": {
+                            "__enum__": "ModifierType",
+                            "type_name": "LOCATION",
+                            "value": "in"
+                        },
+                        "value": {
+                            "__class__": "Directory",
+                            "asset_type": "directory",
+                            "name": "Temp",
+                            "asset_id": "7c1c5d8a-6716-4bbe-b1cc-6f603ed0e01b",
+                            "path": "/temp/"
+                        }
+                    }
+                ]
+            },
+            "preconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "File",
+                        "asset_type": "file",
+                        "name": "F",
+                        "asset_id": "84ee8afb-6f7f-484b-89a7-e57b627ece6d",
+                        "path": null,
+                        "signed": null
+                    },
+                    "subject_state": "is_received",
+                    "modifiers": null
+                }
+            ],
+            "precondition_operator": null,
+            "postconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "File",
+                        "asset_type": "file",
+                        "name": "F",
+                        "asset_id": "84ee8afb-6f7f-484b-89a7-e57b627ece6d",
+                        "path": null,
+                        "signed": null
+                    },
+                    "subject_state": "exists",
+                    "modifiers": [
+                        {
+                            "__class__": "Modifier",
+                            "type": {
+                                "__enum__": "ModifierType",
+                                "type_name": "LOCATION",
+                                "value": "in"
+                            },
+                            "value": {
+                                "__class__": "Directory",
+                                "asset_type": "directory",
+                                "name": "Temp",
+                                "asset_id": "7c1c5d8a-6716-4bbe-b1cc-6f603ed0e01b",
+                                "path": "/temp/"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "postcondition_operator": null,
+            "repetition": null,
+            "timing": null
+        },
+        {
+            "__class__": "Event",
+            "id": "4",
+            "name": "Event4",
+            "action": {
+                "__class__": "Action",
+                "action_verb": "executes",
+                "actor": {
+                    "__class__": "Process",
+                    "asset_type": "process",
+                    "name": "local_process",
+                    "asset_id": "4fcec5a8-564b-445f-b08d-7648f94dbb72",
+                    "signed": null,
+                    "command_line": null,
+                    "parent_process": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "browser",
+                        "asset_id": "4b2513e6-dd45-4306-8908-1b193703734c",
+                        "signed": null,
+                        "command_line": null,
+                        "parent_process": null
+                    }
+                },
+                "object": {
+                    "__class__": "File",
+                    "asset_type": "file",
+                    "name": "F",
+                    "asset_id": "84ee8afb-6f7f-484b-89a7-e57b627ece6d",
+                    "path": null,
+                    "signed": null
+                },
+                "modifiers": null
+            },
+            "preconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "File",
+                        "asset_type": "file",
+                        "name": "F",
+                        "asset_id": "84ee8afb-6f7f-484b-89a7-e57b627ece6d",
+                        "path": null,
+                        "signed": null
+                    },
+                    "subject_state": "exists",
+                    "modifiers": [
+                        {
+                            "__class__": "Modifier",
+                            "type": {
+                                "__enum__": "ModifierType",
+                                "type_name": "LOCATION",
+                                "value": "in"
+                            },
+                            "value": {
+                                "__class__": "Directory",
+                                "asset_type": "directory",
+                                "name": "AppData",
+                                "asset_id": "45b4e26f-554e-4618-8689-014541bed790",
+                                "path": "/%AppData%/"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "File",
+                        "asset_type": "file",
+                        "name": "F",
+                        "asset_id": "84ee8afb-6f7f-484b-89a7-e57b627ece6d",
+                        "path": null,
+                        "signed": null
+                    },
+                    "subject_state": "exists",
+                    "modifiers": [
+                        {
+                            "__class__": "Modifier",
+                            "type": {
+                                "__enum__": "ModifierType",
+                                "type_name": "LOCATION",
+                                "value": "in"
+                            },
+                            "value": {
+                                "__class__": "Directory",
+                                "asset_type": "directory",
+                                "name": "Temp",
+                                "asset_id": "7c1c5d8a-6716-4bbe-b1cc-6f603ed0e01b",
+                                "path": "/temp/"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "precondition_operator": {
+                "__enum__": "LogicalOperatorType",
+                "type_name": "XOR",
+                "value": "XOR"
+            },
+            "postconditions": [
+                {
+                    "__class__": "StateCondition",
+                    "subject": {
+                        "__class__": "File",
+                        "asset_type": "file",
+                        "name": "F",
+                        "asset_id": "84ee8afb-6f7f-484b-89a7-e57b627ece6d",
+                        "path": null,
+                        "signed": null
+                    },
+                    "subject_state": "is_active",
+                    "modifiers": null
+                }
+            ],
+            "postcondition_operator": null,
+            "repetition": null,
+            "timing": null
+        }
+    ],
+    "completion": {
+        "__class__": "Completion",
+        "event_refs": [
+            {
+                "__class__": "Event",
+                "id": "4",
+                "name": "Event4",
+                "action": {
+                    "__class__": "Action",
+                    "action_verb": "executes",
+                    "actor": {
+                        "__class__": "Process",
+                        "asset_type": "process",
+                        "name": "local_process",
+                        "asset_id": "4fcec5a8-564b-445f-b08d-7648f94dbb72",
+                        "signed": null,
+                        "command_line": null,
+                        "parent_process": {
+                            "__class__": "Process",
+                            "asset_type": "process",
+                            "name": "browser",
+                            "asset_id": "4b2513e6-dd45-4306-8908-1b193703734c",
+                            "signed": null,
+                            "command_line": null,
+                            "parent_process": null
+                        }
+                    },
+                    "object": {
+                        "__class__": "File",
+                        "asset_type": "file",
+                        "name": "F",
+                        "asset_id": "84ee8afb-6f7f-484b-89a7-e57b627ece6d",
+                        "path": null,
+                        "signed": null
+                    },
+                    "modifiers": null
+                },
+                "preconditions": [
+                    {
+                        "__class__": "StateCondition",
+                        "subject": {
+                            "__class__": "File",
+                            "asset_type": "file",
+                            "name": "F",
+                            "asset_id": "84ee8afb-6f7f-484b-89a7-e57b627ece6d",
+                            "path": null,
+                            "signed": null
+                        },
+                        "subject_state": "exists",
+                        "modifiers": [
+                            {
+                                "__class__": "Modifier",
+                                "type": {
+                                    "__enum__": "ModifierType",
+                                    "type_name": "LOCATION",
+                                    "value": "in"
+                                },
+                                "value": {
+                                    "__class__": "Directory",
+                                    "asset_type": "directory",
+                                    "name": "AppData",
+                                    "asset_id": "45b4e26f-554e-4618-8689-014541bed790",
+                                    "path": "/%AppData%/"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "__class__": "StateCondition",
+                        "subject": {
+                            "__class__": "File",
+                            "asset_type": "file",
+                            "name": "F",
+                            "asset_id": "84ee8afb-6f7f-484b-89a7-e57b627ece6d",
+                            "path": null,
+                            "signed": null
+                        },
+                        "subject_state": "exists",
+                        "modifiers": [
+                            {
+                                "__class__": "Modifier",
+                                "type": {
+                                    "__enum__": "ModifierType",
+                                    "type_name": "LOCATION",
+                                    "value": "in"
+                                },
+                                "value": {
+                                    "__class__": "Directory",
+                                    "asset_type": "directory",
+                                    "name": "Temp",
+                                    "asset_id": "7c1c5d8a-6716-4bbe-b1cc-6f603ed0e01b",
+                                    "path": "/temp/"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "precondition_operator": {
+                    "__enum__": "LogicalOperatorType",
+                    "type_name": "XOR",
+                    "value": "XOR"
+                },
+                "postconditions": [
+                    {
+                        "__class__": "StateCondition",
+                        "subject": {
+                            "__class__": "File",
+                            "asset_type": "file",
+                            "name": "F",
+                            "asset_id": "84ee8afb-6f7f-484b-89a7-e57b627ece6d",
+                            "path": null,
+                            "signed": null
+                        },
+                        "subject_state": "is_active",
+                        "modifiers": null
+                    }
+                ],
+                "postcondition_operator": null,
+                "repetition": null,
+                "timing": null
+            }
+        ],
+        "operator": null
+    }
+}
