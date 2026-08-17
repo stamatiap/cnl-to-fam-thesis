@@ -1,13 +1,6 @@
-# **From Constrained Natural Language to Formal Attack Models: Design and Implementation of a Translation Pipeline**
+# **An Approach to Capture Attack Descriptions via a Controlled Natural Language**
 
-This repository contains the implementation of a translation pipeline that takes cyber attack descriptions written in a **Constrained Natural Language (CNL)** and produces a formal representation - a Technique Model - of the described behaviour. The CNL is designed to encode MITRE ATT&CK techniques in a structured, machine-readable form, addressing the gaps and ambiguities in existing threat intelligence formats. Its parsed text is translated into a Technique Model that contains the procedural and other attack semantics needed to formally model the system behavior under attack.
-
-## Demo [![Live app](https://img.shields.io/badge/Live%20app-Streamlit-FF4B4B?logo=streamlit&logoColor=white)](https://cnl-to-fam-thesis-web-app.streamlit.app/)
-
-
-**Try the CNL → Attack Model translator [here!](https://cnl-to-fam-thesis-web-app.streamlit.app/)**
-
-Enter a MITRE ATT&CK technique in the Controlled Natural Language and see the generated Technique Model and Petri net.
+This repository contains the implementation of a translation pipeline that takes cyber attack descriptions written in a **Controlled Natural Language (CNL)** and produces a formal attack model (Petri Net) of the described attack. The CNL is focused on describing attacks from the system's perspective in a structured, machine-readable form, addressing the gaps and ambiguities in existing threat intelligence formats. The parsed description is translated into a _Technique Model_ that preserves the described attack features, and is used to formally model the system behavior under attack as a Petri Net.
 
 ## Translation Pipeline Architecture
 
@@ -21,7 +14,7 @@ Parse tree
 Raw string dictionary
    |  Translator  (typed construction + reference resolution)
    v
-TechniqueModel
+Technique Model
    |  PetriNetBuilder  (downstream modeling via pm4py)
    v
 Petri net
@@ -57,7 +50,7 @@ python -m main content_injection.txt
 
 Optional flags:
 
-- `--validate` structurally compares the CNL-produced Technique Model against its reference Domain Model
+- `--validate` structurally compares the CNL-produced Technique Model against its expert-built reference Technique Model
 - `--build_domain` builds and visualizes the reference model's Petri net
 
 ```bash
