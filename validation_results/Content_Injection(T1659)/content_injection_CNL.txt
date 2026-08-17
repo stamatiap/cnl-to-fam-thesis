@@ -1,0 +1,34 @@
+Tactics: TA0001 Initial_Access, TA0011 Command_and_Control
+Technique: T1659 Content_Injection
+
+Background
+Given process as browser
+And endpoint as server
+And network_connection as Browser_connection with source = "browser", destination = "server"
+And process as local_process with parent_process = "browser"
+And file as F
+And directory as Temp with path = "/temp/"
+And directory as AppData with path = "/%AppData%/"
+
+Event 1
+Given Browser_connection is activated
+When browser receives F from server
+Then F is received
+
+Event 2
+Given F is received
+When browser saves F in AppData
+Then F exists in AppData
+
+Event 3
+Given F is received
+When browser saves F in Temp
+Then F exists in Temp
+
+Event 4
+Given F exists in AppData Xor F exists in Temp
+When local_process executes F
+Then F is active
+
+Completion
+Event 4

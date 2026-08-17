@@ -1,0 +1,27 @@
+Tactic: TA0006 Credential_Access
+Technique: T1003.001 OS_Credential_Dumping_LSASS_Memory
+
+Background
+Given process as abnormal_process
+And process as lsass_exe with command_line = "lsass.exe", signed = "true"
+And handle as lsass_handle with hexadecimal_number = "0x1F0FFF", target = "lsass_exe"
+And file as lsass_dump
+And registry as registry_keys
+
+Event 1
+Given abnormal_process is activated And lsass_exe is activated
+When abnormal_process requests lsass_handle
+Then lsass_handle acquired by abnormal_process
+
+Event 2
+Given lsass_handle acquired by abnormal_process
+When abnormal_process requests lsass_dump
+Then lsass_dump is created
+
+Event 3
+Given lsass_dump is created
+When abnormal_process modifies registry_keys
+Then registry_keys modified
+
+Completion
+Event 2 Xor Event 3
